@@ -1,5 +1,5 @@
 export function someFn(arg: number): string {
-  console.log("function asdasda");
+  console.log("dev server works!");
 
   return '';
 }
