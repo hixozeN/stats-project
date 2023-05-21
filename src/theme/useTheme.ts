@@ -1,3 +1,9 @@
+/*
+  Кастомный хук useTheme, управляющий текущей темой в контексте всего приложения.
+  Использование:
+    const [ theme, toggleTheme ] = useTheme();
+*/
+
 import { useContext } from "react";
 import { LOCAL_STORAGE_THEME_KEY, Theme, ThemeContext } from "./ThemeContext";
 

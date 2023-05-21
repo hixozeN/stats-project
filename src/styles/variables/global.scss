@@ -3,11 +3,13 @@
 :root {
   --font-family-main: "Inter", Arial, sans-serif;
 
+  // Шрифт M - основной шрифт приложения
   --font-size-m: 16px;
   --font-line-m: 24px;
   --font-weight-m: 400;
   --font-m: var(--font-weight-m) var(--font-size-m) / var(--font-line-m) var(--font-family-main);
 
+  // Шрифт L - для заголовков
   --font-size-l: 24px;
   --font-line-l: 32px;
   --font-weight-l: 500;

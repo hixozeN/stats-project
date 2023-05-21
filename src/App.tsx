@@ -4,7 +4,6 @@ import { Route, Routes } from "react-router-dom";
 import "./styles/index";
 import { AboutPageLazy } from "./pages/AboutPage/AboutPage.lazy";
 import { MainPageLazy } from "./pages/MainPage/MainPage.lazy";
-import { ThemeContext, Theme } from "./theme/ThemeContext";
 import { useTheme } from "./theme/useTheme";
 
 const App = () => {
