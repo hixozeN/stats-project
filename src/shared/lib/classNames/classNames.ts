@@ -15,12 +15,16 @@
 
 type TMods = Record<string, boolean | string>;
 
-export function classNames(cls: string, mods: TMods, additional: string[]): string {
+export function classNames(cls: string, mods: TMods = {}, additional: string[] = []): string {
   return [
     cls,
-    ...additional,
+    // фильтрация по Boolean, т.к. в дополнительные классы могут прилетать undefined через пропсы
+    ...additional.filter(Boolean),
+    // вытаскиваем все entries из mods
     ...Object.entries(mods)
+      // фильтруем значения, отбрасывая модификаторы с false
       .filter(([ className, value ]) => Boolean(value))
+      // раскладываем в новый массив и соединяем в строку
       .map(([ className ]) => className)
   ]
     .join(' ');
