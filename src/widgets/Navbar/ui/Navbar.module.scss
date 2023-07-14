@@ -5,6 +5,8 @@
   display: flex;
   align-items: center;
   padding: 20px;
+
+  transition: var(--transition-default);
 }
 
 .links {

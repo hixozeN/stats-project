@@ -1,5 +1,7 @@
 .Button {
   cursor: pointer;
+
+  transition: var(--transition-default);
 }
 
 .clear {
@@ -8,4 +10,10 @@
   border: none;
   background: none;
   outline: none;
+}
+
+@media (hover:hover) {
+  .Button:hover {
+    opacity: var(--opacity-hover);
+  }
 }
