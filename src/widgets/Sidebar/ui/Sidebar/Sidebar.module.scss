@@ -5,6 +5,10 @@
 
   position: relative;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   transition: var(--transition-default);
 }
 
@@ -12,8 +16,9 @@
   width: var(--sidebar-collapsed-width);
 }
 
-.switcher {
+.switchers {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  
+  gap: 5px;
 }
