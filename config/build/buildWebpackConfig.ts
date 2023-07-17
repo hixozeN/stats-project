@@ -4,9 +4,20 @@ import buildLoaders from "./buildLoaders";
 import buildResolvers from "./buildResolvers";
 import buildPlugins from "./buildPlugins";
 import buildDevServer from "./buildDevServer";
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
 export function buildWebpackConfig(options: BuildOptions): webpack.Configuration {
   const { paths, mode, isDev } = options;
+
+  const plugins = buildPlugins(options);
+
+  // Добавляем полный хотрелоуд в дев-режиме
+  // Стандартно хотрелоуд в вебпак5 неполноценный
+  if (isDev) {
+    plugins.push(new ReactRefreshWebpackPlugin());
+    plugins.push(new webpack.HotModuleReplacementPlugin());
+  }
+
   return {
     mode: mode,
     entry: paths.entry, // точка входа
@@ -20,7 +31,7 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
       path: paths.build, // папка с билдом
       clean: true,
     },
-    plugins: buildPlugins(options),
+    plugins: plugins,
     devtool: isDev ? "inline-source-map" : undefined,
     devServer: isDev ? buildDevServer(options) : undefined,
   };

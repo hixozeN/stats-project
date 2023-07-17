@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "webpack serve --env port=3000",
+    "start": "webpack serve --env port=3000 mode=development",
     "build:prod": "webpack --env mode=production",
     "build:dev": "webpack --env mode=development"
   },
@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.5",
     "@svgr/webpack": "^6.2.1",
     "@types/node": "^17.0.21",
     "@types/react": "^17.0.39",
