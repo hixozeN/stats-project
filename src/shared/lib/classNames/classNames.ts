@@ -7,7 +7,7 @@
   Использование:
     <div className={classNames('section-feedback', { visible: true }, [ theme, padding25 ])}>
     </div>
-    
+
   В className запишется основной класс 'section-feedback', модификатор 'visible',
   активная тема, допустим, 'dark' и паддинг 'padding25':
     class='section-feedback visible dark'
@@ -23,9 +23,9 @@ export function classNames(cls: string, mods: TMods = {}, additional: string[] =
     // вытаскиваем все entries из mods
     ...Object.entries(mods)
       // фильтруем значения, отбрасывая модификаторы с false
-      .filter(([ className, value ]) => Boolean(value))
+      .filter(([className, value]) => Boolean(value))
       // раскладываем в новый массив и соединяем в строку
-      .map(([ className ]) => className)
+      .map(([className]) => className),
   ]
     .join(' ');
-};
+}

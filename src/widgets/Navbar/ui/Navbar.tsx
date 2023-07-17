@@ -8,8 +8,9 @@ interface INavbarProps {
   className?: string;
 }
 
-export const Navbar = ({ className }: INavbarProps) => {
+export function Navbar({ className }: INavbarProps) {
   const { t } = useTranslation();
+
   return (
     <div className={classNames(cls.Navbar, {}, [className])}>
       <div className={cls.links}>
@@ -19,6 +20,7 @@ export const Navbar = ({ className }: INavbarProps) => {
         >
           {t('Главная')}
         </AppLink>
+
         <AppLink
           theme={AppLinkTheme.SECONDARY}
           to={RoutePath.about}
@@ -28,4 +30,4 @@ export const Navbar = ({ className }: INavbarProps) => {
       </div>
     </div>
   );
-};
+}
