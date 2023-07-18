@@ -23,7 +23,7 @@ export function classNames(cls: string, mods: TMods = {}, additional: string[] =
     // вытаскиваем все entries из mods
     ...Object.entries(mods)
       // фильтруем значения, отбрасывая модификаторы с false
-      .filter(([className, value]) => Boolean(value))
+      .filter(([_, value]) => Boolean(value))
       // раскладываем в новый массив и соединяем в строку
       .map(([className]) => className),
   ]

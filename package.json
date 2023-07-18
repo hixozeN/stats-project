@@ -6,7 +6,9 @@
   "scripts": {
     "start": "webpack serve --env port=3000 mode=development",
     "build:prod": "webpack --env mode=production",
-    "build:dev": "webpack --env mode=development"
+    "build:dev": "webpack --env mode=development",
+    "lint:ts": "npx eslint \"**/*.{ts,tsx}\"",
+    "lint:ts:fix": "npx eslint \"**/*.{ts,tsx}\" --fix"
   },
   "keywords": [],
   "author": "",

@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className={classNames('app', {}, [theme])}>
-      {/* suspence для подгрузки чанков с переводами */}
+      {/* suspense для подгрузки чанков с переводами */}
       <Suspense fallback="">
         <Navbar />
         <div className="page-content">
