@@ -1,9 +1,9 @@
 build
-extractedTranslations
 
 node_modules
 
 .vscode
-.idea
 
 .env
+/.idea/
+/extractedTranslations/
