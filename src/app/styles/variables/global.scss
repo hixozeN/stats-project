@@ -1,7 +1,7 @@
-@import '../fonts/fonts';
+@import "../fonts/fonts";
 
 :root {
-  --font-family-main: "Inter", Arial, sans-serif;
+  --font-family-main: "Inter", arial, sans-serif;
 
   // Шрифт M - основной шрифт приложения
   --font-size-m: 16px;
@@ -16,8 +16,8 @@
   --font-l: var(--font-weight-l) var(--font-size-l) / var(--font-line-l) var(--font-family-main);
 
   // анимации
-  --transition-default: all .2s ease-in-out;
-  --opacity-hover: .7;
+  --transition-default: all 0.2s ease-in-out;
+  --opacity-hover: 0.7;
 
   // Размер навбара
   --navbar-height: 50px;

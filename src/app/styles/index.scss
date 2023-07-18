@@ -1,20 +1,21 @@
-@import 'reset';
-@import 'fonts/fonts';
-@import 'variables/global';
-@import 'themes/normal';
-@import 'themes/dark';
+@import "reset";
+@import "fonts/fonts";
+@import "variables/global";
+@import "themes/normal";
+@import "themes/dark";
 
 .app {
   font: var(--font-m);
   background: var(--bg-color);
   color: var(--primary-color);
   min-height: 100vh;
-
   transition: var(--transition-default);
 }
+
 .page-content {
   display: flex;
 }
+
 .page-wrapper {
   padding: 25px;
   flex-grow: 1;
