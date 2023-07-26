@@ -1,0 +1,13 @@
+.NotFoundPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  height: 100%;
+}
+
+.title {
+  font: var(--font-l);
+  text-align: center;
+}

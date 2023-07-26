@@ -1,4 +1,5 @@
 @import "../fonts/fonts";
+@import "./mixins/color/color";
 
 :root {
   --font-family-main: "Inter", arial, sans-serif;
@@ -25,4 +26,15 @@
   // Размер сайдбара
   --sidebar-width: 300px;
   --sidebar-collapsed-width: 80px;
+}
+
+.link-hovered {
+  text-decoration: none;
+  transition: var(--transition-default);
+}
+
+@media (hover: hover) {
+  .link-hovered:hover {
+    opacity: 0.7;
+  }
 }

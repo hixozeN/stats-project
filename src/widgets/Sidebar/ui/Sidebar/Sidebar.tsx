@@ -24,7 +24,7 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
         theme={ThemeButton.CLEAR}
         onClick={onToggle}
       >
-        {t('Открыть сайдбар')}
+        {collapsed ? t('Открыть сайдбар') : t('Закрыть сайдбар')}
       </Button>
       <div className={cls.switchers}>
         <ThemeSwitcher />

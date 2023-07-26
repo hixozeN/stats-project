@@ -12,6 +12,24 @@
   outline: none;
 }
 
+.inverted {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  outline: none;
+  color: var(--primary-color);
+}
+
+.highlight {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  outline: none;
+  color: var(--highlight-color);
+}
+
 @media (hover: hover) {
   .Button:hover {
     opacity: var(--opacity-hover);
