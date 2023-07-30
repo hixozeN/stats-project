@@ -1,5 +1,4 @@
-@import "../fonts/fonts";
-@import "./mixins/color/color";
+@import "./mixins/index";
 
 :root {
   --font-family-main: "Inter", arial, sans-serif;
@@ -15,6 +14,9 @@
   --font-line-l: 32px;
   --font-weight-l: 500;
   --font-l: var(--font-weight-l) var(--font-size-l) / var(--font-line-l) var(--font-family-main);
+
+  // цвета
+  --error-color: #de3333;
 
   // анимации
   --transition-default: all 0.2s ease-in-out;

@@ -30,6 +30,25 @@
   color: var(--highlight-color);
 }
 
+.border {
+  margin: 0;
+  padding: 5px;
+  border: 1px solid var(--button-border-color);
+  border-radius: 5px;
+  background: none;
+  outline: none;
+  color: var(--primary-color);
+}
+
+.border-inverted {
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--button-border-color);
+  background: none;
+  outline: none;
+  color: var(--inverted-primary-color);
+}
+
 @media (hover: hover) {
   .Button:hover {
     opacity: var(--opacity-hover);

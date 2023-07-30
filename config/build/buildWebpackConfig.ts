@@ -1,5 +1,4 @@
 import webpack from 'webpack';
-import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import { BuildOptions } from './types/config';
 import buildLoaders from './buildLoaders';
 import buildResolvers from './buildResolvers';
@@ -10,13 +9,6 @@ export function buildWebpackConfig(options: BuildOptions): webpack.Configuration
   const { paths, mode, isDev } = options;
 
   const plugins = buildPlugins(options);
-
-  // Добавляем полный хотрелоуд в дев-режиме
-  // Стандартно хотрелоуд в вебпак5 неполноценный
-  if (isDev) {
-    plugins.push(new ReactRefreshWebpackPlugin());
-    // plugins.push(new webpack.HotModuleReplacementPlugin());
-  }
 
   return {
     mode,

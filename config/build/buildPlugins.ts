@@ -18,6 +18,6 @@ export default function buildPlugins(
     new webpack.DefinePlugin({
       IS_DEV: JSON.stringify(isDev),
     }),
-    // new webpack.HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ];
 }
