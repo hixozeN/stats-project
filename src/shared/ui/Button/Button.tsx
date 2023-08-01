@@ -6,6 +6,8 @@ export enum ThemeButton {
   CLEAR = 'clear',
   INVERTED = 'inverted',
   HIGHLIGHT = 'highlight',
+  BORDER = 'border',
+  BORDER_INVERTED = 'border-inverted',
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

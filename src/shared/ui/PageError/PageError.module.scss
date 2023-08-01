@@ -1,0 +1,13 @@
+.page-error {
+  min-height: calc(100vh - var(--navbar-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.page-error__title {
+  font: var(--font-l);
+  color: var(--error-color);
+}
