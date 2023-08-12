@@ -4,7 +4,7 @@ module.exports = {
     es2021: true,
     jest: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'plugin:i18next/recommended'],
+  extends: ['plugin:react/recommended', 'airbnb', 'plugin:i18next/recommended', 'plugin:storybook/recommended'],
   overrides: [
     {
       files: ['**/src/**/*.test.{ts,tsx}'],
