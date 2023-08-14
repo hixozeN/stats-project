@@ -40,7 +40,7 @@ module.exports = {
     'react/jsx-indent-props': [2, 2],
     'react/jsx-props-no-spreading': 'warn',
     'react/function-component-definition': 'off',
-    'import/no-extraneous-dependencies': 'warn',
+    'import/no-extraneous-dependencies': ['warn', { devDependencies: true }],
     'no-underscore-dangle': 'off',
     'i18next/no-literal-string': [
       'error',
