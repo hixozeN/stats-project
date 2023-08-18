@@ -21,7 +21,9 @@
     }
   },
   "include": [
-    "src/**/*.ts", "global.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "global.d.ts",
     "./config/jest/setupTests.ts"
   ]
 }
