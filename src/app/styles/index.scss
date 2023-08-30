@@ -4,6 +4,11 @@
 @import "themes/normal";
 @import "themes/dark";
 
+html,
+body {
+  scrollbar-gutter: stable;
+}
+
 .app {
   font: var(--font-m);
   background: var(--bg-color);
