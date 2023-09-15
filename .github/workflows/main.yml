@@ -6,16 +6,16 @@ jobs:
   pipeline:
     strategy:
       matrix:
-        node-version: [ 17.x ]
+        node: [ 17.x ]
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
 
-      - name: Setup Node.js environment ${{ matrix.node-version }}
+      - name: Setup Node.js environment
         uses: actions/setup-node@v1.4.3
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ matrix.node }}
 
       - name: install modules
         run: npm install
