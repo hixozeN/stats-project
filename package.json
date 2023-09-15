@@ -14,7 +14,7 @@
     "test:unit": "jest --config ./config/jest/jest.config.ts",
     "test:ui": "npx loki test",
     "test:ui:ok": "npx loki approve",
-    "test:ui:ci": "concurrently --kill-others --raw --success first \"npm run storybook\" \"npm run test:ui\" \"deelay\"",
+    "test:ui:ci": "concurrently --kill-others --raw --success first \"npm run storybook\" \"npx loki update\" \"npm run test:ui\" \"deelay\"",
     "storybook": "storybook dev -p 6006 -c ./config/storybook",
     "storybook:build": "storybook build -c ./config/storybook"
   },
