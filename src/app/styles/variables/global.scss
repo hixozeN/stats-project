@@ -3,6 +3,9 @@
 :root {
   --font-family-main: "Inter", arial, sans-serif;
 
+  // Общая высота
+  --vh: 0;
+
   // Шрифт M - основной шрифт приложения
   --font-size-m: 16px;
   --font-line-m: 24px;
@@ -15,11 +18,17 @@
   --font-weight-l: 500;
   --font-l: var(--font-weight-l) var(--font-size-l) / var(--font-line-l) var(--font-family-main);
 
+  // Шрифт XL - для заголовков
+  --font-size-xl: 32px;
+  --font-line-xl: 40px;
+  --font-weight-xl: 500;
+  --font-xl: var(--font-weight-xl) var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
+
   // цвета
   --error-color: #de3333;
 
   // анимации
-  --transition-default: all 0.2s ease-in-out;
+  --transition-default: all 0.4s ease-in-out;
   --opacity-hover: 0.7;
 
   // Размер навбара

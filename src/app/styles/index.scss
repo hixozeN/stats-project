@@ -1,8 +1,8 @@
 @import "reset";
-@import "fonts/fonts";
-@import "variables/global";
-@import "themes/normal";
-@import "themes/dark";
+@import "./fonts/fonts";
+@import "./variables/global";
+@import "./themes/normal";
+@import "./themes/dark";
 
 html,
 body {
@@ -13,7 +13,7 @@ body {
   font: var(--font-m);
   background: var(--bg-color);
   color: var(--primary-color);
-  min-height: 100vh;
+  min-height: var(--vh);
   transition: var(--transition-default);
 }
 

@@ -1,5 +1,5 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Button, ThemeButton } from 'shared/ui/Button/Button';
+import { Button, ButtonTheme } from 'shared/ui/Button/Button';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import cls from './TestErrorBoundary.module.scss';
@@ -27,7 +27,7 @@ export function TestErrorBoundary({ className }: ITestErrorBoundaryProps) {
     <div className={classNames(cls.TestErrorBoundary, {}, [className])}>
       <Button
         className="font-m"
-        theme={ThemeButton.BORDER}
+        theme={ButtonTheme.BORDER}
         onClick={handleError}
       >
         {t('Прокинуть ошибку')}
