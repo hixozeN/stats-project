@@ -20,14 +20,20 @@ jobs:
       - name: install modules
         run: npm install --force
       - name: build production project
+        if: always()
         run: npm run build:prod
       - name: linting typescript
+        if: always()
         run: npm run lint:ts
       - name: linting css
+        if: always()
         run: npm run lint:scss
       - name: unit testing
+        if: always()
         run: npm run test:unit
       - name: build storybook
+        if: always()
         run: npm run storybook:build
       - name: screenshot testing
+        if: always()
         run: npm run test:ui:ci
