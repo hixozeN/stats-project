@@ -11,10 +11,10 @@ function AppRouter() {
           <Route
             path={path}
             element={(
-              <div className="page-wrapper">
+              <main className="page-wrapper">
                 {element}
-              </div>
-)}
+              </main>
+            )}
             key={path}
           />
         ))}

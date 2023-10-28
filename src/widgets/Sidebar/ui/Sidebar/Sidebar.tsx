@@ -23,7 +23,7 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
   };
 
   return (
-    <div
+    <aside
       data-testid="sidebar"
       className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}
     >
@@ -42,11 +42,41 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
           <li>
             <AppLink
               theme={AppLinkTheme.SECONDARY}
-              to={RoutePath.about}
+              to={RoutePath.matches}
               className={cls.link}
             >
               <InfoIcon className={cls.icon} />
-              <span className={cls.linkText}>{t('О сайте')}</span>
+              <span className={cls.linkText}>Матчи</span>
+            </AppLink>
+          </li>
+          <li>
+            <AppLink
+              theme={AppLinkTheme.SECONDARY}
+              to={RoutePath.tournaments}
+              className={cls.link}
+            >
+              <InfoIcon className={cls.icon} />
+              <span className={cls.linkText}>Турниры</span>
+            </AppLink>
+          </li>
+          <li>
+            <AppLink
+              theme={AppLinkTheme.SECONDARY}
+              to={RoutePath.teams}
+              className={cls.link}
+            >
+              <InfoIcon className={cls.icon} />
+              <span className={cls.linkText}>Команды</span>
+            </AppLink>
+          </li>
+          <li>
+            <AppLink
+              theme={AppLinkTheme.SECONDARY}
+              to={RoutePath.friends}
+              className={cls.link}
+            >
+              <InfoIcon className={cls.icon} />
+              <span className={cls.linkText}>Друзья</span>
             </AppLink>
           </li>
         </ul>
@@ -66,6 +96,6 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
         <ThemeSwitcher />
         <LangSwitcher isShort={collapsed} />
       </div>
-    </div>
+    </aside>
   );
 };

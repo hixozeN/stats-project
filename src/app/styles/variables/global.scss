@@ -26,6 +26,7 @@
 
   // цвета
   --error-color: #de3333;
+  --overlay-color: rgba(0 0 0 / 50%);
 
   // анимации
   --transition-default: all 0.4s ease-in-out;
@@ -37,6 +38,9 @@
   // Размер сайдбара
   --sidebar-width: 300px;
   --sidebar-collapsed-width: 80px;
+
+  // Z-indexes
+  --modal-index: 10;
 }
 
 .link-hovered {
