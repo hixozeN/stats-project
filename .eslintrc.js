@@ -4,7 +4,11 @@ module.exports = {
     es2021: true,
     jest: true,
   },
-  extends: ['plugin:react/recommended', 'airbnb', 'plugin:i18next/recommended', 'plugin:storybook/recommended'],
+  extends: [
+    'plugin:react/recommended',
+    'airbnb', 'plugin:i18next/recommended',
+    'plugin:storybook/recommended',
+  ],
   overrides: [
     {
       files: ['**/src/**/*.test.{ts,tsx}'],
@@ -25,6 +29,7 @@ module.exports = {
     'react',
     '@typescript-eslint',
     'i18next',
+    'react-hooks',
   ],
   rules: {
     'react/jsx-indent': [2, 2],
@@ -38,7 +43,7 @@ module.exports = {
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': 'error',
     'react/jsx-indent-props': [2, 2],
-    'react/jsx-props-no-spreading': 'warn',
+    'react/jsx-props-no-spreading': 'off',
     'react/function-component-definition': 'off',
     'import/no-extraneous-dependencies': ['warn', { devDependencies: true }],
     'no-underscore-dangle': 'off',
@@ -47,6 +52,9 @@ module.exports = {
       { markupOnly: true, ignoreAttribute: ['data-testid', 'to'] },
     ],
     'max-len': ['error', { ignoreComments: true, code: 100 }],
+    'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+    'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
+    'jsx-a11y/click-events-have-key-events': 'off',
   },
   globals: {
     IS_DEV: true,

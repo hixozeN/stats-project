@@ -39,11 +39,12 @@ export default function buildLoaders(options: BuildOptions): webpack.RuleSetRule
 
   const fileLoader = {
     test: /\.(png|jpe?g|gif|woff|woff2)$/i,
-    use: [
-      {
-        loader: 'file-loader',
-      },
-    ],
+    // use: [
+    //   {
+    //     loader: 'file-loader',
+    //   },
+    // ],
+    type: 'asset/resource',
   };
 
   return [fileLoader, svgLoader, babelLoader, typeScriptLoader, cssLoader];
