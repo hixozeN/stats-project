@@ -4,10 +4,20 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
 import { LangSwitcher } from 'widgets/LangSwitcher';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
-import HomeIcon from 'shared/assets/icons/home.svg';
-import InfoIcon from 'shared/assets/icons/info.svg';
-import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import HomeIcon from 'shared/assets/icons/Sidebar/home.svg';
+import HomeIconDark from 'shared/assets/icons/Sidebar/home-dark.svg';
+import MatchIcon from 'shared/assets/icons/Sidebar/matches.svg';
+import MatchIconDark from 'shared/assets/icons/Sidebar/matches-dark.svg';
+import TournamentIcon from 'shared/assets/icons/Sidebar/tournaments.svg';
+import TournamentIconDark from 'shared/assets/icons/Sidebar/tournaments-dark.svg';
+import TeamsIcon from 'shared/assets/icons/Sidebar/teams.svg';
+import TeamsIconDark from 'shared/assets/icons/Sidebar/teams-dark.svg';
+import FriendIcon from 'shared/assets/icons/Sidebar/friends.svg';
+import FriendIconDark from 'shared/assets/icons/Sidebar/friends-dark.svg';
+import AdminIcon from 'shared/assets/icons/Sidebar/admin.svg';
+import AdminIconDark from 'shared/assets/icons/Sidebar/admin-dark.svg';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { SidebarItem } from 'widgets/Sidebar/ui/SidebarItem/SidebarItem';
 import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
@@ -15,70 +25,77 @@ interface SidebarProps {
 }
 
 export const Sidebar: FC<SidebarProps> = ({ className }) => {
-  const [collapsed, setCollapsed] = useState(true);
+  const [isCollapsed, setIsCollapsed] = useState(true);
   const { t } = useTranslation();
 
   const onToggle = () => {
-    setCollapsed((prev) => !prev);
+    setIsCollapsed((prev) => !prev);
   };
-
+  const dataList = [
+    {
+      id: 0,
+      name: 'Главная',
+      iconLigth: <HomeIcon />,
+      iconDark: <HomeIconDark />,
+      link: RoutePath.main,
+    },
+    {
+      id: 1,
+      name: 'Матчи',
+      iconLigth: <MatchIcon />,
+      iconDark: <MatchIconDark />,
+      link: RoutePath.matches,
+    },
+    {
+      id: 2,
+      name: 'Турниры',
+      iconLigth: <TournamentIcon />,
+      iconDark: <TournamentIconDark />,
+      link: RoutePath.tournaments,
+    },
+    {
+      id: 3,
+      name: 'Команды',
+      iconLigth: <TeamsIcon />,
+      iconDark: <TeamsIconDark />,
+      link: RoutePath.teams,
+    },
+    {
+      id: 4,
+      name: 'Друзья',
+      iconLigth: <FriendIcon />,
+      iconDark: <FriendIconDark />,
+      link: RoutePath.friends,
+    },
+    {
+      id: 5,
+      name: 'Админка',
+      iconLigth: <AdminIcon />,
+      iconDark: <AdminIconDark />,
+      link: RoutePath.main,
+    },
+  ];
   return (
     <aside
       data-testid="sidebar"
-      className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}
+      className={classNames(cls.Sidebar, { [cls.collapsed]: isCollapsed }, [className])}
     >
       <nav>
         <ul className={cls.navList}>
-          <li>
-            <AppLink
-              theme={AppLinkTheme.SECONDARY}
-              to={RoutePath.main}
-              className={cls.link}
-            >
-              <HomeIcon className={cls.icon} />
-              <span className={cls.linkText}>{t('Главная')}</span>
-            </AppLink>
-          </li>
-          <li>
-            <AppLink
-              theme={AppLinkTheme.SECONDARY}
-              to={RoutePath.matches}
-              className={cls.link}
-            >
-              <InfoIcon className={cls.icon} />
-              <span className={cls.linkText}>Матчи</span>
-            </AppLink>
-          </li>
-          <li>
-            <AppLink
-              theme={AppLinkTheme.SECONDARY}
-              to={RoutePath.tournaments}
-              className={cls.link}
-            >
-              <InfoIcon className={cls.icon} />
-              <span className={cls.linkText}>Турниры</span>
-            </AppLink>
-          </li>
-          <li>
-            <AppLink
-              theme={AppLinkTheme.SECONDARY}
-              to={RoutePath.teams}
-              className={cls.link}
-            >
-              <InfoIcon className={cls.icon} />
-              <span className={cls.linkText}>Команды</span>
-            </AppLink>
-          </li>
-          <li>
-            <AppLink
-              theme={AppLinkTheme.SECONDARY}
-              to={RoutePath.friends}
-              className={cls.link}
-            >
-              <InfoIcon className={cls.icon} />
-              <span className={cls.linkText}>Друзья</span>
-            </AppLink>
-          </li>
+          {
+            dataList.map(({
+              id, name, link, iconLigth, iconDark,
+            }) => (
+              <SidebarItem
+                key={id}
+                name={name}
+                link={link}
+                isCollapsed={isCollapsed}
+                icon={iconLigth}
+                iconDark={iconDark}
+              />
+            ))
+          }
         </ul>
       </nav>
       <Button
@@ -90,11 +107,11 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
         square
         size={ButtonSize.L}
       >
-        {collapsed ? '>' : '<'}
+        {isCollapsed ? '>' : '<'}
       </Button>
       <div className={cls.switchers}>
         <ThemeSwitcher />
-        <LangSwitcher isShort={collapsed} />
+        <LangSwitcher isShort={isCollapsed} />
       </div>
     </aside>
   );

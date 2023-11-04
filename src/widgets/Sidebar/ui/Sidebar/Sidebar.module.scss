@@ -1,5 +1,5 @@
 .Sidebar {
-  height: calc(var(--vh) - var(--navbar-height));
+  height: calc(100svh - var(--navbar-height));
   width: var(--sidebar-width);
   background: var(--inverted-bg-color);
   position: relative;
@@ -11,6 +11,7 @@
 
 .switchers {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   margin-top: auto;
   gap: 5px;
@@ -24,28 +25,11 @@
 }
 
 .navList {
-  margin-top: 20px;
+  margin-top: 27px;
   list-style: none;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-}
-
-.link {
-  display: flex;
-  gap: 10px;
-  white-space: nowrap;
-}
-
-.linkText {
-  opacity: 1;
-}
-
-.icon {
-  fill: var(--inverted-primary-color);
-  width: 20px;
-  height: 20px;
 }
 
 .collapsed {
@@ -55,13 +39,8 @@
     flex-direction: column;
   }
 
-  .linkText {
-    opacity: 0;
-    transition: opacity 0.2s;
-    width: 0;
+  .navList {
+    gap: 10px;
   }
 
-  .link {
-    gap: 0;
-  }
 }
