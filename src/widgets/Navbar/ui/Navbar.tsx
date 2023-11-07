@@ -15,17 +15,24 @@ export function Navbar({ className }: INavbarProps) {
     <div className={classNames(cls.Navbar, {}, [className])}>
       <div className={cls.links}>
         <AppLink
-          theme={AppLinkTheme.SECONDARY}
+          theme={AppLinkTheme.PRIMARY}
           to={RoutePath.main}
         >
           {t('Главная')}
         </AppLink>
 
         <AppLink
-          theme={AppLinkTheme.SECONDARY}
+          theme={AppLinkTheme.PRIMARY}
           to={RoutePath.about}
         >
           {t('О сайте')}
+        </AppLink>
+
+        <AppLink
+          theme={AppLinkTheme.PRIMARY}
+          to={RoutePath.auth}
+        >
+          {t('Авторизация')}
         </AppLink>
       </div>
     </div>

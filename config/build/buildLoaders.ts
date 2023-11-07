@@ -4,12 +4,15 @@ import { BuildOptions } from './types/config';
 
 export default function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
   const svgLoader = {
-    test: /\.svg$/,
-    use: ['@svgr/webpack'],
+    test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+    issuer: /\.[jt]sx?$/,
+    use: [{
+      loader: '@svgr/webpack',
+    }],
   };
 
   const babelLoader = {
-    test: /\.(js|ts|tsx|tsx)$/,
+    test: /\.(js|jsx|ts|tsx)$/,
     exclude: /node_modules/,
     use: {
       loader: 'babel-loader',
