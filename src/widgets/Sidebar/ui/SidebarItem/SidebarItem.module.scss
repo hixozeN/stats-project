@@ -43,14 +43,14 @@
   color: var(--highlight-color);
   background-color: var(--button-pressed);
 
+  & svg path {
+    fill: var(--highlight-color);
+  }
+
   .notificationActive {
     color: var(--accent-color);
     background-color: var(--bg-notification-selected-color);
   }
-}
-
-.icon {
-  fill: var(--accent-color);
 }
 
 .collapsed {
@@ -85,6 +85,10 @@
     line-height: 16px;
     right: 3px;
     top: 3px;
+  }
+
+  & svg {
+    width: 30px;
   }
 }
 

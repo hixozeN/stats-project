@@ -5,17 +5,11 @@ import { Button, ButtonSize, ButtonTheme } from 'shared/ui/Button/Button';
 import { LangSwitcher } from 'widgets/LangSwitcher';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
 import HomeIcon from 'shared/assets/icons/Sidebar/home.svg';
-import HomeIconDark from 'shared/assets/icons/Sidebar/home-dark.svg';
 import MatchIcon from 'shared/assets/icons/Sidebar/matches.svg';
-import MatchIconDark from 'shared/assets/icons/Sidebar/matches-dark.svg';
 import TournamentIcon from 'shared/assets/icons/Sidebar/tournaments.svg';
-import TournamentIconDark from 'shared/assets/icons/Sidebar/tournaments-dark.svg';
 import TeamsIcon from 'shared/assets/icons/Sidebar/teams.svg';
-import TeamsIconDark from 'shared/assets/icons/Sidebar/teams-dark.svg';
 import FriendIcon from 'shared/assets/icons/Sidebar/friends.svg';
-import FriendIconDark from 'shared/assets/icons/Sidebar/friends-dark.svg';
 import AdminIcon from 'shared/assets/icons/Sidebar/admin.svg';
-import AdminIconDark from 'shared/assets/icons/Sidebar/admin-dark.svg';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { SidebarItem } from 'widgets/Sidebar/ui/SidebarItem/SidebarItem';
 import cls from './Sidebar.module.scss';
@@ -35,43 +29,37 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
     {
       id: 0,
       name: 'Главная',
-      iconLigth: <HomeIcon />,
-      iconDark: <HomeIconDark />,
+      icon: <HomeIcon />,
       link: RoutePath.main,
     },
     {
       id: 1,
       name: 'Матчи',
-      iconLigth: <MatchIcon />,
-      iconDark: <MatchIconDark />,
+      icon: <MatchIcon />,
       link: RoutePath.matches,
     },
     {
       id: 2,
       name: 'Турниры',
-      iconLigth: <TournamentIcon />,
-      iconDark: <TournamentIconDark />,
+      icon: <TournamentIcon />,
       link: RoutePath.tournaments,
     },
     {
       id: 3,
       name: 'Команды',
-      iconLigth: <TeamsIcon />,
-      iconDark: <TeamsIconDark />,
+      icon: <TeamsIcon />,
       link: RoutePath.teams,
     },
     {
       id: 4,
       name: 'Друзья',
-      iconLigth: <FriendIcon />,
-      iconDark: <FriendIconDark />,
+      icon: <FriendIcon />,
       link: RoutePath.friends,
     },
     {
       id: 5,
       name: 'Админка',
-      iconLigth: <AdminIcon />,
-      iconDark: <AdminIconDark />,
+      icon: <AdminIcon />,
       link: RoutePath.main,
     },
   ];
@@ -84,15 +72,14 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
         <ul className={cls.navList}>
           {
             dataList.map(({
-              id, name, link, iconLigth, iconDark,
+              id, name, link, icon,
             }) => (
               <SidebarItem
                 key={id}
                 name={name}
                 link={link}
                 isCollapsed={isCollapsed}
-                icon={iconLigth}
-                iconDark={iconDark}
+                icon={icon}
               />
             ))
           }
