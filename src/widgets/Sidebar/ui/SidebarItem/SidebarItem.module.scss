@@ -15,17 +15,19 @@
   gap: 3px;
   color: var(--inverted-primary-color);
   text-decoration: none;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   width: 86px;
   height: 86px;
 }
 
 .linkText {
+  max-width: 82px;
   font-size: 12px;
   font-weight: 900;
   text-transform: uppercase;
   opacity: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .notification {
