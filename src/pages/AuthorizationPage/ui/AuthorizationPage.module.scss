@@ -1,0 +1,22 @@
+.auth {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - var(--navbar-height));
+  background-image: url("../../../shared/assets/images/auth_bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 0;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 0 0;
+}
+
+.auth::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgb(12 12 14 / 75%);
+  z-index: -1;
+}

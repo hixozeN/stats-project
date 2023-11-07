@@ -10,10 +10,10 @@ body {
 }
 
 .app {
+  min-height: var(--vh);
   font: var(--font-m);
   background: var(--bg-color);
   color: var(--primary-color);
-  min-height: var(--vh);
   transition: var(--transition-default);
 }
 
@@ -22,6 +22,5 @@ body {
 }
 
 .page-wrapper {
-  padding: 25px;
   flex-grow: 1;
 }
