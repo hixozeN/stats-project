@@ -6,6 +6,9 @@ import { Logo } from 'shared/ui/Logo/Logo';
 import Eye from 'shared/assets/icons/eye.svg';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAuthState } from 'features/AuthUser/index';
+import { authActions } from '../../model/slice/authSlice';
 import cls from './AuthForm.module.scss';
 
 interface IAuthFormProps {
@@ -23,6 +26,22 @@ export const AuthForm = memo((props: IAuthFormProps) => {
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const [type, setType] = useState<AuthFormType>({ isAuthActive: true, isRegActive: false });
   const inputPasswordRef = useRef<HTMLInputElement>(null);
+  const dispatch = useDispatch();
+  const { username, email, password } = useSelector(getAuthState);
+  console.log(username, email, password);
+
+  const onChangeUserMail = useCallback((e) => {
+    const { value } = e.target;
+    dispatch(authActions.setUserEmail(value));
+  }, [dispatch]);
+  const onChangeUserName = useCallback((e) => {
+    const { value } = e.target;
+    dispatch(authActions.setUserName(value));
+  }, [dispatch]);
+  const onChangeUserPassword = useCallback((e) => {
+    const { value } = e.target;
+    dispatch(authActions.setUserPassword(value));
+  }, [dispatch]);
 
   const togglePasswordVisible = useCallback(() => {
     if (inputPasswordRef.current.getAttribute('type') === 'password') {
@@ -75,13 +94,17 @@ export const AuthForm = memo((props: IAuthFormProps) => {
           type="email"
           placeholder={t('Электронная почта')}
           className={classNames(cls.input, {}, [])}
+          onChange={onChangeUserMail}
+          value={email ?? ''}
         />
         {type.isRegActive && (
         <input
-          id="nickname"
+          id="name"
           type="text"
           placeholder={t('Никнейм')}
           className={classNames(cls.input, {}, [])}
+          onChange={onChangeUserName}
+          value={username ?? ''}
         />
         )}
         <label htmlFor="password" className={cls.inputWrapper}>
@@ -91,6 +114,8 @@ export const AuthForm = memo((props: IAuthFormProps) => {
             type="password"
             placeholder={t('Пароль')}
             className={classNames(cls.input, {}, [cls.inputPassword])}
+            onChange={onChangeUserPassword}
+            value={password ?? ''}
           />
           <Eye
             className={classNames(cls.btnEye, { [cls.btnEyeActive]: isPasswordVisible })}
