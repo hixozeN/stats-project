@@ -1,10 +1,11 @@
 .AuthForm {
   position: relative;
   max-width: 677px;
+  height: 612px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 29px;
+  justify-content: space-between;
   z-index: 3;
   padding: 35px 100px 55px;
   grid-column: 2 / 12;
@@ -23,25 +24,21 @@
   z-index: -2;
 }
 
+.formWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 29px;
+}
+
 .fieldset {
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 16px;
   border: none;
-}
-
-.input {
-  outline: none;
-  background: transparent;
-  border: 1px solid var(--secondary-color);
-  border-radius: 5px;
-  padding: 16px 20px 16px 13px;
-  color: var(--primary-color);
-}
-
-.input:focus {
-  border: 1px solid var(--accent-color);
 }
 
 .inputWrapper {
@@ -63,7 +60,7 @@
   position: absolute;
   right: 13px;
   top: 18px;
-  background: transparent url("../../../../shared/assets/icons/eye.svg") no-repeat center center;
+  background: transparent url("shared/assets/icons/eye.svg") no-repeat center center;
   background-size: 24px 24px;
   opacity: 0.5;
 }
@@ -96,40 +93,19 @@
   transition: ease-in-out 0.1s;
 }
 
-.tabWrapper {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 9px 0;
+.submitBtn:disabled {
+  background: rgb(146 140 115 / 10%);
 }
 
-.tab {
+.submitWrapper {
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  gap: 10px;
 }
 
-.tabBtn {
-  border: none;
-  outline: none;
-  background: transparent;
-  color: var(--secondary-color);
-}
-
-.tabBtnActive {
-  color: var(--accent-color);
-}
-
-.tabStatus {
-  border-radius: 4px;
-  background: #3f3f45;
-  border-width: 0;
-  height: 4px;
-  transition: 0.2s;
-}
-
-.tabActive {
-  background: #fac704;
+.errorMessage {
+  text-align: center;
+  color: var(--error-color);
 }
 
 @media (hover: hover) {
@@ -139,29 +115,14 @@
 
   .submitBtn:hover {
     cursor: pointer;
-
-    /* Shadow/yellow */
     box-shadow: 0 0 5px 0 rgb(250 199 4 / 50%);
-  }
-
-  .tabBtn:hover {
-    cursor: pointer;
-    color: var(--accent-color);
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (width <= 768px) {
   .AuthForm {
     padding: 30px 10px;
-  }
-
-  .tabBtn {
-    font-size: 14px;
-  }
-
-  .input {
-    padding: 10px;
-    font-size: 14px;
+    height: 519px;
   }
 
   .btnEye {

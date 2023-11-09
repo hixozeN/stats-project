@@ -8,11 +8,11 @@ export enum UserRoles {
 export type UserAwards = Record<string, string>;
 
 export interface User {
-  id: string;
-  name: string;
-  email: string;
-  avatar: string;
-  regDate: Date;
+  id?: string;
+  name?: string;
+  email?: string;
+  avatar?: string;
+  regDate?: Date;
   roles?: UserRoles[];
   bio?: string;
   discord?: string;
@@ -23,5 +23,5 @@ export interface User {
 export interface UserSchema {
   authData?: User;
 
-  _initiated: boolean;
+  isLoggedIn: boolean;
 }

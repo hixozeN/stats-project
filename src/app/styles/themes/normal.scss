@@ -1,6 +1,6 @@
 .app.light {
   --bg-color: #d7d7e1;
-  --bg-gradient-color: linear-gradient(180deg, rgba(78, 78, 116, 0.00) 0%, #0C0C0E 100%);
+  --bg-gradient-color: linear-gradient(180deg, rgb(78 78 116 / 0%) 0%, #0C0C0E 100%);
   --bg-notification-selected-color: #101011;
   --inverted-bg-color: #f2f2f2;
   --accent-bg-color: #FAC704;
@@ -19,4 +19,5 @@
   --button-warning-hover: #FE5252;
   --button-warning-pressed: #F02;
   --button-disabled: #989898;
+  --loader-color: #000;
 }

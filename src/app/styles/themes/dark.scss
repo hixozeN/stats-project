@@ -1,8 +1,8 @@
 .app.dark {
   --bg-color: #0C0C0E;
-  --bg-gradient-color: linear-gradient(180deg, rgba(78, 78, 116, 0.00) 0%, #0C0C0E 100%);
+  --bg-gradient-color: linear-gradient(180deg, rgb(78 78 116 / 0%) 0%, #0C0C0E 100%);
   --bg-notification-selected-color: #101011;
-  --inverted-bg-color: #0C0C0E;
+  --inverted-bg-color: #0c0b0e;
   --bg-accent-color: #FAC704;
   --primary-color: #F8F8F8;
   --secondary-color: #BFBFBF;
@@ -20,5 +20,6 @@
   --button-warning-hover: #FE5252;
   --button-warning-pressed: #F02;
   --button-disabled: #989898;
+  --loader-color: #efefef;
 }
 

@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { User, UserSchema } from '../types/user';
 
 const initialState: UserSchema = {
-  _initiated: false,
+  isLoggedIn: false,
 };
 
 export const userSlice = createSlice({
@@ -11,6 +12,14 @@ export const userSlice = createSlice({
   reducers: {
     setAuthData: (state, action: PayloadAction<User>) => {
       state.authData = action.payload;
+    },
+    setLoggedIn: (state, action: PayloadAction<boolean>) => {
+      state.isLoggedIn = action.payload;
+    },
+    logout: (state) => {
+      localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
+      state.authData = null;
+      state.isLoggedIn = false;
     },
   },
 });
