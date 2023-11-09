@@ -15,7 +15,7 @@
   gap: 3px;
   color: var(--inverted-primary-color);
   text-decoration: none;
-  width: 86px;
+  width: var(--sidebar-width);
   height: 86px;
 }
 
@@ -57,7 +57,7 @@
 
 .collapsed {
   .SidebarItem {
-    width: 50px;
+    width: var(--sidebar-collapsed-width);
     height: 50px;
   }
 
@@ -75,7 +75,7 @@
   }
 
   .link {
-    width: 50px;
+    width: var(--sidebar-collapsed-width);
     height: 50px;
     gap: 0;
   }
@@ -94,7 +94,7 @@
   }
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   .SidebarItem:hover {
     background-color: var(--button-hover);
   }
@@ -104,4 +104,3 @@
     border: 2px solid var(--button-focus);
   }
 }
-

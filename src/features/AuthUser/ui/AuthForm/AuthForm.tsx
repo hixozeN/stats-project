@@ -96,6 +96,7 @@ export const AuthForm = memo((props: IAuthFormProps) => {
             className={classNames(cls.btnEye, { [cls.btnEyeActive]: isPasswordVisible })}
             onClick={togglePasswordVisible}
           />
+          A
           <span
             className={
               classNames(
