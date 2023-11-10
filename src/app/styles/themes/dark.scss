@@ -1,24 +1,24 @@
 .app.dark {
-  --bg-color: #0C0C0E;
-  --bg-gradient-color: linear-gradient(180deg, rgba(78, 78, 116, 0.00) 0%, #0C0C0E 100%);
+  --bg-color: #0c0c0e;
+  --bg-gradient-color: linear-gradient(180deg, rgb(78 78 116) 0%, #0c0c0e 100%);
   --bg-notification-selected-color: #101011;
-  --inverted-bg-color: #0C0C0E;
-  --bg-accent-color: #FAC704;
-  --primary-color: #F8F8F8;
-  --secondary-color: #BFBFBF;
-  --highlight-color: #18181B;
-  --accent-color: #FAC704;
-  --secondary-highlight-color: #FAC704;
+  --inverted-bg-color: #0c0c0e;
+  --bg-accent-color: #fac704;
+  --primary-color: #f8f8f8;
+  --secondary-color: #bfbfbf;
+  --highlight-color: #18181b;
+  --accent-color: #fac704;
+  --secondary-highlight-color: #fac704;
   --inverted-primary-color: #606060;
   --inverted-secondary-color: #2e2e2e;
   --button-border-color: #828282;
-  --button-default: #FAC704;
-  --button-hover: #FCED22;
-  --button-focus: #FBA904;
-  --button-pressed: #FBA904;
-  --button-warning-default: #FE2A2A;
-  --button-warning-hover: #FE5252;
-  --button-warning-pressed: #F02;
+  --button-default: #fac704;
+  --button-hover: #fced22;
+  --button-focus: #fba904;
+  --button-pressed: #fba904;
+  --button-warning-default: #fe2a2a;
+  --button-warning-hover: #fe5252;
+  --button-warning-pressed: #f02;
   --button-disabled: #989898;
+  --loader-color: #efefef;
 }
-

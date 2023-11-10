@@ -3,6 +3,7 @@ import { MainPage } from 'pages/MainPage';
 import { RouteProps } from 'react-router-dom';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { AuthorizationPage } from 'pages/AuthorizationPage';
+import i18n from 'shared/config/i18n/i18n';
 
 export enum AppRoutes {
   MAIN = 'main',
@@ -37,19 +38,19 @@ export const routeConfig: Record<AppRoutes, RouteProps> = {
   },
   [AppRoutes.MATCHES]: {
     path: RoutePath.matches,
-    element: <div>matches</div>,
+    element: <div>{i18n.t('Matches')}</div>,
   },
   [AppRoutes.TOURNAMENTS]: {
     path: RoutePath.tournaments,
-    element: <div>tournaments</div>,
+    element: <div>{i18n.t('tournaments')}</div>,
   },
   [AppRoutes.TEAMS]: {
     path: RoutePath.teams,
-    element: <div>teams</div>,
+    element: <div>{i18n.t('teams')}</div>,
   },
   [AppRoutes.FRIENDS]: {
     path: RoutePath.friends,
-    element: <div>friends</div>,
+    element: <div>{i18n.t('friends')}</div>,
   },
   [AppRoutes.AUTH]: {
     path: RoutePath.auth,

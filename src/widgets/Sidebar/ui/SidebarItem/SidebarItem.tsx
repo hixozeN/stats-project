@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { ReactElement, ReactNode } from 'react';
+import { ReactElement } from 'react';
 import { NavLink } from 'react-router-dom';
 import cls from './SidebarItem.module.scss';
 
@@ -8,14 +8,13 @@ interface ISidebarItemProps {
   className?: string;
   name: string;
   link: string;
-  icon: ReactNode;
-  iconDark: ReactElement;
+  icon: ReactElement;
   isCollapsed: boolean;
 }
 
 export function SidebarItem(props: ISidebarItemProps) {
   const {
-    name, link, icon, iconDark, isCollapsed,
+    name, link, icon, isCollapsed, className,
   } = props;
   const { t } = useTranslation();
 
@@ -24,11 +23,10 @@ export function SidebarItem(props: ISidebarItemProps) {
       className={
         classNames(cls.SidebarItem, {
           [cls.collapsed]: isCollapsed,
-        })
+        }, [className])
       }
     >
       <NavLink
-        // theme={AppLinkTheme.SECONDARY}
         to={link}
         className={({ isActive }) => (isActive ? classNames(cls.link, {
           [cls.collapsed]: isCollapsed,

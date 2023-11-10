@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AuthSchema } from '../types/authSchema';
+import { AuthSchema } from '../types/AuthSchema';
+import { loginByEmail } from '../services/loginByEmail/loginByEmail';
 
 const initialState: AuthSchema = {
   email: '',
@@ -10,7 +11,7 @@ const initialState: AuthSchema = {
 };
 
 export const authSlice = createSlice({
-  name: 'auth',
+  name: 'authForm',
   initialState,
   reducers: {
     setUserEmail: (state, action: PayloadAction<string>) => {
@@ -22,6 +23,20 @@ export const authSlice = createSlice({
     setUserName: (state, action: PayloadAction<string>) => {
       state.username = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(loginByEmail.pending, (state, action) => {
+        state.error = null;
+        state.isLoading = true;
+      })
+      .addCase(loginByEmail.fulfilled, (state, action) => {
+        state.isLoading = false;
+      })
+      .addCase(loginByEmail.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   },
 });
 

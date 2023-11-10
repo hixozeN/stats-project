@@ -4,14 +4,20 @@ import { Sidebar } from 'widgets/Sidebar';
 import {
   Suspense, useEffect, useRef,
 } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  getLoggedInStatus,
+} from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
+import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
+import { userActions } from 'entities/User/index';
 import { useTheme } from './providers/ThemeProvider';
 import { AppRouter } from './providers/router';
 
 function App() {
   const { theme } = useTheme();
   const debouncer = useRef(null);
-  const path = useLocation().pathname;
+  const isLoggedIn = useSelector(getLoggedInStatus);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleHeight = () => {
@@ -33,13 +39,22 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const savedUserData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_USER_KEY));
+
+    if (savedUserData) {
+      dispatch(userActions.setAuthData(savedUserData));
+      dispatch(userActions.setLoggedIn(true));
+    }
+  }, [dispatch]);
+
   return (
     <div id="app" className={classNames('app', {}, [theme])}>
       {/* suspense для подгрузки чанков с переводами */}
       <Suspense fallback="">
         <Navbar />
         <div className="page-content">
-          {path !== '/' && <Sidebar />}
+          {isLoggedIn && <Sidebar />}
           <AppRouter />
         </div>
       </Suspense>

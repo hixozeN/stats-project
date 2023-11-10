@@ -4,13 +4,16 @@
 @import "./themes/normal";
 @import "./themes/dark";
 
-html,
-body {
-  scrollbar-gutter: stable;
-}
-
 .app {
   min-height: var(--vh);
+  font: var(--font-m);
+  background: var(--bg-color);
+  color: var(--primary-color);
+  transition: var(--transition-default);
+}
+
+.storybook {
+  min-height: 100vh;
   font: var(--font-m);
   background: var(--bg-color);
   color: var(--primary-color);

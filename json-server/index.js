@@ -20,16 +20,16 @@ server.use(async (req, res, next) => {
 // Эндпоинт для логина
 server.post('/login', (req, res) => {
   try {
-    const { email, password } = req.body;
     const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
     const { users = [] } = db;
 
     const userFromBd = users.find(
-      (user) => user.email === email && user.password === password,
+      (user) => user.email === req.body.email && user.password === req.body.password,
     );
 
     if (userFromBd) {
-      return res.json(userFromBd);
+      const { password, ...safetyUserData } = userFromBd;
+      return res.json(safetyUserData);
     }
 
     return res.status(403).json({ message: 'Email or password incorrect.' });

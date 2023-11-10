@@ -1,15 +1,16 @@
 .auth {
   position: relative;
   width: 100%;
-  height: calc(100vh - var(--navbar-height));
-  background-image: url("../../../shared/assets/images/auth_bg.png");
+  min-height: calc(100vh - var(--navbar-height));
+  background-image: url("shared/assets/images/auth_bg.png");
+  background-color: var(--bg-color);
   background-size: cover;
   background-repeat: no-repeat;
   z-index: 0;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(3, 1fr);
   gap: 0 0;
+  padding: 40px 0;
 }
 
 .auth::before {
