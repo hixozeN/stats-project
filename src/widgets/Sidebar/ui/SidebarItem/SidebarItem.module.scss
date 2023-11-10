@@ -15,9 +15,7 @@
   gap: 3px;
   color: var(--inverted-primary-color);
   text-decoration: none;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  width: 86px;
+  width: var(--sidebar-width);
   height: 86px;
 }
 
@@ -43,19 +41,19 @@
   color: var(--highlight-color);
   background-color: var(--button-pressed);
 
+  & svg path {
+    fill: var(--highlight-color);
+  }
+
   .notificationActive {
     color: var(--accent-color);
     background-color: var(--bg-notification-selected-color);
   }
 }
 
-.icon {
-  fill: var(--accent-color);
-}
-
 .collapsed {
   .SidebarItem {
-    width: 50px;
+    width: var(--sidebar-collapsed-width);
     height: 50px;
   }
 
@@ -73,7 +71,7 @@
   }
 
   .link {
-    width: 50px;
+    width: var(--sidebar-collapsed-width);
     height: 50px;
     gap: 0;
   }
@@ -86,9 +84,13 @@
     right: 3px;
     top: 3px;
   }
+
+  & svg {
+    width: 30px;
+  }
 }
 
-@media (hover:hover) {
+@media (hover: hover) {
   .SidebarItem:hover {
     background-color: var(--button-hover);
   }
@@ -98,4 +100,3 @@
     border: 2px solid var(--button-focus);
   }
 }
-
