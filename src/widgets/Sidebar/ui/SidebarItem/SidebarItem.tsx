@@ -14,7 +14,7 @@ interface ISidebarItemProps {
 
 export function SidebarItem(props: ISidebarItemProps) {
   const {
-    name, link, icon, isCollapsed,
+    name, link, icon, isCollapsed, className,
   } = props;
   const { t } = useTranslation();
 
@@ -23,11 +23,10 @@ export function SidebarItem(props: ISidebarItemProps) {
       className={
         classNames(cls.SidebarItem, {
           [cls.collapsed]: isCollapsed,
-        })
+        }, [className])
       }
     >
       <NavLink
-        // theme={AppLinkTheme.SECONDARY}
         to={link}
         className={({ isActive }) => (isActive ? classNames(cls.link, {
           [cls.collapsed]: isCollapsed,
