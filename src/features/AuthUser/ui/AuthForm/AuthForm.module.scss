@@ -98,12 +98,14 @@
 }
 
 .submitWrapper {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
 .errorMessage {
+  min-height: 24px;
   text-align: center;
   color: var(--error-color);
 }

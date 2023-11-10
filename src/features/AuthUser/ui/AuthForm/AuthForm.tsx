@@ -154,7 +154,7 @@ export const AuthForm = memo((props: IAuthFormProps) => {
           >
             {type.isAuthActive ? t('Войти') : t('Создать')}
           </button>
-          {error && <span className={cls.errorMessage}>{error}</span>}
+          <span className={cls.errorMessage}>{error}</span>
         </div>
       </form>
     </ErrorBoundary>
