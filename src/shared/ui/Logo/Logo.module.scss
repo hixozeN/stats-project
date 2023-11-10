@@ -1,0 +1,32 @@
+.Logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.header {
+  width: 70px;
+}
+
+.auth {
+  width: 110px;
+
+  .image {
+    width: 84px;
+  }
+
+  .text {
+    width: 107px;
+  }
+}
+
+.footer {
+  width: 170px;
+}
+
+@media (hover: hover) {
+  .Logo:hover {
+    cursor: pointer;
+  }
+}

@@ -12,9 +12,3 @@
 .secondary {
   color: var(--inverted-primary-color);
 }
-
-@media (hover: hover) {
-  .AppLink:hover {
-    opacity: var(--opacity-hover);
-  }
-}

@@ -4,16 +4,19 @@
 @import "./themes/normal";
 @import "./themes/dark";
 
-html,
-body {
-  scrollbar-gutter: stable;
-}
-
 .app {
+  min-height: var(--vh);
   font: var(--font-m);
   background: var(--bg-color);
   color: var(--primary-color);
-  min-height: var(--vh);
+  transition: var(--transition-default);
+}
+
+.storybook {
+  min-height: 100vh;
+  font: var(--font-m);
+  background: var(--bg-color);
+  color: var(--primary-color);
   transition: var(--transition-default);
 }
 
@@ -22,6 +25,5 @@ body {
 }
 
 .page-wrapper {
-  padding: 25px;
   flex-grow: 1;
 }
