@@ -1,18 +1,30 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import {
-  memo, useCallback, useRef, useState,
+  FormEvent,
+  memo, useCallback, useEffect, useRef, useState,
 } from 'react';
 import { Logo } from 'shared/ui/Logo/Logo';
 import Eye from 'shared/assets/icons/eye.svg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { ErrorBoundary } from 'app/providers/ErrorBoundary/index';
+import {
+  getLoggedInStatus,
+} from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { AuthInput } from 'features/AuthUser/ui/AuthInput/AuthInput';
+import { AuthTabLinks } from 'features/AuthUser/ui/AuthTabLinks/AuthTabLinks';
+import { loginByEmail } from '../../model/services/loginByEmail/loginByEmail';
+import { getAuthState } from '../../model/selectors/getAuthState/getAuthState';
+import { authActions } from '../../model/slice/authSlice';
 import cls from './AuthForm.module.scss';
 
 interface IAuthFormProps {
   className?: string;
 }
 
-interface AuthFormType {
+export interface AuthFormType {
   isAuthActive: boolean;
   isRegActive: boolean;
 }
@@ -23,6 +35,27 @@ export const AuthForm = memo((props: IAuthFormProps) => {
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const [type, setType] = useState<AuthFormType>({ isAuthActive: true, isRegActive: false });
   const inputPasswordRef = useRef<HTMLInputElement>(null);
+  const dispatch = useDispatch();
+  const {
+    username, email, password, error, isLoading,
+  } = useSelector(getAuthState);
+  const navigate = useNavigate();
+  const isLoggedIn = useSelector(getLoggedInStatus);
+
+  const onChangeUserMail = useCallback((e) => {
+    const { value } = e.target;
+    dispatch(authActions.setUserEmail(value));
+  }, [dispatch]);
+
+  const onChangeUserName = useCallback((e) => {
+    const { value } = e.target;
+    dispatch(authActions.setUserName(value));
+  }, [dispatch]);
+
+  const onChangeUserPassword = useCallback((e) => {
+    const { value } = e.target;
+    dispatch(authActions.setUserPassword(value));
+  }, [dispatch]);
 
   const togglePasswordVisible = useCallback(() => {
     if (inputPasswordRef.current.getAttribute('type') === 'password') {
@@ -42,83 +75,88 @@ export const AuthForm = memo((props: IAuthFormProps) => {
     }
   }, []);
 
+  const handleSubmit = useCallback(async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (type.isAuthActive) {
+      await dispatch(loginByEmail({ email, password }));
+    }
+  }, [dispatch, password, email, type]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate(RoutePath.main);
+    }
+  }, [isLoggedIn, navigate]);
+
   return (
-    <form className={classNames(cls.AuthForm, {}, [className])}>
-      <Logo theme="auth" />
-      <div className={classNames(cls.tabWrapper)}>
-        <div className={classNames(cls.tab)}>
-          <button
-            type="button"
-            className={classNames(cls.tabBtn, { [cls.tabBtnActive]: type.isAuthActive })}
-            onClick={() => changeTab('auth')}
-          >
-            {t('Войти')}
-          </button>
-          <hr className={classNames(cls.tabStatus, { [cls.tabActive]: type.isAuthActive })} />
+    <ErrorBoundary>
+      <form className={classNames(cls.AuthForm, {}, [className])} onSubmit={handleSubmit}>
+        <div className={cls.formWrapper}>
+          <Logo theme="auth" />
+          <AuthTabLinks type={type} changeTab={changeTab} />
+
+          <fieldset className={cls.fieldset}>
+            <AuthInput
+              id="email"
+              type="email"
+              placeholder={t('Электронная почта')}
+              onChange={onChangeUserMail}
+              value={email ?? ''}
+            />
+
+            {type.isRegActive && (
+              <AuthInput
+                id="name"
+                type="text"
+                placeholder={t('Никнейм')}
+                onChange={onChangeUserName}
+                value={username ?? ''}
+              />
+            )}
+
+            <label htmlFor="password" className={cls.inputWrapper}>
+              <AuthInput
+                ref={inputPasswordRef}
+                id="password"
+                type="password"
+                placeholder={t('Пароль')}
+                onChange={onChangeUserPassword}
+                value={password ?? ''}
+                className={cls.inputPassword}
+              />
+              <Eye
+                className={classNames(cls.btnEye, { [cls.btnEyeActive]: isPasswordVisible })}
+                onClick={togglePasswordVisible}
+              />
+              <span
+                className={
+                  classNames(
+                    cls.forgotPasswordSpan,
+                    { [cls.forgotPasswordSpanInvisible]: type.isRegActive },
+                  )
+                }
+              >
+                {t('Забыли пароль? ')}
+                <Link className={classNames(cls.recoverPasswordLink)} to="/">
+                  {t('Восстановить')}
+                </Link>
+              </span>
+            </label>
+          </fieldset>
         </div>
 
-        <div className={classNames(cls.tab)}>
+        <div className={cls.submitWrapper}>
           <button
-            className={classNames(cls.tabBtn, { [cls.tabBtnActive]: type.isRegActive })}
-            type="button"
-            onClick={() => changeTab('reg')}
+            type="submit"
+            disabled={isLoading}
+            className={classNames(cls.submitBtn)}
           >
-            {t('Регистрация')}
+            {type.isAuthActive ? t('Войти') : t('Создать')}
           </button>
-          <hr className={classNames(cls.tabStatus, { [cls.tabActive]: type.isRegActive })} />
+          <span className={cls.errorMessage}>{error}</span>
         </div>
-      </div>
-
-      <fieldset className={cls.fieldset}>
-        <input
-          id="email"
-          type="email"
-          placeholder={t('Электронная почта')}
-          className={classNames(cls.input, {}, [])}
-        />
-        {type.isRegActive && (
-        <input
-          id="nickname"
-          type="text"
-          placeholder={t('Никнейм')}
-          className={classNames(cls.input, {}, [])}
-        />
-        )}
-        <label htmlFor="password" className={cls.inputWrapper}>
-          <input
-            ref={inputPasswordRef}
-            id="password"
-            type="password"
-            placeholder={t('Пароль')}
-            className={classNames(cls.input, {}, [cls.inputPassword])}
-          />
-          <Eye
-            className={classNames(cls.btnEye, { [cls.btnEyeActive]: isPasswordVisible })}
-            onClick={togglePasswordVisible}
-          />
-          A
-          <span
-            className={
-              classNames(
-                cls.forgotPasswordSpan,
-                { [cls.forgotPasswordSpanInvisible]: type.isRegActive },
-              )
-          }
-          >
-            {t('Забыли пароль? ')}
-            <Link className={classNames(cls.recoverPasswordLink)} to="/">
-              {t('Восстановить')}
-            </Link>
-          </span>
-        </label>
-      </fieldset>
-
-      <button
-        type="submit"
-        className={classNames(cls.submitBtn)}
-      >
-        {type.isAuthActive ? t('Войти') : t('Создать')}
-      </button>
-    </form>
+      </form>
+    </ErrorBoundary>
   );
 });

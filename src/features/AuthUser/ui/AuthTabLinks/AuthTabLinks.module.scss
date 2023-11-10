@@ -1,0 +1,48 @@
+.AuthTabLinks {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 9px 0;
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.tabBtn {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--secondary-color);
+}
+
+.tabBtnActive {
+  color: var(--accent-color);
+}
+
+.tabStatus {
+  border-radius: 4px;
+  background: #3f3f45;
+  border-width: 0;
+  height: 4px;
+  transition: 0.2s;
+}
+
+.tabActive {
+  background: #fac704;
+}
+
+@media (hover: hover) {
+  .tabBtn:hover {
+    cursor: pointer;
+    color: var(--accent-color);
+  }
+}
+
+@media screen and (width <= 768px) {
+  .tabBtn {
+    font-size: 14px;
+  }
+}

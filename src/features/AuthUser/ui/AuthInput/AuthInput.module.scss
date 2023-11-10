@@ -1,0 +1,19 @@
+.AuthInput {
+  outline: none;
+  background: transparent;
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  padding: 16px 20px 16px 13px;
+  color: var(--primary-color);
+}
+
+.AuthInput:focus {
+  border: 1px solid var(--accent-color);
+}
+
+@media screen and (width <= 768px) {
+  .AuthInput {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
