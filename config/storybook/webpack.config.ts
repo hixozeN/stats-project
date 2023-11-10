@@ -16,10 +16,7 @@ export default ({ config }: {config: webpack.Configuration}) => {
     use: ['@svgr/webpack'],
   };
 
-  config.resolve.modules = [
-    path.resolve(__dirname, '../../src'),
-    'node_modules',
-  ];
+  config.resolve?.modules?.push(path.relative(__dirname, '../../src'), 'node_modules');
   config.resolve.extensions.push('.ts', '.tsx');
 
   /*
