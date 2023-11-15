@@ -1,7 +1,7 @@
 .Sidebar {
   height: calc(100svh - var(--navbar-height));
   width: var(--sidebar-width);
-  background: var(--inverted-bg-color);
+  background: var(--bg-secondary-color);
   position: relative;
   display: flex;
   flex-direction: column;

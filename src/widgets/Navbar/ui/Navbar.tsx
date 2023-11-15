@@ -9,6 +9,7 @@ import {
 import { useCallback } from 'react';
 import { userActions } from 'entities/User/index';
 import { useLocation } from 'react-router-dom';
+import LogoutIcon from 'shared/assets/icons/button/logout.svg';
 import cls from './Navbar.module.scss';
 
 interface INavbarProps {
@@ -48,7 +49,7 @@ export function Navbar({ className }: INavbarProps) {
             to={RoutePath.main}
             onClick={onLogout}
           >
-            {t('Выйти')}
+            <LogoutIcon />
           </AppLink>
         </div>
       </div>
