@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { Button, ButtonTheme } from 'shared/ui/Button/Button';
+import { Button } from 'shared/ui/Button/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import cls from './NotFoundPage.module.scss';
@@ -26,7 +26,12 @@ export function NotFoundPage({ className }: INotFoundPageProps) {
             {t('на главную')}
           </Link>
           {t(' или ')}
-          <Button theme={ButtonTheme.HIGHLIGHT} onClick={() => navigate(-1)}>{t('назад?')}</Button>
+          <Button
+            // theme={ButtonTheme.HIGHLIGHT}
+            onClick={() => navigate(-1)}
+          >
+            {t('назад?')}
+          </Button>
         </span>
       </div>
     </div>

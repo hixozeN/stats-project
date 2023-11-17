@@ -1,24 +1,40 @@
 .app.light {
+  /* bg colors */
   --bg-color: #d7d7e1;
+  --bg-secondary-color: #dcdcec;
   --bg-gradient-color: linear-gradient(180deg, rgb(78 78 116) 0%, #0c0c0e 100%);
   --bg-notification-selected-color: #101011;
-  --inverted-bg-color: #f2f2f2;
-  --bg-accent-color: #fac704;
+  --inverted-bg-color: #2d2d2d;
+  --bg-accent-color: #70d3f8;
+
+  /* font colors */
   --primary-color: #0e0d0d;
   --secondary-color: #2e2e2e;
   --highlight-color: #18181b;
-  --accent-color: #fac704;
-  --secondary-highlight-color: #fac704;
+  --accent-color: #c9c9ec;
+  --secondary-highlight-color: #c9c9ec;
   --inverted-primary-color: #2e2e2e;
   --inverted-secondary-color: #c6c5c5;
+
+  /* btn themes */
+  --button-primary-color: #e5e5e5;
   --button-border-color: #828282;
-  --button-default: #fac704;
-  --button-hover: #fced22;
+  --button-team-color: #ecebeb;
+  --button-default: #55a2be;
+  --button-danger-default: #fc3c3c;
+  --button-results: #f2f2f2;
+  --button-results-bg: #3fb66f;
+  --button-team-bg: #3F3E3EB2;
+  --button-icon-bg: #242424;
+  --button-disabled: #bbb;
+  --button-hover: #62b8d9;
+  --button-danger-hover: #FC646491;
+  --button-send-results-hover: #3FB66FB0;
+  --button-team-hover: #93939BB5;
   --button-focus: #fba904;
-  --button-pressed: #fba904;
-  --button-warning-default: #fe2a2a;
-  --button-warning-hover: #fe5252;
+  --button-pressed: #55a2be;
   --button-warning-pressed: #f02;
-  --button-disabled: #989898;
+
+  /* loader themes */
   --loader-color: #000;
 }
