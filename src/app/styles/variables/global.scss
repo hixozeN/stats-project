@@ -24,6 +24,18 @@
   --font-weight-xl: 500;
   --font-xl: var(--font-weight-xl) var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
 
+  // Шрифт XXL - для заголовков
+  --font-size-xxl: 48px;
+  --font-line-xxl: 1.2;
+  --font-weight-xxl: 900;
+  --font-xxl: var(--font-weight-xxl) var(--font-size-xxl) / var(--font-line-xxl) var(--font-family-main);
+
+  // Шрифт XXXL - для заголовков
+  --font-size-xxxl: 56px;
+  --font-line-xxxl: 1.2;
+  --font-weight-xxxl: 500;
+  --font-xxxl: var(--font-weight-xxxl) var(--font-size-xxxl) / var(--font-line-xxxl) var(--font-family-main);
+
   // цвета
   --error-color: #de3333;
   --overlay-color: rgba(0 0 0 / 50%);
