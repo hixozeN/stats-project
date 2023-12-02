@@ -7,6 +7,18 @@
 
 .header {
   width: 70px;
+  height: 70px;
+  gap: 5px;
+
+  .image {
+    width: 54px;
+    height: 50px;
+  }
+
+  .text {
+    width: 68px;
+    height: 5px;
+  }
 }
 
 .auth {

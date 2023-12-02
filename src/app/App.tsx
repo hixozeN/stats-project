@@ -1,4 +1,3 @@
-import { Navbar } from 'widgets/Navbar';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Sidebar } from 'widgets/Sidebar';
 import {
@@ -10,6 +9,7 @@ import {
 } from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
 import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { userActions } from 'entities/User/index';
+import { Header } from 'widgets/Header';
 import { useTheme } from './providers/ThemeProvider';
 import { AppRouter } from './providers/router';
 
@@ -52,7 +52,7 @@ function App() {
     <div id="app" className={classNames('app', {}, [theme])}>
       {/* suspense для подгрузки чанков с переводами */}
       <Suspense fallback="">
-        <Navbar />
+        <Header />
         <div className="page-content">
           {isLoggedIn && <Sidebar />}
           <AppRouter />
