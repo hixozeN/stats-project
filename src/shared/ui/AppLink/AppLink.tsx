@@ -6,7 +6,7 @@ import cls from './AppLink.module.scss';
 export enum AppLinkTheme {
   PRIMARY = 'primary',
   SECONDARY = 'secondary',
-  BUTTON= 'button',
+  BUTTON = 'button',
 }
 
 interface AppLinkProps extends LinkProps {
@@ -22,7 +22,11 @@ export const AppLink: FC<AppLinkProps> = (props) => {
   return (
     <Link
       to={to}
-      className={classNames(cls.AppLink, {}, [className, cls[theme], 'link-hovered'])}
+      className={classNames(cls.AppLink, {}, [
+        className,
+        cls[theme],
+        theme === AppLinkTheme.BUTTON ? '' : 'link-hovered',
+      ])}
       {...otherProps}
     >
       {children}

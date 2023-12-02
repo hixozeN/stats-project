@@ -161,3 +161,12 @@ export const ProfileIcon: Story = {
   },
   decorators: [ThemeDecorator(Theme.DARK)],
 };
+
+export const ChevronDownIcon: Story = {
+  args: {
+    variant: 'chevron-down',
+    theme: 'icon-right',
+    children: 'Admin',
+  },
+  decorators: [ThemeDecorator(Theme.DARK)],
+};
