@@ -10,7 +10,7 @@
   font: var(--font-btn-default);
   height: 42px;
   display: flex;
-  align-self: center;
+  align-items: center;
   justify-content: center;
   gap: 10px;
 }
@@ -67,6 +67,21 @@
   height: 22px;
   background-repeat: no-repeat;
   background-size: 22px 22px;
+}
+
+.icon-right {
+  max-width: 255px;
+  width: 100%;
+  background-color: transparent;
+  color: var(--bg-team-color);
+  
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.icon-right .iconSpan {
+  order: 1;
 }
 
 .size_s {

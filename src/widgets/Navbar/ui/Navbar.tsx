@@ -8,8 +8,10 @@ import {
 } from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
 import { useCallback } from 'react';
 import { userActions } from 'entities/User/index';
-import { useLocation } from 'react-router-dom';
 import LogoutIcon from 'shared/assets/icons/button/logout.svg';
+import LoginIcon from 'shared/assets/icons/button/login.svg';
+import { Button } from 'shared/ui/Button/Button';
+import { getUserData } from 'entities/User/model/selectors/getUserData/getUserData';
 import cls from './Navbar.module.scss';
 
 interface INavbarProps {
@@ -20,65 +22,59 @@ export function Navbar({ className }: INavbarProps) {
   const { t } = useTranslation();
   const isLoggedIn = useSelector(getLoggedInStatus);
   const dispatch = useDispatch();
-  const { pathname } = useLocation();
-
+  const { authData } = useSelector(getUserData);
   const onLogout = useCallback(() => {
     dispatch(userActions.logout());
   }, [dispatch]);
 
+  const handelClick = useCallback(() => {
+
+  }, []);
+
   if (isLoggedIn) {
+    const { username } = authData;
     return (
-      <div className={classNames(cls.Navbar, {}, [className])}>
-        <div className={cls.links}>
-          <AppLink
-            theme={AppLinkTheme.PRIMARY}
-            to={RoutePath.main}
-          >
-            {t('Главная')}
-          </AppLink>
+      <div className={cls.navWrapper}>
 
-          <AppLink
-            theme={AppLinkTheme.PRIMARY}
-            to={RoutePath.about}
+        <Button theme="icon" variant="notification" onClick={handelClick}>
+          {/* ToDo: количество notification вынести в отдельный компонент из сайдбара и отсюда */}
+          <span
+            className={cls.notification}
           >
-            {t('О сайте')}
-          </AppLink>
+            2
+          </span>
+        </Button>
 
+        <Button theme="icon-right" variant="chevron-down">
+          <span className={cls.userName}>{username ?? ''}</span>
+        </Button>
+        <nav className={classNames(cls.Navbar, {}, [className])}>
           <AppLink
             theme={AppLinkTheme.PRIMARY}
-            to={RoutePath.main}
+            to={RoutePath.auth}
             onClick={onLogout}
           >
             <LogoutIcon />
           </AppLink>
-        </div>
+        </nav>
       </div>
     );
   }
 
   return (
-    <div className={classNames(cls.Navbar, {}, [className])}>
-      <div className={cls.links}>
-        {
-          pathname === RoutePath.auth
-            ? (
-              <AppLink
-                theme={AppLinkTheme.PRIMARY}
-                to={RoutePath.main}
-              >
-                {t('Главная')}
-              </AppLink>
-            )
-            : (
-              <AppLink
-                theme={AppLinkTheme.PRIMARY}
-                to={RoutePath.auth}
-              >
-                {t('Авторизация')}
-              </AppLink>
-            )
-        }
-      </div>
-    </div>
+    <nav className={classNames(cls.Navbar, {}, [className])}>
+      <AppLink
+        theme={AppLinkTheme.BUTTON}
+        to={RoutePath.auth}
+      >
+        {t('Создать аккаунт')}
+      </AppLink>
+      <AppLink
+        theme={AppLinkTheme.PRIMARY}
+        to={RoutePath.auth}
+      >
+        <LoginIcon />
+      </AppLink>
+    </nav>
   );
 }
