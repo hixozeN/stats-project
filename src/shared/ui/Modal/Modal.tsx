@@ -16,8 +16,6 @@ export function Modal(props: IModalProps) {
     className, children, isOpen, onClose, isStoryBook = false,
   } = props;
 
-  const appElement = document.querySelector('.app');
-
   const mods: Record<string, boolean> = {
     [cls.opened]: isOpen,
   };

@@ -1,0 +1,14 @@
+<svg
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-labelledby="circleOkIconTitle"
+        stroke="currentColor"
+        stroke-width="1"
+        stroke-linecap="square"
+        stroke-linejoin="miter"
+        fill="none"
+        color="none">
+    <title id="circleOkIconTitle">OK</title>
+    <polyline points="7 13 10 16 17 9"/>
+    <circle cx="12" cy="12" r="10"/>
+</svg>
