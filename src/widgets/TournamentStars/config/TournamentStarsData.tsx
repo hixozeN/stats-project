@@ -13,7 +13,7 @@ export const dataList = [
     rating: 2674,
     tournaments: 27,
     modes: 25,
-    participants: 9,
+    members: 9,
     awards: [img1, img2, img3, img4],
   },
   {
@@ -23,7 +23,7 @@ export const dataList = [
     rating: 2674,
     tournaments: 12,
     modes: 25,
-    participants: 1,
+    members: 1,
     awards: [img4],
   },
   {
@@ -33,7 +33,7 @@ export const dataList = [
     rating: 2674,
     tournaments: 43,
     modes: 25,
-    participants: 9,
+    members: 9,
     awards: [img2],
   },
   {
@@ -43,7 +43,7 @@ export const dataList = [
     rating: 2674,
     tournaments: 0,
     modes: 25,
-    participants: 2,
+    members: 2,
     awards: [img1, img2],
   },
   {
@@ -53,7 +53,7 @@ export const dataList = [
     rating: 1245,
     tournaments: 0,
     modes: 25,
-    participants: 4,
+    members: 4,
     awards: [img3],
   },
 ];
