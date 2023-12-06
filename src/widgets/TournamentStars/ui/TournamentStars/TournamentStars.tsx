@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { dataList } from '../../config/TournamentStarsData';
 import cls from './TournamentStars.module.scss';
 
@@ -21,21 +21,22 @@ export const TournamentStars: FC<TournamentStarsProps> = ({ className }) => {
       </p>
       <ul className={cls.table}>
         {dataList.map(({
+          id,
           icon,
           team,
           rating,
           tournaments,
           modes,
-          participants,
+          members,
           awards,
         }) => (
-          <li className={cls.tableRow}>
-            <NavLink to="#" className={cls.link}>
+          <li className={cls.tableRow} key={id}>
+            <Link to="/" className={cls.link}>
               <img className={cls.icon} src={icon} alt={team} />
               <p className={cls.nameTeam}>{team}</p>
-            </NavLink>
+            </Link>
             <ul className={cls.list}>
-              <li className={cls.item}>
+              <li className={cls.item} key={team}>
                 <span className={cls.columnName}>{t('Рейтинг')}</span>
                 <p className={cls.columnValue}>{rating}</p>
               </li>
@@ -49,16 +50,14 @@ export const TournamentStars: FC<TournamentStarsProps> = ({ className }) => {
               </li>
               <li className={cls.item}>
                 <span className={cls.columnName}>{t('Участников')}</span>
-                <p className={cls.columnValue}>{`${participants}/15`}</p>
+                <p className={cls.columnValue}>{`${members}/15`}</p>
               </li>
-            </ul>
-            <ul className={cls.listIcon}>
-              <span className={cls.visuallyHidden}>{t('Награды')}</span>
-              {awards.map((award) => (
-                <li className={cls.itemIcon}>
-                  <img className={cls.awardIcon} src={award} alt="" />
-                </li>
-              ))}
+              <li className={cls.item}>
+                <span className={cls.visuallyHidden}>{t('Награды')}</span>
+                {awards.map((award) => (
+                  <img className={cls.awardIcon} src={award} alt="" key={Math.random() * 1000} />
+                ))}
+              </li>
             </ul>
           </li>
         ))}
