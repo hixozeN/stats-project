@@ -7,9 +7,6 @@ import { TournamentStars } from './TournamentStars';
 const meta: Meta<typeof TournamentStars> = {
   title: 'widgets/TournamentStars',
   component: TournamentStars,
-  parameters: {
-
-  },
 };
 
 export default meta;
@@ -18,12 +15,8 @@ type Story = StoryObj<typeof TournamentStars>;
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 export const Light: Story = {
-  args: {
-  },
 };
 
 export const Dark: Story = {
-  args: {
-  },
   decorators: [ThemeDecorator(Theme.DARK)],
 };
