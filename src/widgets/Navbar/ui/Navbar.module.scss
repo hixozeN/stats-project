@@ -34,3 +34,27 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+@media (width <= 768px) {
+  .addAccaunt {
+    width: 40px;
+    height: 40px;
+    background-image: url('../../../shared/assets/icons/button/add-friend.svg');
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .Navbar {
+    gap: 10px;
+  }
+
+  .userName {
+    font-size: 12px;
+    max-width: 60px;
+  }
+
+  .navWrapper {
+    gap: 0;
+  }
+}

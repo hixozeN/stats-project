@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   getLoggedInStatus,
 } from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { userActions } from 'entities/User/index';
 import LogoutIcon from 'shared/assets/icons/button/logout.svg';
 import LoginIcon from 'shared/assets/icons/button/login.svg';
@@ -31,12 +31,29 @@ export function Navbar({ className }: INavbarProps) {
 
   }, []);
 
+  const [isMobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    const handleWidth = () => {
+      if (window.innerWidth > 768) {
+        setMobile(false);
+      } else {
+        setMobile(true);
+      }
+    };
+
+    handleWidth();
+    window.addEventListener('resize', handleWidth);
+
+    return () => window.removeEventListener('resize', handleWidth);
+  }, [isMobile]);
+
   if (isLoggedIn) {
     const { username } = authData;
     return (
       <div className={cls.navWrapper}>
 
-        <Button theme="icon" variant="notification" onClick={handelClick}>
+        <Button type="button" theme="icon" variant="notification" onClick={handelClick}>
           {/* ToDo: количество notification вынести в отдельный компонент из сайдбара и отсюда */}
           <span
             className={cls.notification}
@@ -45,7 +62,7 @@ export function Navbar({ className }: INavbarProps) {
           </span>
         </Button>
 
-        <Button theme="icon-right" variant="chevron-down">
+        <Button type="button" theme="icon-right" variant="chevron-down">
           <span className={cls.userName}>{username ?? ''}</span>
         </Button>
         <nav className={classNames(cls.Navbar, {}, [className])}>
@@ -66,8 +83,9 @@ export function Navbar({ className }: INavbarProps) {
       <AppLink
         theme={AppLinkTheme.BUTTON}
         to={RoutePath.auth}
+        className={cls.addAccaunt}
       >
-        {t('Создать аккаунт')}
+        {!isMobile && t('Создать аккаунт')}
       </AppLink>
       <AppLink
         theme={AppLinkTheme.PRIMARY}

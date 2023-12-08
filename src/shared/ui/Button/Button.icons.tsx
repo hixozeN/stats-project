@@ -14,6 +14,7 @@ import NotificationIcon from '../../assets/icons/button/notification.svg';
 import MessagesIcon from '../../assets/icons/button/message.svg';
 import ActionsIcon from '../../assets/icons/button/dots-vertical.svg';
 import DownIcon from '../../assets/icons/button/chevron-down.svg';
+import Magnifier from '../../assets/icons/button/magnifier.svg';
 
 export const BUTTON_ICONS: Record<string, ReactElement> = {
   create: <CreateIcon />,
@@ -31,4 +32,5 @@ export const BUTTON_ICONS: Record<string, ReactElement> = {
   'send-message': <MessagesIcon />,
   actions: <ActionsIcon />,
   'chevron-down': <DownIcon />,
+  magnifier: <Magnifier />,
 };

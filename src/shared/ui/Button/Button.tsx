@@ -5,7 +5,7 @@ import cls from './Button.module.scss';
 
 export type ButtonVariant = 'edit' | 'create' | 'join' | 'save' | 'block' | 'add-friend'
   | 'invite-player' | 'kick-player' | 'leave-team' | 'edit-logo' | 'disband'
-  | 'send-message' | 'actions' | 'notification' | 'chevron-down';
+  | 'send-message' | 'actions' | 'notification' | 'chevron-down' | 'magnifier';
 
 export type ButtonTheme = 'default' | 'clear' | 'danger' | 'inverted' // default buttons
   | 'send-results' // 10% opacity btn
