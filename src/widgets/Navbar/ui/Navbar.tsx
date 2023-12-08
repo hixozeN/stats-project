@@ -19,7 +19,7 @@ interface INavbarProps {
 }
 
 export function Navbar({ className }: INavbarProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('nav');
   const isLoggedIn = useSelector(getLoggedInStatus);
   const dispatch = useDispatch();
   const { authData } = useSelector(getUserData);
