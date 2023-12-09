@@ -4,6 +4,7 @@
   align-items: center;
   place-content: center center;
   position: relative;
+  border-radius: 5px;
 }
 
 .link {
@@ -39,6 +40,7 @@
 .active {
   color: var(--highlight-color);
   background-color: var(--button-pressed);
+  border-radius: 5px;
 
   & svg path {
     fill: var(--highlight-color);

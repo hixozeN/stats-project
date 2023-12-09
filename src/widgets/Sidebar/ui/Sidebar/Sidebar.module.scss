@@ -1,6 +1,6 @@
 .Sidebar {
   height: calc(100svh - var(--navbar-height));
-  width: var(--sidebar-width);
+  padding: 0 20px;
   background: var(--bg-secondary-color);
   position: relative;
   display: flex;
@@ -34,9 +34,15 @@
 }
 
 .collapsed {
-  width: var(--sidebar-collapsed-width);
+  padding: 0 10px;
 
   .switchers {
     flex-direction: column;
+  }
+}
+
+@media screen and (width <= 1024px) {
+  .Sidebar {
+    display: none;
   }
 }
