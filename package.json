@@ -72,6 +72,7 @@
     "sass": "^1.49.9",
     "sass-loader": "^12.6.0",
     "storybook": "^7.3.2",
+    "storybook-addon-react-router-v6": "^2.0.10",
     "style-loader": "^3.3.1",
     "stylelint": "^15.11.0",
     "stylelint-config-standard-scss": "^11.1.0",
@@ -95,7 +96,7 @@
     "react-dom": "^17.0.2",
     "react-i18next": "^11.15.5",
     "react-redux": "^7.2.6",
-    "react-router-dom": "^6.2.1"
+    "react-router-dom": "^6.19.0"
   },
   "overrides": {
     "loki": {
