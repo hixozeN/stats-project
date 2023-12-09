@@ -12,6 +12,7 @@ import LogoutIcon from 'shared/assets/icons/button/logout.svg';
 import LoginIcon from 'shared/assets/icons/button/login.svg';
 import { Button } from 'shared/ui/Button/Button';
 import { getUserData } from 'entities/User/model/selectors/getUserData/getUserData';
+import { ProfileSidebar } from 'widgets/ProfileSidebar';
 import cls from './Navbar.module.scss';
 
 interface INavbarProps {
@@ -26,10 +27,15 @@ export function Navbar({ className }: INavbarProps) {
   const onLogout = useCallback(() => {
     dispatch(userActions.logout());
   }, [dispatch]);
+  const [isOpenMenu, setOpenMenu] = useState(false);
 
   const handelClick = useCallback(() => {
 
   }, []);
+
+  const handleClickUserName = useCallback(() => {
+    setOpenMenu(!isOpenMenu);
+  }, [isOpenMenu]);
 
   const [isMobile, setMobile] = useState(false);
 
@@ -62,7 +68,13 @@ export function Navbar({ className }: INavbarProps) {
           </span>
         </Button>
 
-        <Button type="button" theme="icon-right" variant="chevron-down">
+        {isOpenMenu && (
+          <nav className={cls.menuProfile}>
+            <ProfileSidebar />
+          </nav>
+        )}
+
+        <Button type="button" theme="icon-right" variant="chevron-down" onClick={handleClickUserName}>
           <span className={cls.userName}>{username ?? ''}</span>
         </Button>
         <nav className={classNames(cls.Navbar, {}, [className])}>

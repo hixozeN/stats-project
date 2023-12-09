@@ -11,6 +11,7 @@
   display: flex;
   gap: 20px;
   align-items: center;
+  position: relative;
 }
 
 .notification {
@@ -33,6 +34,20 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.menuProfile {
+  position: absolute;
+  top: 60px;
+  background-color: var(--app-background);
+  padding-left: 20px;
+  z-index: 10;
+  border-radius: 5px;
+  backdrop-filter: blur(60px);
+
+  ul{
+    border: 0;
+  }
 }
 
 @media (width <= 768px) {

@@ -1,4 +1,3 @@
-import { Navbar } from 'widgets/Navbar';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Sidebar } from 'widgets/Sidebar';
 import { Suspense, useEffect, useRef } from 'react';
@@ -10,6 +9,7 @@ import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { userActions } from 'entities/User/index';
 import { Outlet } from 'react-router-dom';
 import Loader from 'shared/ui/Loader/Loader';
+import { Header } from 'widgets/Header';
 import { Theme, useTheme } from '../../../providers/ThemeProvider';
 
 function AppLayout() {
@@ -60,7 +60,7 @@ function AppLayout() {
   return (
     <Suspense fallback={<Loader />}>
       <div id="app" className={classNames('app', {}, [theme])}>
-        <Navbar />
+        <Header />
         <div className="page-content">
           {isLoggedIn && <Sidebar />}
           <Suspense fallback={<Loader />}>
