@@ -1,0 +1,25 @@
+.ProfileSidebar {
+  display: flex;
+  gap: 15px;
+}
+
+.list {
+  padding: 19px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  height: var(--profile-sidebar-height);
+  border-right: 4px solid var(--bg-profile-sidebar-inactive);
+}
+
+@media screen and (width <= 810px) {
+  .ProfileSidebar {
+    justify-content: center;
+  }
+
+  .list {
+    flex-direction: row;
+    height: auto;
+    border: none;
+  }
+}

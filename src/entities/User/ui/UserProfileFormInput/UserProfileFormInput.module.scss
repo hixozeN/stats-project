@@ -1,0 +1,91 @@
+.input {
+  max-width: 477px;
+  border-radius: 5px;
+  background: #333239;
+  border: none;
+  outline: none;
+  color: var(--primary-color);
+  padding: 5px 8px;
+}
+
+.input:focus, textarea:focus {
+  outline: 1px solid var(--secondary-color);
+}
+
+.label {
+  display: grid;
+  grid-template-columns: 172px 1fr;
+  align-items: center;
+}
+
+.iconWrapper {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+}
+
+.span {
+  color: var(--secondary-color);
+}
+
+.textarea {
+  resize: none;
+  min-height: 82px;
+  max-width: 477px;
+  border-radius: 5px;
+  background: #333239;
+  border: none;
+  outline: none;
+  color: var(--primary-color);
+  padding: 5px 8px;
+  font-size: 14px;
+}
+
+.textarea::-webkit-scrollbar {
+  width: 5px;
+}
+
+.textarea::-webkit-scrollbar-track {
+  background-color:#5A5D66;
+  border-radius: 5px;
+}
+
+.textarea::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: var(--accent-color);
+}
+
+.text {
+  color: var(--primary-color);
+}
+
+.iconClicked {
+  & path {
+    fill: green;
+  }
+}
+
+@media (hover: hover) {
+  .label:hover {
+    cursor: pointer;
+
+    & svg path {
+      fill: var(--primary-color);
+    }
+  }
+}
+
+@media screen and (width <= 810px) {
+  .span {
+    display: none;
+  }
+
+  .label {
+    display: flex;
+    justify-content: center;
+  }
+
+  .input, .textarea {
+    width: 100%;
+  }
+}
