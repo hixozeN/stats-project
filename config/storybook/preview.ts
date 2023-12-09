@@ -6,12 +6,14 @@ import { RouterDecorator } from 'shared/config/storybook/RouterDecorator/RouterD
 import {
   TranslationDecorator,
 } from 'shared/config/storybook/TranslationDecorator/TranslationDecorator';
+import { withRouter } from 'storybook-addon-react-router-v6';
 
 const preview: Preview = {
   decorators: [
     StyleDecorator,
     ThemeDecorator(Theme.LIGHT),
-    RouterDecorator,
+    // RouterDecorator, // deprecated decorator, actual - withRouter from 'storybook-addon-react-router-v6' package
+    withRouter,
     TranslationDecorator,
   ],
   // parameters: {
