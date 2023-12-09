@@ -1,3 +1,11 @@
+.wrapper {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .lds-ellipsis {
   display: inline-block;
   position: relative;

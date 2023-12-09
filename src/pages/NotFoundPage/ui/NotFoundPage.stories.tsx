@@ -7,10 +7,6 @@ import { NotFoundPage } from './NotFoundPage';
 const meta: Meta<typeof NotFoundPage> = {
   title: 'pages/NotFoundPage',
   component: NotFoundPage,
-  parameters: {
-
-  },
-  args: {},
 };
 
 export default meta;
@@ -18,13 +14,8 @@ export default meta;
 type Story = StoryObj<typeof NotFoundPage>;
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
-export const Light: Story = {
-  args: {
-  },
-};
-
 export const Dark: Story = {
-  args: {
-  },
   decorators: [ThemeDecorator(Theme.DARK)],
 };
+
+export const Light: Story = {};

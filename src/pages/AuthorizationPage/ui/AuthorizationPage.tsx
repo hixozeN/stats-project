@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { AuthForm } from 'features/AuthUser';
 import cls from './AuthorizationPage.module.scss';
 
@@ -10,4 +10,4 @@ function AuthorizationPage() {
   );
 }
 
-export default AuthorizationPage;
+export default memo(AuthorizationPage);

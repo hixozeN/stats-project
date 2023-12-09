@@ -4,6 +4,10 @@
 @import "./themes/normal";
 @import "./themes/dark";
 
+body {
+  background-color: var(--app-background);
+}
+
 .app {
   min-height: var(--vh);
   font: var(--font-m);

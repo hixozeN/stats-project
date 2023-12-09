@@ -1,11 +1,13 @@
-import './Loader.scss';
+import cls from './Loader.module.scss';
 
 const Loader = () => (
-  <div className="lds-ellipsis">
-    <div />
-    <div />
-    <div />
-    <div />
+  <div className={cls.wrapper}>
+    <div className={cls['lds-ellipsis']}>
+      <div />
+      <div />
+      <div />
+      <div />
+    </div>
   </div>
 );
 
