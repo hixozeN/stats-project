@@ -1,10 +1,22 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { TournamentStars } from 'widgets/TournamentStars/index';
+import { useSelector } from 'react-redux';
+import {
+  getLoggedInStatus,
+} from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
+import { Navigate } from 'react-router-dom';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import cls from './MainPage.module.scss';
 
 function MainPage() {
   const { t } = useTranslation('main');
+
+  const isLoggedIn = useSelector(getLoggedInStatus);
+
+  if (isLoggedIn) {
+    return <Navigate to={RoutePath.tournaments} />;
+  }
 
   return (
     <>
