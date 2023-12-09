@@ -3,11 +3,52 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-grow: 1;
   gap: 30px;
-  height: 100%;
+  height: 70vh;
 }
 
 .title {
   font: var(--font-l);
   text-align: center;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+.message {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 30px 59px;
+  border-radius: 15px;
+  background: var(--bg-profile-wrapper);
+  backdrop-filter: blur(60px);
+}
+
+.caption {
+  text-align: center;
+  max-width: 410px;
+}
+
+@media screen and (width <= 560px) {
+  .wrapper {
+    gap: 15px;
+    padding: 20px 10px;
+    margin: 10px;
+  }
+
+  .message {
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+  }
 }

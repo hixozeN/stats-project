@@ -15,24 +15,26 @@ export function NotFoundPage({ className }: INotFoundPageProps) {
 
   return (
     <div className={classNames(cls.NotFoundPage, {}, [className])}>
-      <h1 className={classNames(cls.title)}>{t('Страница не найдена')}</h1>
-      <div>
-        <span>
-          {t('Вернуться ')}
-          <Link
-            className="link-hovered highlight-color "
-            to={RoutePath.main}
+      <div className={cls.wrapper}>
+        <h1 className={classNames(cls.title)}>{t('Страница не найдена')}</h1>
+        <p className={cls.caption}>
+          {t('Описание 404')}
+        </p>
+        <div className={cls.message}>
+          <Button
+            onClick={() => navigate(RoutePath.main)}
+            size="size_m"
           >
             {t('на главную')}
-          </Link>
-          {t(' или ')}
+          </Button>
           <Button
-            // theme={ButtonTheme.HIGHLIGHT}
+            theme="danger"
+            size="size_m"
             onClick={() => navigate(-1)}
           >
             {t('назад?')}
           </Button>
-        </span>
+        </div>
       </div>
     </div>
   );
