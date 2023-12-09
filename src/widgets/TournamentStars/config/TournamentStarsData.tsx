@@ -5,6 +5,29 @@ import img3 from 'shared/assets/images/lending-test/image 32.png';
 import img4 from 'shared/assets/images/lending-test/image 33.png';
 import icon2 from 'shared/assets/images/lending-test/icon-lenging-test-jpg.jpg';
 
+export const awardsList = [
+  {
+    id: 1,
+    image: img1,
+    rarity: 'common',
+  },
+  {
+    id: 2,
+    image: img2,
+    rarity: 'unique',
+  },
+  {
+    id: 3,
+    image: img3,
+    rarity: 'epic',
+  },
+  {
+    id: 4,
+    image: img4,
+    rarity: 'legendary',
+  },
+];
+
 export const dataList = [
   {
     id: 1,
@@ -14,7 +37,7 @@ export const dataList = [
     tournaments: 27,
     modes: 25,
     members: 9,
-    awards: [img1, img2, img3, img4],
+    awards: [awardsList[0], awardsList[1], awardsList[2], awardsList[3]],
   },
   {
     id: 2,
@@ -24,7 +47,7 @@ export const dataList = [
     tournaments: 12,
     modes: 25,
     members: 1,
-    awards: [img4],
+    awards: [awardsList[3]],
   },
   {
     id: 3,
@@ -34,7 +57,7 @@ export const dataList = [
     tournaments: 43,
     modes: 25,
     members: 9,
-    awards: [img2],
+    awards: [awardsList[1]],
   },
   {
     id: 4,
@@ -44,7 +67,7 @@ export const dataList = [
     tournaments: 0,
     modes: 25,
     members: 2,
-    awards: [img1, img2],
+    awards: [awardsList[1], awardsList[2]],
   },
   {
     id: 5,
@@ -54,6 +77,6 @@ export const dataList = [
     tournaments: 0,
     modes: 25,
     members: 4,
-    awards: [img3],
+    awards: [awardsList[2], awardsList[3]],
   },
 ];
