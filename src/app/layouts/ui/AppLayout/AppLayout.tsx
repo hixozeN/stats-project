@@ -65,7 +65,9 @@ function AppLayout() {
           {isLoggedIn && <Sidebar />}
           <Suspense fallback={<Loader />}>
             {/* <AppRouter /> */}
-            <Outlet />
+            <div className="page-wrapper">
+              <Outlet />
+            </div>
           </Suspense>
         </div>
       </div>
