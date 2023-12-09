@@ -7,7 +7,7 @@ import {
   getLoggedInStatus,
 } from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
 import { useCallback, useEffect, useState } from 'react';
-import { userActions } from 'entities/User/index';
+import { userActions } from 'entities/User';
 import LogoutIcon from 'shared/assets/icons/button/logout.svg';
 import LoginIcon from 'shared/assets/icons/button/login.svg';
 import { Button } from 'shared/ui/Button/Button';
@@ -61,9 +61,7 @@ export function Navbar({ className }: INavbarProps) {
 
         <Button type="button" theme="icon" variant="notification" onClick={handelClick}>
           {/* ToDo: количество notification вынести в отдельный компонент из сайдбара и отсюда */}
-          <span
-            className={cls.notification}
-          >
+          <span className={cls.notification}>
             2
           </span>
         </Button>
