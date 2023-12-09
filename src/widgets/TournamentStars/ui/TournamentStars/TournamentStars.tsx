@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { dataList } from '../../config/TournamentStarsData';
+import { dataList } from 'widgets/TournamentStars/config/TournamentStarsData';
+import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './TournamentStars.module.scss';
 
 interface TournamentStarsProps {
@@ -10,9 +11,8 @@ interface TournamentStarsProps {
 
 export const TournamentStars: FC<TournamentStarsProps> = ({ className }) => {
   const { t } = useTranslation('main');
-
   return (
-    <section className={cls.tournamentStars}>
+    <section className={classNames(cls.tournamentStars, {}, [className])}>
       <h2 className={cls.title}>{t('Звёзды RoyalCup')}</h2>
       <p className={cls.text}>
         {t('Задача организации, в особенности же новая модель организационной деятельности'
@@ -54,8 +54,8 @@ export const TournamentStars: FC<TournamentStarsProps> = ({ className }) => {
               </li>
               <li className={cls.item}>
                 <span className={cls.visuallyHidden}>{t('Награды')}</span>
-                {awards.map((award) => (
-                  <img className={cls.awardIcon} src={award} alt="" key={Math.random() * 1000} />
+                {awards.map((data) => (
+                  <img className={cls.awardIcon} src={data.image} alt="" key={data.id} />
                 ))}
               </li>
             </ul>
