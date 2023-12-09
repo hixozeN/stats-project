@@ -3,6 +3,8 @@
   text-decoration: none;
   font: var(--font-m);
   transition: var(--transition-default);
+  white-space: nowrap;
+  font-size: 20px;
 }
 
 .primary {

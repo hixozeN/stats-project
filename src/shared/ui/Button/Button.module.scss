@@ -1,75 +1,106 @@
 .Button {
+  margin: 0;
+  padding: 9px;
   border: none;
   outline: none;
   border-radius: 5px;
   cursor: pointer;
-  color: var(--primary-color);
-  transition: var(--transition-default);
+  color: var(--button-primary-color);
+  transition: 0.2s;
+  font: var(--font-btn-default);
+  height: 42px;
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.Button:disabled {
+  background: var(--button-disabled);
+}
+
+.default {
+  background-color: var(--button-default);
 }
 
 .clear {
-  margin: 0;
-  border: none;
+  color: var(--primary-color);
   background: none;
-  outline: none;
+}
+
+.danger {
+  background-color: var(--button-danger-default);
+}
+
+.send-results {
+  color: var(--button-results);
+  border: 1px solid var(--accent-color);
+  background: var(--button-results-bg);
 }
 
 .inverted {
-  margin: 0;
-  border: none;
-  background: none;
-  outline: none;
-  color: var(--inverted-primary-color);
-}
-
-.highlight {
-  margin: 0;
-  border: none;
-  background: none;
-  outline: none;
-  color: var(--highlight-color);
-}
-
-.border {
-  margin: 0;
-  border: 1px solid var(--button-border-color);
-  background: none;
-  outline: none;
-  color: var(--primary-color);
-}
-
-.border-inverted {
-  margin: 0;
-  border: 1px solid var(--inverted-primary-color);
-  background: none;
-  outline: none;
-  color: var(--inverted-primary-color);
-}
-
-.background {
-  background: var(--bg-color);
-  color: var(--primary-color);
-  border: none;
-  outline: none;
-}
-
-.background-inverted {
   background: var(--inverted-bg-color);
-  color: var(--inverted-primary-color);
-  border: none;
-  outline: none;
+}
+
+.team {
+  color: var(--button-team-color);
+  background: var(--button-team-bg);
+  backdrop-filter: blur(10px);
+}
+
+.icon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background-color: var(--button-icon-bg);
+}
+
+.profile-icon {
+  width: 56px;
+  background-color: var(--button-icon-bg);
+  backdrop-filter: blur(10px);
+}
+
+// 'edit' | 'create' | 'join' | 'save' | 'block' | 'add-friend'
+.iconSpan {
+  width: 22px;
+  height: 22px;
+  background-repeat: no-repeat;
+  background-size: 22px 22px;
+}
+
+.size_s {
+  width: 56px;
 }
 
 .size_m {
-  font: var(--font-m);
+  width: 194px;
 }
 
 .size_l {
-  font: var(--font-l);
+  width: 255px;
 }
 
 .size_xl {
+  width: 270px;
+}
+
+.size_xxl {
+  width: 530px;
+}
+
+.font_m {
+  font: var(--font-m);
+}
+
+.font_l {
+  font: var(--font-l);
+  height: 50px;
+}
+
+.font_xl {
   font: var(--font-xl);
+  height: 60px;
 }
 
 .square {
@@ -94,8 +125,50 @@
   font: var(--font-xl);
 }
 
-// @media (hover: hover) {
-//  .Button:hover {
-//    opacity: var(--opacity-hover);
-//  }
-// }
+.loader {
+  width: 24px;
+  height: 24px;
+  border: 4px dotted #fff;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 2s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (hover: hover) {
+  .Button:disabled:hover {
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .default:hover {
+    box-shadow: 0 0 15px 1px var(--button-hover);
+  }
+
+  .danger:hover {
+    box-shadow: 0 0 15px 1px var(--button-danger-hover);
+  }
+
+  .send-results:hover {
+    box-shadow: 0 0 15px 1px var(--button-send-results-hover);
+  }
+
+  .team:hover, .icon:hover, .profile-icon:hover {
+    box-shadow: 0 0 15px 1px var(--button-team-hover);
+  }
+
+  .clear:hover, .inverted:hover {
+    opacity: 0.8;
+  }
+}

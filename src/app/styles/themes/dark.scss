@@ -1,9 +1,13 @@
 .app.dark {
+  /* bg colors */
   --bg-color: #0c0c0e;
+  --bg-secondary-color: #0c0c0e;
   --bg-gradient-color: linear-gradient(180deg, rgb(78 78 116) 0%, #0c0c0e 100%);
   --bg-notification-selected-color: #101011;
-  --inverted-bg-color: #0c0c0e;
+  --inverted-bg-color: #fff;
   --bg-accent-color: #fac704;
+
+  /* font colors */
   --primary-color: #f8f8f8;
   --secondary-color: #bfbfbf;
   --highlight-color: #18181b;
@@ -11,14 +15,26 @@
   --secondary-highlight-color: #fac704;
   --inverted-primary-color: #606060;
   --inverted-secondary-color: #2e2e2e;
+
+  /* btn themes */
+  --button-primary-color: #000;
   --button-border-color: #828282;
+  --button-team-color: #f8f8f8;
   --button-default: #fac704;
-  --button-hover: #fced22;
+  --button-danger-default: #fe2a2a;
+  --button-results: #fac704;
+  --button-results-bg: #FAC70419;
+  --button-team-bg: #BFBFBF19;
+  --button-icon-bg: #242424;
+  --button-disabled: #989898;
+  --button-hover: #FAC7047F;
+  --button-danger-hover: #FC646491;
+  --button-send-results-hover: #FAC7047F;
+  --button-team-hover: #3030337F;
   --button-focus: #fba904;
   --button-pressed: #fba904;
-  --button-warning-default: #fe2a2a;
-  --button-warning-hover: #fe5252;
   --button-warning-pressed: #f02;
-  --button-disabled: #989898;
+
+  /* loader themes */
   --loader-color: #efefef;
 }
