@@ -3,9 +3,7 @@ import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getLoggedInStatus,
-} from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
+import { getLoggedInStatus } from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
 import { useCallback, useEffect, useState } from 'react';
 import { userActions } from 'entities/User';
 import LogoutIcon from 'shared/assets/icons/button/logout.svg';
@@ -13,6 +11,7 @@ import LoginIcon from 'shared/assets/icons/button/login.svg';
 import { Button } from 'shared/ui/Button/Button';
 import { getUserData } from 'entities/User/model/selectors/getUserData/getUserData';
 import { ProfileSidebar } from 'widgets/ProfileSidebar';
+import { useSizeScreen } from 'shared/hooks/useSizeScreen';
 import cls from './Navbar.module.scss';
 
 interface INavbarProps {
@@ -27,10 +26,9 @@ export function Navbar({ className }: INavbarProps) {
   const onLogout = useCallback(() => {
     dispatch(userActions.logout());
   }, [dispatch]);
+  const { width } = useSizeScreen();
   const [isOpenMenu, setOpenMenu] = useState(false);
-  const handelClick = useCallback(() => {
-
-  }, []);
+  const handelClick = useCallback(() => {}, []);
 
   const handleClickUserName = useCallback(() => {
     setOpenMenu(!isOpenMenu);
@@ -38,30 +36,25 @@ export function Navbar({ className }: INavbarProps) {
   const [isMobile, setMobile] = useState(false);
 
   useEffect(() => {
-    const handleWidth = () => {
-      if (window.innerWidth > 768) {
-        setMobile(false);
-      } else {
-        setMobile(true);
-      }
-    };
-
-    handleWidth();
-    window.addEventListener('resize', handleWidth);
-
-    return () => window.removeEventListener('resize', handleWidth);
-  }, [isMobile]);
+    if (width > 768) {
+      setMobile(false);
+    } else {
+      setMobile(true);
+    }
+  }, [isMobile, width]);
 
   if (isLoggedIn) {
     const { username } = authData;
     return (
       <div className={cls.navWrapper}>
-
-        <Button type="button" theme="icon" variant="notification" onClick={handelClick}>
+        <Button
+          type="button"
+          theme="icon"
+          variant="notification"
+          onClick={handelClick}
+        >
           {/* ToDo: количество notification вынести в отдельный компонент из сайдбара и отсюда */}
-          <span className={cls.notification}>
-            2
-          </span>
+          <span className={cls.notification}>2</span>
         </Button>
 
         {isOpenMenu && (
@@ -70,7 +63,12 @@ export function Navbar({ className }: INavbarProps) {
           </nav>
         )}
 
-        <Button type="button" theme="icon-right" variant="chevron-down" onClick={handleClickUserName}>
+        <Button
+          type="button"
+          theme="icon-right"
+          variant="chevron-down"
+          onClick={handleClickUserName}
+        >
           <span className={cls.userName}>{username ?? ''}</span>
         </Button>
         <nav className={classNames(cls.Navbar, {}, [className])}>
