@@ -90,10 +90,12 @@ export const AuthForm = memo((props: IAuthFormProps) => {
   }, [isLoggedIn, navigate]);
 
   useEffect(() => {
-    if (state.tab === 'reg') {
-      changeTab('reg');
+    if (state) {
+      if (state.tab === 'reg') {
+        changeTab('reg');
+      }
     }
-  }, []);
+  }, [changeTab, state]);
 
   return (
     <ErrorBoundary>

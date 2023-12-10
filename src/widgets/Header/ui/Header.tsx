@@ -1,8 +1,9 @@
 import { FC } from 'react';
 import { Logo } from 'shared/ui/Logo/Logo';
 import { SearchForm } from 'features/Search/ui/SearchForm/SearchForm';
-import { useLocation } from 'react-router-dom';
+import { useMatch } from 'react-router-dom';
 import { Navbar } from 'widgets/Navbar';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import cls from './Header.module.scss';
 
 interface HeaderProps {
@@ -10,13 +11,14 @@ interface HeaderProps {
 }
 
 export const Header: FC<HeaderProps> = () => {
-  const { pathname } = useLocation();
+  const isAuthPage = useMatch(RoutePath.auth);
+
   return (
-    <header className={cls.Header}>
+    <header className={cls.Header} data-testid="header">
       <Logo theme="header" />
       <div className={cls.formWrapper}>
         <SearchForm />
-        {pathname !== '/auth' && <Navbar />}
+        {!isAuthPage && <Navbar />}
       </div>
     </header>
   );

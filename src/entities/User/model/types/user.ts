@@ -8,7 +8,7 @@ export enum UserRoles {
 export type UserAwards = Record<string, string>;
 
 export interface User {
-  username: any;
+  username: string;
   id?: string;
   name?: string;
   email?: string;

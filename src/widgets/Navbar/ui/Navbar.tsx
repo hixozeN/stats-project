@@ -91,15 +91,15 @@ export function Navbar({ className }: INavbarProps) {
       <AppLink
         theme={AppLinkTheme.BUTTON}
         to={RoutePath.auth}
-        className={cls.addAccaunt}
-        state={{ tab: 'auth' }}
+        className={cls.addAccount}
+        state={{ tab: 'reg' }}
       >
         {!isMobile && t('Создать аккаунт')}
       </AppLink>
       <AppLink
         theme={AppLinkTheme.PRIMARY}
         to={RoutePath.auth}
-        state={{ tab: 'reg' }}
+        state={{ tab: 'auth' }}
       >
         <LoginIcon />
       </AppLink>
