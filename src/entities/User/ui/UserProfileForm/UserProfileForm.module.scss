@@ -52,6 +52,7 @@
   flex-direction: column;
   align-items: center;
   gap: 15px;
+  margin-top: auto;
 }
 
 .error {
@@ -62,6 +63,7 @@
 @media screen and (width <= 1430px) {
   .wrapper {
     flex-direction: column-reverse;
+    gap: 20px;
   }
 
   .avatarWrapper {

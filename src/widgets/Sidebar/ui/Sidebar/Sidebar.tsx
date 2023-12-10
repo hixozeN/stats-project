@@ -3,8 +3,6 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
 import { LangSwitcher } from 'widgets/LangSwitcher';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
-import { useMatch } from 'react-router-dom';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { dataList } from '../../config/sidebarLinks';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
 import cls from './Sidebar.module.scss';
@@ -15,13 +13,10 @@ interface SidebarProps {
 
 export const Sidebar: FC<SidebarProps> = ({ className }) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
-  const isLanding = useMatch(RoutePath.main);
 
   const onToggle = () => {
     setIsCollapsed((prev) => !prev);
   };
-
-  if (isLanding) return null;
 
   return (
     <aside

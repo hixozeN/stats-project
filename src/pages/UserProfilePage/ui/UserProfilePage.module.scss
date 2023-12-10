@@ -1,6 +1,7 @@
 .profile {
   padding: 50px;
   display: flex;
+  justify-content: center;
   flex-grow: 1;
   gap: 44px;
   background: linear-gradient(180deg, rgb(78 78 116 / 10%) 5%, #0C0C0E 100%);
@@ -9,6 +10,7 @@
 }
 
 .wrapper {
+  max-width: 1024px;
   display: flex;
   flex-grow: 1;
   padding: 30px 59px;

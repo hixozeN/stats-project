@@ -1,6 +1,7 @@
 import React, { InputHTMLAttributes, memo, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import CopyIcon from 'shared/assets/icons/copy.svg';
+import { useTranslation } from 'react-i18next';
 import cls from './UserProfileFormInput.module.scss';
 
 type HTMLInputProps = Omit<
@@ -31,6 +32,7 @@ export const UserProfileFormInput = memo((props: IUserProfileFormInputProps) => 
     ...otherProps
   } = props;
   const [isClicked, setClicked] = useState(false);
+  const { t } = useTranslation('profile');
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange?.(e.target.value);
@@ -56,9 +58,14 @@ export const UserProfileFormInput = memo((props: IUserProfileFormInputProps) => 
       <div className={cls.label} onClick={() => handleCopy(text)}>
         <span className={cls.span}>{label}</span>
         {isCopyable && (
-        <div className={cls.iconWrapper}>
+        <div className={cls.idWrapper}>
           <p className={cls.text}>{text}</p>
-          <CopyIcon className={classNames('', mods)} />
+          <div className={cls.iconWrapper}>
+            <CopyIcon className={classNames(cls.icon, mods)} />
+            <div className={classNames(cls.popup, { [cls.popupActive]: isClicked })}>
+              <span className={cls.popupText}>{t('Скопировано!')}</span>
+            </div>
+          </div>
         </div>
         )}
         {!isCopyable && <p className={cls.text}>{text}</p>}

@@ -1,6 +1,13 @@
 .item {
   display: flex;
   justify-content: flex-end;
+
+  & svg {
+    min-width: 24px;
+    min-height: 24px;
+    width: 24px;
+    height: 24px;
+  }
 }
 
 .line {
@@ -22,13 +29,6 @@
   text-decoration: none;
   color: #F8F8F898;
   transition: color .2s;
-}
-
-svg {
-  min-width: 24px;
-  min-height: 24px;
-  width: 24px;
-  height: 24px;
 }
 
 .linkActive {
