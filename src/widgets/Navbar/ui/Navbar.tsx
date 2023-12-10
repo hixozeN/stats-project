@@ -28,7 +28,6 @@ export function Navbar({ className }: INavbarProps) {
     dispatch(userActions.logout());
   }, [dispatch]);
   const [isOpenMenu, setOpenMenu] = useState(false);
-
   const handelClick = useCallback(() => {
 
   }, []);
@@ -36,7 +35,6 @@ export function Navbar({ className }: INavbarProps) {
   const handleClickUserName = useCallback(() => {
     setOpenMenu(!isOpenMenu);
   }, [isOpenMenu]);
-
   const [isMobile, setMobile] = useState(false);
 
   useEffect(() => {
@@ -94,12 +92,14 @@ export function Navbar({ className }: INavbarProps) {
         theme={AppLinkTheme.BUTTON}
         to={RoutePath.auth}
         className={cls.addAccaunt}
+        state={{ tab: 'auth' }}
       >
         {!isMobile && t('Создать аккаунт')}
       </AppLink>
       <AppLink
         theme={AppLinkTheme.PRIMARY}
         to={RoutePath.auth}
+        state={{ tab: 'reg' }}
       >
         <LoginIcon />
       </AppLink>

@@ -5,7 +5,7 @@ import {
 } from 'react';
 import { Logo } from 'shared/ui/Logo/Logo';
 import Eye from 'shared/assets/icons/eye.svg';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary/index';
@@ -41,7 +41,7 @@ export const AuthForm = memo((props: IAuthFormProps) => {
   } = useSelector(getAuthState);
   const navigate = useNavigate();
   const isLoggedIn = useSelector(getLoggedInStatus);
-
+  const { state } = useLocation();
   const onChangeUserMail = useCallback((e) => {
     const { value } = e.target;
     dispatch(authActions.setUserEmail(value));
@@ -88,6 +88,12 @@ export const AuthForm = memo((props: IAuthFormProps) => {
       navigate(RoutePath.main);
     }
   }, [isLoggedIn, navigate]);
+
+  useEffect(() => {
+    if (state.tab === 'reg') {
+      changeTab('reg');
+    }
+  }, []);
 
   return (
     <ErrorBoundary>

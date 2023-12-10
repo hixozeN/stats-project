@@ -25,5 +25,5 @@
     "src/**/*.tsx",
     "global.d.ts",
     "./config/jest/setupTests.ts"
-  ]
+, "src/widgets/Header/d.jsx"  ]
 }
