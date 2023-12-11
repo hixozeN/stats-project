@@ -1,8 +1,8 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useNavigate } from 'react-router-dom';
 import cls from './Logo.module.scss';
-import Star from '../../assets/icons/star.svg';
-import LogoText from '../../assets/icons/battlestar.svg';
+import Crown from '../../assets/icons/crown.svg';
+import LogoText from '../../assets/icons/royalcup.svg';
 
 export type LogoTheme = 'header' | 'auth' | 'footer';
 
@@ -19,7 +19,7 @@ export function Logo({ className, theme }: ILogoProps) {
       onClick={() => navigate('/')}
       className={classNames(cls.Logo, {}, [className, cls[theme]])}
     >
-      <Star className={classNames(cls.image, {}, [cls[theme]])} />
+      <Crown className={classNames(cls.image, {}, [cls[theme]])} />
       <LogoText className={classNames(cls.text, {}, [cls[theme]])} />
     </div>
   );
