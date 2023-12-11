@@ -40,6 +40,7 @@
 @media (width <= 768px) {
   .SearchInput {
     display: none;
+    outline: 1px solid var(--bg-profile-sidebar-inactive);
   }
 
   .open {
@@ -49,6 +50,7 @@
     bottom: -50px;
     right: 0;
     z-index: 10;
+    box-shadow: 0 0 0 1px var(--bg-profile-sidebar-inactive);
   }
 
   .searchWrapper {
