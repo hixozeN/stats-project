@@ -3,13 +3,15 @@ import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  getLoggedInStatus,
-} from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
-import { useCallback } from 'react';
-import { userActions } from 'entities/User/index';
-import { useLocation } from 'react-router-dom';
+import { getLoggedInStatus } from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
+import { useCallback, useEffect, useState } from 'react';
+import { userActions } from 'entities/User';
 import LogoutIcon from 'shared/assets/icons/button/logout.svg';
+import LoginIcon from 'shared/assets/icons/button/login.svg';
+import { Button } from 'shared/ui/Button/Button';
+import { getUserData } from 'entities/User/model/selectors/getUserData/getUserData';
+import { ProfileSidebar } from 'widgets/ProfileSidebar';
+import { useSizeScreen } from 'shared/hooks/useSizeScreen';
 import cls from './Navbar.module.scss';
 
 interface INavbarProps {
@@ -17,68 +19,88 @@ interface INavbarProps {
 }
 
 export function Navbar({ className }: INavbarProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation('nav');
   const isLoggedIn = useSelector(getLoggedInStatus);
   const dispatch = useDispatch();
-  const { pathname } = useLocation();
-
+  const { authData } = useSelector(getUserData);
   const onLogout = useCallback(() => {
     dispatch(userActions.logout());
   }, [dispatch]);
+  const { width } = useSizeScreen();
+  const [isOpenMenu, setOpenMenu] = useState(false);
+  const handelClick = useCallback(() => {}, []);
+
+  const handleClickUserName = useCallback(() => {
+    setOpenMenu(!isOpenMenu);
+  }, [isOpenMenu]);
+  const [isMobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    if (width > 768) {
+      setMobile(false);
+    } else {
+      setMobile(true);
+    }
+  }, [isMobile, width]);
 
   if (isLoggedIn) {
+    const { username } = authData;
     return (
-      <div className={classNames(cls.Navbar, {}, [className])}>
-        <div className={cls.links}>
-          <AppLink
-            theme={AppLinkTheme.PRIMARY}
-            to={RoutePath.main}
-          >
-            {t('Главная')}
-          </AppLink>
+      <div className={cls.navWrapper}>
+        <Button
+          type="button"
+          theme="icon"
+          variant="notification"
+          onClick={handelClick}
+        >
+          {/* ToDo: количество notification вынести в отдельный компонент из сайдбара и отсюда */}
+          <span className={cls.notification}>2</span>
+        </Button>
 
-          <AppLink
-            theme={AppLinkTheme.PRIMARY}
-            to={RoutePath.about}
-          >
-            {t('О сайте')}
-          </AppLink>
+        {isOpenMenu && (
+          <nav className={cls.menuProfile}>
+            <ProfileSidebar />
+          </nav>
+        )}
 
+        <Button
+          type="button"
+          theme="icon-right"
+          variant="chevron-down"
+          onClick={handleClickUserName}
+        >
+          <span className={cls.userName}>{username ?? ''}</span>
+        </Button>
+        <nav className={classNames(cls.Navbar, {}, [className])}>
           <AppLink
             theme={AppLinkTheme.PRIMARY}
-            to={RoutePath.main}
+            to={RoutePath.auth}
             onClick={onLogout}
           >
             <LogoutIcon />
           </AppLink>
-        </div>
+        </nav>
       </div>
     );
   }
 
   return (
-    <div className={classNames(cls.Navbar, {}, [className])}>
-      <div className={cls.links}>
-        {
-          pathname === RoutePath.auth
-            ? (
-              <AppLink
-                theme={AppLinkTheme.PRIMARY}
-                to={RoutePath.main}
-              >
-                {t('Главная')}
-              </AppLink>
-            )
-            : (
-              <AppLink
-                theme={AppLinkTheme.PRIMARY}
-                to={RoutePath.auth}
-              >
-                {t('Авторизация')}
-              </AppLink>
-            )
-        }
-      </div>
-    </div>
+    <nav className={classNames(cls.Navbar, {}, [className])}>
+      <AppLink
+        theme={AppLinkTheme.BUTTON}
+        to={RoutePath.auth}
+        className={cls.addAccount}
+        state={{ tab: 'reg' }}
+      >
+        {!isMobile && t('Создать аккаунт')}
+      </AppLink>
+      <AppLink
+        theme={AppLinkTheme.PRIMARY}
+        to={RoutePath.auth}
+        state={{ tab: 'auth' }}
+      >
+        <LoginIcon />
+      </AppLink>
+    </nav>
   );
 }

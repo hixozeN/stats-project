@@ -27,18 +27,22 @@
   --button-default: #fac704;
   --button-danger-default: #fe2a2a;
   --button-results: #fac704;
-  --button-results-bg: #FAC70419;
-  --button-team-bg: #BFBFBF19;
+  --button-results-bg: #fac70419;
+  --button-team-bg: #bfbfbf19;
   --button-icon-bg: #242424;
   --button-disabled: #989898;
-  --button-hover: #FAC7047F;
-  --button-danger-hover: #FC646491;
-  --button-send-results-hover: #FAC7047F;
-  --button-team-hover: #3030337F;
+  --button-hover: #fac7047f;
+  --button-danger-hover: #fc646491;
+  --button-send-results-hover: #fac7047f;
+  --button-team-hover: #3030337f;
   --button-focus: #fba904;
   --button-pressed: #fba904;
   --button-warning-pressed: #f02;
 
   /* loader themes */
   --loader-color: #efefef;
+
+  /* input themes */
+  --input-bg-color: #1d1d21;
+  --input-font-color: #787878;
 }

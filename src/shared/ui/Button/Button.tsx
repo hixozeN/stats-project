@@ -5,12 +5,13 @@ import cls from './Button.module.scss';
 
 export type ButtonVariant = 'edit' | 'create' | 'join' | 'save' | 'block' | 'add-friend'
   | 'invite-player' | 'kick-player' | 'leave-team' | 'edit-logo' | 'disband'
-  | 'send-message' | 'actions' | 'notification';
+  | 'send-message' | 'actions' | 'notification' | 'chevron-down' | 'magnifier';
 
 export type ButtonTheme = 'default' | 'clear' | 'danger' | 'inverted' // default buttons
   | 'send-results' // 10% opacity btn
   | 'team' // gray buttons for team page
-  | 'icon' | 'profile-icon'; // small icons for header and profile
+  | 'icon' | 'profile-icon' // small icons for header and profile
+  | 'icon-right';
 
 export type ButtonFontSize = 'font_m' | 'font_l' | 'font_xl';
 
@@ -66,9 +67,9 @@ export const Button: FC<ButtonProps> = (props) => {
       {...otherProps}
     >
       {isIcon && (
-      <span data-testid="btnIcon" className={classNames(cls.iconSpan)}>
-        {BUTTON_ICONS[variant]}
-      </span>
+        <span data-testid="btnIcon" className={classNames(cls.iconSpan)}>
+          {BUTTON_ICONS[variant]}
+        </span>
       )}
       {children}
     </button>

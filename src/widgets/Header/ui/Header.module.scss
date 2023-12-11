@@ -1,0 +1,24 @@
+.Header {
+  padding: 10px 50px 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.formWrapper {
+  display: flex;
+  gap: 35px;
+  align-items: center;
+}
+
+@media (width <= 768px) {
+  .Header {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .formWrapper {
+    gap: 20px;
+    position: relative;
+  }
+}

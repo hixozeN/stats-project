@@ -1,15 +1,75 @@
 .Navbar {
-  width: 100%;
-  height: var(--navbar-height);
+  // height: var(--navbar-height);
   background: var(--bg-secondary-color);
   display: flex;
   align-items: center;
-  padding: 20px;
   transition: var(--transition-default);
+  gap: 20px;
 }
 
-.links {
-  margin-left: auto;
+.navWrapper {
   display: flex;
   gap: 20px;
+  align-items: center;
+  position: relative;
+}
+
+.notification {
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--bg-accent-color);
+}
+
+.userName {
+  max-width: 150px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.menuProfile {
+  position: absolute;
+  top: 60px;
+  background-color: var(--app-background);
+  padding-left: 20px;
+  z-index: 10;
+  border-radius: 5px;
+  backdrop-filter: blur(60px);
+
+  ul{
+    border: 0;
+  }
+}
+
+@media (width <= 768px) {
+  .addAccount {
+    width: 40px;
+    height: 40px;
+    background-image: url('shared/assets/icons/button/add-friend.svg');
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .Navbar {
+    gap: 10px;
+  }
+
+  .userName {
+    font-size: 12px;
+    max-width: 60px;
+  }
+
+  .navWrapper {
+    gap: 0;
+  }
 }
