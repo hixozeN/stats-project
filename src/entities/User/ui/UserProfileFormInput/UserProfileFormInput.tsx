@@ -3,7 +3,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import CopyIcon from 'shared/assets/icons/copy.svg';
 import { useTranslation } from 'react-i18next';
 import cls from './UserProfileFormInput.module.scss';
-
+/* eslint-disable no-unused-vars */
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>,
   'value' | 'onChange' | 'readOnly'
@@ -45,6 +45,7 @@ export const UserProfileFormInput = memo((props: IUserProfileFormInputProps) => 
   const handleCopy = (id: string) => {
     setClicked(true);
     navigator.clipboard.writeText(id)
+      // eslint-disable-next-line no-console
       .then(() => console.log('copied'));
     setTimeout(() => setClicked(false), 1000);
   };
@@ -61,7 +62,7 @@ export const UserProfileFormInput = memo((props: IUserProfileFormInputProps) => 
         <div className={cls.idWrapper}>
           <p className={cls.text}>{text}</p>
           <div className={cls.iconWrapper}>
-            <CopyIcon className={classNames(cls.icon, mods)} />
+            <CopyIcon className={classNames('', mods)} />
             <div className={classNames(cls.popup, { [cls.popupActive]: isClicked })}>
               <span className={cls.popupText}>{t('Скопировано!')}</span>
             </div>

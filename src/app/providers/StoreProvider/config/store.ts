@@ -1,17 +1,31 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
 import { userReducer } from 'entities/User';
-import { authReducer } from 'features/AuthUser';
 import { searchReducer } from 'features/Search';
 import { StateSchema } from './StateSchema';
+import { createReducerManager } from './reducerManager';
 
-export function createReduxStore(initialState?: StateSchema) {
-  return configureStore<StateSchema>({
-    reducer: {
-      user: userReducer,
-      authForm: authReducer,
-      searchForm: searchReducer,
-    },
+export function createReduxStore(
+  initialState?: StateSchema,
+  asyncReducers?: ReducersMapObject<StateSchema>,
+) {
+  const rootReducers: ReducersMapObject<StateSchema> = {
+    ...asyncReducers,
+    user: userReducer,
+    searchForm: searchReducer,
+    // async reducers
+    // authForm: authReducer,
+  };
+
+  const reducerManager = createReducerManager(rootReducers);
+
+  const store = configureStore<StateSchema>({
+    reducer: reducerManager.reduce,
     preloadedState: initialState,
     devTools: IS_DEV,
   });
+
+  // @ts-ignore
+  store.reducerManager = reducerManager;
+
+  return store;
 }
