@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 declare module '*.module.css';
 declare module '*.module.scss';
 declare module '*.svg' {

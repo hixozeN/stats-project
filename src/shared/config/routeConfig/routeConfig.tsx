@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { AboutPage } from 'pages/AboutPage';
 import { MainPage } from 'pages/MainPage';
 import {

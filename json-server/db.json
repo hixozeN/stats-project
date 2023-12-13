@@ -4,7 +4,81 @@
       "id": 1,
       "username": "Admin",
       "email": "test@test.ru",
-      "password": "123456"
+      "password": "123456",
+      "roles": [],
+      "friends": [],
+      "awards": [],
+      "teams": [],
+      "tournaments": [],
+      "rating": 1682,
+      "account_id": 82166719,
+      "created_at": 1501560279,
+      "nickname": "6paTyxa_6e3_CkuJIJIyxu",
+      "last_battle_time": 1702079470,
+      "private": null,
+      "statistics": {
+        "all": {
+          "spotted": 50111,
+          "max_frags_tank_id": 3649,
+          "hits": 288045,
+          "frags": 41270,
+          "max_xp": 2749,
+          "max_xp_tank_id": 6209,
+          "wins": 22033,
+          "losses": 8702,
+          "capture_points": 8273,
+          "battles": 30901,
+          "damage_dealt": 77973709,
+          "damage_received": 40236540,
+          "max_frags": 7,
+          "shots": 347385,
+          "frags8p": 33699,
+          "xp": 36994773,
+          "win_and_survived": 17241,
+          "survived_battles": 17411,
+          "dropped_capture_points": 26113
+        }
+      }
+    }
+  ],
+  "teams": [
+    {
+      "id": 1,
+      "name": "OLRCY",
+      "rating": 2674,
+      "participants": [ 1 ],
+      "tournaments": [ 1 ],
+      "modes": [],
+      "awards": [],
+      "logo": "url"
+    }
+  ],
+  "tournaments": [
+    {
+      "name": "Мега турнир на лярд",
+      "participants": [ 1 ],
+      "mode": 1,
+      "rounds": [
+        {
+          "matches": [1, 2],
+          "roundNumber": 1
+        }
+      ],
+      "isRegOpen": false,
+      "isFinished": false,
+      "isPrivate": false,
+      "allowed_teams": [],
+      "description": "Четкое описание четкого турнира",
+      "rules": "Анархия мать порядка",
+      "prize": {
+        "currency": "Рубль",
+        "amount": 1000
+      },
+      "max_teams": 64,
+      "min_rating": 0,
+      "registration_until": 1733792963,
+      "date_start": 1733965763,
+      "date_end": 1735520963
     }
   ]
 }

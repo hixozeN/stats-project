@@ -1,7 +1,7 @@
 .AuthForm {
   position: relative;
   max-width: 677px;
-  height: 612px;
+  height: 630px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,6 +22,7 @@
   width: 100%;
   height: 100%;
   z-index: -2;
+  border-radius: 15px;
 }
 
 .formWrapper {
@@ -110,6 +111,27 @@
   color: var(--error-color);
 }
 
+.loader {
+  width: 18px;
+  height: 18px;
+  border: 2px dotted #fff;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 2.5s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media (hover: hover) {
   .btnEye:hover {
     cursor: pointer;
@@ -123,8 +145,10 @@
 
 @media screen and (width <= 768px) {
   .AuthForm {
-    padding: 30px 10px;
-    height: 519px;
+    width: 100%;
+    padding: 30px 10px 10px;
+    height: 540px;
+    margin: 0 10px;
   }
 
   .btnEye {
