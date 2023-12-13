@@ -1,26 +1,33 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import {
   FormEvent,
-  memo, useCallback, useEffect, useRef, useState,
+  useCallback, useEffect, useRef, useState,
 } from 'react';
 import { Logo } from 'shared/ui/Logo/Logo';
 import Eye from 'shared/assets/icons/eye.svg';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import { ErrorBoundary } from 'app/providers/ErrorBoundary/index';
 import {
   getLoggedInStatus,
 } from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { AuthInput } from 'features/AuthUser/ui/AuthInput/AuthInput';
-import { AuthTabLinks } from 'features/AuthUser/ui/AuthTabLinks/AuthTabLinks';
+import {
+  ReducerList,
+  useDynamicReducerLoader,
+} from 'shared/hooks/useDynamicReducerLoader/useDynamicReducerLoader';
+import { getAuthUsername } from '../../model/selectors/getAuthUsername/getAuthUsername';
+import { getAuthEmail } from '../../model/selectors/getAuthEmail/getAuthEmail';
+import { getAuthPassword } from '../../model/selectors/getAuthPassword/getAuthPassword';
+import { getAuthError } from '../../model/selectors/getAuthError/getAuthError';
+import { getAuthLoading } from '../../model/selectors/getAuthLoading/getAuthLoading';
 import { loginByEmail } from '../../model/services/loginByEmail/loginByEmail';
-import { getAuthState } from '../../model/selectors/getAuthState/getAuthState';
-import { authActions } from '../../model/slice/authSlice';
+import { authActions, authReducer } from '../../model/slice/authSlice';
+import { AuthInput } from '../AuthInput/AuthInput';
+import { AuthTabLinks } from '../AuthTabLinks/AuthTabLinks';
 import cls from './AuthForm.module.scss';
 
-interface IAuthFormProps {
+export interface IAuthFormProps {
   className?: string;
 }
 
@@ -29,19 +36,27 @@ export interface AuthFormType {
   isRegActive: boolean;
 }
 
-export const AuthForm = memo((props: IAuthFormProps) => {
+const initialReducers: ReducerList = { authForm: authReducer };
+
+const AuthForm = (props: IAuthFormProps) => {
   const { className } = props;
   const { t } = useTranslation('auth');
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const [type, setType] = useState<AuthFormType>({ isAuthActive: true, isRegActive: false });
   const inputPasswordRef = useRef<HTMLInputElement>(null);
+
+  useDynamicReducerLoader({ reducers: initialReducers });
   const dispatch = useDispatch();
-  const {
-    username, email, password, error, isLoading,
-  } = useSelector(getAuthState);
-  const navigate = useNavigate();
+  const username = useSelector(getAuthUsername);
+  const email = useSelector(getAuthEmail);
+  const password = useSelector(getAuthPassword);
+  const error = useSelector(getAuthError);
+  const isLoading = useSelector(getAuthLoading);
   const isLoggedIn = useSelector(getLoggedInStatus);
+
+  const navigate = useNavigate();
   const { state } = useLocation();
+
   const onChangeUserMail = useCallback((e) => {
     const { value } = e.target;
     dispatch(authActions.setUserEmail(value));
@@ -97,74 +112,81 @@ export const AuthForm = memo((props: IAuthFormProps) => {
     }
   }, [changeTab, state]);
 
+  const renderTextInButton = useCallback(() => {
+    if (isLoading) return <span className={cls.loader} />;
+    return type.isAuthActive ? t('Войти') : t('Создать');
+  }, [isLoading, type, t]);
+
   return (
-    <ErrorBoundary>
-      <form className={classNames(cls.AuthForm, {}, [className])} onSubmit={handleSubmit}>
-        <div className={cls.formWrapper}>
-          <Logo theme="auth" />
-          <AuthTabLinks type={type} changeTab={changeTab} />
+    <form className={classNames(cls.AuthForm, {}, [className])} onSubmit={handleSubmit}>
+      <div className={cls.formWrapper}>
+        <Logo theme="auth" />
+        <AuthTabLinks type={type} changeTab={changeTab} />
 
-          <fieldset className={cls.fieldset}>
+        <fieldset className={cls.fieldset}>
+          <AuthInput
+            id="email"
+            type="email"
+            placeholder={t('Электронная почта')}
+            onChange={onChangeUserMail}
+            value={email ?? ''}
+          />
+
+          {type.isRegActive && (
+          <AuthInput
+            id="name"
+            type="text"
+            placeholder={t('Никнейм')}
+            onChange={onChangeUserName}
+            value={username ?? ''}
+          />
+          )}
+
+          <label htmlFor="password" className={cls.inputWrapper}>
             <AuthInput
-              id="email"
-              type="email"
-              placeholder={t('Электронная почта')}
-              onChange={onChangeUserMail}
-              value={email ?? ''}
+              ref={inputPasswordRef}
+              id="password"
+              type="password"
+              placeholder={t('Пароль')}
+              onChange={onChangeUserPassword}
+              value={password ?? ''}
+              className={cls.inputPassword}
             />
-
-            {type.isRegActive && (
-              <AuthInput
-                id="name"
-                type="text"
-                placeholder={t('Никнейм')}
-                onChange={onChangeUserName}
-                value={username ?? ''}
-              />
-            )}
-
-            <label htmlFor="password" className={cls.inputWrapper}>
-              <AuthInput
-                ref={inputPasswordRef}
-                id="password"
-                type="password"
-                placeholder={t('Пароль')}
-                onChange={onChangeUserPassword}
-                value={password ?? ''}
-                className={cls.inputPassword}
-              />
-              <Eye
-                className={classNames(cls.btnEye, { [cls.btnEyeActive]: isPasswordVisible })}
-                onClick={togglePasswordVisible}
-              />
-              <span
-                className={
+            <Eye
+              className={classNames(cls.btnEye, { [cls.btnEyeActive]: isPasswordVisible })}
+              onClick={togglePasswordVisible}
+            />
+            {type.isAuthActive && (
+            <span
+              className={
                   classNames(
                     cls.forgotPasswordSpan,
                     { [cls.forgotPasswordSpanInvisible]: type.isRegActive },
                   )
                 }
-              >
-                {t('Забыли пароль? ')}
-                <Link className={classNames(cls.recoverPasswordLink)} to="/">
-                  {t('Восстановить')}
-                </Link>
-              </span>
-            </label>
-          </fieldset>
-        </div>
+            >
+              {t('Забыли пароль? ')}
+              <Link className={classNames(cls.recoverPasswordLink)} to="/">
+                {t('Восстановить')}
+              </Link>
+            </span>
+            )}
+          </label>
+        </fieldset>
+      </div>
 
-        <div className={cls.submitWrapper}>
-          <button
-            type="submit"
-            disabled={isLoading}
-            className={classNames(cls.submitBtn)}
-          >
-            {type.isAuthActive ? t('Войти') : t('Создать')}
-          </button>
-          <span className={cls.errorMessage}>{error}</span>
-        </div>
-      </form>
-    </ErrorBoundary>
+      <div className={cls.submitWrapper}>
+        <button
+          type="submit"
+          disabled={isLoading}
+          className={classNames(cls.submitBtn)}
+        >
+          {renderTextInButton()}
+        </button>
+        <span className={cls.errorMessage}>{error}</span>
+      </div>
+    </form>
   );
-});
+};
+
+export default AuthForm;

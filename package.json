@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "webpack serve --env port=3000 mode=development",
+    "start": "concurrently \"webpack serve --env port=3000 mode=development\" \"node ./json-server/index.js\"",
     "start:dev:jsonserver": "node ./json-server/index.js",
     "build:prod": "webpack --env mode=production",
     "build:dev": "webpack --env mode=development",

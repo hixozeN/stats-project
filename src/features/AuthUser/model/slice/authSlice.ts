@@ -26,11 +26,11 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(loginByEmail.pending, (state, action) => {
+      .addCase(loginByEmail.pending, (state) => {
         state.error = null;
         state.isLoading = true;
       })
-      .addCase(loginByEmail.fulfilled, (state, action) => {
+      .addCase(loginByEmail.fulfilled, (state) => {
         state.isLoading = false;
       })
       .addCase(loginByEmail.rejected, (state, action) => {

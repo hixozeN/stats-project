@@ -21,3 +21,11 @@
   background-color: rgb(12 12 14 / 75%);
   z-index: -1;
 }
+
+@media screen and (width <= 768px) {
+  .auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

@@ -1,12 +1,15 @@
 import React, { memo } from 'react';
 import { AuthForm } from 'features/AuthUser';
+import { ErrorBoundary } from 'app/providers/ErrorBoundary/index';
 import cls from './AuthorizationPage.module.scss';
 
 function AuthorizationPage() {
   return (
-    <div className={cls.auth}>
-      <AuthForm />
-    </div>
+    <ErrorBoundary>
+      <div className={cls.auth}>
+        <AuthForm />
+      </div>
+    </ErrorBoundary>
   );
 }
 

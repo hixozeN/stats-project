@@ -4,6 +4,7 @@ import { SearchForm } from 'features/Search/ui/SearchForm/SearchForm';
 import { useMatch } from 'react-router-dom';
 import { Navbar } from 'widgets/Navbar';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { ErrorBoundary } from 'app/providers/ErrorBoundary/index';
 import cls from './Header.module.scss';
 
 interface HeaderProps {
@@ -17,7 +18,9 @@ export const Header: FC<HeaderProps> = () => {
     <header className={cls.Header} data-testid="header">
       <Logo theme="header" />
       <div className={cls.formWrapper}>
-        <SearchForm />
+        <ErrorBoundary>
+          <SearchForm />
+        </ErrorBoundary>
         {!isAuthPage && <Navbar />}
       </div>
     </header>
