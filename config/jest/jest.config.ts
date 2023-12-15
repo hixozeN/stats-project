@@ -18,6 +18,7 @@ export default {
   // A set of global variables that need to be available in all test environments
   globals: {
     IS_DEV: true,
+    API_URL: '',
   },
 
   // Automatically clear mock calls, instances and results before every test

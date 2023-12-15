@@ -71,5 +71,6 @@ module.exports = {
   },
   globals: {
     IS_DEV: true,
+    API_URL: true,
   },
 };

@@ -1,23 +1,23 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { User, userActions } from 'entities/User/index';
 import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
+import { ThunkConfig } from 'app/providers/StoreProvider/index';
 
 interface LoginByEmailProps {
   email: string;
   password: string;
 }
 
-export const loginByEmail = createAsyncThunk<User, LoginByEmailProps, { rejectValue: string }>(
+export const loginByEmail = createAsyncThunk<User, LoginByEmailProps, ThunkConfig<string>>(
   'users/fetchByIdStatus',
   async (authData, thunkAPI) => {
     // деструктурируем нужные данные из thunkAPI
-    const { rejectWithValue, dispatch } = thunkAPI;
+    const { rejectWithValue, dispatch, extra } = thunkAPI;
     const serverError = 'Проблема соединения. Попробуйте позже.';
     // отправка запроса
     try {
       // отправляем пост запрос через аксиос с собранными данными
-      const response = await axios.post<User>('http://localhost:8000/login', authData);
+      const response = await extra.api.post<User>('/login', authData);
 
       // прокидываем ошибку, если данных нет
       if (!response.data) return rejectWithValue(serverError);
