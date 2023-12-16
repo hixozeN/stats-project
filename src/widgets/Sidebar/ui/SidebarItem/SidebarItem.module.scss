@@ -91,6 +91,49 @@
   }
 }
 
+@media screen and (width <= 1024px) {
+  .SidebarItem {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: var(--bg-profile-sidebar-inactive);
+    box-shadow: 0 4px 8px 0 rgb(12 12 14 / 30%);
+  }
+
+  .collapsed .link {
+    width: 42px;
+    height: 42px;
+  }
+
+  .active {
+    border-radius: 50%;
+  }
+
+  .SidebarItem:nth-child(1) {
+    transform: translate3d(126px, 14px, 0);
+  }
+
+  .SidebarItem:nth-child(2) {
+    transform: translate3d(182px, -21px, 0);
+  }
+
+  .SidebarItem:nth-child(3) {
+    transform: translate3d(229px, -33px, 0);
+  }
+
+  .SidebarItem:nth-child(4) {
+    transform: translate3d(259px, -28px, 0);
+  }
+
+  .SidebarItem:nth-child(5) {
+    transform: translate3d(265px, -14px, 0);
+  }
+
+  .SidebarItem:nth-child(6) {
+    display: none;
+  }
+}
+
 @media (hover: hover) {
   .SidebarItem:hover {
     background-color: var(--button-hover);

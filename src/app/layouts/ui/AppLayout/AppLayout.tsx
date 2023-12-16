@@ -7,7 +7,7 @@ import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { userActions } from 'entities/User/index';
 import { Outlet } from 'react-router-dom';
 import Loader from 'shared/ui/Loader/Loader';
-import { Header } from 'widgets/Header';
+import { Header } from 'widgets/Header/ui/Header';
 import { useSizeScreen } from 'shared/hooks/useSizeScreen';
 import { Theme, useTheme } from '../../../providers/ThemeProvider';
 
