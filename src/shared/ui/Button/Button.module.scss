@@ -74,10 +74,22 @@
   width: 100%;
   background-color: transparent;
   color: var(--bg-team-color);
-  
+
   &:hover {
     opacity: 0.8;
   }
+}
+
+.icon-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: var(--button-icon-bg);
+}
+
+.icon-circle .iconSpan {
+  width: 36px;
+  height: 36px;
 }
 
 .icon-right .iconSpan {
@@ -179,11 +191,14 @@
     box-shadow: 0 0 15px 1px var(--button-send-results-hover);
   }
 
-  .team:hover, .icon:hover, .profile-icon:hover {
+  .team:hover,
+  .icon:hover,
+  .profile-icon:hover {
     box-shadow: 0 0 15px 1px var(--button-team-hover);
   }
 
-  .clear:hover, .inverted:hover {
+  .clear:hover,
+  .inverted:hover {
     opacity: 0.8;
   }
 }
