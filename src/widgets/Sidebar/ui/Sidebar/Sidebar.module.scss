@@ -52,8 +52,8 @@
   }
 
   .Sidebar {
-    width: 324px;
-    height: 324px;
+    width: 42px;
+    height: 42px;
     position: fixed;
     bottom: -117px;
     left: -117px;
@@ -94,8 +94,9 @@
     background-color: var(--bg-profile-wrapper);
     transition: all 0.3s ease;
   }
-
+  
   .Sidebar.active::after {
+    box-shadow: 0 2px 5px 0 var(--bg-color);
     transform: scale3d(7.8, 7.8, 1);
     transition-timing-function: cubic-bezier(0.68, 1.55, 0.265, 1);
   }
