@@ -5,9 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getLoggedInStatus } from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
 import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { userActions } from 'entities/User/index';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Loader from 'shared/ui/Loader/Loader';
 import { Header } from 'widgets/Header/ui/Header';
+import { Footer } from 'widgets/Footer/ui/Footer';
 import { useSizeScreen } from 'shared/hooks/useSizeScreen';
 import { Theme, useTheme } from '../../../providers/ThemeProvider';
 
@@ -16,6 +17,7 @@ function AppLayout() {
   const { height } = useSizeScreen();
   const isLoggedIn = useSelector(getLoggedInStatus);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     document.body.style.setProperty('--vh', `${height}px`);
@@ -54,6 +56,7 @@ function AppLayout() {
             </div>
           </Suspense>
         </div>
+        {location.pathname === '/' ? <Footer /> : ''}
       </div>
     </Suspense>
   );
