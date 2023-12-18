@@ -1,0 +1,163 @@
+.Footer {
+  margin: 0 30px 30px;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-footer);
+  box-shadow: 0 4px 9px 0 rgb(38 30 30 / 50%);
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.crownBackground {
+  width: 400px;
+  height: 400px;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  & path {
+    fill: #202025;
+  }
+}
+
+.wrapper {
+  margin-top: 65px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 100;
+}
+
+.list {
+  display: flex;
+  list-style: none;
+  gap: 185px;
+  z-index: 2;
+
+  .inner {
+    flex-direction: column;
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+
+  .inner {
+    gap: 17px;
+    list-style: none;
+  }
+}
+
+.title {
+  font-size: var(--font-size-m);
+  font-weight: 600;
+  line-height: var(--font-line-m);
+  z-index: 100;
+}
+
+.link {
+  font: var(--font-m);
+  text-decoration: none;
+  color: var(--primary-color);
+  white-space: pre-wrap;
+}
+
+.darkText {
+  color: var(--inverted-primary-color);
+  font-weight: 700;
+}
+
+.socials {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  z-index: 100;
+}
+
+.copyright {
+  margin-left: auto;
+  padding: 0 50px 17px 0;
+  display: flex;
+  gap: 25px;
+  z-index: 100;
+}
+
+@media screen and (width <= 1470px) {
+  .Footer {
+    margin: 0 20px 30px;
+  }
+
+  .list {
+    gap: 50px;
+  }
+}
+
+
+@media screen and (width <= 850px) {
+  .Footer {
+    margin: 0 0 30px;
+  }
+
+  .wrapper {
+    margin-top: 30px;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .list {
+    gap: 50px;
+  }
+
+  .copyright {
+    margin: 0 auto;
+    padding: 0 10px 17px;
+  }
+
+  .crownBackground {
+    display: none;
+  }
+}
+
+@media screen and (width <= 625px) {
+  .Footer {
+    padding-left: 30px;
+    align-items: flex-start;
+  }
+
+  .wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .list {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .socials {
+    flex-direction: row;
+  }
+
+  .copyright {
+    margin: 0 0 0 auto;
+    padding: 0 30px 17px 0;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  .item {
+    gap: 15px;
+
+    .inner {
+      padding-left: 10px;
+    }
+  }
+}
