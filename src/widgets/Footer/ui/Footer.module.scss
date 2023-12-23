@@ -13,13 +13,12 @@
 
 .crownBackground {
   width: 400px;
-  height: 400px;
   position: absolute;
   top: 0;
   left: 0;
 
   & path {
-    fill: #202025;
+    fill: var(--bg-footer-crown);
   }
 }
 
@@ -118,16 +117,19 @@
     margin: 0 auto;
     padding: 0 10px 17px;
   }
-
-  .crownBackground {
-    display: none;
-  }
 }
 
-@media screen and (width <= 625px) {
+@media screen and (width <= 670px) {
   .Footer {
     padding-left: 30px;
     align-items: flex-start;
+  }
+
+  .crownBackground {
+    width: 320px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .wrapper {
@@ -141,23 +143,23 @@
     gap: 20px;
   }
 
-  .socials {
-    flex-direction: row;
-  }
-
-  .copyright {
-    margin: 0 0 0 auto;
-    padding: 0 30px 17px 0;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 10px;
-  }
-
   .item {
     gap: 15px;
 
     .inner {
       padding-left: 10px;
     }
+  }
+
+  .socials {
+    flex-direction: row;
+  }
+
+  .copyright {
+    margin: 0 auto 0 0;
+    padding: 0 30px 17px 0;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
   }
 }
