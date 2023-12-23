@@ -35,27 +35,16 @@
 .footer {
   width: 170px;
 
-  @media screen and (width <= 850px) {
-    position: absolute;
-    width: 400px;
-    height: 400px;
-    bottom: -60px;
-    left: 0;
-
-    & svg path {
-      fill: #202025;
-    }
-
-    .text {
-      display: none;
-    }
+  .image {
+    width: 135px;
   }
 
-  @media screen and (width <= 600px) {
-    width: 320px;
-    height: 320px;
-    left: 50%;
-    transform: translateX(-50%);
+  .text {
+    width: 162px;
+  }
+
+  @media screen and (width <= 850px) {
+    display: none;
   }
 }
 
