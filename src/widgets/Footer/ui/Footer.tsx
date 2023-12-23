@@ -6,6 +6,7 @@ import YoutubeIcon from 'shared/assets/icons/youtube.svg';
 import Crown from 'shared/assets/icons/crown.svg';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
+import { dataList } from 'widgets/Footer/config/dataList';
 import cls from './Footer.module.scss';
 
 interface FooterProps {
@@ -22,84 +23,24 @@ export const Footer: FC<FooterProps> = ({ className }) => {
         <Logo theme="footer" />
         <nav>
           <ul className={cls.list}>
-            <li className={cls.item}>
-              <h2 className={cls.title}>{t('Рейтинг')}</h2>
-              <ul className={classNames(cls.list, {}, [cls.inner])}>
-                <li className={classNames(cls.item, {}, [cls.inner])}>
-                  <AppLink
-                    theme={AppLinkTheme.PRIMARY}
-                    to="/"
-                    className={cls.link}
-                  >
-                    {t('Лучшие команды')}
-                  </AppLink>
-                </li>
-                <li className={classNames(cls.item, {}, [cls.inner])}>
-                  <AppLink
-                    theme={AppLinkTheme.PRIMARY}
-                    to="/"
-                    className={cls.link}
-                  >
-                    {t('Рейтинг игроков')}
-                  </AppLink>
-                </li>
-              </ul>
-            </li>
-            <li className={cls.item}>
-              <h2 className={cls.title}>{t('Турниры')}</h2>
-              <ul className={classNames(cls.list, {}, [cls.inner])}>
-                <li className={classNames(cls.item, {}, [cls.inner])}>
-                  <AppLink
-                    theme={AppLinkTheme.PRIMARY}
-                    to="/"
-                    className={cls.link}
-                  >
-                    {t('Текущие')}
-                  </AppLink>
-                </li>
-                <li className={classNames(cls.item, {}, [cls.inner])}>
-                  <AppLink
-                    theme={AppLinkTheme.PRIMARY}
-                    to="/"
-                    className={cls.link}
-                  >
-                    {t('Все')}
-                  </AppLink>
-                </li>
-              </ul>
-            </li>
-            <li className={cls.item}>
-              <h2 className={cls.title}>{t('О площадке')}</h2>
-              <ul className={classNames(cls.list, {}, [cls.inner])}>
-                <li className={classNames(cls.item, {}, [cls.inner])}>
-                  <AppLink
-                    theme={AppLinkTheme.PRIMARY}
-                    to="/"
-                    className={cls.link}
-                  >
-                    {t('Как играть')}
-                  </AppLink>
-                </li>
-                <li className={classNames(cls.item, {}, [cls.inner])}>
-                  <AppLink
-                    theme={AppLinkTheme.PRIMARY}
-                    to="/"
-                    className={cls.link}
-                  >
-                    {t('Поддержка')}
-                  </AppLink>
-                </li>
-                <li>
-                  <AppLink
-                    to="/"
-                    theme={AppLinkTheme.PRIMARY}
-                    className={cls.link}
-                  >
-                    {t('Пользовательское соглашение')}
-                  </AppLink>
-                </li>
-              </ul>
-            </li>
+            {dataList.map(({ id, title, list }) => (
+              <li className={cls.item} key={id}>
+                <h2 className={cls.title}>{t(title)}</h2>
+                <ul className={classNames(cls.list, {}, [cls.inner])}>
+                  {list.map(({ name, link }) => (
+                    <li className={classNames(cls.item, {}, [])} key={link}>
+                      <AppLink
+                        theme={AppLinkTheme.PRIMARY}
+                        to={link}
+                        className={cls.link}
+                      >
+                        {t(name)}
+                      </AppLink>
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
           </ul>
         </nav>
         <div className={cls.socials}>
