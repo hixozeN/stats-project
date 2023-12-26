@@ -28,14 +28,14 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  z-index: 100;
+  z-index: var(--footer-index);
 }
 
 .list {
   display: flex;
   list-style: none;
   gap: 185px;
-  z-index: 2;
+  z-index: var(--footer-index);
 
   .inner {
     flex-direction: column;
@@ -57,7 +57,7 @@
   font-size: var(--font-size-m);
   font-weight: 600;
   line-height: var(--font-line-m);
-  z-index: 100;
+  z-index: var(--footer-index);
 }
 
 .link {
@@ -76,7 +76,7 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
-  z-index: 100;
+  z-index: var(--footer-index);
 }
 
 .copyright {
@@ -84,7 +84,7 @@
   padding: 0 50px 17px 0;
   display: flex;
   gap: 25px;
-  z-index: 100;
+  z-index: var(--footer-index);
 }
 
 @media screen and (width <= 1470px) {
