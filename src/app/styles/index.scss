@@ -10,6 +10,8 @@ body {
 
 .app {
   min-height: var(--vh);
+  display: flex;
+  flex-direction: column;
   font: var(--font-m);
   background: var(--bg-color);
   color: var(--primary-color);
@@ -26,6 +28,7 @@ body {
 
 .page-content {
   display: flex;
+  flex-grow: 1;
 }
 
 .page-wrapper {

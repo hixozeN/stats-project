@@ -34,6 +34,18 @@
 
 .footer {
   width: 170px;
+
+  .image {
+    width: 135px;
+  }
+
+  .text {
+    width: 162px;
+  }
+
+  @media screen and (width <= 850px) {
+    display: none;
+  }
 }
 
 @media (hover: hover) {
