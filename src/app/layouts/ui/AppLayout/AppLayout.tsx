@@ -5,11 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getLoggedInStatus } from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
 import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { userActions } from 'entities/User/index';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useMatch } from 'react-router-dom';
 import Loader from 'shared/ui/Loader/Loader';
-import { Header } from 'widgets/Header/ui/Header';
-import { Footer } from 'widgets/Footer/ui/Footer';
+import { Header } from 'widgets/Header/index';
+import { Footer } from 'widgets/Footer/index';
 import { useSizeScreen } from 'shared/hooks/useSizeScreen';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Theme, useTheme } from '../../../providers/ThemeProvider';
 
 function AppLayout() {
@@ -17,7 +18,7 @@ function AppLayout() {
   const { height } = useSizeScreen();
   const isLoggedIn = useSelector(getLoggedInStatus);
   const dispatch = useDispatch();
-  const location = useLocation();
+  const isLandingPage = useMatch(RoutePath.main);
 
   useEffect(() => {
     document.body.style.setProperty('--vh', `${height}px`);
@@ -56,7 +57,7 @@ function AppLayout() {
             </div>
           </Suspense>
         </div>
-        {location.pathname === '/' ? <Footer /> : ''}
+        {isLandingPage && <Footer />}
       </div>
     </Suspense>
   );
