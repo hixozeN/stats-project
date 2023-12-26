@@ -6,7 +6,7 @@ import YoutubeIcon from 'shared/assets/icons/youtube.svg';
 import Crown from 'shared/assets/icons/crown.svg';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
-import { dataList } from 'widgets/Footer/config/dataList';
+import { dataList } from '../config/dataList';
 import cls from './Footer.module.scss';
 
 interface FooterProps {
@@ -15,6 +15,7 @@ interface FooterProps {
 
 export const Footer: FC<FooterProps> = ({ className }) => {
   const { t } = useTranslation('footer');
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className={classNames(cls.Footer, {}, [className])}>
@@ -55,7 +56,7 @@ export const Footer: FC<FooterProps> = ({ className }) => {
       <p
         className={classNames(cls.copyright, {}, [cls.darkText])}
       >
-        {t('Все права защищены. 2023')}
+        {`${t('Все права защищены.')} ${currentYear}`}
       </p>
     </footer>
   );
