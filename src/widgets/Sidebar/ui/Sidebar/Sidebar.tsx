@@ -10,15 +10,21 @@ import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
   className?: string;
+  isCollapsed?: boolean;
+  // eslint-disable-next-line no-unused-vars
+  setIsCollapsed?: (value: boolean) => void;
 }
 
-export const Sidebar: FC<SidebarProps> = ({ className }) => {
-  const [isCollapsed, setIsCollapsed] = useState(true);
+export const Sidebar: FC<SidebarProps> = ({
+  className,
+  isCollapsed,
+  setIsCollapsed,
+}) => {
   const { width } = useSizeScreen();
   const [isOpenMenu, setOpenMenu] = useState(false);
 
   const onToggle = () => {
-    setIsCollapsed((prev) => !prev);
+    setIsCollapsed(!isCollapsed);
   };
 
   const handleClickBurger = useCallback(() => {
