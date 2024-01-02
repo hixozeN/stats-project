@@ -1,22 +1,26 @@
-import { memo, useState } from 'react';
+import { memo } from 'react';
 import { Tab } from 'shared/ui/Tabs/Tab';
-import cls from 'src/shared/ui/Tabs/Tabs.module.scss';
+import cls from './Tabs.module.scss';
 
 interface TabsProps {
-  initialTab?: number;
+  tab: number;
   tabList: string[];
+  // eslint-disable-next-line no-unused-vars
+  handleChangeTab: (i: number) => void;
 }
 
 export const Tabs = memo((props: TabsProps) => {
   const {
-    initialTab = 1,
+    tab,
     tabList,
+    handleChangeTab,
   } = props;
-  const [tab, setTab] = useState(initialTab);
 
   return (
     <ul className={cls.navList}>
-      {tabList.map((item, i) => <Tab key={item} tabName={item} isActive={tab === i} toggleTab={() => setTab(i)} />)}
+      {tabList.map((item, i) => (
+        <Tab key={item} tabName={item} isActive={tab === i} toggleTab={() => handleChangeTab(i)} />
+      ))}
     </ul>
   );
 });
