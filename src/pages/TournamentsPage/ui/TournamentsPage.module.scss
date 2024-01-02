@@ -1,0 +1,59 @@
+.tournaments {
+  min-height: calc(100vh - var(--navbar-height));
+  position: relative;
+  padding: 50px 130px;
+  background: var(--bg-dark-gradient-color);
+  backdrop-filter: blur(110px);
+  border-radius: 15px 0 0;
+  overflow: hidden;
+
+  @media screen and (width <= 1700px) {
+    padding: 50px 64px;
+  }
+
+  @media screen and (width <= 1024px) {
+    border-radius: 0;
+  }
+}
+
+.tournaments::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 10%;
+  background-image: url('shared/assets/icons/pentagon_bg2.svg');
+  background-repeat: repeat;
+  z-index: -1;
+}
+
+.tournaments::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+  width: 100%;
+  height: 10%;
+  background: var(--bg-gradient-overlay);
+  backdrop-filter: blur(180px);
+  z-index: -1;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+.test {
+  width: 300px;
+  height: 300px;
+
+}
+
+@media screen and (width <= 1280px) {
+  .tournaments {
+    padding: 30px 10px;
+  }
+}

@@ -43,6 +43,7 @@
   // цвета
   --error-color: #de3333;
   --overlay-color: rgba(0 0 0 / 50%);
+  --overlay-color-30: #0000004C;
 
   // анимации
   --transition-default: all 0.4s ease-in-out;
@@ -58,9 +59,15 @@
   // Размер сайдбара профиля
   --profile-sidebar-height: 279px;
 
+  // Размер кнопок слайдера
+  --slider-arrow-size: 64px;
+  --slider-arrow-margin: 18px;
+
   // Z-indexes
   --modal-index: 10;
   --footer-index: 1;
+  --overlayed-content-index: 2;
+  --overlay-index: 3;
 }
 
 .link-hovered {

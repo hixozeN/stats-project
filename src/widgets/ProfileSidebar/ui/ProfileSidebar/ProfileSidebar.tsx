@@ -17,7 +17,7 @@ interface IProfileSidebarProps {
 }
 
 export const ProfileSidebar = memo(({ className }: IProfileSidebarProps) => {
-  const { t } = useTranslation('profile');
+  const { t } = useTranslation();
 
   return (
     <div className={classNames(cls.ProfileSidebar, {}, [className])}>

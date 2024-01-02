@@ -26,6 +26,10 @@
 .clear {
   color: var(--primary-color);
   background: none;
+
+  &:hover {
+    color: var(--accent-color);
+  }
 }
 
 .danger {
@@ -199,6 +203,6 @@
 
   .clear:hover,
   .inverted:hover {
-    opacity: 0.8;
+    color: var(--accent-color);
   }
 }

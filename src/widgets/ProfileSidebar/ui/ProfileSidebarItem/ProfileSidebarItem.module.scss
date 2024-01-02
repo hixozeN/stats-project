@@ -13,7 +13,7 @@
 .line {
   width: 4px;
   height: 62px;
-  background-color: var(--bg-profile-sidebar-inactive);
+  background-color: var(--bg-tab-inactive);
   border-radius: 5px;
   margin: -20px -4px -20px 0;
   white-space: nowrap;
@@ -35,7 +35,7 @@
   color: var(--accent-color);
 
   .line {
-    background-color: var(--bg-profile-sidebar-active);
+    background-color: var(--bg-tab-active);
     transform: scaleY(1);
   }
 }

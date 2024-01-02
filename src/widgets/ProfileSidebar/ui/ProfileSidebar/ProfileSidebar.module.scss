@@ -9,7 +9,7 @@
   flex-direction: column;
   gap: 30px;
   height: var(--profile-sidebar-height);
-  border-right: 4px solid var(--bg-profile-sidebar-inactive);
+  border-right: 4px solid var(--bg-tab-inactive);
 }
 
 @media screen and (width <= 810px) {
