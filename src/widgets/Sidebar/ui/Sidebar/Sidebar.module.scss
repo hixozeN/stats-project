@@ -2,11 +2,12 @@
   height: calc(100svh - var(--navbar-height));
   padding: 0 20px;
   background: var(--bg-secondary-color);
-  position: relative;
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: all 0.4s ease-in-out;
+  z-index: 10;
 }
 
 .switchers {
