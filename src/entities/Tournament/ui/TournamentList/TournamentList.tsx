@@ -3,10 +3,10 @@ import {
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useSelector } from 'react-redux';
-import { TournamentData } from 'entities/Tournament/index';
-import { getTournaments } from 'entities/Tournament/model/selectors/getTournaments';
-import { getLadders } from 'entities/Tournament/model/selectors/getLadders';
-import { getFinishedTournaments } from 'entities/Tournament/model/selectors/getFinishedTournaments';
+import { TournamentData } from '../../model/types/tournament';
+import { getTournaments } from '../../model/selectors/getTournaments';
+import { getLadders } from '../../model/selectors/getLadders';
+import { getFinishedTournaments } from '../../model/selectors/getFinishedTournaments';
 import cls from './TournamentList.module.scss';
 import { TournamentCard } from '../TournamentCard/TournamentCard';
 
@@ -23,7 +23,6 @@ export const TournamentList = memo((props: ILadderListProps) => {
   const finishedTournaments = useSelector(getFinishedTournaments);
 
   const renderContent = () => {
-    console.log(ladders, tournaments, finishedTournaments);
     if (activeTab === 0) {
       if (ladders.length > 0) {
         return ladders.map((item: TournamentData) => <TournamentCard key={item._id} data={item} />);

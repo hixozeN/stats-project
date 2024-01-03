@@ -1,10 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {
+  fetchTournamentsData,
+} from 'entities/Tournament/model/services/fetchTournamentsData/fetchTournamentsData';
 import { TournamentData, TournamentSchema } from '../types/tournament';
 
 const initialState: TournamentSchema = {
   tournaments: [],
   ladders: [],
   finished: [],
+  isLoading: false,
+  error: '',
 };
 
 export const tournamentSlice = createSlice({
@@ -26,6 +31,20 @@ export const tournamentSlice = createSlice({
     addFinishedTournaments: (state, action: PayloadAction<TournamentData[]>) => {
       state.finished = [...state.finished, ...action.payload];
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchTournamentsData.pending, (state) => {
+        state.error = '';
+        state.isLoading = true;
+      })
+      .addCase(fetchTournamentsData.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.isLoading = false;
+      })
+      .addCase(fetchTournamentsData.fulfilled, (state) => {
+        state.isLoading = false;
+      });
   },
 });
 
