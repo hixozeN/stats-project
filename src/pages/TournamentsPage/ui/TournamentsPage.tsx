@@ -47,7 +47,7 @@ const TournamentsPage = () => {
       .catch((e) => e)
       .finally(() => setLoading(false));
     // eslint-disable-next-line
-  }, []);
+  }, [dispatch]);
 
   if (isLoading) {
     return (

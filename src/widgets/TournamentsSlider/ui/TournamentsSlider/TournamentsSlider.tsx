@@ -1,5 +1,5 @@
 import {
-  memo, useCallback, useEffect, useState, TouchEvent, useLayoutEffect,
+  memo, useCallback, useEffect, useState, TouchEvent, useMemo,
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { TournamentData } from 'entities/Tournament/index';
@@ -26,19 +26,10 @@ export const TournamentsSlider = memo((props: ITournamentsSliderProps) => {
 
   const tournamentList = useSelector(getTournaments);
   const ladderList = useSelector(getLadders);
-  const [items, setItems] = useState<TournamentData[]>([]);
+  // const [items, setItems] = useState<TournamentData[]>();
+  const items: TournamentData[] = useMemo(() => [...tournamentList, ...ladderList], [tournamentList, ladderList]);
   const [slide, setSlide] = useState(0);
   const [touchPosition, setTouchPosition] = useState(null);
-
-  useLayoutEffect(() => {
-    if (tournamentList.length > 0) {
-      setItems((i: TournamentData[]) => [...i, ...tournamentList]);
-    }
-
-    if (ladderList.length > 0) {
-      setItems((i: TournamentData[]) => [...i, ...ladderList]);
-    }
-  }, [tournamentList, ladderList]);
 
   const changeSlideRight = useCallback(() => {
     if (slide === items.length - 1) {

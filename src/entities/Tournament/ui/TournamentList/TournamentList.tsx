@@ -23,7 +23,6 @@ export const TournamentList = memo((props: ILadderListProps) => {
   const finishedTournaments = useSelector(getFinishedTournaments);
 
   const renderContent = () => {
-    console.log(ladders, tournaments, finishedTournaments);
     if (activeTab === 0) {
       if (ladders.length > 0) {
         return ladders.map((item: TournamentData) => <TournamentCard key={item._id} data={item} />);
