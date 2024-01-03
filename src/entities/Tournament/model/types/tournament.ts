@@ -34,4 +34,6 @@ export interface TournamentSchema {
   tournaments?: TournamentData[];
   ladders?: TournamentData[];
   finished?: TournamentData[];
+  isLoading: boolean;
+  error?: string;
 }
