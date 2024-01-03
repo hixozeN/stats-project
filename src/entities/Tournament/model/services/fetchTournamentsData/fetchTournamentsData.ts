@@ -1,10 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ThunkConfig } from 'app/providers/StoreProvider/index';
-import { tournamentActions, TournamentData } from 'entities/Tournament/index';
+import { ThunkConfig } from 'app/providers/StoreProvider';
 import {
   filterDataOnLadders,
-  filterDataOnTournaments, filterFinishedTournaments,
-} from 'entities/Tournament/lib/filterRecievedData';
+  filterDataOnTournaments,
+  filterFinishedTournaments,
+} from '../../../lib/filterRecievedData';
+import { tournamentActions } from '../../slice/tournamentSlice';
+import { TournamentData } from '../../types/tournament';
 
 export const fetchTournamentsData = createAsyncThunk<TournamentData[], void, ThunkConfig<string>>(
   'tournaments/fetchTournamentsData',

@@ -2,10 +2,8 @@ import {
   memo, useCallback, useEffect, useState, TouchEvent, useMemo,
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { TournamentData } from 'entities/Tournament/index';
-import { getTournaments } from 'entities/Tournament/model/selectors/getTournaments';
 import { useSelector } from 'react-redux';
-import { getLadders } from 'entities/Tournament/model/selectors/getLadders';
+import { TournamentData, getLadders, getTournaments } from 'entities/Tournament';
 import cls from './TournamentsSlider.module.scss';
 import { Slide } from '../Slide/Slide';
 import { SliderDots } from '../SliderDots/SliderDots';

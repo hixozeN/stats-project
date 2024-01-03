@@ -4,15 +4,13 @@ import React, {
 import { ErrorBoundary } from 'app/providers/ErrorBoundary';
 import { TournamentsSlider } from 'widgets/TournamentsSlider/index';
 import { TournamentsNav } from 'widgets/TournamentsNav/ui/TournamentsNav';
-import { TournamentList } from 'entities/Tournament/index';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'shared/ui/Loader/Loader';
 import {
   getTournamentsLoadingStatus,
-} from 'entities/Tournament/model/selectors/getTournamentsLoadingStatus';
-import {
   fetchTournamentsData,
-} from 'entities/Tournament/model/services/fetchTournamentsData/fetchTournamentsData';
+  TournamentList,
+} from 'entities/Tournament';
 import { tabs } from '../utils/tabsConfig';
 import cls from './TournamentsPage.module.scss';
 
