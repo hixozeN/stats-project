@@ -25,6 +25,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   fontSize?: ButtonFontSize;
   square?: boolean;
   isLoading?: boolean;
+  isUppercase?: boolean;
 }
 
 export const Button: FC<ButtonProps> = (props) => {
@@ -37,6 +38,7 @@ export const Button: FC<ButtonProps> = (props) => {
     size,
     fontSize,
     square,
+    isUppercase,
     ...otherProps
   } = props;
 
@@ -44,6 +46,7 @@ export const Button: FC<ButtonProps> = (props) => {
 
   const mods: Record<string, boolean> = {
     [cls.square]: square,
+    [cls.uppercase]: isUppercase,
   };
 
   if (isLoading) {

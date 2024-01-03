@@ -11,6 +11,7 @@ import {
   fetchTournamentsData,
   TournamentList,
 } from 'entities/Tournament';
+import { Background } from 'shared/ui/Background/Background';
 import { tabs } from '../utils/tabsConfig';
 import cls from './TournamentsPage.module.scss';
 
@@ -27,6 +28,7 @@ const TournamentsPage = () => {
   if (isLoading) {
     return (
       <ErrorBoundary>
+        <Background />
         <div className={cls.tournaments}>
           <div className={cls.wrapper}>
             <Loader />
@@ -38,6 +40,7 @@ const TournamentsPage = () => {
 
   return (
     <ErrorBoundary>
+      <Background />
       <div className={cls.tournaments}>
         <div className={cls.wrapper}>
           <TournamentsSlider />

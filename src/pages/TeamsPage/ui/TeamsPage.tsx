@@ -1,15 +1,12 @@
-import React, {
-  memo, useEffect, useState,
-} from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary';
-import { TournamentsSlider } from 'widgets/TournamentsSlider/index';
-import { TournamentsNav } from 'widgets/TournamentsNav/ui/TournamentsNav';
 import { TournamentData, TournamentList } from 'entities/Tournament/index';
 import { $api } from 'shared/api/api';
 import { useDispatch } from 'react-redux';
 import {
   filterDataOnLadders,
-  filterDataOnTournaments, filterFinishedTournaments,
+  filterDataOnTournaments,
+  filterFinishedTournaments,
 } from 'entities/Tournament/lib/filterRecievedData';
 import {
   tournamentActions,
@@ -20,8 +17,10 @@ import {
   useDynamicReducerLoader,
 } from 'shared/hooks/useDynamicReducerLoader/useDynamicReducerLoader';
 import Loader from 'shared/ui/Loader/Loader';
-import { tabs } from '../utils/tabsConfig';
+import { TeamsPageNav } from 'widgets/TeamsPageNav/ui/TeamsPageNav';
+import { tabs, isUppercase, backgraundUrl } from '../utils/tabsConfig';
 import cls from './TeamsPage.module.scss';
+import { Background } from 'shared/ui/Background/Background';
 
 const initialReducers: ReducerList = { tournaments: tournamentReducer };
 
@@ -30,11 +29,13 @@ const TeamsPage = () => {
   const [tab, setTab] = useState(0);
 
   const dispatch = useDispatch();
-  const { addTournaments, addLadders, addFinishedTournaments } = tournamentActions;
+  const { addTournaments, addLadders, addFinishedTournaments } =
+    tournamentActions;
   // useDynamicReducerLoader({ reducers: initialReducers });
 
   useEffect(() => {
-    $api.get<TournamentData[]>('/tournaments')
+    $api
+      .get<TournamentData[]>('/tournaments')
       .then(({ data }) => {
         const ladders = filterDataOnLadders(data);
         const tournaments = filterDataOnTournaments(data);
@@ -63,10 +64,15 @@ const TeamsPage = () => {
 
   return (
     <ErrorBoundary>
+      <Background url={backgraundUrl} theme="image" />
       <div className={cls.teams}>
         <div className={cls.wrapper}>
-          <TournamentsNav tab={tab} tabList={tabs} handleChangeTab={setTab} />
-          <TournamentList activeTab={tab} />
+          <TeamsPageNav
+            tab={tab}
+            isUppercase={isUppercase}
+            tabList={tabs}
+            handleChangeTab={setTab}
+          />
         </div>
       </div>
     </ErrorBoundary>

@@ -4,9 +4,6 @@
   height: 100%;
   position: relative;
   padding: 50px 130px;
-  background: var(--bg-gradient-overlay),
-    url('shared/assets/images/bg-octo.svg');
-  background-repeat: no-repeat;
 
   @media screen and (width <= 1700px) {
     padding: 50px 80px;
