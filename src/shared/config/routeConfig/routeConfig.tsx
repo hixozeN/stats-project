@@ -12,6 +12,8 @@ import AppLayout from 'app/layouts/ui/AppLayout/AppLayout';
 import { UserProfileForm } from 'entities/User';
 import ReduxLayout from 'app/layouts/ReduxLayout/ReduxLayout';
 import { TournamentsPage } from 'pages/TournamentsPage/index';
+import { TeamPage } from 'shared/ui/Button/Button.stories';
+import TeamsPage from 'pages/TeamsPage/ui/TeamsPage';
 
 export enum AppRoutes {
   MAIN = 'main',
@@ -72,7 +74,7 @@ export const routerConfiguration = createBrowserRouter([
           },
           {
             path: RoutePath.teams,
-            element: <div>{i18n.t('teams')}</div>,
+            element: <TeamsPage />,
           },
           {
             path: RoutePath.friends,
