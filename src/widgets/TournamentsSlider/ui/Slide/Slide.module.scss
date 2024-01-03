@@ -1,0 +1,97 @@
+.imageWrapper {
+  width: 100%;
+  position: relative;
+}
+
+.slideItem {
+  display: flex;
+  flex: 1 0 100%;
+  gap: 9px;
+}
+
+.image {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 450px;
+  flex-shrink: 2;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 5px;
+
+  @media screen and (width <= 1555px) {
+    height: 400px;
+  }
+
+  @media screen and (width <= 620px) {
+    height: 420px;
+  }
+}
+
+.imageWrapper::after {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  background-color: var(--overlay-color-30);
+  z-index: 1;
+}
+
+.tournamentInfo {
+  width: 430px;
+  border-radius: 5px 5px 0 0;
+  padding: 15px 25px 0;
+  background: #15151d;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: var(--overlayed-content-index);
+
+  @media screen and (width <= 1555px) {
+    padding: 15px 35px 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: var(--overlay-color);
+  }
+
+  @media screen and (width <= 400px) {
+    padding: 15px 10px 0;
+  }
+}
+
+.tournamentHeading {
+  display: flex;
+  flex-direction: column;
+}
+
+.tournamentName {
+  max-width: 455px;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+
+  @media screen and (width <= 620px) {
+    max-width: 250px;
+  }
+
+  @media screen and (width <= 620px) {
+    max-width: 230px;
+  }
+}
+
+.prize, .duration {
+  color: var(--secondary-color);
+  font-weight: 500;
+}
+
+@media screen and (width <= 1555px) {
+  .slideItem {
+    flex-direction: column;
+  }
+}

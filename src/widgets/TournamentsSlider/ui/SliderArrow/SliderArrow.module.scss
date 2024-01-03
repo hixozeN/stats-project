@@ -1,0 +1,52 @@
+.arrow {
+  min-height: var(--slider-arrow-size);
+  width: var(--slider-arrow-size);
+  height: var(--slider-arrow-size);
+  min-width: 64px;
+  opacity: 0.6;
+  position: absolute;
+
+  @media screen and (width <= 1280px) {
+    display: none;
+  }
+
+  @media screen and (width <= 768px) {
+    width: 20px;
+    height: 82px;
+    min-width: 12px;
+    display: none;
+  }
+
+  &.left {
+    inset: 40%;
+    left: -5%;
+    z-index: var(--overlay-index);
+
+    @media screen and (width <= 768px) {
+      position: absolute;
+      top: 30%;
+      left: 10px;
+      transform: rotate(180deg);
+    }
+  }
+
+  &.right {
+    transform: rotate(180deg);
+    top: 40%;
+    right: -5%;
+
+    @media screen and (width <= 768px) {
+      position: absolute;
+      top: 30%;
+      right: 10px;
+      transform: rotate(0deg);
+    }
+  }
+}
+
+@media (pointer: fine) {
+  .arrow:hover {
+    cursor: pointer;
+    opacity: 1;
+  }
+}

@@ -58,6 +58,7 @@ module.exports = {
           'size',
           'fontSize',
           'value',
+          'direction',
         ],
       },
     ],

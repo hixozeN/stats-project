@@ -9,7 +9,7 @@ body {
 }
 
 .app {
-  min-height: var(--vh);
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   font: var(--font-m);
@@ -32,5 +32,12 @@ body {
 }
 
 .page-wrapper {
+  max-width: calc(100% - 20px - var(--sidebar-collapsed-width));
   flex-grow: 1;
+  overflow: hidden;
+
+
+  @media screen and (width <= 1024px) {
+    max-width: 100%;
+  }
 }

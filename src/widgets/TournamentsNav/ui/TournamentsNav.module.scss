@@ -1,0 +1,11 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 47px;
+  margin-top: 90px;
+
+  @media screen and (width <= 1280px) {
+    gap: 15px;
+    padding: 0;
+  }
+}

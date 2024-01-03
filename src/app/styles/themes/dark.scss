@@ -2,20 +2,29 @@
   /* bg colors */
   --bg-color: #0c0c0e;
   --bg-secondary-color: #0c0c0e;
+  --bg-color-50-opacity: #0C0C0E8C;
   --bg-gradient-color: linear-gradient(180deg, rgb(78 78 116) 0%, #0c0c0e 100%);
+  --bg-dark-gradient-color: linear-gradient(180deg, rgb(78 78 116 / 10%) 5%, #1b1a25 100%);
+  --bg-dark-gradient-container: linear-gradient(180deg, rgb(24 24 27 / 0%) 0%, #15151d 100%);
+  --bg-gradient-overlay: linear-gradient(180deg, rgb(31 31 45 / 10%) 1%, #13131a 100%);
   --bg-notification-selected-color: #101011;
   --inverted-bg-color: #fff;
   --bg-accent-color: #fac704;
+  --bg-tab-inactive: #28272e;
+  --bg-tab-active: #fac704;
+  --bg-slider-dots: #28272e;
   --bg-profile-sidebar-inactive: #28272e;
   --bg-profile-sidebar-active: #fac704;
   --bg-profile-wrapper: #201f27;
   --bg-profile-hr: #3f3d46;
   --bg-footer: #19191d;
   --bg-footer-crown: #202025;
+  --bg-tournament-info: #191821;
 
   /* font colors */
   --primary-color: #f8f8f8;
   --secondary-color: #989898;
+  --secondary-color-accent: #BFBFBF;
   --highlight-color: #18181b;
   --accent-color: #fac704;
   --secondary-highlight-color: #fac704;
