@@ -11,7 +11,9 @@ interface TabsProps {
 }
 
 export const Tabs = memo((props: TabsProps) => {
-  const { tab, tabList, handleChangeTab, isUppercase } = props;
+  const {
+    tab, tabList, handleChangeTab, isUppercase,
+  } = props;
 
   return (
     <ul className={cls.navList}>

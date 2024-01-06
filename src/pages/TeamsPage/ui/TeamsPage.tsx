@@ -18,9 +18,9 @@ import {
 } from 'shared/hooks/useDynamicReducerLoader/useDynamicReducerLoader';
 import Loader from 'shared/ui/Loader/Loader';
 import { TeamsPageNav } from 'widgets/TeamsPageNav/ui/TeamsPageNav';
+import { Background } from 'shared/ui/Background/Background';
 import { tabs, isUppercase, backgraundUrl } from '../utils/tabsConfig';
 import cls from './TeamsPage.module.scss';
-import { Background } from 'shared/ui/Background/Background';
 
 const initialReducers: ReducerList = { tournaments: tournamentReducer };
 
@@ -29,8 +29,7 @@ const TeamsPage = () => {
   const [tab, setTab] = useState(0);
 
   const dispatch = useDispatch();
-  const { addTournaments, addLadders, addFinishedTournaments } =
-    tournamentActions;
+  const { addTournaments, addLadders, addFinishedTournaments } = tournamentActions;
   // useDynamicReducerLoader({ reducers: initialReducers });
 
   useEffect(() => {

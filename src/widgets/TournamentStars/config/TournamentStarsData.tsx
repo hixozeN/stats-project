@@ -7,22 +7,22 @@ import icon2 from 'shared/assets/images/lending-test/icon-lenging-test-jpg.jpg';
 
 export const awardsList = [
   {
-    id: 1,
+    _id: 1,
     image: img1,
     rarity: 'common',
   },
   {
-    id: 2,
+    _id: 2,
     image: img2,
     rarity: 'unique',
   },
   {
-    id: 3,
+    _id: 3,
     image: img3,
     rarity: 'epic',
   },
   {
-    id: 4,
+    _id: 4,
     image: img4,
     rarity: 'legendary',
   },
@@ -30,7 +30,7 @@ export const awardsList = [
 
 export const dataList = [
   {
-    id: 1,
+    _id: 1,
     icon: icon1,
     team: 'OLRCY',
     rating: 2674,
@@ -40,7 +40,7 @@ export const dataList = [
     awards: [awardsList[0], awardsList[1], awardsList[2], awardsList[3]],
   },
   {
-    id: 2,
+    _id: 2,
     icon: icon2,
     team: 'No Mercy',
     rating: 2674,
@@ -50,7 +50,7 @@ export const dataList = [
     awards: [awardsList[3]],
   },
   {
-    id: 3,
+    _id: 3,
     icon: icon1,
     team: 'Ace Ventura',
     rating: 2674,
@@ -60,7 +60,7 @@ export const dataList = [
     awards: [awardsList[1]],
   },
   {
-    id: 4,
+    _id: 4,
     icon: icon1,
     team: '7STAR',
     rating: 2674,
@@ -70,7 +70,7 @@ export const dataList = [
     awards: [awardsList[1], awardsList[2]],
   },
   {
-    id: 5,
+    _id: 5,
     icon: icon1,
     team: 'GuchiGangTeam',
     rating: 1245,
