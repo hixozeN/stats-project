@@ -9,3 +9,4 @@ node_modules
 /.idea/
 /extractedTranslations/
 /storybook-static
+coverage
