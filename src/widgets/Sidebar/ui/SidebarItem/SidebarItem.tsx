@@ -10,11 +10,12 @@ interface ISidebarItemProps {
   link: string;
   icon: ReactElement;
   isCollapsed: boolean;
+  isOpenMenu?: boolean;
 }
 
 export function SidebarItem(props: ISidebarItemProps) {
   const {
-    name, link, icon, isCollapsed, className,
+    name, link, icon, isCollapsed, className, isOpenMenu,
   } = props;
   const { t } = useTranslation();
 
@@ -23,6 +24,7 @@ export function SidebarItem(props: ISidebarItemProps) {
       className={
         classNames(cls.SidebarItem, {
           [cls.collapsed]: isCollapsed,
+          [cls.openMenu]: isOpenMenu,
         }, [className])
       }
     >

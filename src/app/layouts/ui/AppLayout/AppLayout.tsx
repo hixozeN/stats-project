@@ -45,7 +45,7 @@ function AppLayout() {
     <Suspense fallback={<Loader />}>
       <div id="app" className={classNames('app', {}, [theme])}>
         <Header />
-        <div className="page-content">
+        <main className="page-content">
           {isLoggedIn && (
             <Sidebar
               isCollapsed={isCollapsed}
@@ -63,7 +63,7 @@ function AppLayout() {
               <Outlet />
             </div>
           </Suspense>
-        </div>
+        </main>
         {isLandingPage && <Footer />}
       </div>
     </Suspense>

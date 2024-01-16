@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
 import { LangSwitcher } from 'widgets/LangSwitcher';
@@ -15,11 +15,11 @@ interface SidebarProps {
   setIsCollapsed?: (value: boolean) => void;
 }
 
-export const Sidebar: FC<SidebarProps> = ({
+export const Sidebar = ({
   className,
   isCollapsed,
   setIsCollapsed,
-}) => {
+}: SidebarProps) => {
   const { width } = useSizeScreen();
   const [isOpenMenu, setOpenMenu] = useState(false);
 
@@ -63,6 +63,7 @@ export const Sidebar: FC<SidebarProps> = ({
               link={link}
               isCollapsed={isCollapsed}
               icon={icon}
+              isOpenMenu={isOpenMenu}
             />
           ))}
         </ul>

@@ -44,12 +44,7 @@
 
 @media screen and (width <= 1024px) {
   .navList {
-    display: none;
     margin: 0;
-
-    &.active {
-      display: block;
-    }
   }
 
   .Sidebar {
@@ -71,6 +66,9 @@
     position: absolute;
     bottom: 141px;
     left: 141px;
+    z-index: 10;
+    width: 45px;
+    height: 45px;
   }
 
   .Sidebar.active .burgerMenu {
@@ -100,9 +98,5 @@
     box-shadow: 0 2px 5px 0 var(--bg-color);
     transform: scale3d(7.8, 7.8, 1);
     transition-timing-function: cubic-bezier(0.68, 1.55, 0.265, 1);
-  }
-
-  .Sidebar.active .navList {
-    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 }
