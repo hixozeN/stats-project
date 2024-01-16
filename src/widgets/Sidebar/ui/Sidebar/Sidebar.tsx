@@ -63,6 +63,7 @@ export const Sidebar = memo(({
               link={link}
               isCollapsed={isCollapsed}
               icon={icon}
+              isOpenMenu={isOpenMenu}
             />
           ))}
         </ul>
