@@ -2,21 +2,27 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 8px;
+  width: 110px;
+  height: 110px;
+  color: var(--accent-color);
+  transition: .4s;
 }
 
 .header {
   width: 70px;
   height: 70px;
+  gap: 6px;
 
   .image {
-    width: 54px;
-    height: 54px;
+    width: 51px;
+    height: 51px;
   }
 
   .text {
-    width: 75px;
-    height: 12px;
+    width: 62px;
+    height: 7px;
   }
 }
 
@@ -24,23 +30,29 @@
   width: 110px;
 
   .image {
-    width: 84px;
+    width: 80px;
+    height: 80px;
   }
 
   .text {
-    width: 107px;
+    width: 98px;
+    height: 11px;
   }
 }
 
 .footer {
   width: 170px;
+  height: 170px;
+  gap: 15px;
 
   .image {
-    width: 135px;
+    width: 124px;
+    height: 124px;
   }
 
   .text {
     width: 162px;
+    height: 17px;
   }
 
   @media screen and (width <= 850px) {
@@ -51,5 +63,13 @@
 @media (hover: hover) {
   .Logo:hover {
     cursor: pointer;
+
+    svg {
+      overflow:visible
+    }
+
+    .image path {
+      filter: drop-shadow(0px -3px 10px var(--button-danger-default));
+    }
   }
 }
