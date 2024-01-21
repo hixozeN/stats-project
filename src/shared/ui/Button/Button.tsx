@@ -32,7 +32,9 @@ export type ButtonTheme =
   | 'icon'
   | 'profile-icon' // small icons for header and profile
   | 'icon-right'
-  | 'icon-circle';
+  | 'icon-circle'
+  | 'dots'
+  | 'numbers';
 
 export type ButtonFontSize = 'font_m' | 'font_l' | 'font_xl';
 
@@ -53,6 +55,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
   isUppercase?: boolean;
   children?: ReactNode;
+  isActive?: boolean;
 }
 
 export const Button = memo((props: ButtonProps) => {
@@ -66,6 +69,7 @@ export const Button = memo((props: ButtonProps) => {
     fontSize,
     square,
     isUppercase,
+    isActive,
     ...otherProps
   } = props;
 
@@ -74,6 +78,7 @@ export const Button = memo((props: ButtonProps) => {
   const mods: TMods = {
     [cls.square]: square,
     [cls.uppercase]: isUppercase,
+    [cls.active]: isActive,
   };
 
   if (isLoading) {

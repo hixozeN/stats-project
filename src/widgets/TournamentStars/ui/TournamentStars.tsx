@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { dataList } from 'widgets/TournamentStars/config/TournamentStarsData';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { TournamentItem } from 'shared/ui/TournamentItem/TournamentItem';
 import cls from './TournamentStars.module.scss';
-import { TournamentStarsItem } from '../TournamentStarsItem/TournamentStarsItem';
 
 interface TournamentStarsProps {
   className?: string;
@@ -22,7 +22,7 @@ export const TournamentStars = memo(({ className }: TournamentStarsProps) => {
       </p>
       <ul className={cls.table}>
         {dataList.map((data) => (
-          <TournamentStarsItem dataTeam={data} key={data._id} />
+          <TournamentItem dataTeam={data} key={data._id} />
         ))}
       </ul>
     </section>

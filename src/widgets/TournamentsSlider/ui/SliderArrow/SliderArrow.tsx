@@ -6,13 +6,26 @@ import cls from './SliderArrow.module.scss';
 interface ISliderArrowsProps {
   className?: string;
   direction: 'right' | 'left';
+  size: 'big' | 'small';
+  isSlider?: boolean;
   changeSlide?: () => void;
 }
 
-export const SliderArrow = memo(({ className, direction, changeSlide }: ISliderArrowsProps) => {
-  if (direction === 'left') {
-    return <Arrow className={classNames(cls.arrow, {}, [className, cls.left])} onClick={changeSlide} />;
-  }
-
-  return <Arrow className={classNames(cls.arrow, {}, [className, cls.right])} onClick={changeSlide} />;
-});
+export const SliderArrow = memo(
+  ({
+    className,
+    direction,
+    size,
+    isSlider,
+    changeSlide,
+  }: ISliderArrowsProps) => (
+    <Arrow
+      className={classNames(cls.arrow, { [cls.slider]: isSlider }, [
+        className,
+        cls[direction],
+        cls[size],
+      ])}
+      onClick={changeSlide}
+    />
+  ),
+);
