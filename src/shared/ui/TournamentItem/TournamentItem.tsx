@@ -1,14 +1,14 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import cls from './TournamentStarsItem.module.scss';
+import cls from './TournamentItem.module.scss';
 
-interface AwardsTeam {
+interface IAwardsTeam {
   _id: number;
   image: string;
   rarity: string;
 }
 
-interface TournamentTeam {
+interface ITournamentTeam {
   _id: number;
   icon: string;
   team: string;
@@ -16,14 +16,14 @@ interface TournamentTeam {
   tournaments: number;
   modes: number;
   members: number;
-  awards: AwardsTeam[];
+  awards: IAwardsTeam[];
 }
 
-interface TournamentStarsItemProps {
-  dataTeam: TournamentTeam;
+interface ITournamentItemProps {
+  dataTeam: ITournamentTeam;
 }
 
-export const TournamentStarsItem = ({ dataTeam }: TournamentStarsItemProps) => {
+export const TournamentItem = ({ dataTeam }: ITournamentItemProps) => {
   const {
     icon, team, rating, tournaments, modes, members, awards,
   } = dataTeam;

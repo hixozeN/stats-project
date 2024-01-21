@@ -32,7 +32,9 @@ export type ButtonTheme =
   | 'icon'
   | 'profile-icon' // small icons for header and profile
   | 'icon-right'
-  | 'icon-circle';
+  | 'icon-circle'
+  | 'dots'
+  | 'numbers';
 
 export type ButtonFontSize = 'font_m' | 'font_l' | 'font_xl';
 
@@ -52,6 +54,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   square?: boolean;
   isLoading?: boolean;
   isUppercase?: boolean;
+  isActive?: boolean;
 }
 
 export const Button = (props: ButtonProps) => {
@@ -65,6 +68,7 @@ export const Button = (props: ButtonProps) => {
     fontSize,
     square,
     isUppercase,
+    isActive,
     ...otherProps
   } = props;
 
@@ -73,6 +77,7 @@ export const Button = (props: ButtonProps) => {
   const mods: Record<string, boolean> = {
     [cls.square]: square,
     [cls.uppercase]: isUppercase,
+    [cls.active]: isActive,
   };
 
   if (isLoading) {

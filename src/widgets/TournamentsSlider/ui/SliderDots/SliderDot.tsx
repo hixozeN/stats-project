@@ -10,14 +10,20 @@ interface ISliderDotProps {
   changeSlide: (num: number) => void;
 }
 
-export const SliderDot = memo(({
-  className, index, slideNumber, changeSlide,
-}: ISliderDotProps) => {
-  const isActive = index === slideNumber;
+export const SliderDot = memo(
+  ({
+    className, index, slideNumber, changeSlide,
+  }: ISliderDotProps) => {
+    const isActive = index === slideNumber;
 
-  return (
-    <li className={cls.dotItem} onClick={() => changeSlide(index)}>
-      <div className={classNames(cls.dot, { [cls.active]: isActive }, [className])} />
-    </li>
-  );
-});
+    return (
+      <li className={cls.dotItem} onClick={() => changeSlide(index)}>
+        <div
+          className={classNames(cls.dot, { [cls.active]: isActive }, [
+            className,
+          ])}
+        />
+      </li>
+    );
+  },
+);

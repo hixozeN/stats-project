@@ -1,0 +1,62 @@
+.PaginationItem {
+  list-style: none;
+}
+
+@for $i from 1 through 80 {
+  .cdp[actpage="#{$i}"] {
+    // 3 before
+    .cdp_i:nth-child(#{$i - 2}):not(:first-child):not(:nth-child(2)) {
+      display: inline-block;
+      pointer-events: none;
+      color: transparent;
+      border-color: transparent;
+      width: 50px;
+      &:after {
+        content: '...';
+        color: #fff;
+        font-size: 32px;
+        margin-left: -6px;
+      }
+    }
+    // 2 before
+    .cdp_i:nth-child(#{$i - 1}):not(:first-child) {
+      display: inline-block;
+    }
+    // before
+    .cdp_i:nth-child(#{$i}):not(:first-child) {
+      display: inline-block;
+    }
+    // active
+    .cdp_i:nth-child(#{$i + 1}) {
+      background-color: #000;
+      color: #fff;
+      display: inline-block;
+
+      +.cdp_i:last-child {
+        display: none !important;
+      }
+    }
+    // next
+    .cdp_i:nth-child(#{$i + 2}):not(:last-child) {
+      display: inline-block;
+    }
+    // 2 next
+    .cdp_i:nth-child(#{$i + 3}):not(:last-child) {
+      display: inline-block;
+    }
+    // 3 next
+    .cdp_i:nth-child(#{$i + 4}):not(:last-child):not(:nth-last-child(2)) {
+      display: inline-block;
+      pointer-events: none;
+      color: transparent;
+      border-color: transparent;
+      width: 50px;
+      &:after {
+        content: '...';
+        color: #fff;
+        font-size: 32px;
+        margin-left: -6px;
+      }
+    }
+  }
+}
