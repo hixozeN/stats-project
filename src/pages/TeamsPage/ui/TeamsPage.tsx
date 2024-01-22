@@ -1,4 +1,6 @@
-import { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import {
+  memo, useCallback, useEffect, useMemo, useState,
+} from 'react';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary';
 import {
   TournamentData,
@@ -30,8 +32,7 @@ const TeamsPage = () => {
   const [tab, setTab] = useState(0);
 
   const dispatch = useDispatch();
-  const { addTournaments, addLadders, addFinishedTournaments } =
-    tournamentActions;
+  const { addTournaments, addLadders, addFinishedTournaments } = tournamentActions;
   // useDynamicReducerLoader({ reducers: initialReducers });
 
   useEffect(() => {

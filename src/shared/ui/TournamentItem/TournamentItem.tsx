@@ -1,29 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { ITeamItemProps } from 'entities/Team';
 import cls from './TournamentItem.module.scss';
 
-interface IAwardsTeam {
-  _id: number;
-  image: string;
-  rarity: string;
-}
-
-interface ITournamentTeam {
-  _id: number;
-  icon: string;
-  team: string;
-  rating: number;
-  tournaments: number;
-  modes: number;
-  members: number;
-  awards: IAwardsTeam[];
-}
-
-interface ITournamentItemProps {
-  dataTeam: ITournamentTeam;
-}
-
-export const TournamentItem = ({ dataTeam }: ITournamentItemProps) => {
+export const TournamentItem = ({ dataTeam }: ITeamItemProps) => {
   const {
     icon, team, rating, tournaments, modes, members, awards,
   } = dataTeam;
