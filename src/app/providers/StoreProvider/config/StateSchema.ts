@@ -13,11 +13,13 @@ import {
 import { AxiosInstance } from 'axios';
 import { NavigateOptions, To } from 'react-router-dom';
 import { TournamentSchema } from 'entities/Tournament/model/types/tournament';
+import { TeamsSchema } from 'entities/Team/model/types/team';
 
 export interface StateSchema {
   user: UserSchema;
   searchForm: SearchSchema;
   tournaments: TournamentSchema;
+  teams: TeamsSchema;
   // async reducers
   authForm?: AuthSchema;
 }

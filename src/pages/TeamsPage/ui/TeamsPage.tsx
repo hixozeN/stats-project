@@ -1,64 +1,33 @@
 import {
-  memo, useCallback, useEffect, useMemo, useState,
+  memo, useCallback, useEffect, useState,
 } from 'react';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary';
-import {
-  TournamentData,
-  getLadders,
-  getTournaments,
-} from 'entities/Tournament/index';
-import { $api } from 'shared/api/api';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  filterDataOnLadders,
-  filterDataOnTournaments,
-  filterFinishedTournaments,
-} from 'entities/Tournament/lib/filterRecievedData';
-import {
-  tournamentActions,
-  tournamentReducer,
-} from 'entities/Tournament/model/slice/tournamentSlice';
-import { ReducerList } from 'shared/hooks/useDynamicReducerLoader/useDynamicReducerLoader';
 import Loader from 'shared/ui/Loader/Loader';
 import { TeamsPageNav } from 'widgets/TeamsPageNav/ui/TeamsPageNav';
 import { Background } from 'shared/ui/Background/Background';
 import { Pagination } from 'widgets/Pagination';
 import { SliderArrow } from 'widgets/TournamentsSlider/ui/SliderArrow/SliderArrow';
-import { tabs, isUppercase, backgraundUrl } from '../utils/tabsConfig';
+import {
+  TeamsList,
+  fetchTeamsData,
+  getTeamsLoadingStatus,
+} from 'entities/Team';
 import cls from './TeamsPage.module.scss';
+import { tabs, isUppercase, backgraundUrl } from '../utils/tabsConfig';
 
 const TeamsPage = () => {
-  const [isLoading, setLoading] = useState(true);
+  const isLoading = useSelector(getTeamsLoadingStatus);
   const [tab, setTab] = useState(0);
+  const MAX_TEAMS_SLIDE = 10;
+  const [items, setItems] = useState([]);
 
   const dispatch = useDispatch();
-  const { addTournaments, addLadders, addFinishedTournaments } = tournamentActions;
-  // useDynamicReducerLoader({ reducers: initialReducers });
 
   useEffect(() => {
-    $api
-      .get<TournamentData[]>('/tournaments')
-      .then(({ data }) => {
-        const ladders = filterDataOnLadders(data);
-        const tournaments = filterDataOnTournaments(data);
-        const finished = filterFinishedTournaments(data);
+    dispatch(fetchTeamsData());
+  }, [dispatch]);
 
-        dispatch(addLadders(ladders));
-        dispatch(addTournaments(tournaments));
-        dispatch(addFinishedTournaments(finished));
-      })
-      .catch((e) => e)
-      .finally(() => setLoading(false));
-    // eslint-disable-next-line
-  }, []);
-
-  // const items = memo(<TournamentItem />);
-  const tournamentList = useSelector(getTournaments);
-  const ladderList = useSelector(getLadders);
-  const items: TournamentData[] = useMemo(
-    () => [...tournamentList, ...ladderList],
-    [tournamentList, ladderList],
-  );
   const [slide, setSlide] = useState(0);
 
   const changeSlide = useCallback((num: number) => setSlide(num), [setSlide]);
@@ -99,6 +68,10 @@ const TeamsPage = () => {
             isUppercase={isUppercase}
             tabList={tabs}
             handleChangeTab={setTab}
+          />
+          <TeamsList
+            activeTab={tab}
+            setItems={setItems}
           />
         </div>
         {items.length > 1 && (
