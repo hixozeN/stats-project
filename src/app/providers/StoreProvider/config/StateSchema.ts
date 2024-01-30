@@ -14,12 +14,14 @@ import { AxiosInstance } from 'axios';
 import { NavigateOptions, To } from 'react-router-dom';
 import { TournamentSchema } from 'entities/Tournament/model/types/tournament';
 import { LestaSchema } from 'entities/Lesta/index';
+import { TeamsSchema } from 'entities/Team/model/types/team';
 
 export interface StateSchema {
   user: UserSchema;
   searchForm: SearchSchema;
   tournaments: TournamentSchema;
   lesta: LestaSchema,
+  teams: TeamsSchema;
   // async reducers
   authForm?: AuthSchema;
 }

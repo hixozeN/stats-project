@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { dataList } from 'widgets/TournamentStars/config/TournamentStarsData';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { TournamentItem } from 'shared/ui/TournamentItem/TournamentItem';
+import { TournamentItem } from 'widgets/TournamentStars/ui/TournamentItem/TournamentItem';
 import cls from './TournamentStars.module.scss';
 
 interface TournamentStarsProps {

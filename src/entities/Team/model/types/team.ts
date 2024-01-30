@@ -1,20 +1,30 @@
-interface IAwardsTeam {
+interface AwardsTeam {
   _id: number;
   image: string;
   rarity: string;
 }
 
-interface ITeam {
+export interface TeamData {
   _id: number;
-  icon: string;
-  team: string;
+  logo: string;
+  name: string;
   rating: number;
   tournaments: number;
   modes: number;
   members: number;
-  awards: IAwardsTeam[];
+  awards: AwardsTeam[];
+  isOpened?: boolean;
+  participants?: number[];
 }
 
-export interface ITeamItemProps {
-  dataTeam: ITeam;
+export interface TeamItemProps {
+  dataTeam: TeamData;
+}
+
+export interface TeamsSchema {
+  myTeams?: TeamData[];
+  openedTeams?: TeamData[];
+  topTeams?: TeamData[];
+  isLoading: boolean;
+  error?: string;
 }
