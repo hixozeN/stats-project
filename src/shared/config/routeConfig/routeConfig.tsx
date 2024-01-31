@@ -17,6 +17,10 @@ import TeamsPage from 'pages/TeamsPage/ui/TeamsPage';
 import { UserPage } from 'pages/UserPage';
 import { AuthorizationLestaPage } from 'pages/AuthorizationLestaPage/AuthorizationLestaPage';
 
+// interface IRouterPath {
+//   [key:string]: string;
+// }
+
 export enum AppRoutes {
   MAIN = 'main',
   ABOUT = 'about',
