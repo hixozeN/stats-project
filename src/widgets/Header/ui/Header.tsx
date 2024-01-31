@@ -20,12 +20,14 @@ export const Header = ({ className }: HeaderProps) => {
       data-testid="header"
     >
       <Logo theme="header" />
-      <div className={cls.formWrapper}>
-        <ErrorBoundary>
-          <SearchForm />
-        </ErrorBoundary>
-        {!isAuthPage && <Navbar />}
-      </div>
+      {!isAuthPage && (
+        <div className={cls.formWrapper}>
+          <ErrorBoundary>
+            <SearchForm />
+          </ErrorBoundary>
+          <Navbar />
+        </div>
+      )}
     </header>
   );
 };

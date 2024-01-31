@@ -10,6 +10,13 @@
   gap: 30px;
   height: var(--profile-sidebar-height);
   border-right: 4px solid var(--bg-tab-inactive);
+
+  
+  &.navbar {
+    border: none;
+    padding: 0;
+    width: 100%;
+  }
 }
 
 @media screen and (width <= 810px) {

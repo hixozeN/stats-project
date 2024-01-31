@@ -15,6 +15,10 @@ import { TournamentsPage } from 'pages/TournamentsPage/index';
 import { TeamPage } from 'shared/ui/Button/Button.stories';
 import TeamsPage from 'pages/TeamsPage/ui/TeamsPage';
 
+// interface IRouterPath {
+//   [key:string]: string;
+// }
+
 export enum AppRoutes {
   MAIN = 'main',
   ABOUT = 'about',

@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getLoggedInStatus } from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
 import { useCallback, useEffect, useState } from 'react';
 import { userActions } from 'entities/User';
-import LogoutIcon from 'shared/assets/icons/button/logout.svg';
+import LogoutIcon from 'shared/assets/icons/button/logout2.svg';
 import LoginIcon from 'shared/assets/icons/button/login.svg';
 import { Button } from 'shared/ui/Button/Button';
 import { getUserData } from 'entities/User/model/selectors/getUserData/getUserData';
@@ -59,7 +59,7 @@ export function Navbar({ className }: INavbarProps) {
 
         {isOpenMenu && (
           <nav className={cls.menuProfile}>
-            <ProfileSidebar />
+            <ProfileSidebar isNavbar />
           </nav>
         )}
 
@@ -71,15 +71,6 @@ export function Navbar({ className }: INavbarProps) {
         >
           <span className={cls.userName}>{username ?? ''}</span>
         </Button>
-        <nav className={classNames(cls.Navbar, {}, [className])}>
-          <AppLink
-            theme={AppLinkTheme.PRIMARY}
-            to={RoutePath.auth}
-            onClick={onLogout}
-          >
-            <LogoutIcon />
-          </AppLink>
-        </nav>
       </div>
     );
   }

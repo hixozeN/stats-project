@@ -37,17 +37,17 @@
 }
 
 .menuProfile {
+  width: 235px;
+  height: 267px;
   position: absolute;
   top: 60px;
-  background-color: var(--app-background);
-  padding-left: 20px;
+  right: 0;
+  background-color: var(--bg-navmenu);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 0 5px;
   z-index: 10;
-  border-radius: 5px;
+  border-radius: 4px;
   backdrop-filter: blur(60px);
-
-  ul{
-    border: 0;
-  }
 }
 
 @media (width <= 768px) {
