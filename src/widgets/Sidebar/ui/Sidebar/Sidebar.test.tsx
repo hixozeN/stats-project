@@ -9,13 +9,15 @@ describe('Sidebar', () => {
   });
 
   test('Тест тоггла сайдбара', () => {
-    componentRender(<Sidebar />);
+    const setIsCollapsedMock = jest.fn();
+    componentRender(<Sidebar isCollapsed setIsCollapsed={setIsCollapsedMock} />);
+
     const toggleBtn = screen.getByTestId('sidebar-toggle');
     expect(screen.getByTestId('sidebar')).toBeInTheDocument();
     // есть класс свернутого сайдбара
     expect(screen.getByTestId('sidebar')).toHaveClass('collapsed');
     fireEvent.click(toggleBtn);
     // нет класса свернутого сайдбара после клика по кнопке свернуть
-    expect(screen.getByTestId('sidebar')).not.toHaveClass('collapsed');
+    expect(setIsCollapsedMock).toHaveBeenCalledWith(false);
   });
 });
