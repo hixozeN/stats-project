@@ -94,8 +94,8 @@
 @media screen and (width <= 1024px) {
   .SidebarItem {
     position: absolute;
-    width: 0px;
-    height: 0px;
+    width: 0;
+    height: 0;
     border-radius: 50%;
     background-color: var(--bg-profile-sidebar-inactive);
     box-shadow: 0 4px 8px 0 rgb(12 12 14 / 30%);
@@ -155,6 +155,7 @@
       display: block;
     }
   }
+
   .SidebarItem:nth-child(6) {
     display: none;
   }

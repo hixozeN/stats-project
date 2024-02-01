@@ -11,15 +11,14 @@ import cls from './TeamsList.module.scss';
 interface TeamsPageProps {
   className?: string;
   activeTab: number;
-  setItems?: (item: TeamData[]) => void;
+  // setItems?: (item: TeamData[]) => void;
 }
 
 export const TeamsList = memo((props: TeamsPageProps) => {
-  const { className, activeTab, setItems } = props;
+  const { className, activeTab } = props;
   const myTeams = useSelector(getMyTeams) || [];
   const openedTeams = useSelector(getOpenedTeams) || [];
   const topTeams = useSelector(getTopTeams) || [];
-  console.log(myTeams);
 
   const renderContent = () => {
     if (activeTab === 0) {
@@ -50,7 +49,7 @@ export const TeamsList = memo((props: TeamsPageProps) => {
   };
 
   return (
-    <ul className={classNames(cls.TournamentList, {}, [className])}>
+    <ul className={classNames(cls.TeamsList, {}, [className])}>
       {renderContent()}
     </ul>
   );
