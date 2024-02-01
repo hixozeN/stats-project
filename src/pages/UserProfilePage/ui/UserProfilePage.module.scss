@@ -2,6 +2,7 @@
   padding: 50px;
   display: flex;
   justify-content: center;
+
   // flex-grow: 1;
   gap: 44px;
   height: 100%;
@@ -16,6 +17,7 @@
   border-radius: 15px;
   background: var(--bg-profile-wrapper);
   backdrop-filter: blur(60px);
+
   // max-height: 700px;
 }
 

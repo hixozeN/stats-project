@@ -4,23 +4,23 @@ import {
 import { ErrorBoundary } from 'app/providers/ErrorBoundary';
 import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'shared/ui/Loader/Loader';
-import { TeamsPageNav } from 'widgets/TeamsPageNav/ui/TeamsPageNav';
+import { TeamsPageNav } from 'widgets/TeamsPageNav';
 import { Background } from 'shared/ui/Background/Background';
 import { Pagination } from 'widgets/Pagination';
-import { SliderArrow } from 'widgets/TournamentsSlider/ui/SliderArrow/SliderArrow';
+import { SliderArrow } from 'widgets/TournamentsSlider';
 import {
   TeamsList,
   fetchTeamsData,
   getTeamsLoadingStatus,
 } from 'entities/Team';
 import cls from './TeamsPage.module.scss';
-import { tabs, isUppercase, backgraundUrl } from '../utils/tabsConfig';
+import { tabs, isUppercase, backgroundUrl } from '../utils/tabsConfig';
 
 const TeamsPage = () => {
   const isLoading = useSelector(getTeamsLoadingStatus);
   const [tab, setTab] = useState(0);
-  const MAX_TEAMS_SLIDE = 10;
-  const [items, setItems] = useState([]);
+  // const MAX_TEAMS_SLIDE = 10;
+  const [items] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -60,7 +60,7 @@ const TeamsPage = () => {
 
   return (
     <ErrorBoundary>
-      <Background url={backgraundUrl} theme="image" />
+      <Background url={backgroundUrl} theme="image" />
       <div className={cls.teams}>
         <div className={cls.wrapper}>
           <TeamsPageNav
@@ -69,10 +69,7 @@ const TeamsPage = () => {
             tabList={tabs}
             handleChangeTab={setTab}
           />
-          <TeamsList
-            activeTab={tab}
-            setItems={setItems}
-          />
+          <TeamsList activeTab={tab} />
         </div>
         {items.length > 1 && (
           <div className={cls.pagination}>
