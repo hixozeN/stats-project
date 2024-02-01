@@ -1,0 +1,25 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  
+  &.profileSidebar {
+    padding: 19px 0;
+    gap: 30px;
+    margin-bottom: auto;
+    border-right: 4px solid var(--bg-tab-inactive);
+  }
+
+  &.navbar {
+    padding: 1px 4px;
+  }
+}
+
+@media screen and (width <= 810px) {
+  .list.profileSidebar {
+    flex-direction: row;
+    height: auto;
+    border: none;
+    justify-content: center;
+  }
+}

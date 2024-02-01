@@ -2,11 +2,10 @@
   padding: 50px;
   display: flex;
   justify-content: center;
-  flex-grow: 1;
+  // flex-grow: 1;
   gap: 44px;
-  background: linear-gradient(180deg, rgb(78 78 116 / 10%) 5%, #0C0C0E 100%);
-  backdrop-filter: blur(110px);
-  border-radius: 15px 0 0;
+  height: 100%;
+  position: relative;
 }
 
 .wrapper {
@@ -17,7 +16,7 @@
   border-radius: 15px;
   background: var(--bg-profile-wrapper);
   backdrop-filter: blur(60px);
-  max-height: 700px;
+  // max-height: 700px;
 }
 
 @media screen and (width >= 1920px) {

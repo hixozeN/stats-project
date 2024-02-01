@@ -1,9 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { AboutPage } from 'pages/AboutPage';
 import { MainPage } from 'pages/MainPage';
-import {
-  createBrowserRouter,
-} from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 import { NotFoundPage } from 'pages/NotFoundPage';
 import { AuthorizationPage } from 'pages/AuthorizationPage';
 import i18n from 'shared/config/i18n/i18n';
@@ -12,7 +10,6 @@ import AppLayout from 'app/layouts/ui/AppLayout/AppLayout';
 import { UserProfileForm } from 'entities/User';
 import ReduxLayout from 'app/layouts/ReduxLayout/ReduxLayout';
 import { TournamentsPage } from 'pages/TournamentsPage/index';
-import { TeamPage } from 'shared/ui/Button/Button.stories';
 import TeamsPage from 'pages/TeamsPage/ui/TeamsPage';
 import { UserPage } from 'pages/UserPage';
 import { AuthorizationLestaPage } from 'pages/AuthorizationLestaPage/AuthorizationLestaPage';
@@ -33,6 +30,7 @@ export enum AppRoutes {
   PROFILE = 'profile',
   USER = 'user',
   PROFILE_STATS = 'profile_stats',
+  PROFILE_SESSIONS = 'profile_sessions',
   PROFILE_HISTORY = 'profile_history',
   PROFILE_EDIT = 'profile_edit',
   PROFILE_SETTINGS = 'profile_settings',
@@ -54,6 +52,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.USER]: '/user/:id',
   [AppRoutes.PROFILE_EDIT]: '/profile/edit',
   [AppRoutes.PROFILE_STATS]: '/profile/stats',
+  [AppRoutes.PROFILE_SESSIONS]: '/profile/sessions',
   [AppRoutes.PROFILE_HISTORY]: '/profile/history',
   [AppRoutes.PROFILE_SETTINGS]: '/profile/settings',
   [AppRoutes.PROFILE_BLACKLIST]: '/profile/blacklist',
@@ -95,6 +94,10 @@ export const routerConfiguration = createBrowserRouter([
             element: <div>{i18n.t('friends')}</div>,
           },
           {
+            path: RoutePath.user_id,
+            element: <div>{i18n.t('user')}</div>,
+          },
+          {
             path: RoutePath.auth,
             element: <AuthorizationPage />,
           },
@@ -125,6 +128,10 @@ export const routerConfiguration = createBrowserRouter([
               {
                 path: RoutePath.profile_blacklist,
                 element: <div>{i18n.t('blacklist')}</div>,
+              },
+              {
+                path: RoutePath.profile_sessions,
+                element: <div>{i18n.t('sessions')}</div>,
               },
             ],
           },
