@@ -1,10 +1,10 @@
 import { memo, ReactElement, useCallback } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { userActions } from 'entities/User';
+import { classNames } from 'shared/lib/classNames/classNames';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { MenuTheme } from '../config/profileMenuData';
+import { MenuTheme } from '../../config/profileMenuData';
 import cls from './MenuItem.module.scss';
 
 interface MenuItemProps {
@@ -13,11 +13,13 @@ interface MenuItemProps {
   icon: ReactElement;
   theme: MenuTheme;
   cb?: () => void;
+  isCollapsed?: boolean;
+  isOpenMenu?: boolean;
 }
 
 export const MenuItem = memo((props: MenuItemProps) => {
   const {
-    name, path, icon, theme, cb,
+    name, path, icon, theme, cb, isCollapsed, isOpenMenu,
   } = props;
 
   const dispatch = useDispatch();
@@ -35,7 +37,13 @@ export const MenuItem = memo((props: MenuItemProps) => {
   };
 
   return (
-    <li className={classNames(cls.item, {}, [cls[theme]])}>
+    <li
+      className={classNames(
+        cls.item,
+        { [cls.collapsed]: isCollapsed, [cls.openMenu]: isOpenMenu },
+        [cls[theme]],
+      )}
+    >
       <NavLink
         className={({ isActive }) => classNames(cls.link, { [cls.linkActive]: isActive }, [cls[theme]])}
         to={path}
