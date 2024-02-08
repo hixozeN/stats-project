@@ -82,21 +82,23 @@ export const Navbar = memo(({ className }: INavbarProps) => {
 
   return (
     <nav className={classNames(cls.Navbar, {}, [className])}>
-      <AppLink
-        theme={AppLinkTheme.BUTTON}
-        to={RoutePath.auth}
-        className={cls.addAccount}
-        state={{ tab: 'reg' }}
-      >
-        {!isMobile && t('Создать аккаунт')}
-      </AppLink>
-      <AppLink
-        theme={AppLinkTheme.PRIMARY}
-        to={RoutePath.auth}
-        state={{ tab: 'auth' }}
-      >
-        <LoginIcon />
-      </AppLink>
+      <div className={cls.navWrapper}>
+        <AppLink
+          theme={AppLinkTheme.BUTTON}
+          to={RoutePath.auth}
+          className={cls.addAccount}
+          state={{ tab: 'reg' }}
+        >
+          {!isMobile && t('Создать аккаунт')}
+        </AppLink>
+        <AppLink
+          theme={AppLinkTheme.PRIMARY}
+          to={RoutePath.auth}
+          state={{ tab: 'auth' }}
+        >
+          <LoginIcon />
+        </AppLink>
+      </div>
     </nav>
   );
 });

@@ -11,6 +11,7 @@
   gap: 20px;
   align-items: center;
   position: relative;
+  margin-left: auto;
 }
 
 .notification {
@@ -37,17 +38,17 @@
 
 .menuProfile {
   position: absolute;
-  bottom: 60px;
+  bottom: 120px;
   right: 0;
   background-color: var(--bg-navmenu);
   box-shadow: var(--sadow-menu);
-  z-index: 10;
+  z-index: 2;
   border-radius: 4px;
-  backdrop-filter: blur(600px);
+  backdrop-filter: blur(60px);
   transition: all 0.5s;
 
   &.open {
-    transform: translateY(300px);
+    transform: translateY(360px);
     transition-timing-function: cubic-bezier(0.68, 1.55, 0.265, 1);
   }
 }
