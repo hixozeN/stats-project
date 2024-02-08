@@ -137,10 +137,10 @@
         color: var(--inverted-primary-color);
       }
     }
-
-    &.userSidebar,
-    &.adminSidebar {
-      &:focus {
+    
+    &:focus {
+      &.userSidebar,
+      &.adminSidebar {
         background-color: transparent;
         border: 2px solid var(--button-focus);
       }
