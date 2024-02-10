@@ -1,6 +1,8 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Sidebar } from 'widgets/Sidebar';
-import { Suspense, useEffect, useLayoutEffect } from 'react';
+import {
+  Suspense, useEffect, useLayoutEffect, useState,
+} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLoggedInStatus } from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
 import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
@@ -11,12 +13,14 @@ import { Header } from 'widgets/Header/ui/Header';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Footer } from 'widgets/Footer/index';
 import { Theme, useTheme } from '../../../providers/ThemeProvider';
+import cls from './AppLayout.module.scss';
 
 function AppLayout() {
   const { theme } = useTheme();
   const isLoggedIn = useSelector(getLoggedInStatus);
   const dispatch = useDispatch();
   const isLandingPage = useMatch(RoutePath.main);
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   useEffect(() => {
     if (theme === Theme.DARK) {
@@ -41,15 +45,25 @@ function AppLayout() {
     <Suspense fallback={<Loader />}>
       <div id="app" className={classNames('app', {}, [theme])}>
         <Header />
-        <div className="page-content">
-          {isLoggedIn && <Sidebar />}
+        <main className="page-content">
+          {isLoggedIn && (
+            <Sidebar
+              isCollapsed={isCollapsed}
+              setIsCollapsed={setIsCollapsed}
+            />
+          )}
           <Suspense fallback={<Loader />}>
             {/* <AppRouter /> */}
-            <div className="page-wrapper">
+            <div
+              className={classNames(
+                cls.pageWrapper,
+                { [cls.collapsed]: isCollapsed, [cls.loggedIn]: !isLoggedIn },
+              )}
+            >
               <Outlet />
             </div>
           </Suspense>
-        </div>
+        </main>
         {isLandingPage && <Footer />}
       </div>
     </Suspense>

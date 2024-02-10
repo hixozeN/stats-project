@@ -1,32 +1,3 @@
-.tournamentStars {
-  margin: 0 auto 77px;
-  max-width: 1430px;
-  padding: 20px;
-  background-color: rgb(248 248 248 / 8%);
-  border-radius: 15px;
-}
-
-.title {
-  margin-bottom: 10px;
-  text-align: center;
-  font: var(--font-xxl);
-}
-
-.text {
-  margin: 0 auto 50px;
-  max-width: 980px;
-  text-align: center;
-  font: var(--font-l)
-}
-
-.table {
-  display: flex;
-  flex-direction: column;
-  max-width: 1430px;
-  margin: 0 auto;
-  gap: 16px;
-}
-
 .tableRow {
   height: 65px;
   display: flex;
@@ -107,18 +78,6 @@
 }
 
 @media (width <= 1470px) {
-  .tournamentStars {
-    margin: 0 20px 77px;
-  }
-
-  .title {
-    font-size: var(--font-size-xl);
-  }
-
-  .text {
-    padding: 0 20px;
-  }
-
   .list {
     gap: 30px;
   }
@@ -144,19 +103,6 @@
 }
 
 @media (width <= 850px) {
-  .tournamentStars {
-    margin: 0 auto 77px;
-    padding: 20px 10px;
-  }
-
-  .title {
-    font-size: var(--font-size-l);
-  }
-
-  .text {
-    font-size: var(--font-size-m);
-  }
-
   .tableRow {
     height: 50px;
   }

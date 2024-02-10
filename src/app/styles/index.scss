@@ -1,8 +1,8 @@
-@import "reset";
-@import "./fonts/fonts";
-@import "./variables/global";
-@import "./themes/normal";
-@import "./themes/dark";
+@import 'reset';
+@import './fonts/fonts';
+@import './variables/global';
+@import './themes/normal';
+@import './themes/dark';
 
 body {
   background-color: var(--app-background);
@@ -31,13 +31,3 @@ body {
   flex-grow: 1;
 }
 
-.page-wrapper {
-  max-width: calc(100% - 20px - var(--sidebar-collapsed-width));
-  flex-grow: 1;
-  overflow: hidden;
-
-
-  @media screen and (width <= 1024px) {
-    max-width: 100%;
-  }
-}

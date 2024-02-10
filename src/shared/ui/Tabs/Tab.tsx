@@ -8,6 +8,7 @@ interface ITabProps {
   tabName: string;
   isActive: boolean;
   toggleTab: () => void;
+  isUppercase?: boolean;
 }
 
 export const Tab = memo((props: ITabProps) => {
@@ -15,6 +16,7 @@ export const Tab = memo((props: ITabProps) => {
     tabName,
     isActive,
     toggleTab,
+    isUppercase,
   } = props;
   const { t } = useTranslation('tabs');
 
@@ -23,7 +25,7 @@ export const Tab = memo((props: ITabProps) => {
       className={classNames(cls.navItem, { [cls.active]: isActive }, [])}
       onClick={toggleTab}
     >
-      <Button className={cls.tabBtn} theme="clear">{t(tabName)}</Button>
+      <Button className={cls.tabBtn} theme="clear" isUppercase={isUppercase}>{t(tabName)}</Button>
     </li>
   );
 });

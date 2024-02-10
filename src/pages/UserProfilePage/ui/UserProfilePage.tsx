@@ -3,6 +3,7 @@ import { ErrorBoundary } from 'app/providers/ErrorBoundary';
 import { ProfileSidebar } from 'widgets/ProfileSidebar';
 import { Navigate, Outlet, useMatch } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { Background } from 'shared/ui/Background/Background';
 import cls from './UserProfilePage.module.scss';
 
 const UserProfilePage = () => {
@@ -14,6 +15,7 @@ const UserProfilePage = () => {
 
   return (
     <ErrorBoundary>
+      <Background />
       <div className={cls.profile}>
         <ProfileSidebar />
         <div className={cls.wrapper}>

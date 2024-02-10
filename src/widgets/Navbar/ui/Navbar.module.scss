@@ -1,5 +1,4 @@
 .Navbar {
-  // height: var(--navbar-height);
   background: var(--bg-secondary-color);
   display: flex;
   align-items: center;
@@ -12,6 +11,7 @@
   gap: 20px;
   align-items: center;
   position: relative;
+  margin-left: auto;
 }
 
 .notification {
@@ -38,15 +38,18 @@
 
 .menuProfile {
   position: absolute;
-  top: 60px;
-  background-color: var(--app-background);
-  padding-left: 20px;
-  z-index: 10;
-  border-radius: 5px;
+  bottom: 120px;
+  right: 0;
+  background-color: var(--bg-navmenu);
+  box-shadow: var(--sadow-menu);
+  z-index: 2;
+  border-radius: 4px;
   backdrop-filter: blur(60px);
+  transition: all 0.5s;
 
-  ul{
-    border: 0;
+  &.open {
+    transform: translateY(360px);
+    transition-timing-function: cubic-bezier(0.68, 1.55, 0.265, 1);
   }
 }
 

@@ -29,7 +29,10 @@ export const Footer: FC<FooterProps> = ({ className }) => {
                 <h2 className={cls.title}>{t(title)}</h2>
                 <ul className={classNames(cls.list, {}, [cls.inner])}>
                   {list.map(({ name, link }) => (
-                    <li className={classNames(cls.item, {}, [])} key={link}>
+                    <li
+                      className={classNames(cls.item, {}, [])}
+                      key={`${name}-${link}`}
+                    >
                       <AppLink
                         theme={AppLinkTheme.PRIMARY}
                         to={link}
@@ -53,9 +56,7 @@ export const Footer: FC<FooterProps> = ({ className }) => {
           </AppLink>
         </div>
       </div>
-      <p
-        className={classNames(cls.copyright, {}, [cls.darkText])}
-      >
+      <p className={classNames(cls.copyright, {}, [cls.darkText])}>
         {`${t('Все права защищены.')} ${currentYear}`}
       </p>
     </footer>

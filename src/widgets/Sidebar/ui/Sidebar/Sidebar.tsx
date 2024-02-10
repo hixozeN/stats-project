@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
 import { LangSwitcher } from 'widgets/LangSwitcher';
@@ -10,15 +10,21 @@ import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
   className?: string;
+  isCollapsed?: boolean;
+  // eslint-disable-next-line no-unused-vars
+  setIsCollapsed?: (value: boolean) => void;
 }
 
-export const Sidebar: FC<SidebarProps> = ({ className }) => {
-  const [isCollapsed, setIsCollapsed] = useState(true);
+export const Sidebar = ({
+  className,
+  isCollapsed,
+  setIsCollapsed,
+}: SidebarProps) => {
   const { width } = useSizeScreen();
   const [isOpenMenu, setOpenMenu] = useState(false);
 
   const onToggle = () => {
-    setIsCollapsed((prev) => !prev);
+    setIsCollapsed(!isCollapsed);
   };
 
   const handleClickBurger = useCallback(() => {
@@ -57,6 +63,7 @@ export const Sidebar: FC<SidebarProps> = ({ className }) => {
               link={link}
               isCollapsed={isCollapsed}
               icon={icon}
+              isOpenMenu={isOpenMenu}
             />
           ))}
         </ul>

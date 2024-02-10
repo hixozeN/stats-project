@@ -7,22 +7,22 @@ import icon2 from 'shared/assets/images/lending-test/icon-lenging-test-jpg.jpg';
 
 export const awardsList = [
   {
-    id: 1,
+    _id: 1,
     image: img1,
     rarity: 'common',
   },
   {
-    id: 2,
+    _id: 2,
     image: img2,
     rarity: 'unique',
   },
   {
-    id: 3,
+    _id: 3,
     image: img3,
     rarity: 'epic',
   },
   {
-    id: 4,
+    _id: 4,
     image: img4,
     rarity: 'legendary',
   },
@@ -30,9 +30,9 @@ export const awardsList = [
 
 export const dataList = [
   {
-    id: 1,
-    icon: icon1,
-    team: 'OLRCY',
+    _id: 1,
+    logo: icon1,
+    name: 'OLRCY',
     rating: 2674,
     tournaments: 27,
     modes: 25,
@@ -40,9 +40,9 @@ export const dataList = [
     awards: [awardsList[0], awardsList[1], awardsList[2], awardsList[3]],
   },
   {
-    id: 2,
-    icon: icon2,
-    team: 'No Mercy',
+    _id: 2,
+    logo: icon2,
+    name: 'No Mercy',
     rating: 2674,
     tournaments: 12,
     modes: 25,
@@ -50,9 +50,9 @@ export const dataList = [
     awards: [awardsList[3]],
   },
   {
-    id: 3,
-    icon: icon1,
-    team: 'Ace Ventura',
+    _id: 3,
+    logo: icon1,
+    name: 'Ace Ventura',
     rating: 2674,
     tournaments: 43,
     modes: 25,
@@ -60,9 +60,9 @@ export const dataList = [
     awards: [awardsList[1]],
   },
   {
-    id: 4,
-    icon: icon1,
-    team: '7STAR',
+    _id: 4,
+    logo: icon1,
+    name: '7STAR',
     rating: 2674,
     tournaments: 0,
     modes: 25,
@@ -70,9 +70,9 @@ export const dataList = [
     awards: [awardsList[1], awardsList[2]],
   },
   {
-    id: 5,
-    icon: icon1,
-    team: 'GuchiGangTeam',
+    _id: 5,
+    logo: icon1,
+    name: 'GuchiGangTeam',
     rating: 1245,
     tournaments: 0,
     modes: 25,

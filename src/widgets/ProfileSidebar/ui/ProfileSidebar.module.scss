@@ -1,0 +1,14 @@
+.ProfileSidebar {
+  display: flex;
+  gap: 15px;
+  z-index: 1;
+  max-width: 180px;
+  width: 100%;
+}
+
+@media screen and (width <= 810px) {
+  .ProfileSidebar {
+    justify-content: center;
+    max-width: none;
+  }
+}

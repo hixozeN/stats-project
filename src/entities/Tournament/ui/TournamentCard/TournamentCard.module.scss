@@ -23,6 +23,7 @@
   min-height: 102px;
   overflow: hidden;
   background-color: var(--bg-color-50-opacity);
+  z-index: 0;
 }
 
 .cardInfoWrapper::before {

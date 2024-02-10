@@ -167,6 +167,46 @@
   animation: rotation 2s linear infinite;
 }
 
+.uppercase {
+  text-transform: uppercase;
+}
+
+.dots {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  background-color: transparent;
+  border-radius: 0;
+
+  &::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: #ffffffb3;
+    border-radius: 50%;
+  }
+
+  &.active::after {
+    background-color: var(--accent-color);
+  }
+}
+
+.numbers {
+  width: 72px;
+  height: 42px;
+  background-color: transparent;
+  color: var(--primary-color);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: normal;
+  border-radius: 2px;
+
+  &.active {
+    background-color: var(--accent-color);
+    color: var(--highlight-color);
+  }
+}
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);
@@ -204,5 +244,17 @@
   .clear:hover,
   .inverted:hover {
     color: var(--accent-color);
+  }
+
+  .dots {
+    background-color: rgba(0 0 0 / 20%);
+
+    &:hover::after {
+      background-color: var(--accent-color);
+    }
+  }
+
+  .numbers:hover {
+    background-color: var(--accent-color);
   }
 }

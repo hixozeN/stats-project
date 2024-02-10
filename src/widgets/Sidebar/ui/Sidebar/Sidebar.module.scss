@@ -2,11 +2,12 @@
   height: calc(100svh - var(--navbar-height));
   padding: 0 20px;
   background: var(--bg-secondary-color);
-  position: relative;
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: all 0.4s ease-in-out;
+  z-index: 10;
 }
 
 .switchers {
@@ -43,17 +44,12 @@
 
 @media screen and (width <= 1024px) {
   .navList {
-    display: none;
     margin: 0;
-
-    &.active {
-      display: block;
-    }
   }
 
   .Sidebar {
-    width: 324px;
-    height: 324px;
+    width: 42px;
+    height: 42px;
     position: fixed;
     bottom: -117px;
     left: -117px;
@@ -70,6 +66,9 @@
     position: absolute;
     bottom: 141px;
     left: 141px;
+    z-index: 10;
+    width: 45px;
+    height: 45px;
   }
 
   .Sidebar.active .burgerMenu {
@@ -94,13 +93,10 @@
     background-color: var(--bg-profile-wrapper);
     transition: all 0.3s ease;
   }
-
+  
   .Sidebar.active::after {
+    box-shadow: 0 2px 5px 0 var(--bg-color);
     transform: scale3d(7.8, 7.8, 1);
     transition-timing-function: cubic-bezier(0.68, 1.55, 0.265, 1);
-  }
-
-  .Sidebar.active .navList {
-    transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 }

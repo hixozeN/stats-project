@@ -4,6 +4,7 @@ import { searchReducer } from 'features/Search';
 import { $api } from 'shared/api/api';
 import { To, NavigateOptions } from 'react-router-dom';
 import { tournamentReducer } from 'entities/Tournament';
+import { teamReducer } from 'entities/Team';
 import { StateSchema } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
@@ -18,6 +19,7 @@ export function createReduxStore(
     user: userReducer,
     searchForm: searchReducer,
     tournaments: tournamentReducer,
+    teams: teamReducer,
     // async reducers
     // authForm: authReducer,
   };

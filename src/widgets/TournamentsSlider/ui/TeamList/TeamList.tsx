@@ -7,11 +7,11 @@ import cls from './TeamList.module.scss';
 
 /* eslint-disable i18next/no-literal-string */
 
-interface ITeamListProps {
+interface TeamListProps {
   className?: string;
 }
 
-export const TeamList = memo(({ className }: ITeamListProps) => {
+export const TeamList = memo(({ className }: TeamListProps) => {
   const { width } = useSizeScreen();
   const { t } = useTranslation();
 
