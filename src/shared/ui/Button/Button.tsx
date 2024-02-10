@@ -1,5 +1,5 @@
-import { ButtonHTMLAttributes, FC } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
+import { ButtonHTMLAttributes, memo, ReactNode } from 'react';
+import { classNames, TMods } from 'shared/lib/classNames/classNames';
 import { BUTTON_ICONS } from 'shared/ui/Button/Button.icons';
 import cls from './Button.module.scss';
 
@@ -26,9 +26,10 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   square?: boolean;
   isLoading?: boolean;
   isUppercase?: boolean;
+  children?: ReactNode;
 }
 
-export const Button: FC<ButtonProps> = (props) => {
+export const Button = memo((props: ButtonProps) => {
   const {
     className,
     isLoading,
@@ -44,7 +45,7 @@ export const Button: FC<ButtonProps> = (props) => {
 
   const isIcon = Boolean(variant);
 
-  const mods: Record<string, boolean> = {
+  const mods: TMods = {
     [cls.square]: square,
     [cls.uppercase]: isUppercase,
   };
@@ -77,4 +78,4 @@ export const Button: FC<ButtonProps> = (props) => {
       {children}
     </button>
   );
-};
+});

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { memo } from 'react';
 import { Logo } from 'shared/ui/Logo/Logo';
 import { SearchForm } from 'features/Search/ui/SearchForm/SearchForm';
 import { useMatch } from 'react-router-dom';
@@ -7,12 +7,10 @@ import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary/index';
 import cls from './Header.module.scss';
 
-interface HeaderProps {
-  className?: string;
-}
-
-export const Header: FC<HeaderProps> = () => {
+export const Header = memo(() => {
   const isAuthPage = useMatch(RoutePath.auth);
+
+  if (isAuthPage) return null;
 
   return (
     <header className={cls.Header} data-testid="header">
@@ -21,8 +19,8 @@ export const Header: FC<HeaderProps> = () => {
         <ErrorBoundary>
           <SearchForm />
         </ErrorBoundary>
-        {!isAuthPage && <Navbar />}
+        <Navbar />
       </div>
     </header>
   );
-};
+});

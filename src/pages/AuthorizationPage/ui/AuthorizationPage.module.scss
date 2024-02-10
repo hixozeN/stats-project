@@ -1,7 +1,7 @@
 .auth {
   position: relative;
   width: 100%;
-  min-height: calc(100vh - var(--navbar-height));
+  min-height: 100svh;
   background-image: url("shared/assets/images/auth_bg.png");
   background-color: var(--bg-color);
   background-size: cover;
@@ -24,6 +24,11 @@
 
 @media screen and (width <= 768px) {
   .auth {
+    padding: 25px 0;
+    margin: 0 auto;
+    background-image: url("shared/assets/images/auth_bg_small.png");
+    background-size: cover;
+    background-position: right;
     display: flex;
     justify-content: center;
     align-items: center;

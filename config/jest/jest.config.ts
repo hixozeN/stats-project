@@ -19,6 +19,9 @@ export default {
   globals: {
     IS_DEV: true,
     API_URL: '',
+    LESTA_API_URL: '',
+    LESTA_AUTH_API_URL: '',
+    LESTA_APP_ID: '',
   },
 
   // Automatically clear mock calls, instances and results before every test

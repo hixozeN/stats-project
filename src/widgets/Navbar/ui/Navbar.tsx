@@ -4,7 +4,9 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLoggedInStatus } from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
-import { useCallback, useEffect, useState } from 'react';
+import {
+  memo, useCallback, useEffect, useState,
+} from 'react';
 import { userActions } from 'entities/User';
 import LogoutIcon from 'shared/assets/icons/button/logout.svg';
 import LoginIcon from 'shared/assets/icons/button/login.svg';
@@ -18,7 +20,7 @@ interface INavbarProps {
   className?: string;
 }
 
-export function Navbar({ className }: INavbarProps) {
+export const Navbar = memo(({ className }: INavbarProps) => {
   const { t } = useTranslation('nav');
   const isLoggedIn = useSelector(getLoggedInStatus);
   const dispatch = useDispatch();
@@ -103,4 +105,4 @@ export function Navbar({ className }: INavbarProps) {
       </AppLink>
     </nav>
   );
-}
+});

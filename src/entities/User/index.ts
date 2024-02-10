@@ -2,6 +2,7 @@ export {
   User,
   UserRoles,
   UserSchema,
+  LestaUserData,
 } from './model/types/user';
 
 export type { UserAwards } from './model/types/user';

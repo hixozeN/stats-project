@@ -27,7 +27,7 @@ export const TournamentsSlider = memo((props: ITournamentsSliderProps) => {
   // const [items, setItems] = useState<TournamentData[]>();
   const items: TournamentData[] = useMemo(() => [...tournamentList, ...ladderList], [tournamentList, ladderList]);
   const [slide, setSlide] = useState(0);
-  const [touchPosition, setTouchPosition] = useState(null);
+  const [touchPosition, setTouchPosition] = useState<number | null>(null);
 
   const changeSlideRight = useCallback(() => {
     if (slide === items.length - 1) {

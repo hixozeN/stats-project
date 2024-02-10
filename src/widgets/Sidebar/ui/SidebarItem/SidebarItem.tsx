@@ -1,6 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { ReactElement } from 'react';
+import { memo, ReactElement } from 'react';
 import { NavLink } from 'react-router-dom';
 import cls from './SidebarItem.module.scss';
 
@@ -12,7 +12,7 @@ interface ISidebarItemProps {
   isCollapsed: boolean;
 }
 
-export function SidebarItem(props: ISidebarItemProps) {
+export const SidebarItem = memo((props: ISidebarItemProps) => {
   const {
     name, link, icon, isCollapsed, className,
   } = props;
@@ -52,4 +52,4 @@ export function SidebarItem(props: ISidebarItemProps) {
       </NavLink>
     </li>
   );
-}
+});

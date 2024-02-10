@@ -3,6 +3,8 @@ import webpack from 'webpack';
 import { buildWebpackConfig } from './config/build/buildWebpackConfig';
 import { BuildEnv, BuildPaths } from './config/build/types/config';
 
+require('dotenv').config();
+
 export default (env: BuildEnv) => {
   const paths: BuildPaths = {
     entry: path.resolve(__dirname, 'src', 'index.tsx'),
@@ -13,9 +15,13 @@ export default (env: BuildEnv) => {
 
   const mode = env.mode || 'development';
   const PORT = env.port || 3000;
-  const apiUrl = env.mode === 'development' ? 'http://192.168.1.72:8000' : env.apiUrl;
+  const apiUrl = env.mode === 'development' ? 'http://localhost:8000' : env.apiUrl;
 
   const isDev = mode === 'development';
+
+  const lestaApiUrl = 'https://papi.tanksblitz.ru/wotb';
+  const lestaAuthApiUrl = 'https://api.tanki.su/wot/auth';
+  const lestaAppId = process.env.LESTA_APP_ID;
 
   const config: webpack.Configuration = buildWebpackConfig({
     mode,
@@ -23,6 +29,9 @@ export default (env: BuildEnv) => {
     isDev,
     port: PORT,
     apiUrl,
+    lestaApiUrl,
+    lestaAuthApiUrl,
+    lestaAppId,
   });
 
   return config;
