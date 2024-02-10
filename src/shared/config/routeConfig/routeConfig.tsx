@@ -11,6 +11,8 @@ import { UserProfileForm } from 'entities/User';
 import ReduxLayout from 'app/layouts/ReduxLayout/ReduxLayout';
 import { TournamentsPage } from 'pages/TournamentsPage/index';
 import TeamsPage from 'pages/TeamsPage/ui/TeamsPage';
+import { UserPage } from 'pages/UserPage';
+import { AuthorizationLestaPage } from 'pages/AuthorizationLestaPage/AuthorizationLestaPage';
 
 export enum AppRoutes {
   MAIN = 'main',
@@ -20,8 +22,10 @@ export enum AppRoutes {
   TEAMS = 'teams',
   FRIENDS = 'friends',
   AUTH = 'auth',
+  AUTH_LESTA = 'authLesta',
   USER_ID = 'user_id',
   PROFILE = 'profile',
+  USER = 'user',
   PROFILE_STATS = 'profile_stats',
   PROFILE_SESSIONS = 'profile_sessions',
   PROFILE_HISTORY = 'profile_history',
@@ -40,8 +44,10 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.TEAMS]: '/teams',
   [AppRoutes.FRIENDS]: '/friends',
   [AppRoutes.AUTH]: '/auth',
+  [AppRoutes.AUTH_LESTA]: '/auth/lesta',
   [AppRoutes.USER_ID]: '/user',
   [AppRoutes.PROFILE]: '/profile',
+  [AppRoutes.USER]: '/user/:id',
   [AppRoutes.PROFILE_EDIT]: '/profile/edit',
   [AppRoutes.PROFILE_STATS]: '/profile/stats',
   [AppRoutes.PROFILE_SESSIONS]: '/profile/sessions',
@@ -60,6 +66,10 @@ export const routerConfiguration = createBrowserRouter([
           {
             path: RoutePath.main,
             element: <MainPage />,
+          },
+          {
+            path: RoutePath.user,
+            element: <UserPage />,
           },
           {
             path: RoutePath.about,
@@ -88,6 +98,10 @@ export const routerConfiguration = createBrowserRouter([
           {
             path: RoutePath.auth,
             element: <AuthorizationPage />,
+          },
+          {
+            path: RoutePath.authLesta,
+            element: <AuthorizationLestaPage />,
           },
           {
             path: RoutePath.profile,

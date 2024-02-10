@@ -5,7 +5,9 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { BuildOptions } from './types/config';
 
 export default function buildPlugins(
-  { paths, isDev, apiUrl }: BuildOptions,
+  {
+    paths, isDev, apiUrl, lestaApiUrl, lestaAuthApiUrl, lestaAppId,
+  }: BuildOptions,
 ): webpack.WebpackPluginInstance[] {
   const plugins = [
     new HtmlWebpackPlugin({
@@ -19,6 +21,9 @@ export default function buildPlugins(
     new webpack.DefinePlugin({
       IS_DEV: JSON.stringify(isDev),
       API_URL: JSON.stringify(apiUrl),
+      LESTA_API_URL: JSON.stringify(lestaApiUrl),
+      LESTA_AUTH_API_URL: JSON.stringify(lestaAuthApiUrl),
+      LESTA_APP_ID: JSON.stringify(lestaAppId),
     }),
 
   ];

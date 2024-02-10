@@ -4,8 +4,10 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { useSelector } from 'react-redux';
 import { getLoggedInStatus } from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
-import { useCallback, useEffect, useState } from 'react';
-import LoginIcon from 'shared/assets/icons/login2.svg';
+import {
+  memo, useCallback, useEffect, useState,
+} from 'react';
+import LoginIcon from 'shared/assets/icons/button/login.svg';
 import { Button } from 'shared/ui/Button/Button';
 import { getUserData } from 'entities/User/model/selectors/getUserData/getUserData';
 import { useSizeScreen } from 'shared/hooks/useSizeScreen';
@@ -16,7 +18,7 @@ interface INavbarProps {
   className?: string;
 }
 
-export function Navbar({ className }: INavbarProps) {
+export const Navbar = memo(({ className }: INavbarProps) => {
   const [isOpenMenu, setOpenMenu] = useState(false);
   const [isMobile, setMobile] = useState(false);
   const isLoggedIn = useSelector(getLoggedInStatus);
@@ -99,4 +101,4 @@ export function Navbar({ className }: INavbarProps) {
       </div>
     </nav>
   );
-}
+});

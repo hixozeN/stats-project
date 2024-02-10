@@ -5,6 +5,7 @@ import {
 } from 'react';
 import { Logo } from 'shared/ui/Logo/Logo';
 import Eye from 'shared/assets/icons/eye.svg';
+import LestaLogo from 'shared/assets/icons/logo_lesta.svg';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -184,6 +185,11 @@ const AuthForm = (props: IAuthFormProps) => {
           {renderTextInButton()}
         </button>
         <span className={cls.errorMessage}>{error}</span>
+      </div>
+
+      <div className={cls.altLogin}>
+        <span className={cls.altLoginSpan}>{t('Или можете войти с помощью LestaID:')}</span>
+        <LestaLogo className={cls.lestaLogoIcon} onClick={() => navigate(RoutePath.authLesta)} />
       </div>
     </form>
   );

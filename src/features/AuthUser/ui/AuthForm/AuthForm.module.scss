@@ -1,15 +1,20 @@
 .AuthForm {
   position: relative;
   max-width: 677px;
-  height: 630px;
+  height: 640px;
   display: flex;
+  gap: 15px;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   z-index: 3;
-  padding: 35px 100px 55px;
+  padding: 25px 100px 0;
   grid-column: 2 / 12;
   grid-row: 2;
+
+  @media screen and (width > 1980px) {
+    grid-column: 4 / 12;
+  }
 }
 
 .AuthForm::after {
@@ -31,7 +36,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  gap: 29px;
+  gap: 15px;
 }
 
 .fieldset {
@@ -122,6 +127,21 @@
   animation: rotation 2.5s linear infinite;
 }
 
+.altLogin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.altLoginSpan {
+  color: var(--secondary-color)
+}
+
+.lestaLogoIcon {
+  width: 200px;
+}
+
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);
@@ -133,6 +153,16 @@
 }
 
 @media (hover: hover) {
+  .lestaLogoIcon {
+    opacity: .3;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  .lestaLogoIcon:hover {
+    opacity: 1;
+  }
+
   .btnEye:hover {
     cursor: pointer;
   }
@@ -146,8 +176,8 @@
 @media screen and (width <= 768px) {
   .AuthForm {
     width: 100%;
-    padding: 30px 10px 10px;
-    height: 540px;
+    padding: 15px 10px 10px;
+    height: 600px;
     margin: 0 10px;
   }
 
@@ -157,6 +187,10 @@
 
   .submitBtn {
     padding: 14px 30px;
+    font-size: 14px;
+  }
+
+  .altLoginSpan {
     font-size: 14px;
   }
 }

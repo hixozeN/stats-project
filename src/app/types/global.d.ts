@@ -9,8 +9,12 @@ declare module '*.svg' {
 }
 declare module '*.png';
 declare module '*.jpg';
+declare module '*.webp';
 declare module '*.jpeg';
 declare module '*.gif';
 
 declare const IS_DEV: boolean;
 declare const API_URL: string;
+declare const LESTA_API_URL: string;
+declare const LESTA_AUTH_API_URL: string;
+declare const LESTA_APP_ID: string;

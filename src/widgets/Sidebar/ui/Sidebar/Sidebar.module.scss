@@ -44,7 +44,16 @@
 
 @media screen and (width <= 1024px) {
   .navList {
+    visibility: hidden;
+    opacity: 0;
     margin: 0;
+    transition: opacity .1s;
+
+    &.active {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 1.5s;
+    }
   }
 
   .Sidebar {
@@ -93,7 +102,7 @@
     background-color: var(--bg-profile-wrapper);
     transition: all 0.3s ease;
   }
-  
+
   .Sidebar.active::after {
     box-shadow: 0 2px 5px 0 var(--bg-color);
     transform: scale3d(7.8, 7.8, 1);
