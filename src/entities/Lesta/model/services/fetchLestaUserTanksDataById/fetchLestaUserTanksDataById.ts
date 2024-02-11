@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
+import { filterTanksData } from 'entities/Lesta/lib/filterTanksData';
 import { lestaActions } from '../../slice/lestaSlice';
 import { LestaTankStats } from '../../types/tanks';
 
@@ -30,8 +31,10 @@ export const fetchLestaUserTanksDataById = createAsyncThunk<
     // прокидываем ошибку, если данных нет
     if (!response.data) return rejectWithValue(serverError);
 
+    const data = filterTanksData(response.data);
+
     // записываем в стейт полученные данные
-    dispatch(lestaActions.setUserTanks(response.data));
+    dispatch(lestaActions.setUserTanks(data));
 
     // возвращаем полученные данные
     return response.data;

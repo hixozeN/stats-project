@@ -29,8 +29,12 @@ function formatDate(dateString: Date): string {
 }
 
 // const getWinRate = (wins: number, battles: number): number => Math.floor((wins / battles) * 10000) / 100;
-const getWinRate = (wins: number, battles: number): number => Math.round(((wins / battles) * 1000000) / 100) / 100;
-const getAvgDamage = (damage: number, battles: number): number => Math.floor(damage / battles);
+export function getWinRate(wins: number, battles: number): number {
+  return Math.round(((wins / battles) * 1000000) / 100) / 100;
+}
+export function getAvgDamage(damage: number, battles: number): number {
+  return Math.floor(damage / battles);
+}
 
 export const generateStatsList = (
   currStatistics: Partial<LestaUserStatistics>,
@@ -42,11 +46,15 @@ export const generateStatsList = (
 
   // текущий винрейт
   const winRateCurr = getWinRate(currStatistics?.wins, currStatistics?.battles);
-  const winRateDiff = session ? currStatistics.wins - session.statistics.wins : 0;
-  const battlesDiff = session ? currStatistics.battles - session.statistics.battles : 0;
+  const winRateDiff = session
+    ? currStatistics.wins - session.statistics.wins
+    : 0;
+  const battlesDiff = session
+    ? currStatistics.battles - session.statistics.battles
+    : 0;
   // винрейт от разницы текущей статы и сохраненной (винрейт сессии)
   const winRateSession = session
-    ? Math.floor(((winRateDiff) / (battlesDiff)) * 10000) / 100
+    ? Math.floor((winRateDiff / battlesDiff) * 10000) / 100
     : 0;
   // винрейт последней сохраненной сессии
   const winRateLastSession = session
@@ -54,22 +62,26 @@ export const generateStatsList = (
     : 0;
   // винрейт рейтинговых боев
   const winRateRating = getWinRate(rating?.wins, rating?.battles);
-  const avgDamageCurr = getAvgDamage(currStatistics?.damage_dealt, currStatistics?.battles);
+  const avgDamageCurr = getAvgDamage(
+    currStatistics?.damage_dealt,
+    currStatistics?.battles,
+  );
   const avgDamageSession = session
-    ? (
-      currStatistics.damage_dealt - session.statistics.damage_dealt
-    ) / (
-      currStatistics.battles - session.statistics.battles
-    )
+    ? (currStatistics.damage_dealt - session.statistics.damage_dealt)
+      / (currStatistics.battles - session.statistics.battles)
     : 0;
   const avgDamageLastSession = session
-    ? getAvgDamage(session?.statistics?.damage_dealt, session?.statistics?.battles)
+    ? getAvgDamage(
+      session?.statistics?.damage_dealt,
+      session?.statistics?.battles,
+    )
     : 0;
   const avgDamageRating = getAvgDamage(rating?.damage_dealt, rating?.battles);
 
   const drawsCurr = currStatistics.battles - (currStatistics.wins + currStatistics.losses) || 0;
   const drawsSession = session
-    ? session.statistics.battles - (session.statistics.wins + session.statistics.losses)
+    ? session.statistics.battles
+      - (session.statistics.wins + session.statistics.losses)
     : 0;
   const drawsRating = rating.battles - (rating.wins + rating.losses);
 
@@ -78,7 +90,9 @@ export const generateStatsList = (
       key: 'battles',
       value: currStatistics?.battles,
       label: 'Бои',
-      delta: session ? currStatistics.battles - session.statistics.battles : 0 || 0,
+      delta: session
+        ? currStatistics.battles - session.statistics.battles
+        : 0 || 0,
       tab: 0,
     },
     {
@@ -97,7 +111,9 @@ export const generateStatsList = (
       key: 'winRate',
       value: winRateCurr,
       label: 'Винрейт',
-      delta: session ? parseFloat((winRateCurr - winRateLastSession).toFixed(2)) : 0,
+      delta: session
+        ? parseFloat((winRateCurr - winRateLastSession).toFixed(2))
+        : 0,
       tab: 0,
     },
     {
@@ -116,7 +132,7 @@ export const generateStatsList = (
       key: 'avgDamage',
       value: avgDamageCurr || 0,
       label: 'С/У',
-      delta: session ? (avgDamageCurr - avgDamageLastSession) : 0,
+      delta: session ? avgDamageCurr - avgDamageLastSession : 0,
       tab: 0,
     },
     {
@@ -175,12 +191,16 @@ export const generateStatsList = (
       key: 'losses',
       value: currStatistics?.losses || 0,
       label: 'Поражения',
-      delta: session ? currStatistics.losses - session.statistics.losses : 0 || 0,
+      delta: session
+        ? currStatistics.losses - session.statistics.losses
+        : 0 || 0,
       tab: 0,
     },
     {
       key: 'lossesSession',
-      value: session ? currStatistics.losses - session.statistics.losses : 0 || 0,
+      value: session
+        ? currStatistics.losses - session.statistics.losses
+        : 0 || 0,
       label: 'Поражения',
       tab: 1,
     },

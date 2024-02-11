@@ -14,26 +14,30 @@ import master from 'shared/assets/icons/mastery/master.png';
 import firstStage from 'shared/assets/icons/mastery/first_stage.png';
 import secondStage from 'shared/assets/icons/mastery/second_stage.png';
 import thirdStage from 'shared/assets/icons/mastery/third_stage.png';
+import {
+  getAvgDamage,
+  getWinRate,
+} from 'widgets/UserStats/lib/generateStatsList';
 import cls from './Table.module.scss';
+import { Button } from '../Button/Button';
 
 interface ITableProps {
   className?: string;
   data?: LestaTankStats[];
 }
 
-export const Table = memo(({ data, className }: ITableProps) => {
+export const Table = memo(({ data }: ITableProps) => {
   const [sorting, setSorting] = useState<SortingState>([]);
 
-  const mastery: Record<number, ReactElement> = {
-    4: master,
-    3: firstStage,
-    2: secondStage,
-    1: thirdStage,
-  };
-
-  function getWinRate(wins: number, battles: number): number {
-    return Math.round(((wins / battles) * 1000000) / 100) / 100;
-  }
+  const mastery: Record<number, ReactElement> = useMemo(
+    () => ({
+      4: master,
+      3: firstStage,
+      2: secondStage,
+      1: thirdStage,
+    }),
+    [],
+  );
 
   const columns = useMemo<ColumnDef<LestaTankStats>[]>(
     () => [
@@ -64,11 +68,11 @@ export const Table = memo(({ data, className }: ITableProps) => {
       },
       {
         accessorFn: ({ statistics }) => `${getWinRate(statistics.wins, statistics.battles)}`,
-        header: '% побед',
+        header: 'WIN%',
       },
       {
-        accessorKey: 'mark_of_mastery',
-        header: 'Ср. урон',
+        header: 'ADR',
+        accessorFn: ({ statistics }) => `${getAvgDamage(statistics.damage_dealt, statistics.battles)}`,
       },
       {
         accessorKey: 'WN8',
@@ -109,10 +113,12 @@ export const Table = memo(({ data, className }: ITableProps) => {
   });
 
   return (
-    <div className="p-2">
-      <div className={cls.title} />
-      <h2>{`Техника (${table.getRowModel().rows.length})`}</h2>
+    <div className="">
+      <div className="" />
       <table>
+        <caption className={cls.title}>
+          {`Техника (${table.getRowModel().rows.length})`}
+        </caption>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
@@ -132,8 +138,12 @@ export const Table = memo(({ data, className }: ITableProps) => {
                         header.getContext(),
                       )}
                       {{
-                        asc: ' 🔼',
-                        desc: ' 🔽',
+                        asc: (
+                          <Button theme="icon-right" variant="chevron-down" />
+                        ),
+                        desc: (
+                          <Button theme="icon-right" variant="chevron-down" />
+                        ),
                       }[header.column.getIsSorted() as string] ?? null}
                     </div>
                   )}
