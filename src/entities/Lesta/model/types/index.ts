@@ -4,7 +4,7 @@ import { LestaClan } from './clans';
 
 export type LestaSchema = {
   user?: LestaUser,
-  userTanks?: LestaTankStats,
+  userTanks?: LestaTankStats[],
   clan?: LestaClan,
   isLoading: boolean,
   error?: string,

@@ -23,7 +23,7 @@ export const lestaSlice = createSlice({
     setClanData: (state, action: PayloadAction<LestaClan>) => {
       state.clan = action.payload;
     },
-    setUserTanks: (state, action: PayloadAction<LestaTankStats>) => {
+    setUserTanks: (state, action: PayloadAction<LestaTankStats[]>) => {
       state.userTanks = action.payload;
     },
     setLastSession: (state, action: PayloadAction<LestaUserLastSession>) => {

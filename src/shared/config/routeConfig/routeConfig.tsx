@@ -94,10 +94,6 @@ export const routerConfiguration = createBrowserRouter([
             element: <div>{i18n.t('friends')}</div>,
           },
           {
-            path: RoutePath.user_id,
-            element: <div>{i18n.t('user')}</div>,
-          },
-          {
             path: RoutePath.auth,
             element: <AuthorizationPage />,
           },

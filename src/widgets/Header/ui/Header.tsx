@@ -8,12 +8,11 @@ import { ErrorBoundary } from 'app/providers/ErrorBoundary/index';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Header.module.scss';
 
-export const Header = memo(() => {
 interface HeaderProps {
   className?: string;
 }
 
-export const Header = ({ className }: HeaderProps) => {
+export const Header = memo(({ className }: HeaderProps) => {
   const isAuthPage = useMatch(RoutePath.auth);
 
   if (isAuthPage) return null;

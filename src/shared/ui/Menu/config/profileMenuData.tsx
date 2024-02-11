@@ -39,7 +39,7 @@ export const getMenuElements = (module: MenuTheme) => {
     },
     user: {
       name: 'Профиль',
-      path: RoutePath.user_id,
+      path: RoutePath.user,
       icon: <ProfileIcon />,
     },
     edit: {

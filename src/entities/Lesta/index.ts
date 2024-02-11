@@ -2,11 +2,15 @@ export { lestaActions, lestaReducer } from './model/slice/lestaSlice';
 export { PersonalUserDataResponse } from './model/types/users/PersonalUserData';
 export { LestaSchema } from './model/types';
 export {
-  TLestaUserData, LestaUser, LestaUserRatingData, LestaUserLastSession,
+  TLestaUserData,
+  LestaUser,
+  LestaUserRatingData,
+  LestaUserLastSession,
 } from './model/types/users';
 export { LestaClan } from './model/types/clans';
 export { LestaTankStats, LestaTankData } from './model/types/tanks';
 export { fetchLestaUserDataById } from './model/services/fetchLestaUserDataById/fetchLestaUserDataById';
+export { fetchLestaUserTanksDataById } from './model/services/fetchLestaUserTanksDataById/fetchLestaUserTanksDataById';
 
 // Selectors
 export { getLestaUserClanData } from './model/selectors/getLestaUserClanData/getLestaUserClanData';
@@ -21,3 +25,4 @@ export { getUserSessions } from './model/selectors/getUserSessions/getUserSessio
 export { getUserLastSession } from './model/selectors/getUserLastSession/getUserLastSession';
 export { getLestaUserLastBattleTime } from './model/selectors/getLestaUserLastBattleTime/getLestaUserLastBattleTime';
 export { getUserSocialLinks } from './model/selectors/getUserSocialLinks/getUserSocialLinks';
+export { getLestaUserTanks } from './model/selectors/getLestaUserTanks/getLestaUserTanks';

@@ -15,9 +15,10 @@ export type LestaTankData = {
 
 export type LestaTankStats = {
   tank_id: number,
-  tankData: LestaTankData,
+  tankData?: LestaTankData,
   last_battle_time: number,
   mark_of_mastery: number,
   battle_life_time: number,
-  statistics: Partial<LestaUserStatistics>,
+  // statistics: Partial<LestaUserStatistics>,
+  statistics: LestaUserStatistics,
 }

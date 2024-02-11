@@ -1,0 +1,44 @@
+table {
+  // border: 1px solid lightgray;
+  width: 100%;
+}
+
+tbody {
+  border-bottom: 1px solid lightgray;
+}
+
+th {
+  // border-bottom: 1px solid lightgray;
+  // border-right: 1px solid lightgray;
+  padding: 0;
+  color: var(--inverted-primary-color);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+tfoot {
+  color: gray;
+}
+
+tfoot th {
+  font-weight: normal;
+}
+
+.icon {
+  width: 50px;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.mastery {
+  width: 40px;
+  aspect-ratio: 1;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: normal;
+  color: var(--primary-color);
+  
+}
