@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { Logo } from 'shared/ui/Logo/Logo';
 import { SearchForm } from 'features/Search/ui/SearchForm/SearchForm';
 import { useMatch } from 'react-router-dom';
@@ -12,7 +11,7 @@ interface HeaderProps {
   className?: string;
 }
 
-export const Header = memo(({ className }: HeaderProps) => {
+export const Header = ({ className }: HeaderProps) => {
   const isAuthPage = useMatch(RoutePath.auth);
 
   if (isAuthPage) return null;
@@ -31,4 +30,4 @@ export const Header = memo(({ className }: HeaderProps) => {
       </div>
     </header>
   );
-});
+};

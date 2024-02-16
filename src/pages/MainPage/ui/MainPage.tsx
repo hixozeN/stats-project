@@ -1,24 +1,11 @@
-import React, { useLayoutEffect } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { TournamentStars } from 'widgets/TournamentStars/index';
-import { useSelector } from 'react-redux';
-import {
-  getLoggedInStatus,
-} from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
-import { useNavigate } from 'react-router-dom';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { Footer } from 'widgets/Footer/index';
 import cls from './MainPage.module.scss';
 
 function MainPage() {
   const { t } = useTranslation('main');
-  const isLoggedIn = useSelector(getLoggedInStatus);
-  const navigate = useNavigate();
-
-  useLayoutEffect(() => {
-    if (isLoggedIn) {
-      navigate(RoutePath.tournaments);
-    }
-  }, [isLoggedIn, navigate]);
 
   return (
     <>
@@ -43,6 +30,7 @@ function MainPage() {
         </div>
       </section>
       <TournamentStars />
+      <Footer />
     </>
 
   );
