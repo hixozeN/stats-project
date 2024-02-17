@@ -1,6 +1,7 @@
 import { LestaTankStats } from 'entities/Lesta';
 import { ReactElement, memo, useMemo } from 'react';
 import { getLevelRoman } from 'entities/Tank/lib/converterTank';
+import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Tank.module.scss';
 import {
   masteryTank, nationFlag, type, statList,
@@ -26,7 +27,7 @@ export const Tank = memo(({ data }: TankProps) => {
     <li className={cls.card}>
       <div className={cls.infoWrapper}>
         <div className={cls.titleWrapper}>
-          <h3 className={cls.title}>{tankData.name}</h3>
+          <h3 className={classNames(cls.title, { [cls.premium]: tankData.is_premium })}>{tankData.name}</h3>
           <span className={cls.flag}>{nationTank[tankData.nation]}</span>
         </div>
         <dl className={cls.statList}>

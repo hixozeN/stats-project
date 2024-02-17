@@ -10,6 +10,14 @@
   color: var(--input-font-color);
 }
 
-// .definition {
-//   font-size: 16px;
-// }
+.nice {
+  color: var(--stats-green-color);
+}
+
+.good {
+  color: var(--stats-aqua-color);
+}
+
+.great {
+  color: var(--stats-purple-ligth-color);
+}

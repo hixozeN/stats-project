@@ -6,6 +6,7 @@ import {
   getWinRate,
 } from 'widgets/UserStats/lib/generateStatsList';
 import { formatter } from 'entities/Tank/lib/converterTank';
+import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './TankStat.module.scss';
 
 interface TankStatProps {
@@ -23,14 +24,19 @@ export const TankStat = memo(
     const lasteDate = formatter(lasteDateGame);
     const WN8 = 0;
 
-    //     до 50% - белый цвет
-    // до 60% - зеленый
-    // до 70% - лазурный
-    // 70%+ фиолетовый
+    const isNice = winRate >= 50;
+    const isGood = winRate < 70 && winRate >= 60;
+    const isGreat = winRate >= 70;
+
+    const classNameRate = data === 'Побед' && {
+      [cls.nice]: isNice,
+      [cls.good]: isGood,
+      [cls.great]: isGreat,
+    };
 
     const statParams: Record<string, string | number> = {
       Боёв: battles,
-      Побед: `${winRate}%`,
+      Побед: `${winRate.toFixed(2).replace(/\./g, ',')}%`,
       'Ср. урон': avgDamage,
       WN8,
       'Последний бой': lasteDate,
@@ -39,7 +45,9 @@ export const TankStat = memo(
     return (
       <div className={cls.wrapper}>
         <dt className={cls.term}>{`${t(`${data}`)}:`}</dt>
-        <dd className={cls.definition}>{statParams[`${data}`]}</dd>
+        <dd className={classNames(cls.definition, classNameRate)}>
+          {statParams[`${data}`]}
+        </dd>
       </div>
     );
   },

@@ -7,10 +7,9 @@ import cls from './Tanks.module.scss';
 
 interface TanksProps {
   dataList?: LestaTankStats[];
-  className?: string;
 }
 
-export const Tanks = memo(({ className, dataList }: TanksProps) => {
+export const Tanks = memo(({ dataList }: TanksProps) => {
   const isAuthPage = useMatch(RoutePath.auth);
 
   if (isAuthPage) return null;
