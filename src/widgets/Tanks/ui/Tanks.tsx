@@ -1,23 +1,25 @@
 import { memo } from 'react';
 import { useMatch } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { Table } from 'shared/ui/Table/Table';
 import { LestaTankStats } from 'entities/Lesta';
+import { Tank } from 'entities/Tank/ui/Tank/Tank';
 import cls from './Tanks.module.scss';
 
 interface TanksProps {
-  data?: LestaTankStats[];
+  dataList?: LestaTankStats[];
   className?: string;
 }
 
-export const Tanks = memo(({ className, data }: TanksProps) => {
+export const Tanks = memo(({ className, dataList }: TanksProps) => {
   const isAuthPage = useMatch(RoutePath.auth);
 
   if (isAuthPage) return null;
 
   return (
-    <div className={cls.wrapper}>
-      <Table data={data} />
-    </div>
+    <ul className={cls.list}>
+      {dataList.map((data) => (
+        <Tank data={data} key={data.tank_id} />
+      ))}
+    </ul>
   );
 });

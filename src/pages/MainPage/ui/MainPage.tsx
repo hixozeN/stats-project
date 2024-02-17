@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { TournamentStars } from 'widgets/TournamentStars/index';
 import { useSelector } from 'react-redux';

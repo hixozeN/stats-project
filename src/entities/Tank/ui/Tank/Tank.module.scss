@@ -1,0 +1,85 @@
+.card {
+  width: 440px;
+  display: flex;
+  border: 1px solid var(--bg-stat-item);
+  border-radius: 15px;
+  gap: 20px;
+  padding: 0px 15px;
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 21px;
+}
+
+.infoWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px 0;
+}
+
+.title {
+  font-size: 18px;
+  line-height: normal;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.flag {
+  width: 30px;
+  height: 21px;
+  display: flex;
+  order: -1;
+}
+
+.statList {
+  display: grid;
+  grid-template-columns: repeat(2, 120px);
+  gap: 10px 5px;
+
+  div:last-child {
+    color: var(--input-font-color);
+    grid-column: span 2;
+    font-size: 14px;
+    padding-top: 3px;
+  }
+}
+
+.imageWrapper {
+  order: -1;
+  position: relative;
+}
+
+.tankImg {
+  display: flex;
+  width: 150px;
+  height: 143px;
+  object-fit: contain;
+}
+
+.inner {
+  position: absolute;
+  top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+
+.tier {
+  font-size: 16px;
+  line-height: normal;
+}
+
+.mastery {
+  position: absolute;
+  bottom: 15px;
+  right: 0;
+  width: 32px;
+  height: 32px;
+}

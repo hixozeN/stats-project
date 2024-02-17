@@ -1,6 +1,3 @@
-/*
-  eslint-disable camelcase
-*/
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import PeopleIcon from 'shared/assets/icons/tournaments/people.svg';

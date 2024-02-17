@@ -1,14 +1,18 @@
 import {
   memo, useCallback, useEffect, useState,
 } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { UserStats } from 'widgets/UserStats';
-import { UserProfile } from 'widgets/UserProfile';
+import { t } from 'i18next';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary/index';
+import { classNames } from 'shared/lib/classNames/classNames';
 import { Background } from 'shared/ui/Background/Background';
 import { Tabs } from 'shared/ui/Tabs/Tabs';
+import Loader from 'shared/ui/Loader/Loader';
+import { UserStats } from 'widgets/UserStats';
+import { UserProfile } from 'widgets/UserProfile';
+import { Tanks } from 'widgets/Tanks';
 import {
   fetchLestaUserDataById,
   fetchLestaUserTanksDataById,
@@ -18,10 +22,6 @@ import {
   PersonalUserDataResponse,
 } from 'entities/Lesta';
 import { LestaUserData } from 'entities/User/index';
-import { useDispatch, useSelector } from 'react-redux';
-import Loader from 'shared/ui/Loader/Loader';
-import { Tanks } from 'widgets/Tanks';
-import { t } from 'i18next';
 import cls from './UserPage.module.scss';
 
 interface IUserPageProps {
@@ -127,14 +127,14 @@ const UserPage = ({ className }: IUserPageProps) => {
   return (
     <ErrorBoundary>
       <Background />
-      <main className={classNames(cls.UserPage, {}, [className])}>
-        <div className={cls.wrapper}>
-          <UserProfile user={user} />
-          <Tabs tab={tab} tabList={tabList} handleChangeTab={setTab} />
-          <UserStats tab={tab} user={user} />
-          <Tanks data={tanks} />
-        </div>
-      </main>
+      {/* <main className={classNames(cls.UserPage, {}, [className])}> */}
+      <div className={cls.wrapper}>
+        <UserProfile user={user} />
+        <Tabs tab={tab} tabList={tabList} handleChangeTab={setTab} />
+        <UserStats tab={tab} user={user} />
+        <Tanks dataList={tanks} />
+      </div>
+      {/* </main> */}
     </ErrorBoundary>
   );
 };
