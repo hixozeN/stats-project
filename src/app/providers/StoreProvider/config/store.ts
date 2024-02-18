@@ -6,6 +6,9 @@ import { NavigateOptions, To } from 'react-router-dom';
 import { tournamentReducer } from 'entities/Tournament';
 import { lestaReducer } from 'entities/Lesta';
 import { teamReducer } from 'entities/Team';
+import { $lestaApi } from 'shared/api/lestaApi';
+import { $royalApi } from 'shared/api/royalApi';
+import { royalApiInterceptors } from 'shared/api/lib/royalApiInterceptors/royalApiInterceptors';
 import { StateSchema } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
@@ -36,6 +39,8 @@ export function createReduxStore(
       thunk: {
         extraArgument: {
           api: $api,
+          lestaApi: $lestaApi,
+          royalApi: $royalApi,
           navigate,
         },
       },
@@ -44,6 +49,8 @@ export function createReduxStore(
 
   // @ts-ignore
   store.reducerManager = reducerManager;
+
+  royalApiInterceptors(store);
 
   return store;
 }
