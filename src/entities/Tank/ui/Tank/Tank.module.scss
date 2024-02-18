@@ -1,10 +1,11 @@
 .card {
-  width: 440px;
+  max-width: 460px;
+  width: 100%;
   display: flex;
-  border: 1px solid var(--bg-stat-item);
+  outline: 1px solid var(--bg-stat-item);
   border-radius: 15px;
   gap: 20px;
-  padding: 0px 15px;
+  padding: 15px;
   backdrop-filter: blur(5px);
 }
 
@@ -19,14 +20,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 15px 0;
 }
 
 .title {
   font-size: 18px;
   line-height: normal;
   max-width: 200px;
-
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -46,7 +45,7 @@
 .statList {
   display: grid;
   grid-template-columns: repeat(2, 120px);
-  gap: 10px 5px;
+  gap: 20px 15px;
 
   div:last-child {
     color: var(--input-font-color);
@@ -64,13 +63,13 @@
 .tankImg {
   display: flex;
   width: 150px;
-  height: 143px;
+  height: 145px;
   object-fit: contain;
 }
 
 .inner {
   position: absolute;
-  top: 15px;
+  top: 0;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -80,12 +79,79 @@
 .tier {
   font-size: 16px;
   line-height: normal;
+  color: var(--secondary-color);
+}
+
+.type {
+  width: 20px;
+  height: 20px;
+  color: var(--secondary-color);
 }
 
 .mastery {
   position: absolute;
-  bottom: 15px;
+  bottom: 0;
   right: 0;
   width: 32px;
   height: 32px;
+}
+
+@media (width <= 1024px) {
+  .card {
+    max-width: 300px;
+    padding: 10px;
+    gap: 15px;
+  }
+
+  .infoWrapper {
+    gap: 11px;
+    padding: 0;
+  }
+
+  .tankImg {
+    width: 70px;
+    height: 68px;
+    margin: 10px 0;
+  }
+
+  .title {
+    font-size: 14px;
+    max-width: 160px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    &.premium {
+      color: var(--accent-color);
+    }
+  }
+
+  .inner {
+    gap: 0;
+  }
+
+  .tier {
+    font-size: 12px;
+  }
+
+  .type {
+    transform: scale(0.65);
+  }
+
+  .mastery {
+    width: 20px;
+    height: 20px;
+  }
+
+  .statList {
+    display: grid;
+    grid-template-columns: repeat(2, 95px);
+    gap: 5px;
+
+    div:last-child {
+      color: var(--input-font-color);
+      grid-column: span 2;
+      font-size: 10px;
+    }
+  }
 }

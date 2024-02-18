@@ -1,3 +1,15 @@
+.tanks {
+  padding-top: 50px;
+  border-top: 1px solid var(--bg-tab-inactive);
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0 0 25px 15px;
+}
+
 .list {
   max-width: 1440px;
   width: 100%;
@@ -6,4 +18,17 @@
   flex-wrap: wrap;
   justify-content: center;
   margin: 0 auto;
+}
+
+@media (width <= 1200px) {
+  .list {
+    gap: 20px;
+    padding: 0 10px;
+  }
+}
+
+@media (width <= 480px) {
+  .list {
+    gap: 15px;
+  }
 }

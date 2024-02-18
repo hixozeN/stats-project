@@ -2,16 +2,13 @@
   margin: 0 0 20px;
   padding: 15px 22px 15px 28px;
   border-radius: 0 0 15px 15px;
+
   //background: #C2C2BE;
   display: grid;
   justify-content: center;
-  //grid-template: ". privateData rating" 31px "avatar publicData rating" 1fr "avatar publicData rating" 1fr "avatar publicData ." 1fr "avatar publicData social" auto / auto 1fr auto;
-  grid-template-columns: auto 1fr auto;
-  grid-template-rows: 50px 1fr auto;
-  grid-template-areas:
-    "privateData privateData privateData"
-    "avatar publicData rating"
-    "avatar publicData social";
+
+  // grid-template: ". privateData rating" 31px "avatar publicData rating" 1fr "avatar publicData rating" 1fr "avatar publicData ." 1fr "avatar publicData social" auto / auto 1fr auto;
+  grid-template: "privateData privateData privateData" 50px "avatar publicData rating" 1fr "avatar publicData social" auto / auto 1fr auto;
 }
 
 .avatarWrapper {
@@ -32,6 +29,7 @@
 .primaryUserData {
   display: flex;
   flex-direction: column;
+
   //justify-content: center;
   //align-items: center;
   grid-area: publicData;

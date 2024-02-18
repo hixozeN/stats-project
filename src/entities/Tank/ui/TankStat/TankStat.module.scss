@@ -21,3 +21,9 @@
 .great {
   color: var(--stats-purple-ligth-color);
 }
+
+@media (width <= 1024px) {
+  .wrapper {
+    font-size: 12px;
+  }
+}

@@ -33,7 +33,7 @@ table {
 
 thead {
   backdrop-filter: blur(120px);
-  background-color: rgba(26, 26, 28, 0.1);
+  background-color: rgb(26 26 28 / 10%);
   position: sticky;
   top: 89px;
   z-index: 1;
@@ -43,9 +43,6 @@ th {
   color: var(--inverted-primary-color);
   font-size: 16px;
   font-weight: 500;
-
-  padding-top: 20px;
-  padding-bottom: 25px;
   text-align: end;
   padding: 75px 10px 15px;
 }
@@ -63,7 +60,6 @@ td {
   width: 12%;
   vertical-align: middle;
   font-size: 16px;
-  text-align: center;
   border-top: 1px solid var(--bg-stat-item);
   border-bottom: 1px solid var(--bg-stat-item);
   text-align: end;
@@ -129,6 +125,7 @@ td:last-child {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
   }
+
   td:first-child,
   th:first-child,
   td:nth-child(3),

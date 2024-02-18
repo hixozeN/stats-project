@@ -29,9 +29,10 @@ function formatDate(dateString: Date): string {
 }
 
 // const getWinRate = (wins: number, battles: number): number => Math.floor((wins / battles) * 10000) / 100;
-export function getWinRate(wins: number, battles: number):number {
-  return Math.round(((wins / battles) * 1000000) / 100) / 100;
-}
+export const getWinRate = (wins: number, battles: number): number => {
+  const winrate = wins / battles;
+  return Math.round(((winrate) * 1000000) / 100) / 100;
+};
 export function getAvgDamage(damage: number, battles: number): number {
   return Math.floor(damage / battles);
 }
