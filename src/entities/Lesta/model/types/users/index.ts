@@ -1,6 +1,7 @@
-import { UserRoles } from 'entities/User/index';
-import { LestaUserStatistics } from 'shared/api/index';
-import { LestaClan } from '../clans/index';
+import { UserRoles } from 'entities/User';
+import { LestaUserStatistics } from 'shared/api';
+import { LestaTankStats } from 'entities/Lesta';
+import { LestaClan } from '../clans';
 
 export type TLestaUserData = {
   nickname: string;
@@ -39,6 +40,16 @@ export type LestaUserLastSession = {
   rating: LestaUserRatingData;
 }
 
+export interface LestaUserSession {
+  _id?: string;
+  id: string;
+  session_date: Date;
+  account_id: number;
+  statistics: LestaUserStatistics;
+  rating: LestaUserRatingData;
+  tanks: Partial<LestaTankStats>[];
+}
+
 export type LestaUser = {
   id?: string,
   username?: string,
@@ -49,7 +60,7 @@ export type LestaUser = {
   ra_rating?: number,
   balance?: number,
   isActivated?: boolean,
-  sessions?: string[],
+  sessions?: LestaUserSession[],
   lestaData?: TLestaUserData,
   nickname: string,
   account_id: number,
@@ -57,7 +68,7 @@ export type LestaUser = {
   last_battle_time: number,
   statistics?: LestaUserStatistics,
   rating?: LestaUserRatingData,
-  lastSession?: LestaUserLastSession,
+  lastSession?: LestaUserSession,
   clan?: LestaClan,
   private?: LestaPrivateUserData,
   awards?: string[],
@@ -66,4 +77,5 @@ export type LestaUser = {
   telegram?: string;
   youtube?: string;
   vk?: string;
+  accessToken?: string;
 };

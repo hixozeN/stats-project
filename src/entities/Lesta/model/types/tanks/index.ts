@@ -14,6 +14,7 @@ export type LestaTankData = {
 }
 
 export type LestaTankStats = {
+  _id?: string;
   tank_id: number,
   tankData: LestaTankData,
   last_battle_time: number,
