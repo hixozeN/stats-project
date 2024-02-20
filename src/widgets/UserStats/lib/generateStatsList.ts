@@ -1,40 +1,14 @@
 import { LestaUserStatistics } from 'entities/Lesta/model/types/users/PersonalUserData';
-import { LestaUserLastSession, LestaUserRatingData } from 'entities/Lesta';
+import { LestaUserRatingData, LestaUserSession } from 'entities/Lesta';
+import { getWinRate } from 'shared/lib/statCounters/getWinRate';
+import { getAvgDamage } from 'shared/lib/statCounters/getAvgDamage';
+import { formatDate } from 'shared/lib/formatDate/formatDate';
+import { getLastBattleTime } from 'shared/lib/statCounters/getLastBattleTime';
 import { StatsListItem } from '../model/types';
-
-const getLastBattleTime = (timestamp: number) => {
-  const date = new Date(timestamp * 1000);
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear() % 100;
-  // const hours = date.getHours();
-  // const minutes = date.getMinutes();
-  const formattedDay = day < 10 ? `0${day}` : day;
-  const formattedMonth = month < 10 ? `0${month}` : month;
-  return `${formattedDay}.${formattedMonth}.${year}`;
-};
-
-function formatDate(dateString: Date): string {
-  if (!dateString) return null;
-  const date = new Date(dateString);
-
-  const day = date.getDate().toString().padStart(2, '0');
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const year = date.getFullYear().toString().slice(2);
-
-  const hours = date.getHours().toString().padStart(2, '0');
-  const minutes = date.getMinutes().toString().padStart(2, '0');
-
-  return `${day}.${month}.${year} ${hours}:${minutes}`;
-}
-
-// const getWinRate = (wins: number, battles: number): number => Math.floor((wins / battles) * 10000) / 100;
-const getWinRate = (wins: number, battles: number): number => Math.round(((wins / battles) * 1000000) / 100) / 100;
-const getAvgDamage = (damage: number, battles: number): number => Math.floor(damage / battles);
 
 export const generateStatsList = (
   currStatistics: Partial<LestaUserStatistics>,
-  session: LestaUserLastSession,
+  session: LestaUserSession,
   rating: LestaUserRatingData,
   lastBattleTime?: number,
 ) => {
@@ -56,11 +30,11 @@ export const generateStatsList = (
   const winRateRating = getWinRate(rating?.wins, rating?.battles);
   const avgDamageCurr = getAvgDamage(currStatistics?.damage_dealt, currStatistics?.battles);
   const avgDamageSession = session
-    ? (
+    ? Math.round((
       currStatistics.damage_dealt - session.statistics.damage_dealt
     ) / (
       currStatistics.battles - session.statistics.battles
-    )
+    ))
     : 0;
   const avgDamageLastSession = session
     ? getAvgDamage(session?.statistics?.damage_dealt, session?.statistics?.battles)
@@ -219,7 +193,7 @@ export const generateStatsList = (
     {
       key: 'sessionStartTime',
       value: formatDate(session?.session_date) || 'Никогда.',
-      label: 'Начало сессии',
+      label: 'Старт сессии',
       delta: 0,
       tab: 1,
     },
