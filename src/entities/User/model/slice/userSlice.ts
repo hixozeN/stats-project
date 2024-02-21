@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { User, UserSchema } from '../types/user';
 
 const initialState: UserSchema = {
   isLoggedIn: false,
+  authData: null,
 };
 
 export const userSlice = createSlice({
@@ -17,7 +17,7 @@ export const userSlice = createSlice({
       state.isLoggedIn = action.payload;
     },
     logout: (state) => {
-      localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
+      localStorage.clear();
       state.authData = null;
       state.isLoggedIn = false;
     },

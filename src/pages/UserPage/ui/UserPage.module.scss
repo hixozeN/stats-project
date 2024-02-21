@@ -17,6 +17,26 @@
 
 .wrapper {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1440px;
   margin: 0 auto;
+}
+
+.notFoundSection {
+  max-width: 320px;
+  margin: 50px auto;
+  padding: 50px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0 0 0 / 10%);
+  border-radius: 15px;
+  outline: 1px solid var(--bg-stat-item);
+}
+
+.notFoundSectionHeading {
+  font-size: 20px;
+
+  @media screen and (width <= 400px) {
+    font-size: 18px;
+  }
 }

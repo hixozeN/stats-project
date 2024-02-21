@@ -1,11 +1,8 @@
-/* eslint-disable camelcase */
-
 import {
-  memo, useCallback, useEffect, useState,
+  memo, useEffect, useMemo, useState,
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import { UserStats } from 'widgets/UserStats';
 import { UserProfile } from 'widgets/UserProfile';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary/index';
@@ -14,115 +11,94 @@ import { Tabs } from 'shared/ui/Tabs/Tabs';
 import {
   fetchLestaUserDataById,
   getLestaLoadingStatus,
-  getLestaUserFetchStatus,
-  PersonalUserDataResponse,
+  getLestaUserFetchStatus, getLestaUserLastBattleTime,
+  getLestaUserNickname,
+  getLestaUserRatingData, getLestaUserStatisticsData,
+  getUserLastSession,
+  LestaUserSession,
 } from 'entities/Lesta';
-import { LestaUserData } from 'entities/User/index';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Loader from 'shared/ui/Loader/Loader';
+import { LOCAL_STORAGE_LESTA } from 'shared/consts/localstorage';
+import { useTranslation } from 'react-i18next';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
+import { SeoUpdater } from 'shared/lib/SeoUpdater/SeoUpdater';
+import { generateStatsList } from 'widgets/UserStats/lib/generateStatsList';
+import {
+  SessionControlSection,
+} from '../ui/SessionControlSection/SessionControlSection';
 import cls from './UserPage.module.scss';
 
 interface IUserPageProps {
   className?: string;
 }
 
-const tabList = ['Статистика', 'Сессия', 'Рейтинг'];
-
 const UserPage = ({ className }: IUserPageProps) => {
+  const { t } = useTranslation('userPage');
   const { id } = useParams<{ id: string }>();
-  const [user, setUser] = useState(null);
-  const [tab, setTab] = useState(0);
+  const ratingData = useSelector(getLestaUserRatingData);
+  const statisticData = useSelector(getLestaUserStatisticsData);
+  const userLastSession = useSelector(getUserLastSession);
+  const lastBattleTime = useSelector(getLestaUserLastBattleTime);
   const isLoading = useSelector(getLestaLoadingStatus);
   const isNotFound = useSelector(getLestaUserFetchStatus);
+  const userNickname = useSelector(getLestaUserNickname);
 
-  const dispatch = useDispatch();
+  const [tab, setTab] = useState(0);
+  const [session, setSession] = useState<LestaUserSession>(userLastSession);
 
-  const getData = useCallback(async (accountId: string): Promise<LestaUserData | void> => {
-    const userId = Number(accountId);
-    try {
-      const res = await axios.get<PersonalUserDataResponse>(
-        `${LESTA_API_URL}/account/info/?application_id=${LESTA_APP_ID}&account_id=${userId}`,
-      );
+  const statItems = useMemo(
+    () => generateStatsList(statisticData, session, ratingData, lastBattleTime),
+    [statisticData, session, ratingData, lastBattleTime],
+  );
+  const tabList = [t('Статистика'), t('Сессия'), t('Рейтинг')];
 
-      const lestaDTO = (data: PersonalUserDataResponse): LestaUserData => {
-        const {
-          nickname, account_id, created_at, last_battle_time, statistics,
-        } = data.data[`${accountId}`];
-
-        return {
-          nickname,
-          account_id,
-          created_at,
-          last_battle_time,
-          statistics: {
-            battles: statistics.all.battles,
-            capture_points: statistics.all.capture_points,
-            damage_dealt: statistics.all.damage_dealt,
-            damage_received: statistics.all.damage_received,
-            spotted: statistics.all.spotted,
-            max_frags_tank_id: statistics.all.max_frags_tank_id,
-            hits: statistics.all.hits,
-            frags: statistics.all.frags,
-            max_xp: statistics.all.max_xp,
-            max_xp_tank_id: statistics.all.max_xp_tank_id,
-            wins: statistics.all.wins,
-            losses: statistics.all.losses,
-            max_frags: statistics.all.max_frags,
-            shots: statistics.all.shots,
-            frags8p: statistics.all.frags8p,
-            xp: statistics.all.xp,
-            win_and_survived: statistics.all.win_and_survived,
-            survived_battles: statistics.all.survived_battles,
-            dropped_capture_points: statistics.all.dropped_capture_points,
-          },
-        };
-      };
-
-      return lestaDTO(res.data);
-    } catch (e) {
-      return console.log(e?.data?.message);
-    }
-  }, []);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const userData = await getData(id);
-        setUser(userData);
-      } catch (e) {
-        console.error(e?.data?.message);
-      }
-    };
+    setSession(() => userLastSession);
+  }, [userLastSession]);
 
-    dispatch(fetchLestaUserDataById({ id: Number(id) }));
-    fetchData();
-  }, [id, getData, dispatch]);
+  useEffect(() => {
+    const lestaAccessToken = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LESTA.TOKEN));
+    dispatch(fetchLestaUserDataById({
+      id: Number(id),
+      lestaAccessToken: lestaAccessToken ?? null,
+    }));
+  }, [id, dispatch]);
 
   if (isLoading) return <Loader />;
 
-  if (isNotFound && !isLoading) {
+  if (isNotFound) {
     return (
       <ErrorBoundary>
+        <SeoUpdater
+          title={t('Пользователь не найден')}
+        />
         <Background />
-        <main className={classNames(cls.UserPage, {}, [className])}>
-          <div className={cls.wrapper}>
-            Пользователь не найден.
-          </div>
-        </main>
+        <div className={classNames(cls.UserPage, {}, [className])}>
+          <section className={classNames(cls.wrapper, {}, [cls.notFoundSection])}>
+            <h2 className={cls.notFoundSectionHeading}>{t('Пользователь не найден')}</h2>
+          </section>
+        </div>
       </ErrorBoundary>
     );
   }
 
   return (
     <ErrorBoundary>
+      <SeoUpdater
+        title={`${t('Статистика игрока')} - ${userNickname}`}
+      />
       <Background />
-      <main className={classNames(cls.UserPage, {}, [className])}>
+      <div className={classNames(cls.UserPage, {}, [className])}>
         <div className={cls.wrapper}>
-          <UserProfile user={user} />
+          <UserProfile />
           <Tabs tab={tab} tabList={tabList} handleChangeTab={setTab} />
-          <UserStats tab={tab} user={user} />
+          <SessionControlSection id={Number(id)} setSession={setSession} />
+          <UserStats tab={tab} id={Number(id)} statItems={statItems} />
         </div>
-      </main>
+      </div>
     </ErrorBoundary>
   );
 };

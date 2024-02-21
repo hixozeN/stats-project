@@ -1,7 +1,8 @@
 import {
-  memo, SVGProps, useCallback, useState, VoidFunctionComponent,
+  memo, SVGProps, useCallback, VoidFunctionComponent,
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { useTranslation } from 'react-i18next';
 import cls from './UserStatsItem.module.scss';
 
 interface IUserStatsItemProps {
@@ -10,13 +11,13 @@ interface IUserStatsItemProps {
   itemName?: string;
   counter?: number | string;
   delta?: number;
-  tab?: number;
 }
 
 export const UserStatsItem = memo((props: IUserStatsItemProps) => {
   const {
-    className, Icon, counter, itemName, delta, tab,
+    className, Icon, counter, itemName, delta,
   } = props;
+  const { t } = useTranslation('userPage');
 
   const isPositive = delta > 0 && itemName !== 'Поражения';
   const isNegative = delta < 0 || itemName === 'Поражения';
@@ -26,8 +27,8 @@ export const UserStatsItem = memo((props: IUserStatsItemProps) => {
 
     if (diff > 0) return `+${delta}${label === 'Винрейт' ? '%' : ''}`;
 
-    return `-${delta}${label === 'Винрейт' ? '%' : ''}`;
-  }, [delta, itemName]);
+    return `${delta}${label === 'Винрейт' ? '%' : ''}`;
+  }, [delta]);
 
   return (
     <li className={classNames(cls.statItem, {}, [className])}>
@@ -36,10 +37,10 @@ export const UserStatsItem = memo((props: IUserStatsItemProps) => {
         <span className={classNames(cls.delta, { [cls.positive]: isPositive, [cls.negative]: isNegative }, [])}>
           {`${calculateDelta(delta, itemName)}`}
         </span>
-        <h3 className={classNames(cls.counter, { [cls.counterSession]: itemName === 'Начало сессии' }, [])}>
+        <h3 className={classNames(cls.counter, { [cls.counterSession]: itemName === 'Старт сессии' }, [])}>
           {counter}
         </h3>
-        <p className={cls.name}>{itemName}</p>
+        <p className={cls.name}>{t(itemName)}</p>
       </div>
     </li>
   );

@@ -92,12 +92,6 @@ export function Modal(props: IModalProps) {
             tabIndex={0}
           >
             {children}
-            {`Very long message (close to 100 symbols) for test modal window.
-          Very long message (close to 100 symbols) for test modal window.
-          Very long message (close to 100 symbols) for test modal window.
-          Very long message (close to 100 symbols) for test modal window.
-          Very long message (close to 100 symbols) for test modal window.
-          Very long message (close to 100 symbols) for test modal window.`}
           </div>
         </div>
       </div>

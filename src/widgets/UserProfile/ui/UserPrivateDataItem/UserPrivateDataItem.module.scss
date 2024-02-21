@@ -19,23 +19,23 @@
   background: url("shared/assets/icons/userStats/silver.svg") no-repeat left 0 top 5px;
 }
 
-.freeExp {
+.free_xp {
   padding: 9.5px 0 9.5px 30px;
   background: url("shared/assets/icons/userStats/free-exp.svg") no-repeat left 5px top 10px;
   background-size: 20px 20px;
 }
 
-@media screen and (width <= 1024px) {
+@media screen and (width <= 768px) {
   .privateElement {
     padding: 30px 0 9.5px;
     font-size: 14px;
   }
 
-  .premium, .gold, .credits, .freeExp {
+  .premium, .gold, .credits, .free_xp {
     background-position: top center;
   }
 
-  .freeExp {
+  .free_xp {
     background-position-y: 5px;
   }
 }
