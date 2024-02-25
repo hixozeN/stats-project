@@ -110,13 +110,24 @@
   display: flex;
   list-style: none;
   justify-content: space-evenly;
+  gap: 25px;
+  margin: 0;
   margin-top: auto;
   margin-bottom: 50px;
+  width: 100%;
+  padding: 0;
 }
 
 .buttonItem {
   display: flex;
   border-radius: 5px;
+  width: 100%;
+  max-width: 200px;
+  justify-content: center;
+
+  & button {
+    width: 100%;
+  }
 
   &:first-of-type {
     outline: 1px solid var(--bg-tab-inactive);
@@ -126,6 +137,7 @@
     position: absolute;
     top: 15px;
     right: 15px;
+    max-width: 42px;
   }
 }
 
@@ -134,8 +146,7 @@
 }
 
 .type svg {
-  width: 20px;
-  height: 20px;
+  width: 16px;
 }
 
 @media (hover: hover) {
@@ -156,4 +167,45 @@
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+@media (width <= 1024px) {
+  .filterForm {
+    padding: 15px 0;
+    font-size: 12px;
+  }
+
+  .buttonItem {
+    transform: scale(0.75);
+  }
+
+  .label {
+    min-width: 40px;
+    padding: 5px;
+  }
+
+  .buttonItem:last-of-type {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .group {
+    padding: 5px 10px 15px;
+  }
+
+  .filterList {
+    gap: 10px;
+  }
+
+  .buttonList {
+    gap: 10px;
+    justify-content: space-around;
+    padding: 0 10px;
+    margin-bottom: 15px;
+  }
+
+  .title {
+    font-size: 14px;
+  }
 }
