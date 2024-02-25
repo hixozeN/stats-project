@@ -8,8 +8,8 @@
   "usa": "США",
   "france": "Франция",
   "japan": "Япония",
-  "lightTank": "Легкий танк",
-  "mediumTank": "Средний танк",
-  "heavyTank": "тяжелый танк",
+  "lightTank": "Легкий",
+  "mediumTank": "Средний",
+  "heavyTank": "Тяжелый",
   "AT-SPG": "ПТ-САУ"
 }

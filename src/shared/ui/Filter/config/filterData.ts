@@ -14,7 +14,7 @@ export const filterData = [
   },
   {
     name: 'type',
-    text: 'Тип',
+    text: 'Тип танка',
     value: ['lightTank', 'mediumTank', 'heavyTank', 'AT-SPG'],
     param: 'tankData.type',
   },

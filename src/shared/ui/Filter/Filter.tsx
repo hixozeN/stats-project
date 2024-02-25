@@ -54,7 +54,6 @@ export const Filteer = memo(({ dataList }: TanksProps) => {
                   <FilteerItem
                     item={item}
                     param={data.param}
-                    text={data.text}
                     name={data.name}
                     key={`${data.param}-${item}`}
                   />
@@ -64,10 +63,10 @@ export const Filteer = memo(({ dataList }: TanksProps) => {
           ))}
           <ul className={cls.buttonList}>
             <li className={cls.buttonItem}>
-              <Button onClick={clereFilter} theme="clear">{t('Сбросить')}</Button>
+              <Button onClick={clereFilter} size="size_m" theme="clear">{t('Сбросить')}</Button>
             </li>
             <li className={cls.buttonItem}>
-              <Button onClick={applyFilter}>{t('Фильтр')}</Button>
+              <Button onClick={applyFilter} size="size_m">{t('Фильтр')}</Button>
             </li>
             <li className={cls.buttonItem}>
               <Button theme="clear" variant="close" onClick={closeFilter} />

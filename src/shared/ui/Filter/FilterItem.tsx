@@ -8,11 +8,12 @@ import cls from './Filter.module.scss';
 interface TanksProps {
   item: string;
   param: string;
-  text: string;
   name: string;
 }
 
-export const FilteerItem = memo(({ item, param, text, name }: TanksProps) => {
+export const FilteerItem = memo(({
+  item, param, name,
+}: TanksProps) => {
   const { t } = useTranslation('filter');
 
   const mastery: Record<number, ReactElement> = useMemo(() => masteryTank, []);
@@ -24,17 +25,13 @@ export const FilteerItem = memo(({ item, param, text, name }: TanksProps) => {
 
   const renderContent = () => {
     if (param === 'tankData.tier') {
-      return (
-        <span className={cls.text}>
-          {getLevelRoman(Number(item))}
-        </span>
-      );
+      return <span className={cls.text}>{getLevelRoman(Number(item))}</span>;
     }
     if (param === 'tankData.type') {
       return (
         <>
           {typeTank[item]}
-          <span className={cls.text}>{t(`${item}`)}</span>
+          <span>{t(`${item}`)}</span>
         </>
       );
     }
@@ -42,7 +39,7 @@ export const FilteerItem = memo(({ item, param, text, name }: TanksProps) => {
       return (
         <>
           {nationTank[item]}
-          <span className={cls.text}>{t(`${item}`)}</span>
+          <span>{t(`${item}`)}</span>
         </>
       );
     }
@@ -72,14 +69,6 @@ export const FilteerItem = memo(({ item, param, text, name }: TanksProps) => {
         htmlFor={`${param}-${item}`}
       >
         {renderContent()}
-        {/* {typeTank[item]}
-        <img
-          className={cls.mastery}
-          src={`${mastery[item]}`}
-          alt={t(`${item}`)}
-          loading="lazy"
-        /> */}
-        {/* <span className={classNames(cls.text, {}, [])}>{t(`${item}`)}</span> */}
       </label>
     </li>
   );
