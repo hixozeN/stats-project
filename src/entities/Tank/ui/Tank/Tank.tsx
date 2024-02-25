@@ -20,7 +20,7 @@ export const Tank = memo(({ data }: TankProps) => {
     [],
   );
   const {
-    tankData, last_battle_time, mark_of_mastery, statistics,
+    tank_id, tankData, last_battle_time, mark_of_mastery, statistics,
   } = data;
 
   return (
@@ -32,7 +32,7 @@ export const Tank = memo(({ data }: TankProps) => {
               [cls.premium]: tankData.is_premium,
             })}
           >
-            {tankData.name}
+            {tankData._id}
           </h3>
           <span className={cls.flag}>{nationTank[tankData.nation]}</span>
         </div>
@@ -43,6 +43,7 @@ export const Tank = memo(({ data }: TankProps) => {
               lasteDateGame={last_battle_time}
               data={item}
               statistics={statistics}
+              key={`${tank_id}-${item}`}
             />
           ))}
         </dl>

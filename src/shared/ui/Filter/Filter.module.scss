@@ -1,0 +1,159 @@
+.tanks {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: normal;
+  margin: 0;
+}
+
+.sortList {
+  display: flex;
+  list-style: none;
+  gap: 15px;
+}
+
+.sortItem {
+  display: flex;
+  border: 1px solid var(--bg-stat-item);
+  border-radius: 10px;
+  margin-bottom: auto;
+}
+
+.wrapper {
+  position: fixed;
+  display: none;
+  z-index: 20;
+  top: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-color-50-opacity);
+  justify-content: flex-end;
+}
+
+.open {
+  display: flex;
+}
+
+.filterForm {
+  max-width: 520px;
+  width: 100%;
+  padding: 25px;
+  background-color: var(--bg-color);
+  z-index: 30;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border: 1px solid var(--bg-tab-inactive);
+  border-right: none;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.group {
+  border: 0;
+  border-bottom: 1px solid var(--bg-tab-inactive);
+  padding: 10px 20px 30px;
+  margin-bottom: 25px;
+}
+
+.filterList {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.filterItem {
+  display: flex;
+  border-radius: 5px;
+  outline: 1px solid var(--bg-tab-inactive);
+  min-width: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+.legend {
+  position: relative;
+}
+
+.label {
+  display: flex;
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  & svg {
+    width: 30px;
+  }
+}
+
+.checkbox:checked {
+  & + label {
+    background-color: var(--bg-accent-color);
+    color: var(--highlight-color);
+    font-weight: 500;
+  }
+}
+
+.buttonList {
+  display: flex;
+  list-style: none;
+  justify-content: space-evenly;
+  margin-top: auto;
+  margin-bottom: 50px;
+}
+
+.buttonItem {
+  display: flex;
+  border-radius: 5px;
+
+  &:first-of-type {
+    outline: 1px solid var(--bg-tab-inactive);
+  }
+
+  &:last-of-type {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
+}
+
+.mastery {
+  width: 24px;
+}
+
+.type svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (hover: hover) {
+  .label:hover {
+    opacity: 0.7;
+    cursor: pointer;
+  }
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}

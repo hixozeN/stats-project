@@ -20,7 +20,8 @@ export type ButtonVariant =
   | 'notification'
   | 'chevron-down'
   | 'magnifier'
-  | 'burger';
+  | 'burger'
+  | 'close';
 
 export type ButtonTheme =
   | 'default'

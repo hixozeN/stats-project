@@ -49,6 +49,7 @@ const statList: string[] = [
   'WN8',
   'Последний бой',
 ];
+
 export {
   masteryTank, type, nationFlag, statList,
 };
