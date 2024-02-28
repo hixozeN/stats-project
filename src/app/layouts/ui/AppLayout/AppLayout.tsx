@@ -48,7 +48,7 @@ function AppLayout() {
     if (isLestaAuth && lestaAuthStatus === 'ok') {
       const postData = async (data: any) => {
         try {
-          const res = await axios.post('http://192.168.3.81:3030/auth/lesta', data, { withCredentials: true });
+          const res = await axios.post('http://localhost:3030/auth/lesta', data, { withCredentials: true });
           // записываем данные в локалсторейдж
           localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(res.data.userData));
           dispatch(userActions.setAuthData(res.data.userData));

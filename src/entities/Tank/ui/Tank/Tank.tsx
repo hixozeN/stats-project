@@ -32,7 +32,7 @@ export const Tank = memo(({ data }: TankProps) => {
               [cls.premium]: tankData.is_premium,
             })}
           >
-            {tankData._id}
+            {tankData.name}
           </h3>
           <span className={cls.flag}>{nationTank[tankData.nation]}</span>
         </div>
