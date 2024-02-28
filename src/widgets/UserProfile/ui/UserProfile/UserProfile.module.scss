@@ -2,13 +2,14 @@
   margin: 0 0 20px;
   padding: 15px 22px 15px 28px;
   border-radius: 0 0 15px 15px;
-
-  //background: #C2C2BE;
   display: grid;
   justify-content: center;
-
-  // grid-template: ". privateData rating" 31px "avatar publicData rating" 1fr "avatar publicData rating" 1fr "avatar publicData ." 1fr "avatar publicData social" auto / auto 1fr auto;
-  grid-template: "privateData privateData privateData" 50px "avatar publicData rating" 1fr "avatar publicData social" auto / auto 1fr auto;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: 50px 1fr auto;
+  grid-template-areas:
+    "privateData privateData privateData"
+    "avatar publicData rating"
+    "avatar publicData social";
 }
 
 .avatarWrapper {
@@ -105,25 +106,27 @@
     color: var(--primary-color);
     opacity: 0.8;
   }
-
-  .socialLink:hover {
-    opacity: 1;
-  }
 }
 
-@media screen and (width <= 1024px) {
+@media screen and (width <= 768px) {
   .UserStatsProfile {
-    padding: 15px 10px 30px;
+    padding: 15px 10px 0;
+    grid-template-columns: 1fr 140px 1fr;
+    grid-template-rows: repeat(5, auto);
+    grid-template-areas:
+      "privateData privateData privateData"
+      "avatar avatar avatar"
+      ". rating ."
+      "publicData publicData publicData"
+      "social social social";
+  }
 
-    //display: grid;
-    //grid-auto-columns: 1fr;
-    //grid-template-columns: auto 1fr;
-    //grid-template-rows: repeat(4, auto);
-    //gap: 25px 0;
-    //grid-template-areas:
-    //  "avatar privateData"
-    //  "avatar publicData"
-    //  "avatar ."
-    //  "avatar social";
+  .avatarWrapper {
+    padding: 0;
+  }
+
+  .avatar {
+    width: 140px;
+    height: 140px;
   }
 }

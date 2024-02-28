@@ -10,8 +10,10 @@
   grid-area: privateData;
 }
 
-//@media screen and (width <= 1024px) {
-//  .privateData {
-//    justify-content: space-evenly;
-//  }
-//}
+@media screen and (width <= 768px) {
+  .privateData {
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+  }
+}

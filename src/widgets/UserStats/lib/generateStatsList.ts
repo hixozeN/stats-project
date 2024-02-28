@@ -1,5 +1,9 @@
 import { LestaUserStatistics } from 'entities/Lesta/model/types/users/PersonalUserData';
-import { LestaUserLastSession, LestaUserRatingData } from 'entities/Lesta';
+import { LestaUserRatingData, LestaUserSession } from 'entities/Lesta';
+import { getWinRate } from 'shared/lib/statCounters/getWinRate';
+import { getAvgDamage } from 'shared/lib/statCounters/getAvgDamage';
+import { formatDate } from 'shared/lib/formatDate/formatDate';
+import { getLastBattleTime } from 'shared/lib/statCounters/getLastBattleTime';
 import { StatsListItem } from '../model/types';
 
 const getLastBattleTime = (timestamp: number) => {
@@ -39,7 +43,7 @@ export function getAvgDamage(damage: number, battles: number): number {
 
 export const generateStatsList = (
   currStatistics: Partial<LestaUserStatistics>,
-  session: LestaUserLastSession,
+  session: LestaUserSession,
   rating: LestaUserRatingData,
   lastBattleTime?: number,
 ) => {
@@ -68,8 +72,11 @@ export const generateStatsList = (
     currStatistics?.battles,
   );
   const avgDamageSession = session
-    ? (currStatistics.damage_dealt - session.statistics.damage_dealt)
-      / (currStatistics.battles - session.statistics.battles)
+    ? Math.round((
+      currStatistics.damage_dealt - session.statistics.damage_dealt
+    ) / (
+      currStatistics.battles - session.statistics.battles
+    ))
     : 0;
   const avgDamageLastSession = session
     ? getAvgDamage(
@@ -240,7 +247,7 @@ export const generateStatsList = (
     {
       key: 'sessionStartTime',
       value: formatDate(session?.session_date) || 'Никогда.',
-      label: 'Начало сессии',
+      label: 'Старт сессии',
       delta: 0,
       tab: 1,
     },

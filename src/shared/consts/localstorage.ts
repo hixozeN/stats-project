@@ -10,3 +10,5 @@ export const LOCAL_STORAGE_LESTA = {
   ID: 'account_id',
   EXPIRES_AT: 'expires_at',
 };
+
+export const I18_CURRENT_LANGUAGE = 'i18nextLng';

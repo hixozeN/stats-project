@@ -23,7 +23,7 @@ export function classNames(cls: string, mods: TMods = {}, additional: Array<stri
     // вытаскиваем все entries из mods
     ...Object.entries(mods)
       // фильтруем значения, отбрасывая модификаторы с false
-      // eslint-disable-next-line no-unused-vars
+      // eslint-disable-next-line
       .filter(([_, value]) => Boolean(value))
       // раскладываем в новый массив и соединяем в строку
       .map(([className]) => className),

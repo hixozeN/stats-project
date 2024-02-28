@@ -12,6 +12,8 @@ import TournamentIcon from 'shared/assets/icons/Sidebar/tournaments.svg';
 import TeamsIcon from 'shared/assets/icons/Sidebar/teams.svg';
 import FriendIcon from 'shared/assets/icons/Sidebar/friends.svg';
 import AdminIcon from 'shared/assets/icons/Sidebar/admin.svg';
+import { useSelector } from 'react-redux';
+import { getUserData } from 'entities/User/model/selectors/getUserData/getUserData';
 
 export interface MenuData {
   name: string;
@@ -26,6 +28,9 @@ export type MenuTheme =
   | 'adminSidebar';
 
 export const getMenuElements = (module: MenuTheme) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const authData = useSelector(getUserData);
+
   const data = {
     stat: {
       name: 'Статистика',
@@ -39,7 +44,7 @@ export const getMenuElements = (module: MenuTheme) => {
     },
     user: {
       name: 'Профиль',
-      path: RoutePath.user,
+      path: `${RoutePath.user_id}/${authData?.lestaData?.account_id}`,
       icon: <ProfileIcon />,
     },
     edit: {

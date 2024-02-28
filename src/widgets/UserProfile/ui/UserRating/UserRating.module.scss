@@ -26,3 +26,23 @@
   font-size: 14px;
   font-weight: 500;
 }
+
+@media screen and (width <= 768px) {
+  .rating {
+    width: 70px;
+    height: 70px;
+    margin-top: -150px;
+    margin-right: -40px;
+    background-color: #121217;
+  }
+
+  .ratingImage {
+    width: 30px;
+    height: 35px;
+  }
+
+  .ratingValue {
+    font-size: 12px;
+    line-height: 14px;
+  }
+}

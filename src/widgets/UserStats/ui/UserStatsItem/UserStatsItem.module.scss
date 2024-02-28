@@ -29,6 +29,10 @@
   align-items: center;
   margin: 0 auto;
   padding-right: 10px;
+
+  @media screen and (width <= 460px) {
+    padding: 0;
+  }
 }
 
 .delta {
@@ -68,6 +72,7 @@
 
 .name {
   font-size: 14px;
+  white-space: nowrap;
 
   @media screen and (width <= 1024px) {
     font-size: 12px;
@@ -84,4 +89,10 @@
 
 .green {
   color: var(--stats-green-color);
+}
+
+@media screen and (hover:hover) {
+  .statItem:hover {
+    border: 1px solid #858585;
+  }
 }

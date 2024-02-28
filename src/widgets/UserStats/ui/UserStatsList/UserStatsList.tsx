@@ -1,6 +1,5 @@
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { UserStatsItem } from 'widgets/UserStats/ui/UserStatsItem/UserStatsItem';
 import BattlesIcon from 'shared/assets/icons/userStats/battles.svg';
 import WinrateIcon from 'shared/assets/icons/userStats/winrate.svg';
 import DamageIcon from 'shared/assets/icons/userStats/damage.svg';
@@ -9,7 +8,9 @@ import WinsIcon from 'shared/assets/icons/userStats/wins.svg';
 import DefeatIcon from 'shared/assets/icons/userStats/defeat.svg';
 import DrawIcon from 'shared/assets/icons/userStats/handshake.svg';
 import ClockIcon from 'shared/assets/icons/userStats/clock.svg';
-import { StatsListItem } from 'widgets/UserStats/model/types/index';
+import { useTranslation } from 'react-i18next';
+import { StatsListItem } from '../../model/types/index';
+import { UserStatsItem } from '../UserStatsItem/UserStatsItem';
 import cls from './UserStatsList.module.scss';
 
 interface UserStatsListProps {
@@ -26,24 +27,25 @@ const Icons = {
   Поражения: DefeatIcon,
   Ничьи: DrawIcon,
   'Посл. бой': ClockIcon,
-  'Начало сессии': ClockIcon,
+  'Старт сессии': ClockIcon,
 };
 
 export const UserStatsList = memo((props: UserStatsListProps) => {
   const { className, data } = props;
+  const { t } = useTranslation('userPage');
 
   if (!data) {
     return (
       <div className={cls.emptyData}>
-        <h2 className={cls.emptyDataHeading}>Статистика временно недоступна... 😔</h2>
+        <h2 className={cls.emptyDataHeading}>{t('Статистика временно недоступна... 😔')}</h2>
       </div>
     );
   }
 
   return (
-    <ul className={cls.statList}>
+    <ul className={classNames(cls.statList, {}, [className])}>
       {data.map(({
-        tab, key, label, value, delta,
+        key, label, value, delta,
       }: StatsListItem) => (
         <UserStatsItem
           key={key}

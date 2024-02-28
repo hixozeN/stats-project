@@ -27,6 +27,7 @@ export enum AppRoutes {
   FRIENDS = 'friends',
   AUTH = 'auth',
   AUTH_LESTA = 'authLesta',
+  USER_ID = 'user_id',
   PROFILE = 'profile',
   USER = 'user',
   PROFILE_STATS = 'profile_stats',
@@ -48,6 +49,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.FRIENDS]: '/friends',
   [AppRoutes.AUTH]: '/auth',
   [AppRoutes.AUTH_LESTA]: '/auth/lesta',
+  [AppRoutes.USER_ID]: '/user',
   [AppRoutes.PROFILE]: '/profile',
   [AppRoutes.USER]: '/user/:id',
   [AppRoutes.PROFILE_EDIT]: '/profile/edit',
@@ -92,6 +94,10 @@ export const routerConfiguration = createBrowserRouter([
           {
             path: RoutePath.friends,
             element: <div>{i18n.t('friends')}</div>,
+          },
+          {
+            path: RoutePath.user_id,
+            element: <div>{i18n.t('user')}</div>,
           },
           {
             path: RoutePath.auth,

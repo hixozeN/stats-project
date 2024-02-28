@@ -3,7 +3,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './UserPrivateDataItem.module.scss';
 
 interface UserPrivateDataItemProps {
-  variant: 'premium' | 'gold' | 'credits' | 'freeExp';
+  variant: 'gold' | 'credits' | 'premium' | 'free_xp';
   value: number;
   className?: string;
 }
