@@ -2,13 +2,13 @@ import { LestaTankStats } from '../model/types/tanks';
 
 export function filterTanksData(data: LestaTankStats[]): LestaTankStats[] {
   return data.filter(
-    (item: LestaTankStats) => 'tankData' in item && Number(item.statistics.battles) !== 0,
+    (item: LestaTankStats) => 'tankData' in item,
   );
 }
 
 // export function filterTanks(data: LestaTankStats[]): number[] {
 //   return data
-//     .filter((item: LestaTankStats) => !item.tankData)
+//     .filter((item: LestaTankStats) => 'tankData' in item && Number(item.statistics.battles) === 0)
 //     .map((item1) => item1.tank_id);
 // }
 // const arr = [

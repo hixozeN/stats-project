@@ -11,7 +11,7 @@ interface TanksProps {
   name: string;
 }
 
-export const FilteerItem = memo(({
+export const FilterItem = memo(({
   item, param, name,
 }: TanksProps) => {
   const { t } = useTranslation('filter');

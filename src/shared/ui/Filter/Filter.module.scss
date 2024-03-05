@@ -27,7 +27,8 @@
 
 .wrapper {
   position: fixed;
-  display: none;
+  display: flex;
+  opacity: 0;
   z-index: 20;
   top: 0;
   right: 0;
@@ -35,15 +36,24 @@
   height: 100vh;
   background-color: var(--bg-color-50-opacity);
   justify-content: flex-end;
+  transition: all 0.5s;
+  z-index: -1;
 }
 
 .open {
-  display: flex;
+  opacity: 1;
+  z-index: 10;
+
+  & .filterForm {
+    transform: translateX(520px);
+    transition-timing-function: cubic-bezier(0.68, 1.55, 0.265, 1);
+  }
 }
 
 .filterForm {
   max-width: 520px;
   width: 100%;
+  right: 520px;
   padding: 25px;
   background-color: var(--bg-color);
   z-index: 30;
@@ -54,6 +64,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  transition: all 0.5s;
 }
 
 .group {
@@ -171,8 +182,9 @@
 
 @media (width <= 1024px) {
   .filterForm {
-    padding: 15px 0;
+    padding: 15px 10px;
     font-size: 12px;
+    max-width: 320px;
   }
 
   .buttonItem {

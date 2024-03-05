@@ -8,6 +8,7 @@ export type LestaTankData = {
   tier: number;
   nation: string;
   is_premium: boolean;
+  is_collectible: boolean;
   image: string;
   image_preview: string;
   description: string;
@@ -22,4 +23,6 @@ export type LestaTankStats = {
   battle_life_time: number;
   // statistics: Partial<LestaUserStatistics>,
   statistics: LestaUserStatistics;
+  wn8: number;
+  battlesToShowWN8: number;
 };

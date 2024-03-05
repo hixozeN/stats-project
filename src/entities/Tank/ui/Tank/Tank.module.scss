@@ -31,7 +31,11 @@
   overflow: hidden;
 
   &.premium {
-    color: var(--accent-color);
+    color: var(--is-premium-color);
+  }
+
+  &.collectible {
+    color: var(--is-collectible);
   }
 }
 

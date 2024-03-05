@@ -1,18 +1,17 @@
 import { memo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LestaTankStats } from 'entities/Lesta';
 import { statList } from 'entities/Tank/config/TankData';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from '../Button/Button';
-import { FilteerItem } from './FilterItem';
+import { FilterItem } from './FilterItem';
 import { filterData } from './config/filterData';
 import cls from './Filter.module.scss';
 
-interface TanksProps {
-  dataList?: LestaTankStats[];
+interface TanksProps<T> {
+  dataList?: T[];
 }
 
-export const Filteer = memo(({ dataList }: TanksProps) => {
+function FilterWithCurtain<T>({ dataList }: TanksProps<T>) {
   const { t } = useTranslation('tank');
   const [isOpenFilter, setOpenFilter] = useState(false);
   const filterList = dataList;
@@ -25,7 +24,7 @@ export const Filteer = memo(({ dataList }: TanksProps) => {
     closeFilter();
   };
 
-  const clereFilter = () => {};
+  const clearFilter = () => {};
 
   const openFilter = () => {
     setOpenFilter(true);
@@ -51,7 +50,7 @@ export const Filteer = memo(({ dataList }: TanksProps) => {
               <legend className={cls.legend}>{t(`${data.text}`)}</legend>
               <ul className={cls.filterList}>
                 {data.value.map((item) => (
-                  <FilteerItem
+                  <FilterItem
                     item={item}
                     param={data.param}
                     name={data.name}
@@ -63,7 +62,9 @@ export const Filteer = memo(({ dataList }: TanksProps) => {
           ))}
           <ul className={cls.buttonList}>
             <li className={cls.buttonItem}>
-              <Button onClick={clereFilter} theme="clear">{t('Сбросить')}</Button>
+              <Button onClick={clearFilter} theme="clear">
+                {t('Сбросить')}
+              </Button>
             </li>
             <li className={cls.buttonItem}>
               <Button onClick={applyFilter}>{t('Фильтр')}</Button>
@@ -76,4 +77,6 @@ export const Filteer = memo(({ dataList }: TanksProps) => {
       </div>
     </div>
   );
-});
+}
+
+export const Filter = memo(FilterWithCurtain);

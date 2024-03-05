@@ -45,12 +45,6 @@ export type ButtonSize =
   | 'size_l'
   | 'size_xl'
   | 'size_xxl';
-export type ButtonSize =
-  | 'size_s'
-  | 'size_m'
-  | 'size_l'
-  | 'size_xl'
-  | 'size_xxl';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
@@ -62,7 +56,6 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
   isUppercase?: boolean;
   children?: ReactNode;
-  isActive?: boolean;
   isActive?: boolean;
 }
 
@@ -100,12 +93,6 @@ export const Button = memo((props: ButtonProps) => {
           cls[size],
           cls[fontSize],
         ])}
-        className={classNames(cls.Button, mods, [
-          className,
-          cls[theme],
-          cls[size],
-          cls[fontSize],
-        ])}
         {...otherProps}
       >
         <span data-testid="spanWithLoader" className={cls.loader} />
@@ -117,12 +104,6 @@ export const Button = memo((props: ButtonProps) => {
     <button
       type="button"
       data-testid="btnUiKit"
-      className={classNames(cls.Button, mods, [
-        className,
-        cls[theme],
-        cls[size],
-        cls[fontSize],
-      ])}
       className={classNames(cls.Button, mods, [
         className,
         cls[theme],

@@ -3,7 +3,7 @@ import { useMatch } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { LestaTankStats } from 'entities/Lesta';
 import { Tank } from 'entities/Tank/ui/Tank/Tank';
-import { Filteer } from 'shared/ui/Filter/Filter';
+import { Filter } from 'shared/ui/Filter/Filter';
 import cls from './Tanks.module.scss';
 
 interface TanksProps {
@@ -18,7 +18,7 @@ export const Tanks = memo(({ dataList }: TanksProps) => {
 
   return (
     <section className={cls.tanks}>
-      <Filteer dataList={dataList} />
+      <Filter dataList={dataList} />
       <ul className={cls.list}>
         {filterList.map((data) => (
           <Tank data={data} key={data.tank_id} />

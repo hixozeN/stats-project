@@ -6,40 +6,40 @@ import { formatDate } from 'shared/lib/formatDate/formatDate';
 import { getLastBattleTime } from 'shared/lib/statCounters/getLastBattleTime';
 import { StatsListItem } from '../model/types';
 
-const getLastBattleTime = (timestamp: number) => {
-  const date = new Date(timestamp * 1000);
-  const day = date.getDate();
-  const month = date.getMonth() + 1;
-  const year = date.getFullYear() % 100;
-  // const hours = date.getHours();
-  // const minutes = date.getMinutes();
-  const formattedDay = day < 10 ? `0${day}` : day;
-  const formattedMonth = month < 10 ? `0${month}` : month;
-  return `${formattedDay}.${formattedMonth}.${year}`;
-};
+// const getLastBattleTime = (timestamp: number) => {
+//   const date = new Date(timestamp * 1000);
+//   const day = date.getDate();
+//   const month = date.getMonth() + 1;
+//   const year = date.getFullYear() % 100;
+//   // const hours = date.getHours();
+//   // const minutes = date.getMinutes();
+//   const formattedDay = day < 10 ? `0${day}` : day;
+//   const formattedMonth = month < 10 ? `0${month}` : month;
+//   return `${formattedDay}.${formattedMonth}.${year}`;
+// };
 
-function formatDate(dateString: Date): string {
-  if (!dateString) return null;
-  const date = new Date(dateString);
+// function formatDate(dateString: Date): string {
+//   if (!dateString) return null;
+//   const date = new Date(dateString);
 
-  const day = date.getDate().toString().padStart(2, '0');
-  const month = (date.getMonth() + 1).toString().padStart(2, '0');
-  const year = date.getFullYear().toString().slice(2);
+//   const day = date.getDate().toString().padStart(2, '0');
+//   const month = (date.getMonth() + 1).toString().padStart(2, '0');
+//   const year = date.getFullYear().toString().slice(2);
 
-  const hours = date.getHours().toString().padStart(2, '0');
-  const minutes = date.getMinutes().toString().padStart(2, '0');
+//   const hours = date.getHours().toString().padStart(2, '0');
+//   const minutes = date.getMinutes().toString().padStart(2, '0');
 
-  return `${day}.${month}.${year} ${hours}:${minutes}`;
-}
+//   return `${day}.${month}.${year} ${hours}:${minutes}`;
+// }
 
 // const getWinRate = (wins: number, battles: number): number => Math.floor((wins / battles) * 10000) / 100;
-export const getWinRate = (wins: number, battles: number): number => {
-  const winrate = wins / battles;
-  return Math.round(((winrate) * 1000000) / 100) / 100;
-};
-export function getAvgDamage(damage: number, battles: number): number {
-  return Math.floor(damage / battles);
-}
+// export const getWinRate = (wins: number, battles: number): number => {
+//   const winrate = wins / battles;
+//   return Math.round(((winrate) * 1000000) / 100) / 100;
+// };
+// export function getAvgDamage(damage: number, battles: number): number {
+//   return Math.floor(damage / battles);
+// }
 
 export const generateStatsList = (
   currStatistics: Partial<LestaUserStatistics>,

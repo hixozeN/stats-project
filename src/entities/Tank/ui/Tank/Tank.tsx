@@ -20,17 +20,23 @@ export const Tank = memo(({ data }: TankProps) => {
     [],
   );
   const {
-    tank_id, tankData, last_battle_time, mark_of_mastery, statistics,
+    tank_id,
+    tankData,
+    last_battle_time,
+    mark_of_mastery,
+    statistics,
+    wn8,
+    battlesToShowWN8,
   } = data;
+
+  const modTitle = { [cls.premium]: tankData.is_premium, [cls.collectible]: tankData.is_collectible };
 
   return (
     <li className={cls.card}>
       <div className={cls.infoWrapper}>
         <div className={cls.titleWrapper}>
           <h3
-            className={classNames(cls.title, {
-              [cls.premium]: tankData.is_premium,
-            })}
+            className={classNames(cls.title, modTitle)}
           >
             {tankData.name}
           </h3>
@@ -41,8 +47,11 @@ export const Tank = memo(({ data }: TankProps) => {
           {statList.map((item: string) => (
             <TankStat
               lasteDateGame={last_battle_time}
+              battlesToShowWN8={battlesToShowWN8}
               data={item}
+              tankData={tankData}
               statistics={statistics}
+              wn8={wn8}
               key={`${tank_id}-${item}`}
             />
           ))}

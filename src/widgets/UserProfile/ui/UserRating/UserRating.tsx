@@ -38,6 +38,20 @@ export const UserRating = memo((props: UserRatingProps) => {
 
   if (!ratingData) return null;
 
+  if (ratingData?.battles === 0) {
+    return (
+      <div className={classNames(cls.rating, {}, [className])}>
+        <img
+          className={cls.ratingImage}
+          src={img}
+          alt={t('Изображение лиги пользователя в виде цветного щита')}
+          loading="lazy"
+        />
+        <span className={cls.ratingValue}>0 / 10</span>
+      </div>
+    );
+  }
+
   if (ratingData?.calibration_battles_left !== 0) {
     return (
       <div className={classNames(cls.rating, {}, [className])}>

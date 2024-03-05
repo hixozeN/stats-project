@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Logo } from 'shared/ui/Logo/Logo';
 import { SearchForm } from 'features/Search/ui/SearchForm/SearchForm';
 import { useMatch } from 'react-router-dom';
@@ -30,4 +31,4 @@ export const Header = memo(({ className }: HeaderProps) => {
       </div>
     </header>
   );
-};
+});

@@ -14,10 +14,8 @@ import master from 'shared/assets/icons/mastery/master.png';
 import firstStage from 'shared/assets/icons/mastery/first_stage.png';
 import secondStage from 'shared/assets/icons/mastery/second_stage.png';
 import thirdStage from 'shared/assets/icons/mastery/third_stage.png';
-import {
-  getAvgDamage,
-  getWinRate,
-} from 'widgets/UserStats/lib/generateStatsList';
+import { getWinRate } from 'shared/lib/statCounters/getWinRate';
+import { getAvgDamage } from 'shared/lib/statCounters/getAvgDamage';
 import cls from './Table.module.scss';
 import { Button } from '../Button/Button';
 
