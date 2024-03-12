@@ -23,7 +23,7 @@ const masteryTank = {
   1: thirdStage,
 };
 
-const type = {
+const typeIcon = {
   lightTank: <LightTank />,
   mediumTank: <MediumTank />,
   heavyTank: <HeavyTank />,
@@ -42,14 +42,40 @@ const nationFlag = {
   ussr: <USSR />,
 };
 
-const statList: string[] = [
-  'Боёв',
-  'Ср. урон',
-  'Побед',
-  'WN8',
-  'Последний бой',
+interface IStatList {
+  nameItem: string;
+  text: string;
+  param: string;
+}
+
+const statList: IStatList[] = [
+  {
+    nameItem: 'battles',
+    text: 'Боёв',
+    param: 'statistics.battles',
+  },
+  {
+    nameItem: 'average',
+    text: 'Ср. урон',
+    param: '',
+  },
+  {
+    nameItem: 'win',
+    text: 'Побед',
+    param: '',
+  },
+  {
+    nameItem: 'wn8',
+    text: 'WN8',
+    param: '',
+  },
+  {
+    nameItem: 'lastBattle',
+    text: 'Последний бой',
+    param: '',
+  },
 ];
 
 export {
-  masteryTank, type, nationFlag, statList,
+  masteryTank, typeIcon, nationFlag, statList, IStatList,
 };

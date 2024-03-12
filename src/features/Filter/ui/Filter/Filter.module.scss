@@ -18,45 +18,24 @@
   gap: 15px;
 }
 
-.sortItem {
-  display: flex;
-  border: 1px solid var(--bg-stat-item);
-  border-radius: 10px;
-  margin-bottom: auto;
-}
-
 .wrapper {
   position: fixed;
   display: flex;
-  opacity: 0;
-  z-index: 20;
+  z-index: -1;
   top: 0;
   right: 0;
   width: 100vw;
   height: 100vh;
   background-color: var(--bg-color-50-opacity);
   justify-content: flex-end;
-  transition: all 0.5s;
-  z-index: -1;
-}
-
-.open {
-  opacity: 1;
-  z-index: 10;
-
-  & .filterForm {
-    transform: translateX(520px);
-    transition-timing-function: cubic-bezier(0.68, 1.55, 0.265, 1);
-  }
 }
 
 .filterForm {
   max-width: 520px;
   width: 100%;
-  right: 520px;
+  left: 520px;
   padding: 25px;
   background-color: var(--bg-color);
-  z-index: 30;
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
   border: 1px solid var(--bg-tab-inactive);
@@ -64,7 +43,15 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: all 0.5s;
+  transition: transform 0.5s;
+}
+
+.open {
+  z-index: 10;
+    & .filterForm {
+    transform: translateX(-520px);
+    transition-timing-function: cubic-bezier(0.68, 1.55, 0.265, 1);
+  }
 }
 
 .group {
@@ -159,6 +146,7 @@
 .type svg {
   width: 16px;
 }
+
 
 @media (hover: hover) {
   .label:hover {

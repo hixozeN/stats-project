@@ -1,12 +1,21 @@
 export { lestaActions, lestaReducer } from './model/slice/lestaSlice';
+export {
+  userTanksActions,
+  userTanksReducer,
+} from './model/slice/lestaTanksSlice';
 export { PersonalUserDataResponse } from './model/types/users/PersonalUserData';
 export { LestaSchema } from './model/types';
 export {
-  TLestaUserData, LestaUser, LestaUserRatingData, LestaUserLastSession, LestaUserSession,
+  TLestaUserData,
+  LestaUser,
+  LestaUserRatingData,
+  LestaUserLastSession,
+  LestaUserSession,
 } from './model/types/users';
 export { LestaClan } from './model/types/clans';
 export { LestaTankStats, LestaTankData } from './model/types/tanks';
 export { fetchLestaUserDataById } from './model/services/fetchLestaUserDataById/fetchLestaUserDataById';
+export { fetchLestaUserDataByIdV2 } from './model/services/fetchLestaUserDataById/fetchLestaUserDataByIdV2';
 export { fetchLestaUserTanksDataById } from './model/services/fetchLestaUserTanksDataById/fetchLestaUserTanksDataById';
 
 // Selectors

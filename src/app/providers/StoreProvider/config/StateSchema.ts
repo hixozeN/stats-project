@@ -15,6 +15,8 @@ import { NavigateOptions, To } from 'react-router-dom';
 import { TournamentSchema } from 'entities/Tournament/model/types/tournament';
 import { LestaSchema } from 'entities/Lesta/index';
 import { TeamsSchema } from 'entities/Team/model/types/team';
+import { FilterSchema } from 'features/Filter/types/filter';
+import { LestaTanksSchema } from 'entities/Lesta/model/types';
 
 export interface StateSchema {
   user: UserSchema;
@@ -22,6 +24,8 @@ export interface StateSchema {
   tournaments: TournamentSchema;
   lesta: LestaSchema,
   teams: TeamsSchema;
+  filter: FilterSchema;
+  userTanks: LestaTanksSchema;
   // async reducers
   authForm?: AuthSchema;
 }

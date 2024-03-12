@@ -12,7 +12,6 @@ import Loader from 'shared/ui/Loader/Loader';
 import { Tanks } from 'widgets/Tanks';
 import {
   fetchLestaUserDataById,
-  fetchLestaUserTanksDataById,
   getLestaLoadingStatus,
   getLestaUserFetchStatus,
   getLestaUserLastBattleTime,
@@ -22,6 +21,7 @@ import {
   getLestaUserStatisticsData,
   getUserLastSession,
   LestaUserSession,
+  fetchLestaUserDataByIdV2,
 } from 'entities/Lesta';
 import { useSelector } from 'react-redux';
 import { LOCAL_STORAGE_LESTA } from 'shared/consts/localstorage';
@@ -29,6 +29,7 @@ import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { SeoUpdater } from 'shared/lib/SeoUpdater/SeoUpdater';
 import { generateStatsList } from 'widgets/UserStats/lib/generateStatsList';
+
 import { SessionControlSection } from '../ui/SessionControlSection/SessionControlSection';
 import cls from './UserPage.module.scss';
 
@@ -68,9 +69,14 @@ const UserPage = ({ className }: IUserPageProps) => {
       localStorage.getItem(LOCAL_STORAGE_LESTA.TOKEN),
     );
 
-    dispatch(fetchLestaUserTanksDataById({ id: Number(id) }));
     dispatch(
       fetchLestaUserDataById({
+        id: Number(id),
+        lestaAccessToken: lestaAccessToken ?? null,
+      }),
+    );
+    dispatch(
+      fetchLestaUserDataByIdV2({
         id: Number(id),
         lestaAccessToken: lestaAccessToken ?? null,
       }),
@@ -101,15 +107,15 @@ const UserPage = ({ className }: IUserPageProps) => {
     <ErrorBoundary>
       <SeoUpdater title={`${t('Статистика игрока')} - ${userNickname}`} />
       <Background />
-      {/* <div className={classNames(cls.UserPage, {}, [className])}> */}
-      <div className={cls.wrapper}>
-        <UserProfile />
-        <Tabs tab={tab} tabList={tabList} handleChangeTab={setTab} />
-        <SessionControlSection id={Number(id)} setSession={setSession} />
-        <UserStats tab={tab} id={Number(id)} statItems={statItems} />
-        <Tanks dataList={tanks} />
+      <div className={classNames(cls.UserPage, {}, [className])}>
+        <div className={cls.wrapper}>
+          <UserProfile />
+          <Tabs tab={tab} tabList={tabList} handleChangeTab={setTab} />
+          <SessionControlSection id={Number(id)} setSession={setSession} />
+          <UserStats tab={tab} id={Number(id)} statItems={statItems} />
+          <Tanks dataList={tanks} />
+        </div>
       </div>
-      {/* </div> */}
     </ErrorBoundary>
   );
 };

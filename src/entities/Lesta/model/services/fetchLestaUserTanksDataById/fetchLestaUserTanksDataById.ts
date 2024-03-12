@@ -22,28 +22,28 @@ export const fetchLestaUserTanksDataById = createAsyncThunk<
   const serverError = 'Проблема соединения. Попробуйте позже.';
   // отправка запроса
   try {
-    // отправляем пост запрос через аксиос с собранными данными
-    const response = await axios.post<LestaTankStats[]>(
-      'http://localhost:3030/tanks/stats',
-      {
-        account_id: ThunkProps.id,
-      },
-    );
+    // // отправляем пост запрос через аксиос с собранными данными
+    // const response = await axios.post<LestaTankStats[]>(
+    //   'http://localhost:3030/tanks/stats',
+    //   {
+    //     account_id: ThunkProps.id,
+    //   },
+    // );
 
     // прокидываем ошибку, если данных нет
-    if (!response.data) return rejectWithValue(serverError);
+    // if (!response.data) return rejectWithValue(serverError);
 
-    const data = filterTanksData(response.data);
+    // const data = filterTanksData(response.data);
 
-    // записываем в стейт полученные данные
-    dispatch(
-      lestaActions.setUserTanks(
-        data.sort((a, b) => b.last_battle_time - a.last_battle_time),
-      ),
-    );
+    // // записываем в стейт полученные данные
+    // dispatch(
+    //   lestaActions.setUserTanks(
+    //     data.sort((a, b) => b.last_battle_time - a.last_battle_time),
+    //   ),
+    // );
 
-    // возвращаем полученные данные
-    return response.data;
+    // // возвращаем полученные данные
+    // return response.data;
   } catch (e) {
     // возвращаем ошибку с бэка
     return rejectWithValue(e?.response?.data?.message || serverError);

@@ -6,3 +6,10 @@ export type LestaClan = {
   clan_id: number,
   emblem_set_id: number
 };
+
+export type Clan = {
+  name: string;
+  tag: string;
+  clan_id: number;
+  role: string;
+};

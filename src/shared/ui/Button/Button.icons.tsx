@@ -17,6 +17,7 @@ import DownIcon from '../../assets/icons/button/chevron-down.svg';
 import Magnifier from '../../assets/icons/button/magnifier.svg';
 import Burger from '../../assets/icons/button/burger.svg';
 import Close from '../../assets/icons/button/close.svg';
+import DownArrow from '../../assets/icons/button/down-arrow.svg';
 
 export const BUTTON_ICONS: Record<string, ReactElement> = {
   create: <CreateIcon />,
@@ -37,4 +38,5 @@ export const BUTTON_ICONS: Record<string, ReactElement> = {
   magnifier: <Magnifier />,
   burger: <Burger />,
   close: <Close />,
+  'down-arrow': <DownArrow />,
 };

@@ -1,58 +1,55 @@
-import { LestaTankStats } from 'entities/Lesta';
 import { ReactElement, memo, useMemo } from 'react';
 import { getLevelRoman } from 'entities/Tank/lib/converterTank';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { TUserTanks } from 'entities/Lesta/model/types/tanks';
 import cls from './Tank.module.scss';
 import {
-  masteryTank, nationFlag, type, statList,
+  masteryTank,
+  nationFlag,
+  typeIcon,
+  statList,
 } from '../../config/TankData';
 import { TankStat } from '../TankStat/TankStat';
 
 interface TankProps {
-  data?: LestaTankStats;
+  data?: TUserTanks;
 }
 
 export const Tank = memo(({ data }: TankProps) => {
   const mastery: Record<number, ReactElement> = useMemo(() => masteryTank, []);
-  const typeTank: Record<string, ReactElement> = useMemo(() => type, []);
+  const typeTank: Record<string, ReactElement> = useMemo(() => typeIcon, []);
   const nationTank: Record<string, ReactElement> = useMemo(
     () => nationFlag,
     [],
   );
-  const {
-    tank_id,
-    tankData,
-    last_battle_time,
-    mark_of_mastery,
-    statistics,
-    wn8,
-    battlesToShowWN8,
-  } = data;
+  const { tank_id, tankData, statistics } = data;
 
-  const modTitle = { [cls.premium]: tankData.is_premium, [cls.collectible]: tankData.is_collectible };
+  const { mark_of_mastery } = statistics;
+
+  const {
+    name, nation, tier, type, image_preview, is_collectible, is_premium,
+  } = tankData;
+
+  const modTitle = {
+    [cls.premium]: is_premium,
+    [cls.collectible]: is_collectible,
+  };
 
   return (
     <li className={cls.card}>
       <div className={cls.infoWrapper}>
         <div className={cls.titleWrapper}>
-          <h3
-            className={classNames(cls.title, modTitle)}
-          >
-            {tankData.name}
-          </h3>
-          <span className={cls.flag}>{nationTank[tankData.nation]}</span>
+          <h3 className={classNames(cls.title, modTitle)}>{name}</h3>
+          <span className={cls.flag}>{nationTank[nation]}</span>
         </div>
 
         <dl className={cls.statList}>
-          {statList.map((item: string) => (
+          {statList.map(({ nameItem, text }) => (
             <TankStat
-              lasteDateGame={last_battle_time}
-              battlesToShowWN8={battlesToShowWN8}
-              data={item}
+              data={text}
               tankData={tankData}
               statistics={statistics}
-              wn8={wn8}
-              key={`${tank_id}-${item}`}
+              key={`${tank_id}-${nameItem}`}
             />
           ))}
         </dl>
@@ -61,13 +58,13 @@ export const Tank = memo(({ data }: TankProps) => {
       <div className={cls.imageWrapper}>
         <img
           className={cls.tankImg}
-          src={`${tankData.image_preview}`}
-          alt={tankData.name}
+          src={`${image_preview}`}
+          alt={name}
           loading="lazy"
         />
         <div className={cls.inner}>
-          <p className={cls.tier}>{getLevelRoman(tankData.tier)}</p>
-          <span className={cls.type}>{typeTank[tankData.type]}</span>
+          <p className={cls.tier}>{getLevelRoman(tier)}</p>
+          <span className={cls.type}>{typeTank[type]}</span>
         </div>
         {mark_of_mastery !== 0 && (
           <img

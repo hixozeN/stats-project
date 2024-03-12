@@ -6,9 +6,8 @@
   font-size: 10px;
   line-height: normal;
   min-height: 16px;
-  cursor: help;
   display: none;
-  top: -50%;
+  top: -80%;
 }
 
 .text {
@@ -36,6 +35,7 @@
   transform: translateX(-50%);
   transition: opacity 0.3s;
   min-width: 110px;
+  display: none;
 }
 
 .cloud::after {
@@ -51,8 +51,8 @@
 
 .tooltip:hover .cloud  {
   opacity: 1;
+  display: block;
 }
-
 
 .visible {
   display: block;

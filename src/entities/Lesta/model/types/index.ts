@@ -1,5 +1,5 @@
-import { LestaUser } from './users';
-import { LestaTankStats } from './tanks';
+import { LestaUser, TUserData } from './users';
+import { LestaTankStats, TUserTanks } from './tanks';
 import { LestaClan } from './clans';
 
 export type LestaSchema = {
@@ -9,4 +9,15 @@ export type LestaSchema = {
   isLoading: boolean,
   error?: string,
   isNotFound?: boolean;
+}
+
+export type LestaData = {
+  userData: TUserData,
+  userTanks: TUserTanks[],
+}
+
+export type LestaTanksSchema = {
+  userTanks?: TUserTanks[],
+  isLoading: boolean,
+  error?: string,
 }

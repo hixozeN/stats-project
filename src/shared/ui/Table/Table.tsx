@@ -9,19 +9,19 @@ import {
   SortingState,
   useReactTable,
 } from '@tanstack/react-table';
-import { LestaTankStats } from 'entities/Lesta';
 import master from 'shared/assets/icons/mastery/master.png';
 import firstStage from 'shared/assets/icons/mastery/first_stage.png';
 import secondStage from 'shared/assets/icons/mastery/second_stage.png';
 import thirdStage from 'shared/assets/icons/mastery/third_stage.png';
 import { getWinRate } from 'shared/lib/statCounters/getWinRate';
 import { getAvgDamage } from 'shared/lib/statCounters/getAvgDamage';
+import { TUserTanks } from 'entities/Lesta/model/types/tanks';
 import cls from './Table.module.scss';
 import { Button } from '../Button/Button';
 
 interface ITableProps {
   className?: string;
-  data?: LestaTankStats[];
+  data?: TUserTanks[];
 }
 
 export const Table = memo(({ data }: ITableProps) => {
@@ -37,7 +37,7 @@ export const Table = memo(({ data }: ITableProps) => {
     [],
   );
 
-  const columns = useMemo<ColumnDef<LestaTankStats>[]>(
+  const columns = useMemo<ColumnDef<TUserTanks>[]>(
     () => [
       {
         accessorKey: 'tankData.image_preview',
@@ -68,10 +68,10 @@ export const Table = memo(({ data }: ITableProps) => {
         accessorFn: ({ statistics }) => `${getWinRate(statistics.wins, statistics.battles)}`,
         header: 'WIN%',
       },
-      {
-        header: 'ADR',
-        accessorFn: ({ statistics }) => `${getAvgDamage(statistics.damage_dealt, statistics.battles)}`,
-      },
+      // {
+      //   header: 'ADR',
+      //   accessorFn: ({ statistics }) => `${getAvgDamage(statistics.damage_dealt, statistics.battles)}`,
+      // },
       {
         accessorKey: 'WN8',
         header: 'WN8',

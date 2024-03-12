@@ -1,8 +1,8 @@
-import { LestaTankStats } from '../model/types/tanks';
+import { TUserTanks } from '../model/types/tanks';
 
-export function filterTanksData(data: LestaTankStats[]): LestaTankStats[] {
+export function filterTanksData(data: TUserTanks[]): TUserTanks[] {
   return data.filter(
-    (item: LestaTankStats) => 'tankData' in item,
+    (item: TUserTanks) => 'tankData' in item,
   );
 }
 

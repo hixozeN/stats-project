@@ -1,42 +1,38 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LestaUserStatistics } from 'shared/api';
 import { getWinRate } from 'shared/lib/statCounters/getWinRate';
 import { getAvgDamage } from 'shared/lib/statCounters/getAvgDamage';
 import { formatter } from 'entities/Tank/lib/converterTank';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { LestaTankData } from 'entities/Lesta';
 import { ToolTip } from 'shared/ui/ToolTip/ToolTip';
+import { LestaTankData } from 'entities/Lesta/model/types/tanks';
+import { ParamData } from 'entities/Lesta/model/types/default';
 import cls from './TankStat.module.scss';
 
 interface TankStatProps {
   data: string;
-  statistics: LestaUserStatistics;
-  lasteDateGame: number;
-  wn8: number;
+  statistics: ParamData;
   tankData: LestaTankData;
-  battlesToShowWN8: number;
 }
 
 export const TankStat = memo(
-  ({
-    data,
-    statistics,
-    lasteDateGame,
-    wn8,
-    tankData,
-    battlesToShowWN8,
-  }: TankStatProps) => {
-    const { battles, wins, damage_dealt } = statistics;
+  ({ data, statistics, tankData }: TankStatProps) => {
+    const {
+      battles, winRate, avgDamage, wn8, last_battle_time,
+    } = statistics;
+    const { tier } = tankData;
     const { t } = useTranslation('tank');
-    const winRate = getWinRate(wins, battles);
-    const avgDamage = getAvgDamage(damage_dealt, battles);
-    const lasteDate = lasteDateGame ? formatter(lasteDateGame) : 'никогда';
+
+    const lasteDate = last_battle_time
+      ? formatter(last_battle_time)
+      : 'никогда';
     const WN8 = () => {
-      if (tankData.tier >= 6) {
-        if (battlesToShowWN8 === null || battlesToShowWN8 > 0) {
+      if (tier >= 6) {
+        if (battles === 0) {
+          return 'никогда';
+        }
+        if (battles > 0 && wn8 === 0) {
           return 'отоладка';
-          // return `${battlesToShowWN8}/100`;
         }
         return Math.round(wn8);
       }
@@ -46,9 +42,10 @@ export const TankStat = memo(
     const isNice = winRate >= 50;
     const isGood = winRate < 70 && winRate >= 60;
     const isGreat = winRate >= 70;
-    const isVisible = data === 'WN8' && (battlesToShowWN8 === null || battlesToShowWN8 > 0);
+    const isVisible = data === 'WN8'
+      && (battles < 100 || (tier < 6 && wn8 === 0));
 
-    const isVeryBadWN8 = (wn8 < 300 && battlesToShowWN8 >= 0) || battlesToShowWN8 === null;
+    const isVeryBadWN8 = wn8 < 300;
     const isBadWN8 = wn8 >= 300 && wn8 < 450;
     const isBelowAverageWN8 = wn8 >= 450 && wn8 < 650;
     const isAverageWN8 = wn8 >= 650 && wn8 < 900;
@@ -86,11 +83,11 @@ export const TankStat = memo(
     };
 
     const textTollTip = () => {
-      if (battlesToShowWN8 > 0) {
-        return `Осталось боёв: ${battlesToShowWN8}`;
-      }
-      if (battlesToShowWN8 === null) {
+      if (tier < 6) {
         return 'Для такна ниже VI уровня расчет не ведется';
+      }
+      if (wn8 === 0 && battles >= 0) {
+        return `Осталось боёв: ${100 - battles}`;
       }
       return null;
     };
@@ -107,12 +104,7 @@ export const TankStat = memo(
     return (
       <div className={cls.wrapper}>
         <dt className={cls.term}>{`${t(`${data}`)}:`}</dt>
-        <dd
-          className={classNames(
-            cls.definition,
-            classNameRate(),
-          )}
-        >
+        <dd className={classNames(cls.definition, classNameRate())}>
           {statParams[`${data}`]}
           <ToolTip text={textTollTip()} isVisible={isVisible} />
         </dd>

@@ -1,27 +1,27 @@
-export interface IFilterData {
+export interface FilterTanks {
   name: string;
   text: string;
-  value: string[];
+  values: string[];
   param: string;
 }
 
-export const filterData = [
+export const filterData: FilterTanks[] = [
   {
     name: 'tier',
     text: 'Уровень',
-    value: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+    values: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
     param: 'tankData.tier',
   },
   {
     name: 'type',
     text: 'Тип танка',
-    value: ['lightTank', 'mediumTank', 'heavyTank', 'AT-SPG'],
+    values: ['lightTank', 'mediumTank', 'heavyTank', 'AT-SPG'],
     param: 'tankData.type',
   },
   {
     name: 'nation',
     text: 'Нация',
-    value: [
+    values: [
       'uk',
       'germany',
       'china',
@@ -37,7 +37,7 @@ export const filterData = [
   {
     name: 'mastery',
     text: 'Классность',
-    value: ['4', '3', '2', '1'],
+    values: ['4', '3', '2', '1'],
     param: 'mark_of_mastery',
   },
 ];

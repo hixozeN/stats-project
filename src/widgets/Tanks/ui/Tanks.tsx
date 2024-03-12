@@ -1,26 +1,26 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { useMatch } from 'react-router-dom';
+import { Filter } from 'features/Filter';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { LestaTankStats } from 'entities/Lesta';
 import { Tank } from 'entities/Tank/ui/Tank/Tank';
-import { Filter } from 'shared/ui/Filter/Filter';
+import { TUserTanks } from 'entities/Lesta/model/types/tanks';
 import cls from './Tanks.module.scss';
 
 interface TanksProps {
-  dataList?: LestaTankStats[];
+  dataList?: TUserTanks[];
 }
 
 export const Tanks = memo(({ dataList }: TanksProps) => {
   const isAuthPage = useMatch(RoutePath.auth);
-  if (isAuthPage) return null;
+  const [filterList, setFilterList] = useState(dataList);
 
-  const filterList = dataList;
+  if (isAuthPage) return null;
 
   return (
     <section className={cls.tanks}>
-      <Filter dataList={dataList} />
+      <Filter filterList={filterList} />
       <ul className={cls.list}>
-        {filterList.map((data) => (
+        {dataList.map((data: TUserTanks) => (
           <Tank data={data} key={data.tank_id} />
         ))}
       </ul>
