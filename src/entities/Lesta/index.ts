@@ -4,7 +4,7 @@ export {
   userTanksReducer,
 } from './model/slice/lestaTanksSlice';
 export { PersonalUserDataResponse } from './model/types/users/PersonalUserData';
-export { LestaSchema } from './model/types';
+export { LestaSchema, LestaUserDataSchema } from './model/types';
 export {
   TLestaUserData,
   LestaUser,
@@ -37,3 +37,4 @@ export { getLestaUserLastBattleTime } from './model/selectors/getLestaUserLastBa
 export { getUserSocialLinks } from './model/selectors/getUserSocialLinks/getUserSocialLinks';
 export { getLestaUserTanks } from './model/selectors/getLestaUserTanks/getLestaUserTanks';
 export { getLestaUserSessions } from './model/selectors/getLestaUserSessions/getLestaUserSessions';
+export { getLestaUserWN8 } from './model/selectors/getLestaUserWN8/getLestaUserWN8';

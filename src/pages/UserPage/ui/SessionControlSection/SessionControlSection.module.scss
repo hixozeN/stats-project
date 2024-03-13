@@ -19,10 +19,14 @@
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  padding-top: 10px;
+  padding-top: 20px;
+  margin-right: 10px;
 }
 
 .sessionList {
+  width: 173px;
+  max-height: 161px;
+  overflow: hidden;
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -35,16 +39,16 @@
   top: 30px;
   right: 0;
   z-index: var(--overlay-index);
-  transform: translateY(-10%);
+  transform: translateY(-40px);
   opacity: 0;
-  overflow: hidden;
   transition: all 0.2s;
 }
 
 .sessionListOpened {
+  overflow: auto;
   visibility: visible;
   opacity: 1;
-  transform: translateY(10%);
+  transform: translateY(40px);
 }
 
 .sessionItem {
@@ -66,6 +70,7 @@
 }
 
 .sessionsHistoryBtn {
+  outline: 1px solid var(--bg-stat-item);
   max-width: fit-content;
   padding: 10px;
 
@@ -76,6 +81,7 @@
   @media (hover: hover) {
     &:hover {
       color: var(--accent-color);
+      outline: 1px solid var(--accent-color);
 
       & svg path {
         fill: var(--accent-color);

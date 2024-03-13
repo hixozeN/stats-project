@@ -17,6 +17,7 @@ import {
   getLestaUserLastBattleTime,
   getLestaUserTanks,
   getLestaUserNickname,
+  getLestaUserWN8,
   getLestaUserRatingData,
   getLestaUserStatisticsData,
   getUserLastSession,
@@ -31,6 +32,9 @@ import { SeoUpdater } from 'shared/lib/SeoUpdater/SeoUpdater';
 import { generateStatsList } from 'widgets/UserStats/lib/generateStatsList';
 
 import { SessionControlSection } from '../ui/SessionControlSection/SessionControlSection';
+import {
+  fetchUserDataByLestaId,
+} from 'entities/Lesta/model/services/fetchUserDataByLestaId/fetchUserDataByLestaId';
 import cls from './UserPage.module.scss';
 
 interface IUserPageProps {
@@ -48,6 +52,7 @@ const UserPage = ({ className }: IUserPageProps) => {
   const isNotFound = useSelector(getLestaUserFetchStatus);
   const userNickname = useSelector(getLestaUserNickname);
   const tanks = useSelector(getLestaUserTanks);
+  const wn8 = useSelector(getLestaUserWN8);
 
   const [tab, setTab] = useState(0);
   const [session, setSession] = useState<LestaUserSession>(userLastSession);
@@ -56,7 +61,7 @@ const UserPage = ({ className }: IUserPageProps) => {
     () => generateStatsList(statisticData, session, ratingData, lastBattleTime),
     [statisticData, session, ratingData, lastBattleTime],
   );
-  const tabList = [t('Статистика'), t('Сессия'), t('Рейтинг')];
+  const tabList = useMemo(() => [t('Статистика'), t('Сессия'), t('Рейтинг')], [t]);
 
   const dispatch = useAppDispatch();
 
@@ -65,22 +70,21 @@ const UserPage = ({ className }: IUserPageProps) => {
   }, [userLastSession]);
 
   useEffect(() => {
-    const lestaAccessToken = JSON.parse(
-      localStorage.getItem(LOCAL_STORAGE_LESTA.TOKEN),
-    );
-
-    dispatch(
-      fetchLestaUserDataById({
-        id: Number(id),
-        lestaAccessToken: lestaAccessToken ?? null,
-      }),
-    );
+    const lestaAccessToken = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LESTA.TOKEN));
+    dispatch(fetchLestaUserDataById({
+      id: Number(id),
+      lestaAccessToken: lestaAccessToken ?? null,
+    }));
     dispatch(
       fetchLestaUserDataByIdV2({
         id: Number(id),
         lestaAccessToken: lestaAccessToken ?? null,
       }),
     );
+    dispatch(fetchUserDataByLestaId({
+      id: Number(id),
+      lestaAccessToken: lestaAccessToken ?? null,
+    }));
   }, [id, dispatch]);
 
   if (isLoading) return <Loader />;
@@ -88,7 +92,9 @@ const UserPage = ({ className }: IUserPageProps) => {
   if (isNotFound) {
     return (
       <ErrorBoundary>
-        <SeoUpdater title={t('Пользователь не найден')} />
+        <SeoUpdater
+          title={t('Пользователь не найден')}
+        />
         <Background />
         <div className={classNames(cls.UserPage, {}, [className])}>
           <section
@@ -105,14 +111,16 @@ const UserPage = ({ className }: IUserPageProps) => {
 
   return (
     <ErrorBoundary>
-      <SeoUpdater title={`${t('Статистика игрока')} - ${userNickname}`} />
+      <SeoUpdater
+        title={`${t('Статистика игрока')} - ${userNickname}`}
+      />
       <Background />
       <div className={classNames(cls.UserPage, {}, [className])}>
         <div className={cls.wrapper}>
           <UserProfile />
           <Tabs tab={tab} tabList={tabList} handleChangeTab={setTab} />
           <SessionControlSection id={Number(id)} setSession={setSession} />
-          <UserStats tab={tab} id={Number(id)} statItems={statItems} />
+          <UserStats tab={tab} id={Number(id)} statItems={statItems} wn8={wn8} />
           <Tanks dataList={tanks} />
         </div>
       </div>

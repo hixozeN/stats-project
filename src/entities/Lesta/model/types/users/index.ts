@@ -9,7 +9,7 @@ export type TLestaUserData = {
   account_id: number;
   expires_at?: Date;
   access_token?: string;
-};
+}
 
 type LestaPrivateUserData = {
   gold: number;
@@ -79,6 +79,7 @@ export type LestaUser = {
   youtube?: string;
   vk?: string;
   accessToken?: string;
+  wn8: number;
 };
 
 export type TUserData = {

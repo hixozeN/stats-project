@@ -2,6 +2,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { FormEvent, memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
+import { searchUsersAndClans } from 'features/Search/index';
 import { searchActions } from '../../model/slice/searchSlice';
 import { getSearchState } from '../../model/selectors/getSearchState/getSearchState';
 import { SearchInput } from '../SearchInput/SearchInput';
@@ -27,12 +28,14 @@ export const SearchForm = memo((props: IAuthFormProps) => {
 
   const handleSubmit = useCallback(async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  }, []);
+    dispatch(searchUsersAndClans({ string: search }));
+  }, [search, dispatch]);
 
   return (
     <form
       className={classNames(cls.SearchForm, {}, [className])}
       onSubmit={handleSubmit}
+      autoComplete="off"
     >
       <SearchInput
         id="search"
