@@ -11,6 +11,7 @@ const initialState: LestaSchema = {
   userTanks: null,
   clan: null,
   error: null,
+  isNotFound: false,
 };
 
 export const lestaSlice = createSlice({
@@ -28,6 +29,9 @@ export const lestaSlice = createSlice({
     },
     setLastSession: (state, action: PayloadAction<LestaUserLastSession>) => {
       state.user.lastSession = action.payload;
+    },
+    setNotFound: (state, action: PayloadAction<boolean>) => {
+      state.isNotFound = action.payload;
     },
   },
   extraReducers: (builder) => {
