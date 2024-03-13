@@ -10,3 +10,10 @@ export type LestaSchema = {
   error?: string,
   isNotFound?: boolean;
 }
+
+export type LestaClanSchema = {
+  clan?: LestaClan,
+  isLoading: boolean,
+  error?: string,
+  isNotFound?: boolean;
+}
