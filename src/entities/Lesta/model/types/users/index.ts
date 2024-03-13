@@ -10,7 +10,7 @@ export type TLestaUserData = {
   access_token?: string;
 }
 
-type LestaPrivateUserData = {
+export type LestaPrivateUserData = {
   gold: number,
   free_xp: number,
   is_premium: boolean,
@@ -78,4 +78,5 @@ export type LestaUser = {
   youtube?: string;
   vk?: string;
   accessToken?: string;
+  wn8: number;
 };

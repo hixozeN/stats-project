@@ -9,6 +9,7 @@ import { teamReducer } from 'entities/Team';
 import { $lestaApi } from 'shared/api/lestaApi';
 import { $royalApi } from 'shared/api/royalApi';
 import { royalApiInterceptors } from 'shared/api/lib/royalApiInterceptors/royalApiInterceptors';
+import { userDataReducers } from 'entities/Lesta/model/slice/userDataSlice';
 import { StateSchema } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
@@ -24,6 +25,7 @@ export function createReduxStore(
     searchForm: searchReducer,
     tournaments: tournamentReducer,
     lesta: lestaReducer,
+    lestaUserData: userDataReducers,
     teams: teamReducer,
     // async reducers
     // authForm: authReducer,

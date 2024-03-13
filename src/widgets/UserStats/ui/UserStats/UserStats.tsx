@@ -13,17 +13,18 @@ import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { LOCAL_STORAGE_LESTA } from 'shared/consts/localstorage';
 import { UserStatsList } from '../UserStatsList/UserStatsList';
 import cls from './UserStats.module.scss';
-import { StatsListItem } from '../../model/types/index';
+import { StatsListItem } from '../../model/types';
 
 interface IUserStatsProps {
   statItems: StatsListItem[];
   className?: string;
   tab?: number;
   id?: number;
+  wn8?: number;
 }
 
 export const UserStats = memo(({
-  className, tab, id, statItems,
+  className, tab, id, statItems, wn8,
 }: IUserStatsProps) => {
   const { t } = useTranslation();
   const currentUser = useSelector(getUserData);
@@ -45,25 +46,25 @@ export const UserStats = memo(({
       className={classNames(cls.userStatsSection, {}, [className])}
     >
       {
-        tab === 0 && <UserStatsList data={mainStatItems} />
+        tab === 0 && <UserStatsList data={mainStatItems} wn8={wn8} />
       }
       {
         tab === 1 && <UserStatsList data={sessionStatItems} />
       }
       {
-        tab === 2 && <UserStatsList data={ratingStatItems} />
+        tab === 2 && <UserStatsList data={ratingStatItems} wn8="---" />
       }
       {
         statItems
         && currentUser?.lestaData?.account_id === id
         && (
-          <Button
-            className={cls.btnUpdateSession}
-            size="size_m"
-            onClick={() => handleUpdateSession(true)}
-          >
-            {t('Новая сессия')}
-          </Button>
+        <Button
+          className={cls.btnUpdateSession}
+          size="size_m"
+          onClick={() => handleUpdateSession(true)}
+        >
+          {t('Новая сессия')}
+        </Button>
         )
       }
     </section>

@@ -33,6 +33,10 @@ export const UserPrivateDataItem = memo((props: UserPrivateDataItemProps) => {
         result += ` ${hours}ч.`;
       }
 
+      if (days <= 0 && hours <= 0) {
+        result += 'Неактивен';
+      }
+
       return result;
     }
     return v.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');

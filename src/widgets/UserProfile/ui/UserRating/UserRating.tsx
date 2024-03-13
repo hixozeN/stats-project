@@ -38,7 +38,7 @@ export const UserRating = memo((props: UserRatingProps) => {
 
   if (!ratingData) return null;
 
-  if (ratingData?.calibration_battles_left !== 0) {
+  if (ratingData?.calibration_battles_left !== 0 || ratingData?.battles === 0) {
     return (
       <div className={classNames(cls.rating, {}, [className])}>
         <img

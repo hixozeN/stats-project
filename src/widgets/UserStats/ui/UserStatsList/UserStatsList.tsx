@@ -16,6 +16,7 @@ import cls from './UserStatsList.module.scss';
 interface UserStatsListProps {
   data: StatsListItem[];
   className?: string;
+  wn8?: number | string;
 }
 
 const Icons = {
@@ -31,7 +32,7 @@ const Icons = {
 };
 
 export const UserStatsList = memo((props: UserStatsListProps) => {
-  const { className, data } = props;
+  const { className, data, wn8 = 0 } = props;
   const { t } = useTranslation('userPage');
 
   if (!data) {
@@ -50,7 +51,7 @@ export const UserStatsList = memo((props: UserStatsListProps) => {
         <UserStatsItem
           key={key}
           Icon={Icons[`${label}`]}
-          counter={value}
+          counter={label === 'WN8' ? wn8 : value}
           itemName={label}
           delta={delta ?? 0}
         />

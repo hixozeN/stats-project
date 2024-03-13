@@ -1,6 +1,6 @@
 export { lestaActions, lestaReducer } from './model/slice/lestaSlice';
 export { PersonalUserDataResponse } from './model/types/users/PersonalUserData';
-export { LestaSchema } from './model/types';
+export { LestaSchema, LestaUserDataSchema } from './model/types';
 export {
   TLestaUserData, LestaUser, LestaUserRatingData, LestaUserLastSession, LestaUserSession,
 } from './model/types/users';
@@ -26,3 +26,4 @@ export { getUserLastSession } from './model/selectors/getUserLastSession/getUser
 export { getLestaUserLastBattleTime } from './model/selectors/getLestaUserLastBattleTime/getLestaUserLastBattleTime';
 export { getUserSocialLinks } from './model/selectors/getUserSocialLinks/getUserSocialLinks';
 export { getLestaUserSessions } from './model/selectors/getLestaUserSessions/getLestaUserSessions';
+export { getLestaUserWN8 } from './model/selectors/getLestaUserWN8/getLestaUserWN8';

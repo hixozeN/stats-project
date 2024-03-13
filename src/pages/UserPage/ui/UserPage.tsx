@@ -13,7 +13,7 @@ import {
   getLestaLoadingStatus,
   getLestaUserFetchStatus, getLestaUserLastBattleTime,
   getLestaUserNickname,
-  getLestaUserRatingData, getLestaUserStatisticsData,
+  getLestaUserRatingData, getLestaUserStatisticsData, getLestaUserWN8,
   getUserLastSession,
   LestaUserSession,
 } from 'entities/Lesta';
@@ -24,6 +24,9 @@ import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { SeoUpdater } from 'shared/lib/SeoUpdater/SeoUpdater';
 import { generateStatsList } from 'widgets/UserStats/lib/generateStatsList';
+import {
+  fetchUserDataByLestaId,
+} from 'entities/Lesta/model/services/fetchUserDataByLestaId/fetchUserDataByLestaId';
 import {
   SessionControlSection,
 } from '../ui/SessionControlSection/SessionControlSection';
@@ -43,6 +46,7 @@ const UserPage = ({ className }: IUserPageProps) => {
   const isLoading = useSelector(getLestaLoadingStatus);
   const isNotFound = useSelector(getLestaUserFetchStatus);
   const userNickname = useSelector(getLestaUserNickname);
+  const wn8 = useSelector(getLestaUserWN8);
 
   const [tab, setTab] = useState(0);
   const [session, setSession] = useState<LestaUserSession>(userLastSession);
@@ -51,7 +55,7 @@ const UserPage = ({ className }: IUserPageProps) => {
     () => generateStatsList(statisticData, session, ratingData, lastBattleTime),
     [statisticData, session, ratingData, lastBattleTime],
   );
-  const tabList = [t('Статистика'), t('Сессия'), t('Рейтинг')];
+  const tabList = useMemo(() => [t('Статистика'), t('Сессия'), t('Рейтинг')], [t]);
 
   const dispatch = useAppDispatch();
 
@@ -62,6 +66,11 @@ const UserPage = ({ className }: IUserPageProps) => {
   useEffect(() => {
     const lestaAccessToken = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LESTA.TOKEN));
     dispatch(fetchLestaUserDataById({
+      id: Number(id),
+      lestaAccessToken: lestaAccessToken ?? null,
+    }));
+
+    dispatch(fetchUserDataByLestaId({
       id: Number(id),
       lestaAccessToken: lestaAccessToken ?? null,
     }));
@@ -96,7 +105,7 @@ const UserPage = ({ className }: IUserPageProps) => {
           <UserProfile />
           <Tabs tab={tab} tabList={tabList} handleChangeTab={setTab} />
           <SessionControlSection id={Number(id)} setSession={setSession} />
-          <UserStats tab={tab} id={Number(id)} statItems={statItems} />
+          <UserStats tab={tab} id={Number(id)} statItems={statItems} wn8={wn8} />
         </div>
       </div>
     </ErrorBoundary>
