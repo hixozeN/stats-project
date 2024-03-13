@@ -1,0 +1,27 @@
+.TeamDescription {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.slogan {
+  font-size: var(--font-m);
+  max-width: 650px;
+  text-align: center;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+@media screen and (width <=768px) {
+  .slogan {
+    width: 460px;
+  }
+}
+
+@media screen and (width <=480px) {
+  .slogan {
+    width: 310px;
+  }
+}

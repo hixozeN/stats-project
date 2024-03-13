@@ -1,0 +1,26 @@
+.TeamAvatar {
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  display: block;
+  width: 170px;
+  height: 170px;
+  object-fit: contain;
+  background: transparent;
+}
+
+@media screen and (width <=768px) {
+  .logo {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media screen and (width <=480px) {
+  .logo {
+    width: 120px;
+    height: 120px;
+  }
+}
