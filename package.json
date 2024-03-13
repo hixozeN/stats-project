@@ -88,6 +88,8 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.0",
+    "@tanstack/match-sorter-utils": "^8.11.8",
+    "@tanstack/react-table": "^8.12.0",
     "axios": "^0.26.1",
     "dotenv": "^16.4.1",
     "i18next": "^21.6.11",
