@@ -4,7 +4,7 @@ import { searchReducer } from 'features/Search';
 import { $api } from 'shared/api/api';
 import { NavigateOptions, To } from 'react-router-dom';
 import { tournamentReducer } from 'entities/Tournament';
-import { lestaReducer } from 'entities/Lesta';
+import { clanReducers, lestaReducer } from 'entities/Lesta';
 import { StateSchema } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
@@ -20,6 +20,7 @@ export function createReduxStore(
     searchForm: searchReducer,
     tournaments: tournamentReducer,
     lesta: lestaReducer,
+    lestaClanData: clanReducers,
     // async reducers
     // authForm: authReducer,
   };
