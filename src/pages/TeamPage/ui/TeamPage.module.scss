@@ -1,0 +1,37 @@
+.TeamPage {
+  border-radius: 15px 0 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 0 130px 30px;
+
+  @media screen and (width <=1700px) {
+    padding: 0 30px;
+  }
+
+  @media screen and (width <=1024px) {
+    border-radius: 0;
+    padding: 0 10px;
+  }
+}
+
+.wrapper {
+  padding: 20px 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.title {
+  padding: 40px;
+  max-width: 350px;
+  text-align: center;
+  font: var(--font-l);
+  border-radius: 15px;
+  border: 1px solid var(--bg-stat-item);
+  background-color: var(--bg-color);
+}
