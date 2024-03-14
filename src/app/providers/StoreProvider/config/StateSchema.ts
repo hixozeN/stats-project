@@ -13,13 +13,14 @@ import {
 import { AxiosInstance } from 'axios';
 import { NavigateOptions, To } from 'react-router-dom';
 import { TournamentSchema } from 'entities/Tournament/model/types/tournament';
-import { LestaSchema } from 'entities/Lesta/index';
+import { LestaClanSchema, LestaSchema } from 'entities/Lesta/index';
 
 export interface StateSchema {
   user: UserSchema;
   searchForm: SearchSchema;
   tournaments: TournamentSchema;
   lesta: LestaSchema,
+  lestaClanData: LestaClanSchema,
   // async reducers
   authForm?: AuthSchema;
 }
