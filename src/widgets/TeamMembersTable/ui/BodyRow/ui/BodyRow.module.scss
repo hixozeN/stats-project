@@ -1,0 +1,76 @@
+.row:nth-child(even) {
+  background-color: var(--bg-stat-item);
+}
+
+.cell {
+  padding: 20px 10px;
+}
+
+.cell:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.cell:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.cell:not(:first-child):not(:nth-of-type(2)) {
+  text-align: right;
+}
+
+.link {
+  color: inherit;
+  font: var(--font-m);
+  text-decoration: none;
+}
+
+@media screen and (width < 1000px) {
+  .cell:nth-of-type(2) {
+    display: none;
+  }
+
+  .cell:nth-last-of-type(2) {
+    display: none;
+  }
+}
+
+@media screen and (width < 700px) {
+  .cell:last-child {
+    display: none;
+  }
+
+  .cell:nth-of-type(6) {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+}
+
+@media screen and (width < 570px) {
+  .cell {
+    min-width: 60px;
+    padding: 20px 10px;
+    max-width: 70px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .link {
+    font-size: 14px;
+  }
+}
+
+@media screen and (width < 400px) {
+  .cell:nth-child(3) {
+    display: none;
+  }
+}
+
+
+@media (hover:hover) {
+  .row:hover {
+    background-color: rgb(250 199 4 / 80%);
+  }
+}
