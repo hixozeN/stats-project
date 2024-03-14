@@ -2,19 +2,23 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   LestaUserDataSchema,
 } from 'entities/Lesta/index';
+import { ParamData } from 'entities/Lesta/model/types/default/index';
 import {
   fetchUserDataByLestaId,
 } from '../services/fetchUserDataByLestaId/fetchUserDataByLestaId';
-import { LestaPrivateUserData, LestaUser } from '../types/users';
+import { LestaPrivateUserData, LestaUser, RatingValues } from '../types/users';
+import { Clan } from '../../model/types/clans';
 
 const initialState: LestaUserDataSchema = {
   isLoading: false,
   isNotFound: false,
   error: null,
+  statistics: null,
   personal: null,
   private: null,
   rating: null,
   ratingValues: null,
+  clan: null,
 };
 
 export const userDataSlice = createSlice({
@@ -27,11 +31,17 @@ export const userDataSlice = createSlice({
     setPrivateUserData: (state, action: PayloadAction<LestaPrivateUserData>) => {
       state.private = action.payload;
     },
-    setRatingData: (state, action: PayloadAction<any>) => {
+    setRatingData: (state, action: PayloadAction<ParamData>) => {
       state.rating = action.payload;
     },
-    setRatingValues: (state, action: PayloadAction<any>) => {
+    setRatingValues: (state, action: PayloadAction<RatingValues>) => {
       state.ratingValues = action.payload;
+    },
+    setUserStats: (state, action: PayloadAction<ParamData>) => {
+      state.statistics = action.payload;
+    },
+    setUserClan: (state, action: PayloadAction<Clan>) => {
+      state.clan = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -44,7 +54,6 @@ export const userDataSlice = createSlice({
       .addCase(fetchUserDataByLestaId.rejected, (state, { payload }) => {
         state.error = payload;
         state.isLoading = false;
-        state.isNotFound = true;
       })
       .addCase(fetchUserDataByLestaId.fulfilled, (state, { payload }) => {
         state.isLoading = false;

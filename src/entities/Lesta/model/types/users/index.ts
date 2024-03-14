@@ -11,7 +11,7 @@ export type TLestaUserData = {
   access_token?: string;
 }
 
-type LestaPrivateUserData = {
+export type LestaPrivateUserData = {
   gold: number;
   free_xp: number;
   is_premium: boolean;
@@ -82,31 +82,16 @@ export type LestaUser = {
   wn8: number;
 };
 
+export type RatingValues = {
+  ratingValue: number;
+  calibration_battles_left: number;
+};
+
 export type TUserData = {
   private: LestaPrivateUserData;
   statistics: ParamData;
   rating: ParamData;
-  ratingValues: {
-    ratingValue: number;
-    calibration_battles_left: number;
-  };
-  personal: {
-    id: string;
-    username: string;
-    email: string;
-    avatar: string;
-    created_at: string;
-    roles: [];
-    ra_rating: number;
-    balance: number;
-    isActivated: boolean;
-    sessions: string[];
-    lestaData: {
-      nickname: string;
-      account_id: number;
-      expires_at: string | null;
-      access_token: string | null;
-    };
-  };
+  ratingValues: RatingValues;
+  personal: LestaUser;
   clan: Clan;
 };

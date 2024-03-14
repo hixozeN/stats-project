@@ -30,11 +30,10 @@ import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { SeoUpdater } from 'shared/lib/SeoUpdater/SeoUpdater';
 import { generateStatsList } from 'widgets/UserStats/lib/generateStatsList';
-
-import { SessionControlSection } from '../ui/SessionControlSection/SessionControlSection';
 import {
   fetchUserDataByLestaId,
 } from 'entities/Lesta/model/services/fetchUserDataByLestaId/fetchUserDataByLestaId';
+import { SessionControlSection } from '../ui/SessionControlSection/SessionControlSection';
 import cls from './UserPage.module.scss';
 
 interface IUserPageProps {

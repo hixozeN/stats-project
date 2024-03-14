@@ -30,6 +30,7 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
 
   const dispatch = useAppDispatch();
   const userSessions = useSelector(getLestaUserSessions);
+  const reversedUserSessions = [...userSessions].reverse();
   const currentUser = useSelector(getUserData);
 
   const isProfileOwner = currentUser?.lestaData?.account_id === id;
@@ -86,7 +87,7 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
         <ul
           className={classNames(cls.sessionList, { [cls.sessionListOpened]: isMenuOpen })}
         >
-          {userSessions.map((item) => (
+          {reversedUserSessions.map((item) => (
             <li
               className={cls.sessionItem}
               onClick={() => handleChangeSession(item)}

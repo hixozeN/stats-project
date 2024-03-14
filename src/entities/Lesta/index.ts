@@ -38,3 +38,4 @@ export { getUserSocialLinks } from './model/selectors/getUserSocialLinks/getUser
 export { getLestaUserTanks } from './model/selectors/getLestaUserTanks/getLestaUserTanks';
 export { getLestaUserSessions } from './model/selectors/getLestaUserSessions/getLestaUserSessions';
 export { getLestaUserWN8 } from './model/selectors/getLestaUserWN8/getLestaUserWN8';
+export * from './model/selectors/lestaUserDataSelectors';
