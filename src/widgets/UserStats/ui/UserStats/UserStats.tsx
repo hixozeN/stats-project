@@ -1,5 +1,5 @@
 import React, {
-  memo, useCallback,
+  memo, useCallback, useMemo,
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
@@ -7,32 +7,43 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import {
   fetchLestaUserDataById,
+  getUserRatingStats,
+  getUserSessionDelta,
+  getUserSessionStats,
+  getUserStats,
 } from 'entities/Lesta/index';
 import { getUserData } from 'entities/User/model/selectors/getUserData/getUserData';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { LOCAL_STORAGE_LESTA } from 'shared/consts/localstorage';
+import { getStatsList } from 'widgets/UserStats/lib/getStatsList';
 import { UserStatsList } from '../UserStatsList/UserStatsList';
 import cls from './UserStats.module.scss';
-import { StatsListItem } from '../../model/types';
 
 interface IUserStatsProps {
-  statItems: StatsListItem[];
   className?: string;
   tab?: number;
   id?: number;
-  wn8?: number;
 }
 
 export const UserStats = memo(({
-  className, tab, id, statItems, wn8,
+  className, tab, id,
 }: IUserStatsProps) => {
   const { t } = useTranslation();
   const currentUser = useSelector(getUserData);
   const dispatch = useAppDispatch();
 
-  const mainStatItems = statItems?.filter((item) => item.tab === 0);
-  const sessionStatItems = statItems?.filter((item) => item.tab === 1);
-  const ratingStatItems = statItems?.filter((item) => item.tab === 2);
+  // NEW STORE
+  const ratingData = useSelector(getUserRatingStats);
+  const userStatistic = useSelector(getUserStats);
+  const userSessionStats = useSelector(getUserSessionStats);
+  const userSessionDelta = useSelector(getUserSessionDelta);
+
+  const generalStatItems = useMemo(
+    () => getStatsList(userStatistic, userSessionDelta),
+    [userStatistic, userSessionDelta],
+  );
+  const ratingStatItems2 = useMemo(() => getStatsList(ratingData), [ratingData]);
+  const sessionStatItems = useMemo(() => getStatsList(userSessionStats), [userSessionStats]);
 
   const handleUpdateSession = useCallback((shouldUpdateSession: boolean) => {
     const lestaAccessToken = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LESTA.TOKEN));
@@ -46,17 +57,16 @@ export const UserStats = memo(({
       className={classNames(cls.userStatsSection, {}, [className])}
     >
       {
-        tab === 0 && <UserStatsList data={mainStatItems} wn8={wn8} />
+        tab === 0 && <UserStatsList data={generalStatItems} />
       }
       {
         tab === 1 && <UserStatsList data={sessionStatItems} />
       }
       {
-        tab === 2 && <UserStatsList data={ratingStatItems} wn8="---" />
+        tab === 2 && <UserStatsList data={ratingStatItems2} />
       }
       {
-        statItems
-        && currentUser?.lestaData?.account_id === id
+        currentUser?.lestaData?.account_id === id
         && (
         <Button
           className={cls.btnUpdateSession}

@@ -1,5 +1,5 @@
 import React, {
-  Dispatch, memo, SetStateAction, useCallback, useState,
+  memo, useCallback, useState,
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
@@ -7,30 +7,33 @@ import { formatDate } from 'shared/lib/formatDate/formatDate';
 import { LOCAL_STORAGE_LESTA } from 'shared/consts/localstorage';
 import {
   fetchLestaUserDataById,
-  getLestaUserSessions,
-  LestaUserSession,
-} from 'entities/Lesta/index';
+  getUserSessions,
+} from 'entities/Lesta';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { getUserData } from 'entities/User/model/selectors/getUserData/getUserData';
+import {
+  fetchLestaUserSessionById,
+} from 'entities/Lesta/model/services/fetchLestaUserSession/fetchLestaUserSession';
 import cls from './SessionControlSection.module.scss';
 
 interface SessionControlSectionProps {
   className?: string;
   id?: number;
-  setSession: Dispatch<SetStateAction<LestaUserSession>>;
 }
 
 export const SessionControlSection = memo((props: SessionControlSectionProps) => {
-  const { className, id, setSession } = props;
+  const {
+    className, id,
+  } = props;
   const { t } = useTranslation();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const dispatch = useAppDispatch();
-  const userSessions = useSelector(getLestaUserSessions);
-  const reversedUserSessions = [...userSessions].reverse();
+  const userSessions = useSelector(getUserSessions);
+  const reversedUserSessions = userSessions ? [...userSessions].reverse() : [];
   const currentUser = useSelector(getUserData);
 
   const isProfileOwner = currentUser?.lestaData?.account_id === id;
@@ -43,16 +46,16 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
   }, [dispatch, id]);
 
   const handleChangeSession = useCallback((targetSession) => {
-    setSession(targetSession);
+    dispatch(fetchLestaUserSessionById({ sessionId: targetSession }));
     setIsMenuOpen(false);
-  }, [setSession]);
+  }, [dispatch]);
 
   const handleChangeMenu = useCallback((e: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => {
     e.stopPropagation();
     setIsMenuOpen(!isMenuOpen);
   }, [isMenuOpen]);
 
-  if (!userSessions.length) return <div className={cls.sessionListContainer} />;
+  if (!userSessions || !reversedUserSessions) return <div className={cls.sessionListContainer} />;
 
   return (
     <>
@@ -90,7 +93,7 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
           {reversedUserSessions.map((item) => (
             <li
               className={cls.sessionItem}
-              onClick={() => handleChangeSession(item)}
+              onClick={() => handleChangeSession(item.id)}
               key={item.id}
             >
               {formatDate(item.session_date)}

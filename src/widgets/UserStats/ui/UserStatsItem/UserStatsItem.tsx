@@ -10,25 +10,32 @@ interface IUserStatsItemProps {
   Icon?: VoidFunctionComponent<SVGProps<SVGSVGElement>>;
   itemName?: string;
   counter?: number | string;
-  delta?: number;
+  delta?: number | string;
+  isLoading?: boolean;
 }
 
 export const UserStatsItem = memo((props: IUserStatsItemProps) => {
   const {
-    className, Icon, counter, itemName, delta,
+    className, Icon, counter, itemName, delta = 0, isLoading,
   } = props;
   const { t } = useTranslation('userPage');
 
   const isPositive = delta > 0 && itemName !== 'Поражения';
   const isNegative = delta < 0 || itemName === 'Поражения';
 
-  const calculateDelta = useCallback((diff: number, label: string) => {
+  const calculateDelta = useCallback((diff: number | string, label: string) => {
     if (diff === 0) return '';
 
     if (diff > 0) return `+${delta}${label === 'Винрейт' ? '%' : ''}`;
 
     return `${delta}${label === 'Винрейт' ? '%' : ''}`;
   }, [delta]);
+
+  if (isLoading) {
+    return (
+      <li className={classNames(cls.statItem, {}, [className, cls.skeleton])} />
+    );
+  }
 
   return (
     <li className={classNames(cls.statItem, {}, [className])}>

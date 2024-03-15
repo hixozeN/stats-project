@@ -13,10 +13,14 @@ import {
 import { AxiosInstance } from 'axios';
 import { NavigateOptions, To } from 'react-router-dom';
 import { TournamentSchema } from 'entities/Tournament/model/types/tournament';
-import { LestaSchema, LestaUserDataSchema } from 'entities/Lesta/index';
+import {
+  LestaSchema,
+  LestaUserDataSchema,
+  LestaTanksSchema,
+  LestaUserSessionSchema,
+} from 'entities/Lesta';
 import { TeamsSchema } from 'entities/Team/model/types/team';
 import { FilterSchema } from 'features/Filter/types/filter';
-import { LestaTanksSchema } from 'entities/Lesta/model/types';
 
 export interface StateSchema {
   user: UserSchema;
@@ -25,6 +29,7 @@ export interface StateSchema {
   lesta: LestaSchema,
   teams: TeamsSchema;
   lestaUserData: LestaUserDataSchema;
+  lestaUserSession: LestaUserSessionSchema;
   filter: FilterSchema;
   userTanks: LestaTanksSchema;
   // async reducers

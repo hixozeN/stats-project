@@ -1,6 +1,6 @@
 import { memo, ReactElement, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { getLestaUserRatingData } from 'entities/Lesta';
+import { getUserRatingStats, getUserRatingValues } from 'entities/Lesta';
 import img from 'shared/assets/images/userStats/rating_calibration.webp';
 import bronzeShield from 'shared/assets/images/userStats/rating_bronze.png';
 import silverShield from 'shared/assets/images/userStats/rating_silver.png';
@@ -18,9 +18,8 @@ interface UserRatingProps {
 export const UserRating = memo((props: UserRatingProps) => {
   const { className } = props;
   const { t } = useTranslation();
-  const ratingData = useSelector(getLestaUserRatingData);
-
-  const ratingValue = Math.round(10 * (ratingData?.mm_rating || 0) + 3e3);
+  const ratingData = useSelector(getUserRatingStats);
+  const ratingValues = useSelector(getUserRatingValues);
 
   const renderRatingShield = useCallback((rating: number) => {
     const shields: Record<number, ReactElement> = {
@@ -31,12 +30,12 @@ export const UserRating = memo((props: UserRatingProps) => {
 
     if (rating >= 5000) return brilliantShield;
 
-    const roundedRating = Math.round(rating / 1000) * 1000;
+    const roundedRating = Math.floor(rating / 1000) * 1000;
 
     return roundedRating ? shields[roundedRating] : bronzeShield;
   }, []);
 
-  if (!ratingData) return null;
+  if (!ratingValues) return null;
 
   if (ratingData?.battles === 0) {
     return (
@@ -47,12 +46,13 @@ export const UserRating = memo((props: UserRatingProps) => {
           alt={t('Изображение лиги пользователя в виде цветного щита')}
           loading="lazy"
         />
+        {/* eslint-disable-next-line i18next/no-literal-string */}
         <span className={cls.ratingValue}>0 / 10</span>
       </div>
     );
   }
 
-  if (ratingData?.calibration_battles_left !== 0) {
+  if (ratingValues?.calibration_battles_left !== 0) {
     return (
       <div className={classNames(cls.rating, {}, [className])}>
         <img
@@ -62,7 +62,7 @@ export const UserRating = memo((props: UserRatingProps) => {
           loading="lazy"
         />
         <span className={cls.ratingValue}>
-          {`${10 - ratingData.calibration_battles_left} / 10`}
+          {`${10 - ratingValues.calibration_battles_left} / 10`}
         </span>
       </div>
     );
@@ -72,11 +72,11 @@ export const UserRating = memo((props: UserRatingProps) => {
     <div className={classNames(cls.rating, {}, [className, cls.ratingGap])}>
       <img
         className={cls.ratingImage}
-        src={renderRatingShield(ratingValue)}
+        src={renderRatingShield(ratingValues?.ratingValue)}
         alt={t('Изображение лиги пользователя в виде цветного щита')}
         loading="lazy"
       />
-      <span className={cls.ratingValue}>{ratingValue}</span>
+      <span className={cls.ratingValue}>{ratingValues?.ratingValue}</span>
     </div>
   );
 });

@@ -4,9 +4,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
-  getIsRegisteredStatus, getLestaUserBio,
-  getLestaUserClanData,
-  getLestaUserNickname,
+  getUserBio, getUserClanData, getUserNickname,
 } from 'entities/Lesta/index';
 import cls from './UserPrimaryData.module.scss';
 
@@ -17,13 +15,9 @@ interface UserPrimaryDataProps {
 export const UserPrimaryData = memo((props: UserPrimaryDataProps) => {
   const { className } = props;
 
-  const userNickname = useSelector(getLestaUserNickname);
-  const userBio = useSelector(getLestaUserBio);
-  const clanData = useSelector(getLestaUserClanData);
-  const isRegistered = useSelector(getIsRegisteredStatus);
-
-  const unregisteredUserMessage = 'Игрок не является зарегистрированным участником :( \n'
-    + 'Просмотр подробной статистики для него недоступен.';
+  const userNickname = useSelector(getUserNickname);
+  const userBio = useSelector(getUserBio);
+  const clanData = useSelector(getUserClanData);
 
   return (
     <div className={classNames(cls.primaryUserData, {}, [className])}>
@@ -39,11 +33,7 @@ export const UserPrimaryData = memo((props: UserPrimaryDataProps) => {
         )
       }
       <p className={cls.userBio}>
-        {
-          isRegistered
-            ? userBio
-            : unregisteredUserMessage
-        }
+        {userBio}
       </p>
     </div>
   );

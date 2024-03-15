@@ -16,6 +16,7 @@
   grid-auto-rows: 110px;
   justify-content: center;
   gap: 45px;
+  border-radius: 15px;
 
   @media screen and (width <= 1435px) {
     gap: 20px;

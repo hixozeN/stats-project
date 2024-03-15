@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { lestaActions } from '../../slice/lestaSlice';
@@ -7,10 +9,6 @@ interface ThunkProps {
   id: number | number[];
   lestaAccessToken?: string;
   shouldRefreshSession?: boolean;
-}
-
-interface Session {
-  session: LestaUserSession;
 }
 
 export const fetchLestaUserDataById = createAsyncThunk<
@@ -48,49 +46,48 @@ export const fetchLestaUserDataById = createAsyncThunk<
 
     const sessions: LestaUserSession[] = [];
 
-    if (response.data.sessions) {
-      const promises = response.data.sessions.map(async (session) => {
-        const sessionData = await extra.royalApi.get<Session>(
-          `/sessions/${session}`,
-        );
-        return sessionData;
-      });
-
-      // Ожидаем выполнения всех запросов
-      const sessionsRes = await Promise.all(promises);
-
-      sessionsRes.forEach((session) => {
-        sessions.push({
-          id: session.data.session._id,
-          ...session.data.session,
-        });
-      });
-    }
+    // if (response.data.sessions) {
+    //   const promises = response.data.sessions.map(async (session) => {
+    //     const sessionData = await extra.royalApi.get<Session>(
+    //       `/sessions/${session.id}`,
+    //     );
+    //     return sessionData;
+    //   });
+    //
+    //   // Ожидаем выполнения всех запросов
+    //   const sessionsRes = await Promise.all(promises);
+    //
+    //   sessionsRes.forEach((session) => {
+    //     sessions.push({
+    //       id: session.data.session._id,
+    //       ...session.data.session,
+    //     });
+    //   });
+    // }
 
     // записываем в стейт полученные данные
     dispatch(
       lestaActions.setUserData({
         ...response.data,
-        sessions,
       }),
     );
 
-    if (response.data.sessions) {
-      const lastUserSession = response.data.sessions[response.data.sessions.length - 1];
-
-      const userSession = await extra.royalApi.get<Session>(
-        `/sessions/${lastUserSession}`,
-      );
-
-      if (userSession.data.session) {
-        dispatch(
-          lestaActions.setLastSession({
-            id: userSession.data.session._id,
-            ...userSession.data.session,
-          }),
-        );
-      }
-    }
+    // if (response.data.sessions) {
+    //   const lastUserSession = response.data.sessions[response.data.sessions.length - 1];
+    //
+    //   const userSession = await extra.royalApi.get<Session>(
+    //     `/sessions/${lastUserSession}`,
+    //   );
+    //
+    //   if (userSession.data.session) {
+    //     dispatch(
+    //       lestaActions.setLastSession({
+    //         id: userSession.data.session._id,
+    //         ...userSession.data.session,
+    //       }),
+    //     );
+    //   }
+    // }
 
     // возвращаем полученные данные
     return response.data;

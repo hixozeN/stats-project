@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   LestaUserDataSchema,
 } from 'entities/Lesta/index';
-import { ParamData } from 'entities/Lesta/model/types/default/index';
+import { ParamData } from '../types/default';
 import {
   fetchUserDataByLestaId,
 } from '../services/fetchUserDataByLestaId/fetchUserDataByLestaId';
@@ -43,6 +43,9 @@ export const userDataSlice = createSlice({
     setUserClan: (state, action: PayloadAction<Clan>) => {
       state.clan = action.payload;
     },
+    setNotFoundStatus: (state, action: PayloadAction<boolean>) => {
+      state.isNotFound = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -58,9 +61,9 @@ export const userDataSlice = createSlice({
       .addCase(fetchUserDataByLestaId.fulfilled, (state, { payload }) => {
         state.isLoading = false;
 
-        if (!payload?.userData?.personal?.account_id) state.isNotFound = true;
+        if (!payload?.userData?.personal?.lestaData?.account_id) state.isNotFound = true;
       });
   },
 });
 
-export const { actions: userDataActions, reducer: userDataReducers } = userDataSlice;
+export const { actions: userDataActions, reducer: userDataReducer } = userDataSlice;

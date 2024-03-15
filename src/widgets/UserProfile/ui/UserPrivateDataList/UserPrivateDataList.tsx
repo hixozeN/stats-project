@@ -3,7 +3,7 @@ import {
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useSelector } from 'react-redux';
-import { getLestaUserPrivateData } from 'entities/Lesta';
+import { getUserPrivateData } from 'entities/Lesta';
 import {
   UserPrivateDataItem,
 } from 'widgets/UserProfile/ui/UserPrivateDataItem/UserPrivateDataItem';
@@ -20,7 +20,7 @@ type KeyType = 'gold' | 'credits' | 'premium' | 'free_xp';
 export const UserPrivateDataList = memo((props: UserPrivateDataListProps) => {
   const { className } = props;
   const { id } = useParams();
-  const privateUserData = useSelector(getLestaUserPrivateData);
+  const privateUserData = useSelector(getUserPrivateData);
   const currentUser = useSelector(getUserData);
   const isProfileOwner = currentUser?.lestaData?.account_id === Number(id);
 

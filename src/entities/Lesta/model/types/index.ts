@@ -1,6 +1,8 @@
 import { ParamData } from '../../model/types/default';
 import { LestaTankStats, TUserTanks } from './tanks';
-import { LestaPrivateUserData, LestaUser, TUserData } from './users';
+import {
+  LestaPrivateUserData, LestaUser, TUserData, TUserSession,
+} from './users';
 import { Clan, LestaClan } from './clans';
 
 export type LestaSchema = {
@@ -36,4 +38,11 @@ export type LestaUserDataSchema = {
     calibration_battles_left: number;
   };
   clan: Clan;
+}
+
+export type LestaUserSessionSchema = {
+  isLoading: boolean;
+  isNotFound?: boolean;
+  error?: string;
+  data: TUserSession;
 }

@@ -1,6 +1,7 @@
 import { UserRoles } from 'entities/User';
 import { LestaUserStatistics } from 'shared/api';
 import { LestaTankStats } from 'entities/Lesta';
+import { TUserTanks } from 'entities/Lesta/model/types/tanks/index';
 import { Clan, LestaClan } from '../clans';
 import { ParamData } from '../default';
 
@@ -95,3 +96,9 @@ export type TUserData = {
   personal: LestaUser;
   clan: Clan;
 };
+
+export type TUserSession = {
+  delta: ParamData;
+  statistics: ParamData;
+  tanks: TUserTanks[];
+}

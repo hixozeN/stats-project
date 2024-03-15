@@ -47,7 +47,9 @@ export const fetchUserDataByLestaId = createAsyncThunk<ReturnData, ThunkProps, T
       dispatch(userDataActions.setUserStats({ ...response?.data?.userData?.statistics }));
 
       // записываем данные о клане игрока
-      dispatch(userDataActions.setUserClan({ ...response?.data?.userData?.clan }));
+      if (response?.data?.userData?.clan) {
+        dispatch(userDataActions.setUserClan({ ...response?.data?.userData?.clan }));
+      }
 
       // если был передан, записываем приватные данные аккаунта
       if (lestaAccessToken) {
@@ -58,6 +60,9 @@ export const fetchUserDataByLestaId = createAsyncThunk<ReturnData, ThunkProps, T
       // возвращаем полученные данные
       return response.data;
     } catch (e) {
+      if (e?.response?.status === 404) {
+        dispatch(userDataActions.setNotFoundStatus(true));
+      }
       // возвращаем ошибку с бэка
       return rejectWithValue(e?.response?.data?.message || serverError);
     }

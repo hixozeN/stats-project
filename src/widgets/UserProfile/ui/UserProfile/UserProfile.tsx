@@ -3,7 +3,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import defaultAvatar from 'shared/assets/images/default_avatar2.jpg';
 import { useSelector } from 'react-redux';
 import {
-  getLestaUserAvatar,
+  getUserAvatar,
 } from 'entities/Lesta';
 import { UserRating } from 'widgets/UserProfile/ui/UserRating/UserRating';
 import { UserSocialLinks } from 'widgets/UserProfile/ui/UserSocialLinks/UserSocialLinks';
@@ -20,7 +20,7 @@ export const UserProfile = memo((props: IUserStatsProfileProps) => {
   const { className } = props;
   const { t } = useTranslation('userPage');
 
-  const userAvatar = useSelector(getLestaUserAvatar);
+  const userAvatar = useSelector(getUserAvatar);
 
   return (
     <section className={classNames(cls.UserStatsProfile, {}, [className])}>
