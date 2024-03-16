@@ -2,14 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 25px;
-}
-
-.title {
-  font-size: 18px;
-  font-weight: 500;
-  line-height: normal;
-  margin: 0;
+  padding: 25px 10px;
 }
 
 .sortList {
@@ -48,7 +41,8 @@
 
 .open {
   z-index: 10;
-    & .filterForm {
+
+  & .filterForm {
     transform: translateX(-520px);
     transition-timing-function: cubic-bezier(0.68, 1.55, 0.265, 1);
   }
@@ -205,7 +199,5 @@
     margin-bottom: 15px;
   }
 
-  .title {
-    font-size: 14px;
-  }
+  
 }

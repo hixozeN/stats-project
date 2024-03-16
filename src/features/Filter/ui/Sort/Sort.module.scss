@@ -1,10 +1,34 @@
 
 .sortItem {
   display: flex;
-  border: 1px solid var(--bg-stat-item);
-  border-radius: 10px;
+  outline: 1px solid var(--bg-stat-item);
+  border-radius: 5px;
   margin-bottom: auto;
-  color: var(--input-font-color);
+  // backdrop-filter: blur(5px);
+  background-color: var(--bg-card);
+
+  & button {
+    color: var(--inverted-primary-color)
+  }
+
+  @media screen and (width <= 440px) {
+    font-size: 12px;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      & button {
+        opacity: 1;
+        color: var(--accent-color);
+      }
+      color: var(--accent-color);
+      outline: 1px solid var(--accent-color);
+
+      & svg path {
+        fill: var(--accent-color);
+      }
+    }
+  }
 }
 
 .up svg {
@@ -15,6 +39,6 @@
   transform: rotate(0);
 }
 
-.activeArrow {
+.activeArrow button{
   color: var(--primary-color);
 }

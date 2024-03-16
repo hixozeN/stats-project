@@ -2,8 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   fetchLestaUserDataById as fetchLestaUserDataByIdV2,
 } from 'entities/Lesta/index';
-import { LestaTankStats, TUserTanks } from '../types/tanks';
-import { LestaSchema, LestaTanksSchema } from '../types';
+import { TUserTanks } from '../types/tanks';
+import { LestaTanksSchema } from '../types';
 
 const initialState: LestaTanksSchema = {
   isLoading: false,

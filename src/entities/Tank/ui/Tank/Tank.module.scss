@@ -6,7 +6,8 @@
   border-radius: 15px;
   gap: 20px;
   padding: 15px;
-  backdrop-filter: blur(5px);
+  // backdrop-filter: blur(5px);
+  background-color: var(--bg-card);
 }
 
 .titleWrapper {
@@ -66,7 +67,7 @@
 
 .tankImg {
   display: flex;
-  width: 150px;
+  width: 140px;
   height: 145px;
   object-fit: contain;
 }

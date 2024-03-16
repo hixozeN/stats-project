@@ -12,7 +12,7 @@ import Loader from 'shared/ui/Loader/Loader';
 import { Tanks } from 'widgets/Tanks';
 import {
   getLestaUserTanks,
-  fetchLestaUserDataByIdV2,
+  // fetchLestaUserDataByIdV2,
   getUserDataLoadingStatus,
   getUserNotFoundStatus,
   getUserNickname, getUserLastSessionId,
@@ -58,12 +58,6 @@ const UserPage = ({ className }: IUserPageProps) => {
 
   useEffect(() => {
     const lestaAccessToken = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LESTA.TOKEN));
-    dispatch(
-      fetchLestaUserDataByIdV2({
-        id: Number(id),
-        lestaAccessToken: lestaAccessToken ?? null,
-      }),
-    );
     dispatch(fetchUserDataByLestaId({
       id: Number(id),
       lestaAccessToken: lestaAccessToken ?? null,

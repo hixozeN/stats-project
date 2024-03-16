@@ -1,7 +1,5 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { getWinRate } from 'shared/lib/statCounters/getWinRate';
-import { getAvgDamage } from 'shared/lib/statCounters/getAvgDamage';
 import { formatter } from 'entities/Tank/lib/converterTank';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ToolTip } from 'shared/ui/ToolTip/ToolTip';
@@ -28,11 +26,8 @@ export const TankStat = memo(
       : 'никогда';
     const WN8 = () => {
       if (tier >= 6) {
-        if (battles === 0) {
-          return 'никогда';
-        }
         if (battles > 0 && wn8 === 0) {
-          return 'отоладка';
+          return 'калибровка';
         }
         return Math.round(wn8);
       }

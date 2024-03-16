@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { IStatList, statList } from 'entities/Tank/config/TankData';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { sortItem } from 'features/Filter/types/sort';
+import { SearchForm } from 'features/Search';
 import { Button } from '../../../../shared/ui/Button/Button';
 import { FilterItem } from './FilterItem';
 import { filterData } from '../../config/filterData';
@@ -73,7 +74,7 @@ function FilterWithCurtain<T>({ filterList }: TanksProps<T>) {
 
   return (
     <div className={cls.tanks}>
-      <h2 className={cls.title}>{`${t('Техника')} (${filterList.length})`}</h2>
+      <SearchForm />
       <ul className={cls.sortList}>
         {statList.map((item: IStatList) => (
           <Sort

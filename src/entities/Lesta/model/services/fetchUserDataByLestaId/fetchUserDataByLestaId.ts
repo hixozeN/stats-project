@@ -1,8 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { userDataActions } from '../../../model/slice/userDataSlice';
-import { LestaTankStats } from '../../types/tanks';
+import { TUserTanks } from '../../types/tanks';
 import { TUserData } from '../../types/users';
+import { userTanksActions } from '../../slice/lestaTanksSlice';
 
 interface ThunkProps {
   id: number | number[],
@@ -11,7 +12,7 @@ interface ThunkProps {
 
 interface ReturnData {
   userData: TUserData;
-  userTanks: LestaTankStats[];
+  userTanks: TUserTanks[];
 }
 
 export const fetchUserDataByLestaId = createAsyncThunk<ReturnData, ThunkProps, ThunkConfig<string>>(
@@ -49,6 +50,11 @@ export const fetchUserDataByLestaId = createAsyncThunk<ReturnData, ThunkProps, T
       // записываем данные о клане игрока
       if (response?.data?.userData?.clan) {
         dispatch(userDataActions.setUserClan({ ...response?.data?.userData?.clan }));
+      }
+
+      // записываем данные о танках игрока
+      if (response?.data?.userTanks) {
+        dispatch(userTanksActions.setUserTanks([...response.data.userTanks]));
       }
 
       // если был передан, записываем приватные данные аккаунта
