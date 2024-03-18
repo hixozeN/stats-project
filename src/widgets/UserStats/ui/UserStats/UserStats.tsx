@@ -6,7 +6,7 @@ import { Button } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import {
-  fetchLestaUserDataById,
+  createLestaUserSession,
   getUserRatingStats,
   getUserSessionDelta,
   getUserSessionStats,
@@ -14,7 +14,6 @@ import {
 } from 'entities/Lesta/index';
 import { getUserData } from 'entities/User/model/selectors/getUserData/getUserData';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
-import { LOCAL_STORAGE_LESTA } from 'shared/consts/localstorage';
 import { getStatsList } from 'widgets/UserStats/lib/getStatsList';
 import { UserStatsList } from '../UserStatsList/UserStatsList';
 import cls from './UserStats.module.scss';
@@ -45,12 +44,9 @@ export const UserStats = memo(({
   const ratingStatItems2 = useMemo(() => getStatsList(ratingData), [ratingData]);
   const sessionStatItems = useMemo(() => getStatsList(userSessionStats), [userSessionStats]);
 
-  const handleUpdateSession = useCallback((shouldUpdateSession: boolean) => {
-    const lestaAccessToken = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LESTA.TOKEN));
-    dispatch(fetchLestaUserDataById(
-      { id, shouldRefreshSession: shouldUpdateSession, lestaAccessToken },
-    ));
-  }, [dispatch, id]);
+  const handleUpdateSession = useCallback(() => {
+    dispatch(createLestaUserSession());
+  }, [dispatch]);
 
   return (
     <section
@@ -71,7 +67,7 @@ export const UserStats = memo(({
         <Button
           className={cls.btnUpdateSession}
           size="size_m"
-          onClick={() => handleUpdateSession(true)}
+          onClick={handleUpdateSession}
         >
           {t('Новая сессия')}
         </Button>

@@ -48,7 +48,8 @@
 
 .open {
   z-index: 10;
-    & .filterForm {
+
+  & .filterForm {
     transform: translateX(-520px);
     transition-timing-function: cubic-bezier(0.68, 1.55, 0.265, 1);
   }

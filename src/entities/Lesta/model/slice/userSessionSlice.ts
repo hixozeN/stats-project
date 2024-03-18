@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
+  createLestaUserSession,
   LestaUserSessionSchema,
 } from 'entities/Lesta/index';
 import { ParamData } from '../types/default';
@@ -48,6 +49,18 @@ export const userSessionSlice = createSlice({
         state.error = payload;
       })
       .addCase(fetchLestaUserSessionById.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(createLestaUserSession.pending, (state) => {
+        state.error = '';
+        state.isLoading = true;
+        state.isNotFound = false;
+      })
+      .addCase(createLestaUserSession.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(createLestaUserSession.fulfilled, (state) => {
         state.isLoading = false;
       });
   },

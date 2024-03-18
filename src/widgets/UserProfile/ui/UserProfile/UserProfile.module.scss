@@ -4,12 +4,7 @@
   border-radius: 0 0 15px 15px;
   display: grid;
   justify-content: center;
-  grid-template-columns: auto 1fr auto;
-  grid-template-rows: 50px 1fr auto;
-  grid-template-areas:
-    "privateData privateData privateData"
-    "avatar publicData rating"
-    "avatar publicData social";
+  grid-template: "privateData privateData privateData" 50px "avatar publicData rating" 1fr "avatar publicData social" auto / auto 1fr auto;
 }
 
 .avatarWrapper {
@@ -31,8 +26,8 @@
   display: flex;
   flex-direction: column;
 
-  //justify-content: center;
-  //align-items: center;
+  // justify-content: center;
+  // align-items: center;
   grid-area: publicData;
   padding-top: 25px;
 }

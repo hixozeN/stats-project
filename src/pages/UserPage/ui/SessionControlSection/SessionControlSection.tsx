@@ -1,12 +1,11 @@
 import React, {
-  memo, useCallback, useState,
+  memo, useCallback, useEffect, useState,
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
 import { formatDate } from 'shared/lib/formatDate/formatDate';
-import { LOCAL_STORAGE_LESTA } from 'shared/consts/localstorage';
 import {
-  fetchLestaUserDataById,
+  getUserLastSessionId,
   getUserSessions,
 } from 'entities/Lesta';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
@@ -30,23 +29,25 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
   const { t } = useTranslation();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentSession, setCurrentSession] = useState(null);
 
   const dispatch = useAppDispatch();
   const userSessions = useSelector(getUserSessions);
   const reversedUserSessions = userSessions ? [...userSessions].reverse() : [];
   const currentUser = useSelector(getUserData);
+  const userLastSession = useSelector(getUserLastSessionId);
 
   const isProfileOwner = currentUser?.lestaData?.account_id === id;
 
-  const handleUpdateSession = useCallback((shouldUpdateSession: boolean) => {
-    const lestaAccessToken = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LESTA.TOKEN));
-    dispatch(fetchLestaUserDataById(
-      { id, shouldRefreshSession: shouldUpdateSession, lestaAccessToken },
+  const handleUpdateSession = useCallback(() => {
+    dispatch(fetchLestaUserSessionById(
+      { sessionId: currentSession },
     ));
-  }, [dispatch, id]);
+  }, [dispatch, currentSession]);
 
   const handleChangeSession = useCallback((targetSession) => {
     dispatch(fetchLestaUserSessionById({ sessionId: targetSession }));
+    setCurrentSession(targetSession);
     setIsMenuOpen(false);
   }, [dispatch]);
 
@@ -54,6 +55,12 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
     e.stopPropagation();
     setIsMenuOpen(!isMenuOpen);
   }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (userLastSession && currentSession === null) {
+      setCurrentSession(userLastSession.id);
+    }
+  }, [currentSession, userLastSession]);
 
   if (!userSessions || !reversedUserSessions) return <div className={cls.sessionListContainer} />;
 
@@ -71,7 +78,7 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
           isProfileOwner && (
             <Button
               theme="clear"
-              onClick={() => handleUpdateSession(false)}
+              onClick={handleUpdateSession}
               className={cls.sessionsHistoryBtn}
             >
               {t('Обновить данные')}
