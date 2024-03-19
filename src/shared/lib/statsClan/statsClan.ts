@@ -1,7 +1,7 @@
 import { LestaClan } from 'entities/Lesta';
 
 export const averageNumberFights = (data: LestaClan) => {
-  if (!data?.players) return 0;
+  if (!data?.players || !data?.players.length) return 0;
 
   let count = 0;
   const sumBattles = data.players.reduce((acc: number, item: any) => {
@@ -17,7 +17,7 @@ export const averageNumberFights = (data: LestaClan) => {
 };
 
 export const avarageWinrate = (data: LestaClan) => {
-  if (!data?.players) return 0;
+  if (!data?.players || !data?.players.length) return 0;
 
   let count = 0;
   const sumWins = data.players.reduce((acc: number, item: any) => {
@@ -33,7 +33,7 @@ export const avarageWinrate = (data: LestaClan) => {
 };
 
 export const averageNumberDamage = (data: LestaClan) => {
-  if (!data?.players) return 0;
+  if (!data?.players || !data?.players.length) return 0;
 
   let count = 0;
   const sumDamage = data.players.reduce((acc: number, item: any) => {
