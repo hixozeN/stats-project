@@ -4,7 +4,6 @@ import {
   calculatingStatistics,
   getDamage,
 } from 'widgets/TeamMembersTable/lib/calculatingStatistics';
-import { fuzzySort } from 'widgets/TeamMembersTable/lib/sort';
 import { convertTimestamp } from 'widgets/TeamMembersTable/lib/convertTimestamp';
 
 export const columns: ColumnDef<LestaClanUser>[] = [
@@ -50,8 +49,6 @@ export const columns: ColumnDef<LestaClanUser>[] = [
   {
     header: 'В бою',
     accessorKey: 'last_battle_time',
-    filterFn: 'fuzzy',
-    sortingFn: fuzzySort,
     cell: (info) => {
       const value = info.getValue();
       if (typeof value === 'number') {
@@ -64,8 +61,6 @@ export const columns: ColumnDef<LestaClanUser>[] = [
   {
     header: 'В клане',
     accessorKey: 'joined_at',
-    filterFn: 'fuzzy',
-    sortingFn: fuzzySort,
     cell: (info) => {
       const value = info.getValue();
       if (typeof value === 'number') {
