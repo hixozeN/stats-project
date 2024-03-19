@@ -11,7 +11,6 @@ export { fetchLestaUserDataById } from './model/services/fetchLestaUserDataById/
 export { fetchLestaClanData } from './model/services/fetchLestaClanData/fetchLestaClanData';
 
 // Selectors
-export { getLestaUserClanData } from './model/selectors/getLestaUserClanData/getLestaUserClanData';
 export { getLestaLoadingStatus } from './model/selectors/getLestaLoadingStatus/getLestaLoadingStatus';
 export { getLestaUserRatingData } from './model/selectors/getLestaUserRatingData/getLestaUserRatingData';
 export { getIsRegisteredStatus } from './model/selectors/getIsRegisteredStatus/getIsRegisteredStatus';
@@ -23,6 +22,5 @@ export { getUserSessions } from './model/selectors/getUserSessions/getUserSessio
 export { getUserLastSession } from './model/selectors/getUserLastSession/getUserLastSession';
 export { getLestaUserLastBattleTime } from './model/selectors/getLestaUserLastBattleTime/getLestaUserLastBattleTime';
 export { getUserSocialLinks } from './model/selectors/getUserSocialLinks/getUserSocialLinks';
-export { getLestaClanPlayers } from './model/selectors/getLestaClanPlayers/getLestaClanPlayers';
-export { getLestaClanMembers } from './model/selectors/getLestaClanMembers/getLestaClanMembers';
 export { getNotFoundStatus } from './model/selectors/getNotFoundStatus/getNotFoundStatus';
+export * from './model/selectors/clanSelectors';
