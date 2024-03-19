@@ -9,9 +9,9 @@ import { TeamContent } from 'widgets/TeamContent';
 import { TeamMembersTable } from 'widgets/TeamMembersTable';
 import {
   fetchLestaClanData,
-  getLestaLoadingStatus,
-  getLestaUserClanData,
-  getNotFoundStatus,
+  getLestaClanLogo,
+  getClanLoadingStatus,
+  getClanNotFoundStatus,
 } from 'entities/Lesta';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
@@ -25,14 +25,19 @@ export const TeamPage = memo((props: TeamPageProps) => {
   const { className } = props;
   const { t } = useTranslation('teamPage');
   const { clanId } = useParams<{ clanId: string }>();
-  const isLoading = useSelector(getLestaLoadingStatus);
-  const isNotFound = useSelector(getNotFoundStatus);
-  const clanData = useSelector(getLestaUserClanData);
+  const isLoading = useSelector(getClanLoadingStatus);
+  const isNotFound = useSelector(getClanNotFoundStatus);
+  const logo = useSelector(getLestaClanLogo);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchLestaClanData({ id: clanId }));
   }, [clanId, dispatch]);
+
+  const renderLogo = (): string => {
+    if (!logo) return '';
+    return `https://wotblitz-gc.gcdn.co/icons/clanEmblems1x/clan-icon-v2-${logo}.png`;
+  };
 
   if (isLoading) return <Loader />;
 
@@ -53,11 +58,7 @@ export const TeamPage = memo((props: TeamPageProps) => {
     <ErrorBoundary>
       <Background
         theme="blur"
-        url={
-          clanData
-            ? `https://wotblitz-gc.gcdn.co/icons/clanEmblems1x/clan-icon-v2-${clanData?.emblem_set_id}.png`
-            : ''
-        }
+        url={renderLogo()}
       />
       <main className={classNames(cls.TeamPage, {}, [className])}>
         <div className={cls.wrapper}>
