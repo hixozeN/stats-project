@@ -4,8 +4,9 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
-  getUserBio, getUserClanData, getUserNickname,
+  getUserBio, getUserClanData, getUserDataLoadingStatus, getUserNickname,
 } from 'entities/Lesta/index';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import cls from './UserPrimaryData.module.scss';
 
 interface UserPrimaryDataProps {
@@ -18,6 +19,17 @@ export const UserPrimaryData = memo((props: UserPrimaryDataProps) => {
   const userNickname = useSelector(getUserNickname);
   const userBio = useSelector(getUserBio);
   const clanData = useSelector(getUserClanData);
+  const isUserDataLoading = useSelector(getUserDataLoadingStatus);
+
+  if (isUserDataLoading) {
+    return (
+      <div className={classNames(cls.primaryUserData, {}, [cls.skeleton])}>
+        <Skeleton width={200} height={30} borderRadius="5px" />
+        <Skeleton width={100} height={20} borderRadius="5px" />
+        <Skeleton width={250} height={50} borderRadius="5px" />
+      </div>
+    );
+  }
 
   return (
     <div className={classNames(cls.primaryUserData, {}, [className])}>

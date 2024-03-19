@@ -11,10 +11,13 @@ import {
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { getUserData } from 'entities/User/model/selectors/getUserData/getUserData';
 import {
   fetchLestaUserSessionById,
 } from 'entities/Lesta/model/services/fetchLestaUserSession/fetchLestaUserSession';
+import { LOCAL_STORAGE_LESTA } from 'shared/consts/localstorage';
+import {
+  fetchUserDataByLestaId,
+} from 'entities/Lesta/model/services/fetchUserDataByLestaId/fetchUserDataByLestaId';
 import cls from './SessionControlSection.module.scss';
 
 interface SessionControlSectionProps {
@@ -34,16 +37,19 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
   const dispatch = useAppDispatch();
   const userSessions = useSelector(getUserSessions);
   const reversedUserSessions = userSessions ? [...userSessions].reverse() : [];
-  const currentUser = useSelector(getUserData);
   const userLastSession = useSelector(getUserLastSessionId);
 
-  const isProfileOwner = currentUser?.lestaData?.account_id === id;
-
-  const handleUpdateSession = useCallback(() => {
+  const handleUpdateSessionData = useCallback(() => {
     dispatch(fetchLestaUserSessionById(
       { sessionId: currentSession },
     ));
-  }, [dispatch, currentSession]);
+
+    const lestaAccessToken = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LESTA.TOKEN));
+    dispatch(fetchUserDataByLestaId({
+      id: Number(id),
+      lestaAccessToken: lestaAccessToken ?? null,
+    }));
+  }, [id, dispatch, currentSession]);
 
   const handleChangeSession = useCallback((targetSession) => {
     dispatch(fetchLestaUserSessionById({ sessionId: targetSession }));
@@ -74,17 +80,13 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
         onClick={handleChangeMenu}
       />
       <section className={classNames(cls.sessionListContainer, {}, [className])}>
-        {
-          isProfileOwner && (
-            <Button
-              theme="clear"
-              onClick={handleUpdateSession}
-              className={cls.sessionsHistoryBtn}
-            >
-              {t('Обновить данные')}
-            </Button>
-          )
-        }
+        <Button
+          theme="clear"
+          onClick={handleUpdateSessionData}
+          className={cls.sessionsHistoryBtn}
+        >
+          {t('Обновить данные')}
+        </Button>
         <Button
           theme="icon-right"
           variant="chevron-down"

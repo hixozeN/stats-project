@@ -8,12 +8,10 @@ import { ErrorBoundary } from 'app/providers/ErrorBoundary/index';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Background } from 'shared/ui/Background/Background';
 import { Tabs } from 'shared/ui/Tabs/Tabs';
-import Loader from 'shared/ui/Loader/Loader';
 import { Tanks } from 'widgets/Tanks';
 import {
   getLestaUserTanks,
   fetchLestaUserDataByIdV2,
-  getUserDataLoadingStatus,
   getUserNotFoundStatus,
   getUserNickname, getUserLastSessionId,
 } from 'entities/Lesta';
@@ -41,7 +39,6 @@ const UserPage = ({ className }: IUserPageProps) => {
   const tanks = useSelector(getLestaUserTanks);
   // NEW
   const userNickname = useSelector(getUserNickname);
-  const isLoading = useSelector(getUserDataLoadingStatus);
   const isNotFound = useSelector(getUserNotFoundStatus);
   const userLastSession = useSelector(getUserLastSessionId);
 
@@ -69,8 +66,6 @@ const UserPage = ({ className }: IUserPageProps) => {
       lestaAccessToken: lestaAccessToken ?? null,
     }));
   }, [id, dispatch]);
-
-  if (isLoading) return <Loader />;
 
   if (isNotFound) {
     return (

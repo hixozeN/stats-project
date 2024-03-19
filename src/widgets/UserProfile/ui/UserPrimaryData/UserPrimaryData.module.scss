@@ -1,9 +1,12 @@
-
 .primaryUserData {
   display: flex;
   flex-direction: column;
   grid-area: publicData;
   padding-top: 25px;
+}
+
+.skeleton {
+  gap: 10px;
 }
 
 .username {
