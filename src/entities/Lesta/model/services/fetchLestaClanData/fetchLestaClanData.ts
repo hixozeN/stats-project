@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { generateUserIdList } from 'pages/TeamPage/lib/generateUserIdList';
-import { clanActions } from 'entities/Lesta';
+import { clanActions } from '../../slice/lestaClanSlice';
 import { LestaClan, LestaClanPlayer } from '../../types/clans';
 
 interface ThunkProps {
@@ -22,13 +22,13 @@ export const fetchLestaClanData = createAsyncThunk<LestaClan, ThunkProps, ThunkC
     // отправка запроса
     try {
       // отправляем пост запрос через аксиос с собранными данными
-      const response = await axios.post<LestaClan>('http://192.168.3.81:3030/clans', {
+      const clanDataResponse = await axios.post<LestaClan>('http://192.168.3.81:3030/clans', {
         clan_id: ThunkProps.id,
       });
       // прокидываем ошибку, если данных нет
-      if (!response.data) return rejectWithValue(serverError);
+      if (!clanDataResponse.data) return rejectWithValue(serverError);
 
-      const idUserList = generateUserIdList(response.data.members);
+      const idUserList = generateUserIdList(clanDataResponse.data.members);
 
       // запрос к апи на получение списка юзеров
       const clanPlayers = await axios.post<AxiosLestaClanPlayer>('http://192.168.3.81:3030/user', {
@@ -36,7 +36,7 @@ export const fetchLestaClanData = createAsyncThunk<LestaClan, ThunkProps, ThunkC
       });
 
       const clanData = {
-        ...response.data,
+        ...clanDataResponse.data,
         players: clanPlayers.data.players,
       };
 
@@ -44,7 +44,7 @@ export const fetchLestaClanData = createAsyncThunk<LestaClan, ThunkProps, ThunkC
       dispatch(clanActions.setClanData(clanData));
 
       // возвращаем полученные данные
-      return response.data;
+      return clanDataResponse.data;
     } catch (e) {
       if (e?.response?.status === 404) {
         dispatch(clanActions.setNotFound(true));
