@@ -1,21 +1,25 @@
+import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { getLestaClanDescription, getLestaClanMotto } from 'entities/Lesta';
 import cls from './TeamDescription.module.scss';
 
 interface TeamDescriptionProps {
   className?: string;
-  description?: string[];
 }
 
 export const TeamDescription = (props: TeamDescriptionProps) => {
-  const { className, description } = props;
+  const { className } = props;
+  const description = useSelector(getLestaClanDescription);
+  const motto = useSelector(getLestaClanMotto);
 
   return (
     <section className={classNames(cls.TeamDescription, {}, [className])}>
-      {description.map((slogan: string, index) => (
-        <span className={cls.slogan} key={index}>
-          {slogan}
-        </span>
-      ))}
+      <span className={cls.slogan}>
+        {motto}
+      </span>
+      <span className={cls.slogan}>
+        {description}
+      </span>
     </section>
   );
 };
