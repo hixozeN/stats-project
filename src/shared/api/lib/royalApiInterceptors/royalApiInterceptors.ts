@@ -33,4 +33,11 @@ export const royalApiInterceptors = (store: Store) => {
 
     throw error;
   }));
+
+  $royalApi.interceptors.response.use((config) => config, (async (error) => {
+    store.dispatch(userActions.logout());
+    window.location.reload();
+
+    throw error;
+  }));
 };
