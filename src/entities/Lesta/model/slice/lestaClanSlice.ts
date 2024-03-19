@@ -11,7 +11,7 @@ const initialState: LestaClanSchema = {
 };
 
 export const lestaClanSlice = createSlice({
-  name: 'LESTA_CLAN_DATA',
+  name: 'lestaClanData',
   initialState,
   reducers: {
     setClanData: (state, action: PayloadAction<LestaClan>) => {
@@ -35,7 +35,7 @@ export const lestaClanSlice = createSlice({
       .addCase(fetchLestaClanData.fulfilled, (state, { payload }) => {
         state.isLoading = false;
 
-        if (!payload.clan_id) state.isNotFound = true;
+        if (!payload?.clan_id) state.isNotFound = true;
       });
   },
 });
