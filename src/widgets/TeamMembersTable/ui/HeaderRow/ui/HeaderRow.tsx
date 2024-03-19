@@ -31,7 +31,7 @@ export const HeaderRow = (props: IHeaderRow) => {
                     {
                       [cls.buttonActive]: header.column.getIsSorted() === 'desc',
                     },
-                    []
+                    [],
                   )}
                 />
               ) : (
@@ -41,7 +41,7 @@ export const HeaderRow = (props: IHeaderRow) => {
                     {
                       [cls.buttonActive]: header.column.getIsSorted() === 'asc',
                     },
-                    [cls.buttonUp]
+                    [cls.buttonUp],
                   )}
                 />
               )}
