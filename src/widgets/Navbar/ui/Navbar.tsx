@@ -2,18 +2,16 @@ import { useTranslation } from 'react-i18next';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getLoggedInStatus } from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
 import {
   memo, useCallback, useEffect, useState,
 } from 'react';
-import { userActions } from 'entities/User';
-import LogoutIcon from 'shared/assets/icons/button/logout.svg';
 import LoginIcon from 'shared/assets/icons/button/login.svg';
 import { Button } from 'shared/ui/Button/Button';
 import { getUserData } from 'entities/User/model/selectors/getUserData/getUserData';
-import { ProfileSidebar } from 'widgets/ProfileSidebar';
 import { useSizeScreen } from 'shared/hooks/useSizeScreen';
+import { Menu } from 'shared/ui/Menu';
 import cls from './Navbar.module.scss';
 
 interface INavbarProps {
@@ -21,21 +19,22 @@ interface INavbarProps {
 }
 
 export const Navbar = memo(({ className }: INavbarProps) => {
-  const { t } = useTranslation('nav');
-  const isLoggedIn = useSelector(getLoggedInStatus);
-  const dispatch = useDispatch();
-  const { authData } = useSelector(getUserData);
-  const onLogout = useCallback(() => {
-    dispatch(userActions.logout());
-  }, [dispatch]);
-  const { width } = useSizeScreen();
   const [isOpenMenu, setOpenMenu] = useState(false);
+  const [isMobile, setMobile] = useState(false);
+  const isLoggedIn = useSelector(getLoggedInStatus);
+  const { authData } = useSelector(getUserData);
+  const { t } = useTranslation('nav');
+  const { width } = useSizeScreen();
+
   const handelClick = useCallback(() => {}, []);
+
+  const handelClickMenu = useCallback(() => {
+    setOpenMenu(false);
+  }, []);
 
   const handleClickUserName = useCallback(() => {
     setOpenMenu(!isOpenMenu);
   }, [isOpenMenu]);
-  const [isMobile, setMobile] = useState(false);
 
   useEffect(() => {
     if (width > 768) {
@@ -59,11 +58,15 @@ export const Navbar = memo(({ className }: INavbarProps) => {
           <span className={cls.notification}>2</span>
         </Button>
 
-        {isOpenMenu && (
-          <nav className={cls.menuProfile}>
-            <ProfileSidebar />
-          </nav>
-        )}
+        <nav
+          className={classNames(
+            cls.menuProfile,
+            { [cls.open]: isOpenMenu },
+            [],
+          )}
+        >
+          <Menu theme="navbar" cb={handelClickMenu} />
+        </nav>
 
         <Button
           type="button"
@@ -73,36 +76,29 @@ export const Navbar = memo(({ className }: INavbarProps) => {
         >
           <span className={cls.userName}>{username ?? ''}</span>
         </Button>
-        <nav className={classNames(cls.Navbar, {}, [className])}>
-          <AppLink
-            theme={AppLinkTheme.PRIMARY}
-            to={RoutePath.auth}
-            onClick={onLogout}
-          >
-            <LogoutIcon />
-          </AppLink>
-        </nav>
       </div>
     );
   }
 
   return (
     <nav className={classNames(cls.Navbar, {}, [className])}>
-      <AppLink
-        theme={AppLinkTheme.BUTTON}
-        to={RoutePath.auth}
-        className={cls.addAccount}
-        state={{ tab: 'reg' }}
-      >
-        {!isMobile && t('Создать аккаунт')}
-      </AppLink>
-      <AppLink
-        theme={AppLinkTheme.PRIMARY}
-        to={RoutePath.auth}
-        state={{ tab: 'auth' }}
-      >
-        <LoginIcon />
-      </AppLink>
+      <div className={cls.navWrapper}>
+        <AppLink
+          theme={AppLinkTheme.BUTTON}
+          to={RoutePath.auth}
+          className={cls.addAccount}
+          state={{ tab: 'reg' }}
+        >
+          {!isMobile && t('Создать аккаунт')}
+        </AppLink>
+        <AppLink
+          theme={AppLinkTheme.PRIMARY}
+          to={RoutePath.auth}
+          state={{ tab: 'auth' }}
+        >
+          <LoginIcon />
+        </AppLink>
+      </div>
     </nav>
   );
 });

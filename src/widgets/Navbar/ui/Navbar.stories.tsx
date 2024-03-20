@@ -7,7 +7,7 @@ import { Navbar } from './Navbar';
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Navbar> = {
   title: 'widgets/Navbar',
-  render: () => <Navbar />,
+  component: Navbar,
 };
 
 export default meta;

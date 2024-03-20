@@ -1,53 +1,50 @@
-import React, { memo, useEffect, useState } from 'react';
+import {
+  memo, useCallback, useEffect, useState,
+} from 'react';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary';
-import { TournamentData, TournamentList } from 'entities/Tournament/index';
-import { $api } from 'shared/api/api';
-import { useDispatch } from 'react-redux';
-import {
-  filterDataOnLadders,
-  filterDataOnTournaments,
-  filterFinishedTournaments,
-} from 'entities/Tournament/lib/filterRecievedData';
-import {
-  tournamentActions,
-  tournamentReducer,
-} from 'entities/Tournament/model/slice/tournamentSlice';
-import {
-  ReducerList,
-  useDynamicReducerLoader,
-} from 'shared/hooks/useDynamicReducerLoader/useDynamicReducerLoader';
+import { useDispatch, useSelector } from 'react-redux';
 import Loader from 'shared/ui/Loader/Loader';
-import { TeamsPageNav } from 'widgets/TeamsPageNav/ui/TeamsPageNav';
+import { TeamsPageNav } from 'widgets/TeamsPageNav';
 import { Background } from 'shared/ui/Background/Background';
-import { tabs, isUppercase, backgraundUrl } from '../utils/tabsConfig';
+import { Pagination } from 'widgets/Pagination';
+import { SliderArrow } from 'widgets/TournamentsSlider';
+import {
+  TeamsList,
+  fetchTeamsData,
+  getTeamsLoadingStatus,
+} from 'entities/Team';
 import cls from './TeamsPage.module.scss';
-
-const initialReducers: ReducerList = { tournaments: tournamentReducer };
+import { tabs, isUppercase, backgroundUrl } from '../utils/tabsConfig';
 
 const TeamsPage = () => {
-  const [isLoading, setLoading] = useState(true);
+  const isLoading = useSelector(getTeamsLoadingStatus);
   const [tab, setTab] = useState(0);
+  // const MAX_TEAMS_SLIDE = 10;
+  const [items] = useState([]);
 
   const dispatch = useDispatch();
-  const { addTournaments, addLadders, addFinishedTournaments } = tournamentActions;
-  // useDynamicReducerLoader({ reducers: initialReducers });
 
   useEffect(() => {
-    $api
-      .get<TournamentData[]>('/tournaments')
-      .then(({ data }) => {
-        const ladders = filterDataOnLadders(data);
-        const tournaments = filterDataOnTournaments(data);
-        const finished = filterFinishedTournaments(data);
+    dispatch(fetchTeamsData());
+  }, [dispatch]);
 
-        dispatch(addLadders(ladders));
-        dispatch(addTournaments(tournaments));
-        dispatch(addFinishedTournaments(finished));
-      })
-      .catch((e) => e)
-      .finally(() => setLoading(false));
-    // eslint-disable-next-line
-  }, []);
+  const [slide, setSlide] = useState(0);
+
+  const changeSlide = useCallback((num: number) => setSlide(num), [setSlide]);
+
+  const changeSlideLeft = useCallback(() => {
+    if (slide === 0) {
+      return setSlide(items.length - 1);
+    }
+    return setSlide(slide - 1);
+  }, [setSlide, slide, items]);
+
+  const changeSlideRight = useCallback(() => {
+    if (slide === items.length - 1) {
+      return setSlide(0);
+    }
+    return setSlide(slide + 1);
+  }, [setSlide, slide, items]);
 
   if (isLoading) {
     return (
@@ -63,7 +60,7 @@ const TeamsPage = () => {
 
   return (
     <ErrorBoundary>
-      <Background url={backgraundUrl} theme="image" />
+      <Background url={backgroundUrl} theme="image" />
       <div className={cls.teams}>
         <div className={cls.wrapper}>
           <TeamsPageNav
@@ -72,7 +69,28 @@ const TeamsPage = () => {
             tabList={tabs}
             handleChangeTab={setTab}
           />
+          <TeamsList activeTab={tab} />
         </div>
+        {items.length > 1 && (
+          <div className={cls.pagination}>
+            <SliderArrow
+              direction="left"
+              size="small"
+              changeSlide={changeSlideLeft}
+            />
+            <Pagination
+              theme="numbers"
+              slides={items}
+              slideNumber={slide}
+              changeSlide={changeSlide}
+            />
+            <SliderArrow
+              direction="right"
+              size="small"
+              changeSlide={changeSlideRight}
+            />
+          </div>
+        )}
       </div>
     </ErrorBoundary>
   );
