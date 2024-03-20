@@ -7,6 +7,8 @@ const roleValues: Record<string, string> = {
 };
 
 export function usersClan(players: LestaClanPlayer[], members: LestaClanMember[]): LestaClanUser[] {
+  if (!players.length || !members.length) return null;
+
   const resultArray: LestaClanUser[] = [];
   const membersWithRoleMap: Record<number, LestaClanMember> = {};
 
