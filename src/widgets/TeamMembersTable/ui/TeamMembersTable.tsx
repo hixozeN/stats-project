@@ -43,7 +43,7 @@ export const TeamMembersTable = memo(({ className }: TableProps) => {
     debugTable: true,
   });
 
-  if (users[0] === undefined) return null;
+  if (!users) return null;
 
   return (
     <table className={classNames(cls.table, {}, [className])}>
