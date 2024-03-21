@@ -31,8 +31,8 @@ export const awardsList = [
 export const dataList = [
   {
     _id: 1,
-    icon: icon1,
-    team: 'OLRCY',
+    logo: icon1,
+    name: 'OLRCY',
     rating: 2674,
     tournaments: 27,
     modes: 25,
@@ -41,8 +41,8 @@ export const dataList = [
   },
   {
     _id: 2,
-    icon: icon2,
-    team: 'No Mercy',
+    logo: icon2,
+    name: 'No Mercy',
     rating: 2674,
     tournaments: 12,
     modes: 25,
@@ -51,8 +51,8 @@ export const dataList = [
   },
   {
     _id: 3,
-    icon: icon1,
-    team: 'Ace Ventura',
+    logo: icon1,
+    name: 'Ace Ventura',
     rating: 2674,
     tournaments: 43,
     modes: 25,
@@ -61,8 +61,8 @@ export const dataList = [
   },
   {
     _id: 4,
-    icon: icon1,
-    team: '7STAR',
+    logo: icon1,
+    name: '7STAR',
     rating: 2674,
     tournaments: 0,
     modes: 25,
@@ -71,8 +71,8 @@ export const dataList = [
   },
   {
     _id: 5,
-    icon: icon1,
-    team: 'GuchiGangTeam',
+    logo: icon1,
+    name: 'GuchiGangTeam',
     rating: 1245,
     tournaments: 0,
     modes: 25,

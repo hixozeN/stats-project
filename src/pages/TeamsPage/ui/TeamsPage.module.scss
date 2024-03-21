@@ -4,6 +4,8 @@
   height: 100%;
   position: relative;
   padding: 28px 190px;
+  display: flex;
+  flex-direction: column;
 
   @media screen and (width <= 1700px) {
     padding: 28px 80px;
@@ -23,6 +25,14 @@
 .test {
   width: 300px;
   height: 300px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  gap: 25px;
 }
 
 @media screen and (width <= 1280px) {

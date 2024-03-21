@@ -1,12 +1,21 @@
 import {
-  memo, useCallback, useEffect, useState, TouchEvent, useMemo,
+  memo,
+  useCallback,
+  useEffect,
+  useState,
+  TouchEvent,
+  useMemo,
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useSelector } from 'react-redux';
-import { TournamentData, getLadders, getTournaments } from 'entities/Tournament';
+import {
+  TournamentData,
+  getLadders,
+  getTournaments,
+} from 'entities/Tournament';
+import { Pagination } from 'widgets/Pagination';
 import cls from './TournamentsSlider.module.scss';
 import { Slide } from '../Slide/Slide';
-import { SliderDots } from '../SliderDots/SliderDots';
 import { SliderArrow } from '../SliderArrow/SliderArrow';
 
 interface ITournamentsSliderProps {
@@ -16,16 +25,15 @@ interface ITournamentsSliderProps {
 }
 
 export const TournamentsSlider = memo((props: ITournamentsSliderProps) => {
-  const {
-    className,
-    autoPlay = true,
-    autoPlayTime = 5000,
-  } = props;
+  const { className, autoPlay = true, autoPlayTime = 5000 } = props;
 
   const tournamentList = useSelector(getTournaments);
   const ladderList = useSelector(getLadders);
   // const [items, setItems] = useState<TournamentData[]>();
-  const items: TournamentData[] = useMemo(() => [...tournamentList, ...ladderList], [tournamentList, ladderList]);
+  const items: TournamentData[] = useMemo(
+    () => [...tournamentList, ...ladderList],
+    [tournamentList, ladderList],
+  );
   const [slide, setSlide] = useState(0);
   const [touchPosition, setTouchPosition] = useState<number | null>(null);
 
@@ -45,23 +53,29 @@ export const TournamentsSlider = memo((props: ITournamentsSliderProps) => {
 
   const changeSlide = useCallback((num: number) => setSlide(num), [setSlide]);
 
-  const handleTouchStart = useCallback((e: TouchEvent) => {
-    const touchDown = e.touches[0].clientX;
+  const handleTouchStart = useCallback(
+    (e: TouchEvent) => {
+      const touchDown = e.touches[0].clientX;
 
-    setTouchPosition(touchDown);
-  }, [setTouchPosition]);
+      setTouchPosition(touchDown);
+    },
+    [setTouchPosition],
+  );
 
-  const handleTouchMove = useCallback((e: TouchEvent) => {
-    if (touchPosition === null) return;
+  const handleTouchMove = useCallback(
+    (e: TouchEvent) => {
+      if (touchPosition === null) return;
 
-    const currentPosition = e.touches[0].clientX;
-    const direction = touchPosition - currentPosition;
+      const currentPosition = e.touches[0].clientX;
+      const direction = touchPosition - currentPosition;
 
-    if (direction > 3) changeSlideRight();
-    if (direction < -3) changeSlideLeft();
+      if (direction > 3) changeSlideRight();
+      if (direction < -3) changeSlideLeft();
 
-    setTouchPosition(null);
-  }, [touchPosition, changeSlideRight, changeSlideLeft]);
+      setTouchPosition(null);
+    },
+    [touchPosition, changeSlideRight, changeSlideLeft],
+  );
 
   useEffect(() => {
     if (!autoPlay) return;
@@ -81,16 +95,35 @@ export const TournamentsSlider = memo((props: ITournamentsSliderProps) => {
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
     >
-      <SliderArrow direction="left" changeSlide={changeSlideLeft} />
+      <SliderArrow
+        direction="left"
+        size="big"
+        isSlider
+        changeSlide={changeSlideLeft}
+      />
       <div className={classNames(cls.slidesWrapper)}>
-        <ul className={classNames(cls.slideList)} style={{ transform: `translate(-${slide * 100}%)` }}>
-          {items.map((item: TournamentData) => (<Slide key={item._id} tournamentData={item} />))}
+        <ul
+          className={classNames(cls.slideList)}
+          style={{ transform: `translate(-${slide * 100}%)` }}
+        >
+          {items.map((item: TournamentData) => (
+            <Slide key={item._id} tournamentData={item} />
+          ))}
         </ul>
       </div>
-      <SliderArrow direction="right" changeSlide={changeSlideRight} />
+      <SliderArrow
+        direction="right"
+        size="big"
+        isSlider
+        changeSlide={changeSlideRight}
+      />
 
-      <SliderDots slides={items} slideNumber={slide} changeSlide={changeSlide} />
-
+      <Pagination
+        theme="dots"
+        slides={items}
+        slideNumber={slide}
+        changeSlide={changeSlide}
+      />
     </section>
   );
 });

@@ -1,38 +1,18 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import cls from './TournamentStarsItem.module.scss';
+import { TeamItemProps } from 'entities/Team';
+import cls from './TournamentItem.module.scss';
 
-interface AwardsTeam {
-  _id: number;
-  image: string;
-  rarity: string;
-}
-
-interface TournamentTeam {
-  _id: number;
-  icon: string;
-  team: string;
-  rating: number;
-  tournaments: number;
-  modes: number;
-  members: number;
-  awards: AwardsTeam[];
-}
-
-interface TournamentStarsItemProps {
-  dataTeam: TournamentTeam;
-}
-
-export const TournamentStarsItem = ({ dataTeam }: TournamentStarsItemProps) => {
+export const TournamentItem = ({ dataTeam }: TeamItemProps) => {
   const {
-    icon, team, rating, tournaments, modes, members, awards,
+    logo, name, rating, tournaments, modes, members, awards,
   } = dataTeam;
   const { t } = useTranslation('main');
   return (
     <li className={cls.tableRow}>
       <Link to="/" className={cls.link}>
-        <img className={cls.icon} src={icon} alt={team} />
-        <p className={cls.nameTeam}>{team}</p>
+        <img className={cls.icon} src={logo} alt={name} />
+        <p className={cls.nameTeam}>{name}</p>
       </Link>
       <ul className={cls.list}>
         <li className={cls.item}>
