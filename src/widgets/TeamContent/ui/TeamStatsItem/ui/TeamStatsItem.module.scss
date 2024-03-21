@@ -4,8 +4,7 @@
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-areas: 'icon text' 'icon result';
-  align-items: center;
-  justify-items: center;
+  place-items: center;
   border-radius: 10px;
   border: 1px solid var(--bg-stat-item);
   font: var(--font-m);
