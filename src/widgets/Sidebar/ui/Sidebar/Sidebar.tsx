@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { memo, useCallback, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
 import { LangSwitcher } from 'widgets/LangSwitcher';
@@ -15,7 +15,7 @@ interface SidebarProps {
   setIsCollapsed?: (value: boolean) => void;
 }
 
-export const Sidebar = ({
+export const Sidebar = memo(({
   className,
   isCollapsed,
   setIsCollapsed,
@@ -84,4 +84,4 @@ export const Sidebar = ({
       </div>
     </aside>
   );
-};
+});

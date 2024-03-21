@@ -1,0 +1,41 @@
+.privateElement {
+  padding: 9.5px 0 9.5px 35px;
+  color: var(--inverted-primary-color);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.premium {
+  background: url("shared/assets/icons/userStats/premium.svg") no-repeat left 0 top 5px;
+}
+
+.gold {
+  padding-left: 32px;
+  background: url("shared/assets/icons/userStats/gold.svg") no-repeat left 0 top 5px;
+}
+
+.credits {
+  padding-left: 32px;
+  background: url("shared/assets/icons/userStats/silver.svg") no-repeat left 0 top 5px;
+}
+
+.freeExp {
+  padding: 9.5px 0 9.5px 30px;
+  background: url("shared/assets/icons/userStats/free-exp.svg") no-repeat left 5px top 10px;
+  background-size: 20px 20px;
+}
+
+@media screen and (width <= 1024px) {
+  .privateElement {
+    padding: 30px 0 9.5px;
+    font-size: 14px;
+  }
+
+  .premium, .gold, .credits, .freeExp {
+    background-position: top center;
+  }
+
+  .freeExp {
+    background-position-y: 5px;
+  }
+}

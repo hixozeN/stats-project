@@ -11,6 +11,9 @@ export interface BuildEnv {
   mode: BuildMode;
   port: number;
   apiUrl: string;
+  lestaApiUrl: string;
+  lestaAuthApiUrl: string;
+  lestaAppId: string;
 }
 
 export interface BuildOptions {
@@ -19,4 +22,7 @@ export interface BuildOptions {
   isDev: boolean;
   port: number;
   apiUrl: string;
+  lestaApiUrl: string;
+  lestaAuthApiUrl: string;
+  lestaAppId: string;
 }

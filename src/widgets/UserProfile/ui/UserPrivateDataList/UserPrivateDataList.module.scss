@@ -1,0 +1,17 @@
+.privateData {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto 0 0;
+  padding: 0 20px;
+  border-radius: 15px;
+  gap: 10px;
+  grid-area: privateData;
+}
+
+//@media screen and (width <= 1024px) {
+//  .privateData {
+//    justify-content: space-evenly;
+//  }
+//}

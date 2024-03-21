@@ -1,4 +1,6 @@
 /* eslint-disable no-unused-vars */
+import { LestaUserStatistics } from 'shared/api';
+
 export enum UserRoles {
   ADMIN = 'Admin',
   MODERATOR = 'Moderator',
@@ -6,15 +8,25 @@ export enum UserRoles {
   USER = 'User',
 }
 
+export interface LestaUserData {
+  nickname: string;
+  account_id: number;
+  created_at: number;
+  last_battle_time: number;
+  expires_at?: number;
+  access_token?: string;
+  statistics: LestaUserStatistics;
+}
+
 export type UserAwards = Record<string, string>;
 
 export interface User {
+  _id?: string;
   username: string;
-  id?: string;
-  name?: string;
   email?: string;
+  lestaData: LestaUserData | null;
   avatar?: string;
-  regDate?: Date;
+  created_at?: number;
   roles?: UserRoles[];
   bio?: string;
   discord?: string;

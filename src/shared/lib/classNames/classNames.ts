@@ -13,9 +13,9 @@
     class='section-feedback visible dark'
 */
 
-type TMods = Record<string, boolean | string>;
+export type TMods = Record<string, boolean | string | undefined>;
 
-export function classNames(cls: string, mods: TMods = {}, additional: string[] = []): string {
+export function classNames(cls: string, mods: TMods = {}, additional: Array<string | undefined> = []): string {
   return [
     cls,
     // фильтрация по Boolean, т.к. в дополнительные классы могут прилетать undefined через пропсы

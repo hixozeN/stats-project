@@ -1,0 +1,30 @@
+.item {
+  padding: 10px;
+  min-width: 150px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas: 'icon text' 'icon result';
+  place-items: center;
+  border-radius: 10px;
+  border: 1px solid var(--bg-stat-item);
+  font: var(--font-m);
+}
+
+.icon {
+  width: 32px;
+  height: 32px;
+  grid-area: icon;
+
+  path {
+    fill: var(--accent-color);
+  }
+}
+
+.results {
+  grid-area: result;
+  font: var(--font-l);
+}
+
+.text {
+  grid-area: text;
+}

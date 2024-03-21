@@ -93,7 +93,7 @@
     background-color: var(--bg-profile-wrapper);
     transition: all 0.3s ease;
   }
-  
+
   .Sidebar.active::after {
     box-shadow: 0 2px 5px 0 var(--bg-color);
     transform: scale3d(7.8, 7.8, 1);

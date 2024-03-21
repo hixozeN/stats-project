@@ -1,0 +1,19 @@
+.TeamName {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.text {
+  font: var(--font-l);
+  color: var(--primary-color);
+  text-align: center;
+}
+
+@media screen and (width <=480px) {
+  .TeamName {
+    padding: 0 20px;
+    flex-direction: column;
+  }
+}

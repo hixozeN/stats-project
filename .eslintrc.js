@@ -69,9 +69,13 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 'off',
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
     'no-param-reassign': 'off',
+    camelcase: 'off',
   },
   globals: {
     IS_DEV: true,
     API_URL: true,
+    LESTA_API_URL: true,
+    LESTA_AUTH_API_URL: true,
+    LESTA_APP_ID: true,
   },
 };

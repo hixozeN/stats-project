@@ -2,8 +2,9 @@ import { configureStore, ReducersMapObject } from '@reduxjs/toolkit';
 import { userReducer } from 'entities/User';
 import { searchReducer } from 'features/Search';
 import { $api } from 'shared/api/api';
-import { To, NavigateOptions } from 'react-router-dom';
+import { NavigateOptions, To } from 'react-router-dom';
 import { tournamentReducer } from 'entities/Tournament';
+import { clanReducers, lestaReducer } from 'entities/Lesta';
 import { teamReducer } from 'entities/Team';
 import { StateSchema } from './StateSchema';
 import { createReducerManager } from './reducerManager';
@@ -19,6 +20,8 @@ export function createReduxStore(
     user: userReducer,
     searchForm: searchReducer,
     tournaments: tournamentReducer,
+    lesta: lestaReducer,
+    lestaClanData: clanReducers,
     teams: teamReducer,
     // async reducers
     // authForm: authReducer,
@@ -45,3 +48,6 @@ export function createReduxStore(
 
   return store;
 }
+
+// https://redux.js.org/usage/usage-with-typescript#define-root-state-and-dispatch-types
+export type AppDispatch = ReturnType<typeof createReduxStore>['dispatch'];
