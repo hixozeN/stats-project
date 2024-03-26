@@ -62,7 +62,7 @@
   .burgerMenu {
     display: block;
     border-radius: 50%;
-    box-shadow: 0 2px 5px 0 var(--bg-color);
+    box-shadow: var(--shadow-burger-menu);
     position: absolute;
     bottom: 141px;
     left: 141px;
@@ -72,12 +72,12 @@
   }
 
   .Sidebar.active .burgerMenu {
-    box-shadow: inset 0 0 3px var(--bg-color);
+    box-shadow: var(--shadow-opened-button-burger-menu);
     transform: rotate(90deg);
   }
 
   .Sidebar .burgerMenu:active {
-    box-shadow: 0 4px 8px 0 var(--bg-color);
+    box-shadow: var(--shadow-active-button-burger-menu);
   }
 
   .Sidebar::after {
@@ -90,7 +90,7 @@
     bottom: 141px;
     left: 141px;
     z-index: -2;
-    background-color: var(--bg-profile-wrapper);
+    background-color: var(--bg-burger-menu);
     transition: all 0.3s ease;
   }
 
