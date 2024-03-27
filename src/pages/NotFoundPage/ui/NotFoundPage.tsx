@@ -24,6 +24,7 @@ export function NotFoundPage({ className }: INotFoundPageProps) {
           <Button
             onClick={() => navigate(RoutePath.main)}
             size="size_m"
+            className={cls.button}
           >
             {t('на главную')}
           </Button>
@@ -31,6 +32,7 @@ export function NotFoundPage({ className }: INotFoundPageProps) {
             theme="danger"
             size="size_m"
             onClick={() => navigate(-1)}
+            className={cls.button}
           >
             {t('назад?')}
           </Button>
