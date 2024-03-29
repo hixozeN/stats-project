@@ -8,6 +8,19 @@ body {
   background-color: var(--app-background);
 }
 
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #424242;
+  border-radius: 20px;
+}
+
 .app {
   min-height: 100svh;
   display: flex;
@@ -30,4 +43,3 @@ body {
   display: flex;
   flex-grow: 1;
 }
-

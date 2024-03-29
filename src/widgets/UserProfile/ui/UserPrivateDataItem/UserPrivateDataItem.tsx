@@ -3,7 +3,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './UserPrivateDataItem.module.scss';
 
 interface UserPrivateDataItemProps {
-  variant: 'premium' | 'gold' | 'credits' | 'freeExp';
+  variant: 'gold' | 'credits' | 'premium' | 'free_xp';
   value: number;
   className?: string;
 }
@@ -31,6 +31,10 @@ export const UserPrivateDataItem = memo((props: UserPrivateDataItemProps) => {
 
       if (hours > 0) {
         result += ` ${hours}ч.`;
+      }
+
+      if (days <= 0 && hours <= 0) {
+        result += '0д. 0ч.';
       }
 
       return result;

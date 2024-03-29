@@ -16,8 +16,11 @@ export default (env: BuildEnv) => {
   const mode = env.mode || 'development';
   const PORT = env.port || 3000;
   const apiUrl = env.mode === 'development' ? 'http://localhost:8000' : env.apiUrl;
+  const analyze = env.analyze ?? 0;
 
   const isDev = mode === 'development';
+
+  const royalArenaApiUrl = 'http://localhost:3030';
 
   const lestaApiUrl = 'https://papi.tanksblitz.ru/wotb';
   const lestaAuthApiUrl = 'https://api.tanki.su/wot/auth';
@@ -26,9 +29,11 @@ export default (env: BuildEnv) => {
   const config: webpack.Configuration = buildWebpackConfig({
     mode,
     paths,
+    analyze,
     isDev,
     port: PORT,
     apiUrl,
+    royalArenaApiUrl,
     lestaApiUrl,
     lestaAuthApiUrl,
     lestaAppId,

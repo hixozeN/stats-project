@@ -20,7 +20,9 @@ export type ButtonVariant =
   | 'notification'
   | 'chevron-down'
   | 'magnifier'
-  | 'burger';
+  | 'burger'
+  | 'close'
+  | 'down-arrow';
 
 export type ButtonTheme =
   | 'default'
@@ -56,6 +58,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isUppercase?: boolean;
   children?: ReactNode;
   isActive?: boolean;
+  // isActiveArrow?: boolean;
 }
 
 export const Button = memo((props: ButtonProps) => {
@@ -70,6 +73,7 @@ export const Button = memo((props: ButtonProps) => {
     square,
     isUppercase,
     isActive,
+    // isActiveArrow,
     ...otherProps
   } = props;
 
@@ -79,6 +83,7 @@ export const Button = memo((props: ButtonProps) => {
     [cls.square]: square,
     [cls.uppercase]: isUppercase,
     [cls.active]: isActive,
+    // [cls.activeArrow]: isActiveArrow,
   };
 
   if (isLoading) {

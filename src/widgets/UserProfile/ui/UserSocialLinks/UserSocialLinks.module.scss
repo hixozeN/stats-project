@@ -1,0 +1,57 @@
+.socials {
+  grid-area: social;
+  padding-top: 20px;
+  margin: 0 auto;
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.socialLink {
+  text-decoration: none;
+  opacity: 0.5;
+  transition: all .7s;
+}
+
+.socialElement {
+  margin: 0;
+}
+
+.socialIcon {
+  padding: 0;
+}
+
+@media screen and (hover: hover) {
+  .socialLink:hover {
+    opacity: 1;
+  }
+
+  .discord:hover rect {
+    fill: #404dd3;
+  }
+
+  .discord:hover path {
+    fill: #e1e1e1;
+  }
+
+  .vk:hover path {
+    fill: #07f;
+  }
+
+  .tg:hover path:first-child {
+    fill: #00a7e3;
+  }
+
+  .tg:hover path:last-child {
+    fill: #e1e1e1;
+  }
+
+  .yt:hover path:first-child {
+    fill: #e1e1e1;
+  }
+
+  .yt:hover path:last-child {
+    fill: #d70a0a;
+  }
+}

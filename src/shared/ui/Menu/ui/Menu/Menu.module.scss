@@ -3,7 +3,8 @@
   flex-direction: column;
   width: 100%;
   max-width: max-content;
-  
+  z-index: 10;
+
   &.profileSidebar {
     padding: 19px 0;
     gap: 30px;

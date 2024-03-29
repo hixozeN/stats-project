@@ -10,6 +10,7 @@ export interface BuildPaths {
 export interface BuildEnv {
   mode: BuildMode;
   port: number;
+  analyze: number;
   apiUrl: string;
   lestaApiUrl: string;
   lestaAuthApiUrl: string;
@@ -19,9 +20,11 @@ export interface BuildEnv {
 export interface BuildOptions {
   mode: BuildMode;
   paths: BuildPaths;
+  analyze: number;
   isDev: boolean;
   port: number;
   apiUrl: string;
+  royalArenaApiUrl: string;
   lestaApiUrl: string;
   lestaAuthApiUrl: string;
   lestaAppId: string;

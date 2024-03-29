@@ -2,7 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { User, userActions } from 'entities/User/index';
 import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { ThunkConfig } from 'app/providers/StoreProvider/index';
-import axios from 'axios';
 
 interface LoginByLestaProps {
   status: string;
@@ -21,8 +20,8 @@ export const loginByLesta = createAsyncThunk<User, LoginByLestaProps, ThunkConfi
     // отправка запроса
     try {
       // отправляем пост запрос через аксиос с собранными данными
-      const response = await axios.post<User>(
-        'http://localhost:3030/lesta',
+      const response = await extra.royalApi.post<User>(
+        '/lesta',
         lestaData,
         { withCredentials: true },
       );

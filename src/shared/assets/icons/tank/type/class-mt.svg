@@ -1,0 +1,12 @@
+<svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <g clip-path="url(#a)">
+    <path fill="currentColor" fill-rule="evenodd"
+      d="m20 10-3.833-3.733-10 10L10 20l10-10ZM10 0 0 10l3.833 3.733 10-9.997L10 0Z"
+      clip-rule="evenodd" />
+  </g>
+  <defs>
+    <clipPath id="a">
+      <path fill="currentColor" d="M0 0h20v20H0z" />
+    </clipPath>
+  </defs>
+</svg>

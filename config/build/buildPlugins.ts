@@ -6,7 +6,7 @@ import { BuildOptions } from './types/config';
 
 export default function buildPlugins(
   {
-    paths, isDev, apiUrl, lestaApiUrl, lestaAuthApiUrl, lestaAppId,
+    paths, isDev, apiUrl, lestaApiUrl, lestaAuthApiUrl, lestaAppId, royalArenaApiUrl, analyze,
   }: BuildOptions,
 ): webpack.WebpackPluginInstance[] {
   const plugins = [
@@ -21,6 +21,7 @@ export default function buildPlugins(
     new webpack.DefinePlugin({
       IS_DEV: JSON.stringify(isDev),
       API_URL: JSON.stringify(apiUrl),
+      ROYAL_ARENA_API_URL: JSON.stringify(royalArenaApiUrl),
       LESTA_API_URL: JSON.stringify(lestaApiUrl),
       LESTA_AUTH_API_URL: JSON.stringify(lestaAuthApiUrl),
       LESTA_APP_ID: JSON.stringify(lestaAppId),
@@ -30,8 +31,11 @@ export default function buildPlugins(
 
   if (isDev) {
     plugins.push(new webpack.HotModuleReplacementPlugin());
+  }
+
+  if (analyze) {
     plugins.push(new BundleAnalyzerPlugin({
-      openAnalyzer: false,
+      openAnalyzer: true,
     }));
   }
 

@@ -13,16 +13,27 @@ import {
 import { AxiosInstance } from 'axios';
 import { NavigateOptions, To } from 'react-router-dom';
 import { TournamentSchema } from 'entities/Tournament/model/types/tournament';
-import { LestaClanSchema, LestaSchema } from 'entities/Lesta/index';
+import {
+  LestaSchema,
+  LestaUserDataSchema,
+  LestaTanksSchema,
+  LestaUserSessionSchema,
+  LestaClanSchema,
+} from 'entities/Lesta';
 import { TeamsSchema } from 'entities/Team/model/types/team';
+import { FilterSchema } from 'features/Filter/types/filter';
 
 export interface StateSchema {
   user: UserSchema;
   searchForm: SearchSchema;
   tournaments: TournamentSchema;
   lesta: LestaSchema,
-  lestaClanData: LestaClanSchema,
   teams: TeamsSchema;
+  lestaClanData: LestaClanSchema,
+  lestaUserData: LestaUserDataSchema;
+  lestaUserSession: LestaUserSessionSchema;
+  filter: FilterSchema;
+  userTanks: LestaTanksSchema;
   // async reducers
   authForm?: AuthSchema;
 }
@@ -42,6 +53,8 @@ export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
 
 export interface ThunkExtraArgument {
   api: AxiosInstance,
+  lestaApi: AxiosInstance,
+  royalApi: AxiosInstance,
   navigate: (to: To, options?: NavigateOptions) => void,
 }
 

@@ -1,0 +1,161 @@
+.card {
+  max-width: 460px;
+  width: 100%;
+  display: flex;
+  outline: 1px solid var(--bg-stat-item);
+  border-radius: 15px;
+  gap: 20px;
+  padding: 15px;
+  backdrop-filter: blur(5px);
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 21px;
+}
+
+.infoWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 18px;
+  line-height: normal;
+  max-width: 200px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
+  &.premium {
+    color: var(--is-premium-color);
+  }
+
+  &.collectible {
+    color: var(--is-collectible);
+  }
+}
+
+.flag {
+  width: 30px;
+  height: 21px;
+  display: flex;
+  order: -1;
+}
+
+.statList {
+  display: grid;
+  grid-template-columns: repeat(2, 120px);
+  gap: 20px 15px;
+
+  div:last-child {
+    color: var(--input-font-color);
+    grid-column: span 2;
+    font-size: 14px;
+    padding-top: 3px;
+  }
+}
+
+.imageWrapper {
+  order: -1;
+  position: relative;
+}
+
+.tankImg {
+  display: flex;
+  width: 150px;
+  height: 145px;
+  object-fit: contain;
+}
+
+.inner {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+}
+
+.tier {
+  font-size: 16px;
+  line-height: normal;
+  color: var(--secondary-color);
+}
+
+.type {
+  width: 20px;
+  height: 20px;
+  color: var(--secondary-color);
+}
+
+.mastery {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 32px;
+  height: 32px;
+}
+
+@media (width <= 1024px) {
+  .card {
+    max-width: 300px;
+    padding: 10px;
+    gap: 15px;
+  }
+
+  .infoWrapper {
+    gap: 11px;
+    padding: 0;
+  }
+
+  .tankImg {
+    width: 70px;
+    height: 68px;
+    margin: 10px 0;
+  }
+
+  .title {
+    font-size: 14px;
+    max-width: 160px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+
+    &.premium {
+      color: var(--accent-color);
+    }
+  }
+
+  .inner {
+    gap: 0;
+  }
+
+  .tier {
+    font-size: 12px;
+  }
+
+  .type {
+    width: 13px;
+  }
+
+  .mastery {
+    width: 20px;
+    height: 20px;
+  }
+
+  .statList {
+    display: grid;
+    grid-template-columns: repeat(2, 95px);
+    gap: 5px;
+
+    div:last-child {
+      color: var(--input-font-color);
+      grid-column: span 2;
+      font-size: 10px;
+    }
+  }
+}

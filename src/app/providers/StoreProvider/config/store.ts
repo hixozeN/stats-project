@@ -4,8 +4,14 @@ import { searchReducer } from 'features/Search';
 import { $api } from 'shared/api/api';
 import { NavigateOptions, To } from 'react-router-dom';
 import { tournamentReducer } from 'entities/Tournament';
-import { clanReducers, lestaReducer } from 'entities/Lesta';
+import { lestaReducer, clanReducers } from 'entities/Lesta';
 import { teamReducer } from 'entities/Team';
+import { $lestaApi } from 'shared/api/lestaApi';
+import { $royalApi } from 'shared/api/royalApi';
+import { royalApiInterceptors } from 'shared/api/lib/royalApiInterceptors/royalApiInterceptors';
+import { userTanksReducer } from 'entities/Lesta/model/slice/lestaTanksSlice';
+import { userDataReducer } from 'entities/Lesta/model/slice/userDataSlice';
+import { userSessionReducer } from 'entities/Lesta/model/slice/userSessionSlice';
 import { StateSchema } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
@@ -21,8 +27,11 @@ export function createReduxStore(
     searchForm: searchReducer,
     tournaments: tournamentReducer,
     lesta: lestaReducer,
-    lestaClanData: clanReducers,
+    lestaUserData: userDataReducer,
+    lestaUserSession: userSessionReducer,
     teams: teamReducer,
+    lestaClanData: clanReducers,
+    userTanks: userTanksReducer,
     // async reducers
     // authForm: authReducer,
   };
@@ -37,6 +46,8 @@ export function createReduxStore(
       thunk: {
         extraArgument: {
           api: $api,
+          lestaApi: $lestaApi,
+          royalApi: $royalApi,
           navigate,
         },
       },
@@ -45,6 +56,8 @@ export function createReduxStore(
 
   // @ts-ignore
   store.reducerManager = reducerManager;
+
+  royalApiInterceptors(store);
 
   return store;
 }

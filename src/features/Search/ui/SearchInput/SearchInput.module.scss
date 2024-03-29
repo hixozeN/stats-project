@@ -18,6 +18,10 @@
   background: var(--button-disabled);
 }
 
+.SearchInput::placeholder {
+  color: var(--input-placeholder-color);
+}
+
 .inputWrapper {
   display: flex;
   align-items: center;

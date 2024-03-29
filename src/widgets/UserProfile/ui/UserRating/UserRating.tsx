@@ -1,6 +1,6 @@
-import { memo, ReactElement } from 'react';
+import { memo, ReactElement, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { LestaUserRatingData } from 'entities/Lesta';
+import { getUserDataLoadingStatus, getUserRatingStats, getUserRatingValues } from 'entities/Lesta';
 import img from 'shared/assets/images/userStats/rating_calibration.webp';
 import bronzeShield from 'shared/assets/images/userStats/rating_bronze.png';
 import silverShield from 'shared/assets/images/userStats/rating_silver.png';
@@ -8,36 +8,59 @@ import goldShield from 'shared/assets/images/userStats/rating_gold.png';
 import platinumShield from 'shared/assets/images/userStats/rating_platinum.png';
 import brilliantShield from 'shared/assets/images/userStats/rating_brilliant.png';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import cls from './UserRating.module.scss';
 
 interface UserRatingProps {
-  ratingData: LestaUserRatingData;
   className?: string;
 }
 
 export const UserRating = memo((props: UserRatingProps) => {
-  const { className, ratingData } = props;
+  const { className } = props;
   const { t } = useTranslation();
+  const isUserDataLoading = useSelector(getUserDataLoadingStatus);
+  const ratingData = useSelector(getUserRatingStats);
+  const ratingValues = useSelector(getUserRatingValues);
 
-  const ratingValue = Math.round(10 * (ratingData?.mm_rating || 0) + 3e3);
-
-  const renderRatingShield = (rating: number) => {
+  const renderRatingShield = useCallback((rating: number) => {
     const shields: Record<number, ReactElement> = {
-      5000: brilliantShield,
       4000: platinumShield,
       3000: goldShield,
       2000: silverShield,
     };
 
-    for (const range in shields) {
-      // @ts-ignore
-      if (rating >= range) return shields[range];
-    }
+    if (rating >= 5000) return brilliantShield;
 
-    return bronzeShield;
-  };
+    const roundedRating = Math.floor(rating / 1000) * 1000;
 
-  if (ratingData?.calibration_battles_left !== 0) {
+    return roundedRating ? shields[roundedRating] : bronzeShield;
+  }, []);
+
+  if (isUserDataLoading) {
+    return (
+      <Skeleton className={cls.rating} />
+    );
+  }
+
+  if (!ratingValues) return null;
+
+  if (ratingData?.battles === 0) {
+    return (
+      <div className={classNames(cls.rating, {}, [className])}>
+        <img
+          className={cls.ratingImage}
+          src={img}
+          alt={t('Изображение лиги пользователя в виде цветного щита')}
+          loading="lazy"
+        />
+        {/* eslint-disable-next-line i18next/no-literal-string */}
+        <span className={cls.ratingValue}>0 / 10</span>
+      </div>
+    );
+  }
+
+  if (ratingValues?.calibration_battles_left !== 0) {
     return (
       <div className={classNames(cls.rating, {}, [className])}>
         <img
@@ -47,7 +70,7 @@ export const UserRating = memo((props: UserRatingProps) => {
           loading="lazy"
         />
         <span className={cls.ratingValue}>
-          {`${10 - ratingData?.calibration_battles_left} / 10`}
+          {`${10 - ratingValues.calibration_battles_left} / 10`}
         </span>
       </div>
     );
@@ -57,11 +80,11 @@ export const UserRating = memo((props: UserRatingProps) => {
     <div className={classNames(cls.rating, {}, [className, cls.ratingGap])}>
       <img
         className={cls.ratingImage}
-        src={brilliantShield}
+        src={renderRatingShield(ratingValues?.ratingValue)}
         alt={t('Изображение лиги пользователя в виде цветного щита')}
         loading="lazy"
       />
-      <span className={cls.ratingValue}>{ratingValue}</span>
+      <span className={cls.ratingValue}>{ratingValues?.ratingValue}</span>
     </div>
   );
 });

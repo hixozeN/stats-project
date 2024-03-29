@@ -103,3 +103,10 @@ export type LestaClan = {
   updated_at: number;
   players: LestaClanPlayer[];
 };
+
+export type Clan = {
+  name: string;
+  tag: string;
+  clan_id: number;
+  role: string;
+};

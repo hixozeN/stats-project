@@ -1,5 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { fetchLestaUserDataById, LestaUserLastSession } from 'entities/Lesta/index';
+import {
+  fetchLestaUserDataById,
+  LestaUserSession,
+} from 'entities/Lesta/index';
 import { LestaTankStats } from '../types/tanks';
 import { LestaClan } from '../types/clans';
 import { LestaUser } from '../types/users';
@@ -24,10 +27,10 @@ export const lestaSlice = createSlice({
     setClanData: (state, action: PayloadAction<LestaClan>) => {
       state.clan = action.payload;
     },
-    setUserTanks: (state, action: PayloadAction<LestaTankStats>) => {
+    setUserTanks: (state, action: PayloadAction<LestaTankStats[]>) => {
       state.userTanks = action.payload;
     },
-    setLastSession: (state, action: PayloadAction<LestaUserLastSession>) => {
+    setLastSession: (state, action: PayloadAction<LestaUserSession>) => {
       state.user.lastSession = action.payload;
     },
     setNotFound: (state, action: PayloadAction<boolean>) => {
@@ -44,6 +47,7 @@ export const lestaSlice = createSlice({
       .addCase(fetchLestaUserDataById.rejected, (state, { payload }) => {
         state.error = payload;
         state.isLoading = false;
+        state.isNotFound = true;
       })
       .addCase(fetchLestaUserDataById.fulfilled, (state, { payload }) => {
         state.isLoading = false;

@@ -1,0 +1,26 @@
+.tanks {
+  border-top: 1px solid var(--bg-tab-inactive);padding-bottom: 25px;
+}
+
+.list {
+  max-width: 1440px;
+  width: 100%;
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+@media (width <= 1200px) {
+  .list {
+    gap: 20px;
+    padding: 0 10px;
+  }
+}
+
+@media (width <= 480px) {
+  .list {
+    gap: 15px;
+  }
+}

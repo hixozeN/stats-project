@@ -29,6 +29,10 @@
   align-items: center;
   margin: 0 auto;
   padding-right: 10px;
+
+  @media screen and (width <= 460px) {
+    padding: 0;
+  }
 }
 
 .delta {
@@ -68,6 +72,7 @@
 
 .name {
   font-size: 14px;
+  white-space: nowrap;
 
   @media screen and (width <= 1024px) {
     font-size: 12px;
@@ -84,4 +89,38 @@
 
 .green {
   color: var(--stats-green-color);
+}
+
+@media screen and (hover: hover) {
+  .statItem:hover {
+    border: 1px solid #858585;
+  }
+}
+
+.skeleton {
+  position: relative;
+  background-color: transparent;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -150px;
+    height: 100%;
+    width: 80%;
+    background: linear-gradient(to right, transparent 0%, rgb(250 199 64 / 20%) 50%, transparent 100%);
+    animation: load 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+}
+
+@keyframes load {
+  from {
+    left: -150px;
+  }
+
+  to {
+    left: 100%;
+  }
 }
