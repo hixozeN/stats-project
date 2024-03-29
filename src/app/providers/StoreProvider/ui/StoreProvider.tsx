@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
 import { DeepPartial, ReducersMapObject } from '@reduxjs/toolkit';
 import { useNavigate } from 'react-router-dom';
+import { royalApiInterceptors } from 'shared/api/lib/royalApiInterceptors/royalApiInterceptors';
 import { createReduxStore } from '../config/store';
 
 interface IStoreProviderProps {
@@ -19,6 +20,8 @@ export function StoreProvider({ children, initialState, asyncReducers }: IStoreP
     asyncReducers as ReducersMapObject<StateSchema>,
     navigate,
   );
+
+  royalApiInterceptors(store, navigate);
 
   return (
     <Provider store={store}>

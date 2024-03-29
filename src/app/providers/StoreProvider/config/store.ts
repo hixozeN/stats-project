@@ -8,7 +8,6 @@ import { lestaReducer } from 'entities/Lesta';
 import { teamReducer } from 'entities/Team';
 import { $lestaApi } from 'shared/api/lestaApi';
 import { $royalApi } from 'shared/api/royalApi';
-import { royalApiInterceptors } from 'shared/api/lib/royalApiInterceptors/royalApiInterceptors';
 import { userTanksReducer } from 'entities/Lesta/model/slice/lestaTanksSlice';
 import { userDataReducer } from 'entities/Lesta/model/slice/userDataSlice';
 import { userSessionReducer } from 'entities/Lesta/model/slice/userSessionSlice';
@@ -55,8 +54,6 @@ export function createReduxStore(
 
   // @ts-ignore
   store.reducerManager = reducerManager;
-
-  royalApiInterceptors(store);
 
   return store;
 }

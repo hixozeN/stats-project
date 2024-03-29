@@ -3,11 +3,12 @@ import { User, UserSchema } from '../types/user';
 
 const initialState: UserSchema = {
   isLoggedIn: false,
+  error: '',
   authData: null,
 };
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: 'currentUser',
   initialState,
   reducers: {
     setAuthData: (state, action: PayloadAction<User>) => {
@@ -20,6 +21,9 @@ export const userSlice = createSlice({
       localStorage.clear();
       state.authData = null;
       state.isLoggedIn = false;
+    },
+    setError: (state, action: PayloadAction<string>) => {
+      state.error = action.payload;
     },
   },
 });

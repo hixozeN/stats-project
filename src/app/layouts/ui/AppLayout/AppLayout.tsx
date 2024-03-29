@@ -1,24 +1,32 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Sidebar } from 'widgets/Sidebar';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 import {
   Suspense, useEffect, useLayoutEffect, useState,
 } from 'react';
-import { useSelector } from 'react-redux';
-import { getLoggedInStatus } from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
-import { LOCAL_STORAGE_LESTA, LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
-import { userActions } from 'entities/User';
 import { Outlet, useSearchParams } from 'react-router-dom';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { Sidebar } from 'widgets/Sidebar';
+import { LOCAL_STORAGE_LESTA, LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
+import {
+  getCurrentUserError,
+  getLoggedInStatus,
+  userActions,
+} from 'entities/User';
 import Loader from 'shared/ui/Loader/Loader';
 import { Header } from 'widgets/Header/ui/Header';
-import axios from 'axios';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { SeoUpdater } from 'shared/lib/SeoUpdater/SeoUpdater';
+import { checkUserAuth } from 'entities/User/model/services/checkUserAuth/checkUserAuth';
+import {
+  authByLestaOpenID,
+} from 'entities/User/model/services/authByLestaOpenID/authByLestaOpenID';
 import { Theme, useTheme } from '../../../providers/ThemeProvider';
 import cls from './AppLayout.module.scss';
 
 function AppLayout() {
   const { theme } = useTheme();
   const isLoggedIn = useSelector(getLoggedInStatus);
+  const currentUserError = useSelector(getCurrentUserError);
   const dispatch = useAppDispatch();
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [queryParams] = useSearchParams();
@@ -32,12 +40,28 @@ function AppLayout() {
   }, [theme]);
 
   useLayoutEffect(() => {
+    // NEW
+    // проверяем авторизацию пользователя
+    dispatch(checkUserAuth());
+    // LestaOpenID
+    const lestaAuthStatus = queryParams.get(LOCAL_STORAGE_LESTA.STATUS);
+    const isLestaAuth = !!lestaAuthStatus;
+
+    if (isLestaAuth && lestaAuthStatus === 'ok') {
+      const lestaData = {
+        status: queryParams.get(LOCAL_STORAGE_LESTA.STATUS),
+        access_token: queryParams.get(LOCAL_STORAGE_LESTA.TOKEN),
+        nickname: queryParams.get(LOCAL_STORAGE_LESTA.NICKNAME),
+        account_id: +queryParams.get(LOCAL_STORAGE_LESTA.ID),
+        expires_at: +queryParams.get(LOCAL_STORAGE_LESTA.EXPIRES_AT),
+      };
+
+      dispatch(authByLestaOpenID(lestaData));
+    }
+    // // OLD
     const savedUserData = JSON.parse(
       localStorage.getItem(LOCAL_STORAGE_USER_KEY),
     );
-
-    const lestaAuthStatus = queryParams.get(LOCAL_STORAGE_LESTA.STATUS);
-    const isLestaAuth = !!lestaAuthStatus;
 
     if (savedUserData) {
       dispatch(userActions.setAuthData(savedUserData));
