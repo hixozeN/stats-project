@@ -17,7 +17,6 @@ export const lestaTanksSlice = createSlice({
   reducers: {
     setUserTanks: (state, action: PayloadAction<TUserTanks[]>) => {
       state.userTanks = action.payload;
-      localStorage.setItem('tanks', JSON.stringify(action.payload));
     },
     // setTanksLastSession: (state, action: PayloadAction<LestaTankStats[]>) => {
     //   state.userTanks.lastSession = action.payload;

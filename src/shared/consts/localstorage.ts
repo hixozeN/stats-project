@@ -13,3 +13,4 @@ export const LOCAL_STORAGE_LESTA = {
 
 export const I18_CURRENT_LANGUAGE = 'i18nextLng';
 export const LOCAL_STORAGE_CHECKBOXES = 'checkboxes';
+export const LOCAL_STORAGE_FILTER_DATA = 'filter_data';

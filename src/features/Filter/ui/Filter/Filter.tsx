@@ -10,11 +10,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCheckboxesFilterState } from 'features/Filter/model/selectors';
 import { filterActions } from 'features/Filter/model/slice/filterSlice';
 import { useFilterTanks } from 'features/Filter/hooks/useFilterTanks';
-import { LOCAL_STORAGE_CHECKBOXES } from 'shared/consts/localstorage';
 import { TUserTanks } from 'entities/Lesta/model/types/tanks';
+import { getLestaUserTanks } from 'entities/Lesta';
 import { Button } from '../../../../shared/ui/Button/Button';
 import { FilterItem } from './FilterItem';
-import { clearFiterData, filterData } from '../../config/filterData';
+import { filterData } from '../../config/filterData';
 import { Sort } from '../Sort/Sort';
 import cls from './Filter.module.scss';
 
@@ -24,18 +24,14 @@ function FilterWithCurtain() {
   const [sortState, setSortState] = useState<Record<string, any>>({});
   const dispatch = useDispatch();
   const checkboxes = useSelector(getCheckboxesFilterState);
-  const filterDataTanks = useFilterTanks();
+  const { filter } = useFilterTanks();
+  const tanks = useSelector(getLestaUserTanks);
 
-  useEffect(() => {
-    if ('checkboxes' in localStorage) {
-      localStorage.setItem(
-        LOCAL_STORAGE_CHECKBOXES,
-        JSON.stringify(clearFiterData),
-      );
-    }
-    dispatch(filterActions.setFilterData(filterDataTanks));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   if ('checkboxes' in localStorage) {
+  //     dispatch(filterActions.setFilterData(filter));
+  //   }
+  // }, [dispatch]);
 
   const onChangeFilter = useCallback(
     (e) => {
@@ -71,14 +67,13 @@ function FilterWithCurtain() {
   const applyFilter = () => {
     setSortStateInit();
     closeFilter();
-    dispatch(filterActions.setFilterData(filterDataTanks));
+    dispatch(filterActions.setFilterData(filter));
   };
 
   const clearFilter = useCallback(() => {
     dispatch(filterActions.clearFilter());
-    dispatch(filterActions.setFilterData(filterDataTanks));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
+    dispatch(filterActions.setFilterData(tanks));
+  }, [dispatch, tanks]);
 
   const openFilter = () => {
     setOpenFilter(true);
@@ -105,12 +100,12 @@ function FilterWithCurtain() {
       };
     }));
     if (sortState[`${nameItem}`].isDown) {
-      listSort = [...filterDataTanks].sort(
+      listSort = [...filter].sort(
         (a: {[key: string]:any}, b: {[key: string]:any}) => a.statistics[`${paramItem}`] - b.statistics[`${paramItem}`],
       );
     }
     if (sortState[`${nameItem}`].isUp || !sortState[`${nameItem}`].isActive) {
-      listSort = [...filterDataTanks].sort(
+      listSort = [...filter].sort(
         (a: {[key: string]:any}, b: {[key: string]:any}) => b.statistics[`${paramItem}`] - a.statistics[`${paramItem}`],
       );
     }
