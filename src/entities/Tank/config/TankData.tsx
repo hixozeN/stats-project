@@ -52,27 +52,27 @@ const statList: IStatList[] = [
   {
     nameItem: 'battles',
     text: 'Боёв',
-    param: 'statistics.battles',
+    param: 'battles',
   },
   {
     nameItem: 'average',
     text: 'Ср. урон',
-    param: '',
+    param: 'avgDamage',
   },
   {
-    nameItem: 'win',
+    nameItem: 'wins',
     text: 'Побед',
-    param: '',
+    param: 'wins',
   },
   {
     nameItem: 'wn8',
     text: 'WN8',
-    param: '',
+    param: 'wn8',
   },
   {
     nameItem: 'lastBattle',
     text: 'Последний бой',
-    param: '',
+    param: 'last_battle_time',
   },
 ];
 

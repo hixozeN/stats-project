@@ -1,10 +1,12 @@
-import { memo, useState } from 'react';
+import { memo } from 'react';
 import { useMatch } from 'react-router-dom';
 import { Filter } from 'features/Filter';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Tank } from 'entities/Tank/ui/Tank/Tank';
 import { TUserTanks } from 'entities/Lesta/model/types/tanks';
-import { t } from 'i18next';
+// import { t } from 'i18next';
+import { useSelector } from 'react-redux';
+import { getDataFilterState } from 'features/Filter/model/selectors';
 import cls from './Tanks.module.scss';
 
 interface TanksProps {
@@ -13,7 +15,7 @@ interface TanksProps {
 
 export const Tanks = memo(({ dataList }: TanksProps) => {
   const isAuthPage = useMatch(RoutePath.auth);
-  const [filterList, setFilterList] = useState(dataList);
+  const filterList = useSelector(getDataFilterState) || dataList;
   let wordTanks;
 
   if (isAuthPage) return null;
@@ -41,9 +43,9 @@ export const Tanks = memo(({ dataList }: TanksProps) => {
       <h2 className={cls.title}>
         {`В ангаре ${filterList.length} ${wordTanks} с выбранными параметрами`}
       </h2>
-      <Filter filterList={filterList} />
+      <Filter />
       <ul className={cls.list}>
-        {dataList.map((data: TUserTanks) => (
+        {filterList.map((data: TUserTanks) => (
           <Tank data={data} key={data.tank_id} />
         ))}
       </ul>

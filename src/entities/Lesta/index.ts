@@ -18,6 +18,7 @@ export {
 export { LestaClan } from './model/types/clans';
 export { LestaTankStats, LestaTankData } from './model/types/tanks';
 export { fetchLestaUserDataById } from './model/services/fetchLestaUserDataById/fetchLestaUserDataById';
+export { createLestaUserSession } from './model/services/createLestaUserSession/createLestaUserSession';
 export { ParamData } from './model/types/default';
 
 // Selectors

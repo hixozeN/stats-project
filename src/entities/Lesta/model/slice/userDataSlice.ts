@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
-  LestaUserDataSchema,
+  LestaUserDataSchema, LestaUserSession,
 } from 'entities/Lesta/index';
 import { ParamData } from '../types/default';
 import {
@@ -45,6 +45,9 @@ export const userDataSlice = createSlice({
     },
     setNotFoundStatus: (state, action: PayloadAction<boolean>) => {
       state.isNotFound = action.payload;
+    },
+    setUserSessions: (state, action: PayloadAction<LestaUserSession[]>) => {
+      state.personal.sessions = action.payload;
     },
   },
   extraReducers: (builder) => {

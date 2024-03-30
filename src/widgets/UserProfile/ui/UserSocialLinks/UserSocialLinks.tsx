@@ -5,7 +5,8 @@ import TgIcon from 'shared/assets/icons/tg-circle.svg';
 import DiscordIcon from 'shared/assets/icons/ds-circle.svg';
 import YouTubeIcon from 'shared/assets/icons/youtube-circle.svg';
 import { useSelector } from 'react-redux';
-import { getUserSocialLinks } from 'entities/Lesta/index';
+import { getUserDataLoadingStatus, getUserSocialLinks } from 'entities/Lesta/index';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import cls from './UserSocialLinks.module.scss';
 
 interface UserSocialLinksProps {
@@ -54,6 +55,7 @@ const socialIcons: SocialLinks = {
 export const UserSocialLinks = memo((props: UserSocialLinksProps) => {
   const { className } = props;
   const userSocialLinks = useSelector(getUserSocialLinks);
+  const isUserDataLoading = useSelector(getUserDataLoadingStatus);
 
   const renderLinks = useCallback(() => Object.entries(userSocialLinks).map(([key, value]: [string, string]) => {
     if (value) {
@@ -72,6 +74,19 @@ export const UserSocialLinks = memo((props: UserSocialLinksProps) => {
     }
     return null;
   }), [userSocialLinks]);
+
+  if (isUserDataLoading) {
+    return (
+      <ul className={classNames(cls.socials, {}, [className])}>
+        {[...new Array(2)].map((_, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <li key={index} className={cls.socialElement}>
+            <Skeleton width={40} height={40} borderRadius="50%" />
+          </li>
+        ))}
+      </ul>
+    );
+  }
 
   return (
     <ul className={classNames(cls.socials, {}, [className])}>

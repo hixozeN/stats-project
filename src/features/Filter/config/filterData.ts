@@ -38,8 +38,20 @@ export const filterData: FilterTanks[] = [
     name: 'mastery',
     text: 'Классность',
     values: ['4', '3', '2', '1'],
-    param: 'mark_of_mastery',
+    param: 'statistics.mark_of_mastery',
   },
 ];
 
-// export const sortData = ['Побед', 'Ср. урон', 'WN8', 'Фильтр'];
+export const clearFiterData = filterData.reduce((result, item) => {
+  const value = item.values.reduce((result1, item1) => ({
+    ...result1,
+    [`${item1}`]: false,
+  }), {});
+
+  return {
+    ...result,
+    [`${item.param}`]: value,
+  };
+}, {});
+
+export const sortData = ['Побед', 'Ср. урон', 'WN8', 'Фильтр'];

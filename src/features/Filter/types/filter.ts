@@ -30,6 +30,7 @@ export interface User {
 }
 
 export interface FilterSchema {
-  data?: TUserTanks;
+  data?: TUserTanks[];
   params?: Record<string, string[]>;
+  checkboxes?: Record<string, Record<string, boolean >>;
 }

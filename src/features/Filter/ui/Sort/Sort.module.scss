@@ -4,6 +4,7 @@
   outline: 1px solid var(--bg-stat-item);
   border-radius: 5px;
   margin-bottom: auto;
+
   // backdrop-filter: blur(5px);
   background-color: var(--bg-card);
 
@@ -21,6 +22,7 @@
         opacity: 1;
         color: var(--accent-color);
       }
+
       color: var(--accent-color);
       outline: 1px solid var(--accent-color);
 

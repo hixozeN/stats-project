@@ -1,6 +1,6 @@
 import { memo, ReactElement, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { getUserRatingStats, getUserRatingValues } from 'entities/Lesta';
+import { getUserDataLoadingStatus, getUserRatingStats, getUserRatingValues } from 'entities/Lesta';
 import img from 'shared/assets/images/userStats/rating_calibration.webp';
 import bronzeShield from 'shared/assets/images/userStats/rating_bronze.png';
 import silverShield from 'shared/assets/images/userStats/rating_silver.png';
@@ -9,6 +9,7 @@ import platinumShield from 'shared/assets/images/userStats/rating_platinum.png';
 import brilliantShield from 'shared/assets/images/userStats/rating_brilliant.png';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import cls from './UserRating.module.scss';
 
 interface UserRatingProps {
@@ -18,6 +19,7 @@ interface UserRatingProps {
 export const UserRating = memo((props: UserRatingProps) => {
   const { className } = props;
   const { t } = useTranslation();
+  const isUserDataLoading = useSelector(getUserDataLoadingStatus);
   const ratingData = useSelector(getUserRatingStats);
   const ratingValues = useSelector(getUserRatingValues);
 
@@ -34,6 +36,12 @@ export const UserRating = memo((props: UserRatingProps) => {
 
     return roundedRating ? shields[roundedRating] : bronzeShield;
   }, []);
+
+  if (isUserDataLoading) {
+    return (
+      <Skeleton className={cls.rating} />
+    );
+  }
 
   if (!ratingValues) return null;
 
