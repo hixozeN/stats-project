@@ -9,7 +9,7 @@ import { Sidebar } from 'widgets/Sidebar';
 import { LOCAL_STORAGE_LESTA, LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import {
   getCurrentUserError,
-  getLoggedInStatus,
+  getLoggedInStatus, getUserAuthInitiation,
   userActions,
 } from 'entities/User';
 import Loader from 'shared/ui/Loader/Loader';
@@ -19,17 +19,19 @@ import { SeoUpdater } from 'shared/lib/SeoUpdater/SeoUpdater';
 import { checkUserAuth } from 'entities/User/model/services/checkUserAuth/checkUserAuth';
 import {
   authByLestaOpenID,
-} from 'entities/User/model/services/authByLestaOpenID/authByLestaOpenID';
+} from 'features/AuthUser/model/services/authByLestaOpenID/authByLestaOpenID';
 import { Theme, useTheme } from '../../../providers/ThemeProvider';
 import cls from './AppLayout.module.scss';
 
 function AppLayout() {
   const { theme } = useTheme();
+  const isAuthInitiated = useSelector(getUserAuthInitiation);
   const isLoggedIn = useSelector(getLoggedInStatus);
   const currentUserError = useSelector(getCurrentUserError);
   const dispatch = useAppDispatch();
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [queryParams] = useSearchParams();
+  console.log(isAuthInitiated);
 
   useEffect(() => {
     if (theme === Theme.DARK) {
@@ -39,17 +41,23 @@ function AppLayout() {
     }
   }, [theme]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    if (!isAuthInitiated) {
+      dispatch(checkUserAuth());
+    }
+  }, [dispatch, isAuthInitiated]);
+
+  useEffect(() => {
     // NEW
     // проверяем авторизацию пользователя
-    dispatch(checkUserAuth());
+    // dispatch(checkUserAuth());
     // LestaOpenID
     const lestaAuthStatus = queryParams.get(LOCAL_STORAGE_LESTA.STATUS);
     const isLestaAuth = !!lestaAuthStatus;
 
     if (isLestaAuth && lestaAuthStatus === 'ok') {
       const lestaData = {
-        status: queryParams.get(LOCAL_STORAGE_LESTA.STATUS),
+        status: lestaAuthStatus,
         access_token: queryParams.get(LOCAL_STORAGE_LESTA.TOKEN),
         nickname: queryParams.get(LOCAL_STORAGE_LESTA.NICKNAME),
         account_id: +queryParams.get(LOCAL_STORAGE_LESTA.ID),
@@ -59,42 +67,42 @@ function AppLayout() {
       dispatch(authByLestaOpenID(lestaData));
     }
     // // OLD
-    const savedUserData = JSON.parse(
-      localStorage.getItem(LOCAL_STORAGE_USER_KEY),
-    );
-
-    if (savedUserData) {
-      dispatch(userActions.setAuthData(savedUserData));
-      dispatch(userActions.setLoggedIn(true));
-    }
-
-    if (isLestaAuth && lestaAuthStatus === 'ok') {
-      const postData = async (data: any) => {
-        try {
-          const res = await axios.post('http://localhost:3030/auth/lesta', data, { withCredentials: true });
-          // записываем данные в локалсторейдж
-          localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(res.data.userData));
-          localStorage.setItem(LOCAL_STORAGE_LESTA.TOKEN, JSON.stringify(queryParams.get(LOCAL_STORAGE_LESTA.TOKEN)));
-          localStorage
-            .setItem(LOCAL_STORAGE_LESTA.EXPIRES_AT, JSON.stringify(queryParams.get(LOCAL_STORAGE_LESTA.EXPIRES_AT)));
-          dispatch(userActions.setAuthData(res.data.userData));
-          dispatch(userActions.setLoggedIn(true));
-        } catch (e) {
-          console.error(e?.message);
-        }
-      };
-
-      const lestaData = {
-        status: queryParams.get(LOCAL_STORAGE_LESTA.STATUS),
-        access_token: queryParams.get(LOCAL_STORAGE_LESTA.TOKEN),
-        nickname: queryParams.get(LOCAL_STORAGE_LESTA.NICKNAME),
-        account_id: queryParams.get(LOCAL_STORAGE_LESTA.ID),
-        expires_at: queryParams.get(LOCAL_STORAGE_LESTA.EXPIRES_AT),
-      };
-
-      postData(lestaData);
-    }
-  }, [dispatch, queryParams]);
+    // const savedUserData = JSON.parse(
+    //   localStorage.getItem(LOCAL_STORAGE_USER_KEY),
+    // );
+    //
+    // if (savedUserData) {
+    //   dispatch(userActions.setAuthData(savedUserData));
+    //   dispatch(userActions.setLoggedIn(true));
+    // }
+    //
+    // if (isLestaAuth && lestaAuthStatus === 'ok') {
+    //   const postData = async (data: any) => {
+    //     try {
+    //       const res = await axios.post('http://localhost:3030/auth/lesta', data, { withCredentials: true });
+    //       // записываем данные в локалсторейдж
+    //       localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(res.data.userData));
+    //       localStorage.setItem(LOCAL_STORAGE_LESTA.TOKEN, JSON.stringify(queryParams.get(LOCAL_STORAGE_LESTA.TOKEN)));
+    //       localStorage
+    //         .setItem(LOCAL_STORAGE_LESTA.EXPIRES_AT, JSON.stringify(queryParams.get(LOCAL_STORAGE_LESTA.EXPIRES_AT)));
+    //       dispatch(userActions.setAuthData(res.data.userData));
+    //       dispatch(userActions.setLoggedIn(true));
+    //     } catch (e) {
+    //       console.error(e?.message);
+    //     }
+    //   };
+    //
+    //   const lestaData = {
+    //     status: queryParams.get(LOCAL_STORAGE_LESTA.STATUS),
+    //     access_token: queryParams.get(LOCAL_STORAGE_LESTA.TOKEN),
+    //     nickname: queryParams.get(LOCAL_STORAGE_LESTA.NICKNAME),
+    //     account_id: queryParams.get(LOCAL_STORAGE_LESTA.ID),
+    //     expires_at: queryParams.get(LOCAL_STORAGE_LESTA.EXPIRES_AT),
+    //   };
+    //
+    //   postData(lestaData);
+    // }
+  }, [dispatch, isLoggedIn, queryParams]);
 
   return (
     <Suspense fallback={<Loader />}>

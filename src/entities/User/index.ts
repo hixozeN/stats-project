@@ -3,6 +3,7 @@ export {
   UserRoles,
   UserSchema,
   LestaUserData,
+  UserOpenID,
 } from './model/types/user';
 
 export type { UserAwards, LestaOpenAuthData } from './model/types/user';

@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { User, UserSchema } from '../types/user';
+import { checkUserAuth } from '../services/checkUserAuth/checkUserAuth';
 
 const initialState: UserSchema = {
-  isLoggedIn: false,
-  error: '',
-  authData: null,
+  isLoggedIn: !!localStorage.getItem(LOCAL_STORAGE_USER_KEY),
+  isInitiated: false,
 };
 
 export const userSlice = createSlice({
@@ -25,6 +26,24 @@ export const userSlice = createSlice({
     setError: (state, action: PayloadAction<string>) => {
       state.error = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(checkUserAuth.pending, (state) => {
+        state.error = '';
+        state.isLoading = true;
+      })
+      .addCase(checkUserAuth.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.isLoading = false;
+        state.isInitiated = true;
+      })
+      .addCase(checkUserAuth.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.isLoggedIn = true;
+        state.authData = payload;
+        state.isInitiated = true;
+      });
   },
 });
 

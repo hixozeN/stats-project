@@ -66,6 +66,9 @@ export interface UserOpenID {
 export interface UserSchema {
   authData?: User;
 
-  isLoggedIn: boolean;
+  isLoggedIn?: boolean;
+  isLoading?: boolean;
   error?: string;
+
+  isInitiated: boolean;
 }

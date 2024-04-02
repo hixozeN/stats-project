@@ -4,12 +4,12 @@ import {
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useSelector } from 'react-redux';
 import { getUserDataLoadingStatus, getUserPrivateData } from 'entities/Lesta';
-import {
-  UserPrivateDataItem,
-} from 'widgets/UserProfile/ui/UserPrivateDataItem/UserPrivateDataItem';
-import { getUserData } from 'entities/User/model/selectors/getUserData/getUserData';
+import { getUserData } from 'entities/User';
 import { useParams } from 'react-router-dom';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import {
+  UserPrivateDataItem,
+} from '../UserPrivateDataItem/UserPrivateDataItem';
 import cls from './UserPrivateDataList.module.scss';
 
 interface UserPrivateDataListProps {

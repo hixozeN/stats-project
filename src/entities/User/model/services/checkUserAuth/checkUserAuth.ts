@@ -19,9 +19,9 @@ export const checkUserAuth = createAsyncThunk<User, void, ThunkConfig<string>>(
       // если есть ключ в LS, значит пользователь был авторизован, проверим токен
       const currentUserData = await extra.royalApi.get<User>('/user/me');
 
-      // переключаем стейт логина и записываем актуальные данные пользователя
-      dispatch(userActions.setLoggedIn(true));
-      dispatch(userActions.setAuthData(currentUserData.data));
+      // // переключаем стейт логина и записываем актуальные данные пользователя
+      // dispatch(userActions.setLoggedIn(true));
+      // dispatch(userActions.setAuthData(currentUserData.data));
 
       // возвращаем полученные данные
       return currentUserData.data;

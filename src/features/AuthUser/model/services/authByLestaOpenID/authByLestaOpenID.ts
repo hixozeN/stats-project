@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ThunkConfig } from 'app/providers/StoreProvider';
+import { ThunkConfig } from 'app/providers/StoreProvider/index';
 import { SERVER_ERROR_MESSAGE } from 'shared/consts/global';
-import { openIdDTO } from 'entities/User/model/dto/openIdDTO';
-import { User, UserOpenID } from '../../types/user';
-import { userActions } from '../../slice/userSlice';
+import { LOCAL_STORAGE_LESTA, LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
+import { User, UserOpenID, userActions } from 'entities/User';
+import { openIdDTOConverter } from '../../dto/openIdDTOConverter';
 
 interface ThunkProps {
   status: string;
@@ -30,15 +30,19 @@ export const authByLestaOpenID = createAsyncThunk<User, ThunkProps, ThunkConfig<
         ThunkProps,
       );
 
-      // прогоняем ответ через DTO
-      const userDTO = openIdDTO(currentUserData.data.userData);
+      // прогоняем ответ через DTO converter
+      const convertedUserData = openIdDTOConverter(currentUserData.data.userData);
+      localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(convertedUserData));
+      localStorage.setItem(LOCAL_STORAGE_LESTA.TOKEN, JSON.stringify(ThunkProps.access_token));
+      localStorage
+        .setItem(LOCAL_STORAGE_LESTA.EXPIRES_AT, JSON.stringify(ThunkProps.expires_at));
 
       // переключаем стейт логина и записываем актуальные данные пользователя
-      dispatch(userActions.setLoggedIn(true));
-      dispatch(userActions.setAuthData(userDTO));
+      // dispatch(userActions.setLoggedIn(true));
+      // dispatch(userActions.setAuthData(currentUserData.data.userData));
 
       // возвращаем полученные данные
-      return userDTO;
+      return currentUserData.data.userData;
     } catch (e) {
       // возвращаем ошибку с бэка
       return rejectWithValue(e?.response?.data?.message || SERVER_ERROR_MESSAGE);

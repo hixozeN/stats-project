@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getLoggedInStatus,
-} from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
+} from 'entities/User';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import {
   ReducerList,
