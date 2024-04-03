@@ -63,6 +63,7 @@ module.exports = {
           'title',
           'label',
           'borderRadius',
+          'position',
         ],
       },
     ],
