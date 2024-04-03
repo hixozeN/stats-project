@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
+import { LOCAL_STORAGE_LESTA, LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { authByLestaOpenID } from 'features/AuthUser/index';
+import { refreshLestaToken } from 'entities/User/index';
 import { User, UserSchema } from '../types/user';
 import { checkUserAuth } from '../services/checkUserAuth/checkUserAuth';
 
@@ -49,6 +50,23 @@ export const userSlice = createSlice({
       .addCase(authByLestaOpenID.fulfilled, (state, { payload }) => {
         state.isLoggedIn = true;
         state.authData = payload;
+      })
+      .addCase(refreshLestaToken.pending, (state) => {
+        state.isTokenRefreshing = true;
+      })
+      .addCase(refreshLestaToken.fulfilled, (state, { payload }) => {
+        state.isTokenRefreshing = false;
+
+        localStorage.setItem(LOCAL_STORAGE_LESTA.TOKEN, JSON.stringify(payload.access_token));
+        localStorage.setItem(LOCAL_STORAGE_LESTA.EXPIRES_AT, JSON.stringify(payload.expires_at));
+      })
+      .addCase(refreshLestaToken.rejected, (state, { payload }) => {
+        state.isTokenRefreshing = false;
+
+        if (payload === 407) {
+          state.isLoggedIn = false;
+          localStorage.clear();
+        }
       });
   },
 });

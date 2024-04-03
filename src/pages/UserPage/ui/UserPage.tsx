@@ -26,6 +26,7 @@ import {
 import {
   fetchLestaUserSessionById,
 } from 'entities/Lesta/model/services/fetchLestaUserSession/fetchLestaUserSession';
+import { getTokenUpdateStatus } from 'entities/User/index';
 import { SessionControlSection } from '../ui/SessionControlSection/SessionControlSection';
 import cls from './UserPage.module.scss';
 
@@ -41,6 +42,7 @@ const UserPage = ({ className }: IUserPageProps) => {
   const userNickname = useSelector(getUserNickname);
   const isNotFound = useSelector(getUserNotFoundStatus);
   const userLastSession = useSelector(getUserLastSessionId);
+  const isTokenUpdating = useSelector(getTokenUpdateStatus);
 
   const [tab, setTab] = useState(0);
   const tabList = useMemo(() => [t('Статистика'), t('Сессия'), t('Рейтинг')], [t]);
@@ -54,18 +56,20 @@ const UserPage = ({ className }: IUserPageProps) => {
   }, [dispatch, userLastSession]);
 
   useEffect(() => {
-    const lestaAccessToken = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LESTA.TOKEN));
-    dispatch(
-      fetchLestaUserDataByIdV2({
+    if (!isTokenUpdating) {
+      const lestaAccessToken = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LESTA.TOKEN));
+      dispatch(
+        fetchLestaUserDataByIdV2({
+          id: Number(id),
+          lestaAccessToken: lestaAccessToken ?? null,
+        }),
+      );
+      dispatch(fetchUserDataByLestaId({
         id: Number(id),
         lestaAccessToken: lestaAccessToken ?? null,
-      }),
-    );
-    dispatch(fetchUserDataByLestaId({
-      id: Number(id),
-      lestaAccessToken: lestaAccessToken ?? null,
-    }));
-  }, [id, dispatch]);
+      }));
+    }
+  }, [id, dispatch, isTokenUpdating]);
 
   if (isNotFound) {
     return (

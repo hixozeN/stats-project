@@ -69,6 +69,7 @@ export interface UserSchema {
 
   isLoggedIn?: boolean;
   isLoading?: boolean;
+  isTokenRefreshing?: boolean;
   error?: string;
 
   isInitiated: boolean;
