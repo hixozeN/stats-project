@@ -4,7 +4,6 @@ import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { SERVER_ERROR_MESSAGE } from 'shared/consts/global';
 import { AxiosRequestConfig } from 'axios';
 import { User } from '../../types/user';
-import { userActions } from '../../slice/userSlice';
 
 interface ThunkProps {
   originalRequest: AxiosRequestConfig;
@@ -14,7 +13,7 @@ export const refreshUserTokens = createAsyncThunk<User, ThunkProps, ThunkConfig<
   'REFRESH_USER_TOKENS',
   async (ThunkProps, thunkAPI) => {
     // деструктурируем нужные данные из thunkAPI
-    const { rejectWithValue, dispatch, extra } = thunkAPI;
+    const { rejectWithValue, extra } = thunkAPI;
     const { originalRequest } = ThunkProps;
     // отправка запроса
     try {
@@ -23,8 +22,6 @@ export const refreshUserTokens = createAsyncThunk<User, ThunkProps, ThunkConfig<
       originalRequest.headers.Authorization = `Bearer ${res.data.userData.accessToken}`;
       return res.data;
     } catch (e) {
-      dispatch(userActions.logout());
-      dispatch(userActions.setError('Ошибка авторизации'));
       return rejectWithValue(e?.response?.data?.message || SERVER_ERROR_MESSAGE);
     }
   },

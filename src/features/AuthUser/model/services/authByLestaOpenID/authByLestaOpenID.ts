@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider/index';
 import { SERVER_ERROR_MESSAGE } from 'shared/consts/global';
 import { LOCAL_STORAGE_LESTA, LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
-import { User, UserOpenID, userActions } from 'entities/User';
+import { User, UserOpenID } from 'entities/User';
 import { openIdDTOConverter } from '../../dto/openIdDTOConverter';
 
 interface ThunkProps {
@@ -21,7 +21,7 @@ export const authByLestaOpenID = createAsyncThunk<User, ThunkProps, ThunkConfig<
   'AUTH_LESTA_OPEN_ID',
   async (ThunkProps, thunkAPI) => {
     // деструктурируем нужные данные из thunkAPI
-    const { rejectWithValue, dispatch, extra } = thunkAPI;
+    const { rejectWithValue, extra } = thunkAPI;
     // отправка запроса
     try {
       // авторизовываем пользователя по OpenID данным
@@ -37,9 +37,7 @@ export const authByLestaOpenID = createAsyncThunk<User, ThunkProps, ThunkConfig<
       localStorage
         .setItem(LOCAL_STORAGE_LESTA.EXPIRES_AT, JSON.stringify(ThunkProps.expires_at));
 
-      // переключаем стейт логина и записываем актуальные данные пользователя
-      // dispatch(userActions.setLoggedIn(true));
-      // dispatch(userActions.setAuthData(currentUserData.data.userData));
+      extra.navigate(`/user/${ThunkProps.account_id}`);
 
       // возвращаем полученные данные
       return currentUserData.data.userData;

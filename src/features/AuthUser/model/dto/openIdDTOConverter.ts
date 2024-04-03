@@ -3,6 +3,7 @@ import { User, UserOpenID } from 'entities/User';
 export const openIdDTOConverter = (data: UserOpenID): User => {
   if (!data) return null;
   return {
+    accessToken: data.accessToken,
     _id: data._id,
     username: data.username,
     email: data.email,
