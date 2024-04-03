@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LOCAL_STORAGE_LESTA, LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { authByLestaOpenID } from 'features/AuthUser/index';
-import { refreshLestaToken } from 'entities/User/index';
+import { logoutUser, refreshLestaToken } from 'entities/User/index';
 import { User, UserSchema } from '../types/user';
 import { checkUserAuth } from '../services/checkUserAuth/checkUserAuth';
 
@@ -67,6 +67,11 @@ export const userSlice = createSlice({
           state.isLoggedIn = false;
           localStorage.clear();
         }
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.isLoggedIn = false;
+        state.authData = null;
+        localStorage.clear();
       });
   },
 });

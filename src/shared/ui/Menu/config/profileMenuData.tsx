@@ -62,7 +62,7 @@ export const getMenuElements = (module: MenuTheme) => {
       path: RoutePath.profile_sessions,
       icon: <HistoryIcon />,
     },
-    logaut: {
+    logout: {
       name: 'Выйти из аккаунта',
       path: RoutePath.main,
       icon: <LogoutIcon />,
@@ -101,7 +101,7 @@ export const getMenuElements = (module: MenuTheme) => {
 
   const elements = {
     profileSidebar: [data.sessions, data.blacklist, data.edit],
-    navbar: [data.user, data.sessions, data.blacklist, data.edit, data.logaut],
+    navbar: [data.user, data.sessions, data.blacklist, data.edit, data.logout],
     userSidebar: [
       data.main,
       data.matches,
