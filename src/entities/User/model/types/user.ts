@@ -44,6 +44,7 @@ export interface User {
   teams?: string[];
   awards?: UserAwards[];
   isActivated?: boolean;
+  accessToken?: string;
 }
 
 export interface UserOpenID {

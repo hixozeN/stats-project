@@ -12,7 +12,7 @@ export { userSlice, userReducer, userActions } from './model/slice/userSlice';
 
 export { UserProfileForm } from './ui/UserProfileForm/UserProfileForm';
 
+export { checkUserAuth } from './model/services/checkUserAuth/checkUserAuth';
+
 // SELECTORS
-// export { getUserData } from './model/selectors/getUserData/getUserData';
-// export { getLoggedInStatus } from './model/selectors/getLoggedInStatus/getLoggedInStatus';
 export * from './model/selectors';

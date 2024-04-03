@@ -29,8 +29,8 @@ export const UserPrivateDataList = memo((props: UserPrivateDataListProps) => {
   if (isUserDataLoading && isProfileOwner) {
     return (
       <ul className={classNames(cls.privateData, {}, [cls.skeleton])}>
-        {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
-        {[...new Array(4)].map((_) => <Skeleton width={100} height={20} borderRadius="5px" />)}
+        {/* eslint-disable-next-line @typescript-eslint/no-unused-vars,react/no-array-index-key */}
+        {[...new Array(4)].map((_, index) => <Skeleton key={index} width={100} height={20} borderRadius="5px" />)}
       </ul>
     );
   }
