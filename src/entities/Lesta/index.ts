@@ -21,6 +21,8 @@ export { fetchLestaUserDataById } from './model/services/fetchLestaUserDataById/
 export { fetchLestaUserDataByIdV2 } from './model/services/fetchLestaUserDataById/fetchLestaUserDataByIdV2';
 export { fetchLestaUserTanksDataById } from './model/services/fetchLestaUserTanksDataById/fetchLestaUserTanksDataById';
 export { createLestaUserSession } from './model/services/createLestaUserSession/createLestaUserSession';
+export { fetchLestaUserSessionById } from './model/services/fetchLestaUserSession/fetchLestaUserSession';
+export { fetchUserDataByLestaId } from './model/services/fetchUserDataByLestaId/fetchUserDataByLestaId';
 export { ParamData } from './model/types/default';
 
 // Selectors

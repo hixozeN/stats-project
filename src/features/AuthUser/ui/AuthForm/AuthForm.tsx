@@ -1,29 +1,22 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import {
-  FormEvent,
   useCallback, useEffect, useRef, useState,
 } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useForm, Controller } from 'react-hook-form';
 import { Logo } from 'shared/ui/Logo/Logo';
 import Eye from 'shared/assets/icons/eye.svg';
 import LestaLogo from 'shared/assets/icons/logo_lesta.svg';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  getLoggedInStatus,
-} from 'entities/User';
+import { getLoggedInStatus } from 'entities/User';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import {
-  ReducerList,
-  useDynamicReducerLoader,
-} from 'shared/hooks/useDynamicReducerLoader/useDynamicReducerLoader';
-import { getAuthUsername } from '../../model/selectors/getAuthUsername/getAuthUsername';
-import { getAuthEmail } from '../../model/selectors/getAuthEmail/getAuthEmail';
-import { getAuthPassword } from '../../model/selectors/getAuthPassword/getAuthPassword';
-import { getAuthError } from '../../model/selectors/getAuthError/getAuthError';
-import { getAuthLoading } from '../../model/selectors/getAuthLoading/getAuthLoading';
-import { loginByEmail } from '../../model/services/loginByEmail/loginByEmail';
-import { authActions, authReducer } from '../../model/slice/authSlice';
+import { ReducerList, useDynamicReducerLoader } from 'shared/hooks/useDynamicReducerLoader/useDynamicReducerLoader';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
+import { VALIDATION_MESSAGES } from 'shared/consts/validationMessages';
+import { getAuthError, getAuthLoading } from '../../model/selectors';
+import { authUserService } from '../../model/services/authUserService/authUserService';
+import { authReducer } from '../../model/slice/authSlice';
 import { AuthInput } from '../AuthInput/AuthInput';
 import { AuthTabLinks } from '../AuthTabLinks/AuthTabLinks';
 import cls from './AuthForm.module.scss';
@@ -37,6 +30,18 @@ export interface AuthFormType {
   isRegActive: boolean;
 }
 
+interface AuthFormInputs {
+  email?: string;
+  username?: string;
+  password?: string;
+}
+
+enum FormInputs {
+  EMAIL = 'email',
+  USERNAME = 'username',
+  PASSWORD = 'password',
+}
+
 const initialReducers: ReducerList = { authForm: authReducer };
 
 const AuthForm = (props: IAuthFormProps) => {
@@ -46,11 +51,23 @@ const AuthForm = (props: IAuthFormProps) => {
   const [type, setType] = useState<AuthFormType>({ isAuthActive: true, isRegActive: false });
   const inputPasswordRef = useRef<HTMLInputElement>(null);
 
+  const {
+    handleSubmit,
+    formState: { errors, isValid },
+    control,
+    reset,
+  } = useForm<AuthFormInputs>({
+    defaultValues: {
+      [FormInputs.EMAIL]: '',
+      [FormInputs.USERNAME]: '',
+      [FormInputs.USERNAME]: '',
+    },
+    mode: 'all',
+  });
+
   useDynamicReducerLoader({ reducers: initialReducers });
-  const dispatch = useDispatch();
-  const username = useSelector(getAuthUsername);
-  const email = useSelector(getAuthEmail);
-  const password = useSelector(getAuthPassword);
+
+  const dispatch = useAppDispatch();
   const error = useSelector(getAuthError);
   const isLoading = useSelector(getAuthLoading);
   const isLoggedIn = useSelector(getLoggedInStatus);
@@ -58,46 +75,35 @@ const AuthForm = (props: IAuthFormProps) => {
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  const onChangeUserMail = useCallback((e) => {
-    const { value } = e.target;
-    dispatch(authActions.setUserEmail(value));
-  }, [dispatch]);
-
-  const onChangeUserName = useCallback((e) => {
-    const { value } = e.target;
-    dispatch(authActions.setUserName(value));
-  }, [dispatch]);
-
-  const onChangeUserPassword = useCallback((e) => {
-    const { value } = e.target;
-    dispatch(authActions.setUserPassword(value));
-  }, [dispatch]);
-
   const togglePasswordVisible = useCallback(() => {
-    if (inputPasswordRef.current.getAttribute('type') === 'password') {
+    if (inputPasswordRef.current.getAttribute('type') === FormInputs.PASSWORD) {
       inputPasswordRef.current.setAttribute('type', 'text');
       setPasswordVisible(true);
     } else {
-      inputPasswordRef.current.setAttribute('type', 'password');
+      inputPasswordRef.current.setAttribute('type', FormInputs.PASSWORD);
       setPasswordVisible(false);
     }
   }, []);
 
   const changeTab = useCallback((tabName) => {
+    reset();
     if (tabName === 'auth') {
       setType({ isAuthActive: true, isRegActive: false });
     } else {
       setType({ isAuthActive: false, isRegActive: true });
     }
-  }, []);
+  }, [reset]);
 
-  const handleSubmit = useCallback(async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const onSubmit = useCallback(async (data: AuthFormInputs) => {
+    const { username, password, email } = data;
     if (type.isAuthActive) {
-      await dispatch(loginByEmail({ email, password }));
+      await dispatch(authUserService({ email, password, variant: 'login' }));
+    } else {
+      await dispatch(authUserService({
+        email, username, password, variant: 'registration',
+      }));
     }
-  }, [dispatch, password, email, type]);
+  }, [type, dispatch]);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -119,59 +125,96 @@ const AuthForm = (props: IAuthFormProps) => {
   }, [isLoading, type, t]);
 
   return (
-    <form className={classNames(cls.AuthForm, {}, [className])} onSubmit={handleSubmit}>
+    <form className={classNames(cls.AuthForm, {}, [className])} onSubmit={handleSubmit(onSubmit)}>
       <div className={cls.formWrapper}>
         <Logo theme="auth" />
         <AuthTabLinks type={type} changeTab={changeTab} />
 
         <fieldset className={cls.fieldset}>
-          <AuthInput
-            id="email"
-            type="email"
-            placeholder={t('Электронная почта')}
-            onChange={onChangeUserMail}
-            value={email ?? ''}
+          <Controller
+            name="email"
+            rules={{
+              required: VALIDATION_MESSAGES.REQUIRED,
+              pattern: {
+                value: /\S+@\S+\.\S+$/,
+                message: VALIDATION_MESSAGES.INCORRECT_EMAIL,
+              },
+            }}
+            render={({ field }) => (
+              <AuthInput
+                placeholder={t('Электронная почта')}
+                error={errors.email?.message}
+                isError={!!errors.email?.message}
+                {...field}
+              />
+            )}
+            control={control}
           />
 
           {type.isRegActive && (
-          <AuthInput
-            id="name"
-            type="text"
-            placeholder={t('Никнейм')}
-            onChange={onChangeUserName}
-            value={username ?? ''}
-          />
+            <Controller
+              name="username"
+              rules={{
+                required: VALIDATION_MESSAGES.REQUIRED,
+                minLength: {
+                  value: 3,
+                  message: `${VALIDATION_MESSAGES.MIN_LENGTH} 3`,
+                },
+              }}
+              render={({ field }) => (
+                <AuthInput
+                  placeholder={t('Никнейм')}
+                  error={errors.username?.message}
+                  isError={!!errors.username?.message}
+                  {...field}
+                />
+              )}
+              control={control}
+            />
           )}
 
           <label htmlFor="password" className={cls.inputWrapper}>
-            <AuthInput
-              ref={inputPasswordRef}
-              id="password"
-              type="password"
-              placeholder={t('Пароль')}
-              onChange={onChangeUserPassword}
-              value={password ?? ''}
-              className={cls.inputPassword}
+            <Controller
+              name="password"
+              rules={{
+                required: VALIDATION_MESSAGES.REQUIRED,
+                minLength: {
+                  value: 6,
+                  message: `${VALIDATION_MESSAGES.MIN_LENGTH} 6`,
+                },
+              }}
+              render={({ field }) => (
+                <AuthInput
+                  className={cls.inputPassword}
+                  placeholder={t('Пароль')}
+                  type="password"
+                  error={errors.password?.message}
+                  isError={!!errors.password?.message}
+                  {...field}
+                  ref={inputPasswordRef}
+                />
+              )}
+              control={control}
             />
             <Eye
               className={classNames(cls.btnEye, { [cls.btnEyeActive]: isPasswordVisible })}
               onClick={togglePasswordVisible}
             />
-            {type.isAuthActive && (
-            <span
-              className={
-                  classNames(
-                    cls.forgotPasswordSpan,
-                    { [cls.forgotPasswordSpanInvisible]: type.isRegActive },
-                  )
-                }
-            >
-              {t('Забыли пароль? ')}
-              <Link className={classNames(cls.recoverPasswordLink)} to="/">
-                {t('Восстановить')}
-              </Link>
-            </span>
-            )}
+            {/* {type.isAuthActive && ( */}
+            {/* <span */}
+            {/*  className={ */}
+            {/*      classNames( */}
+            {/*        cls.forgotPasswordSpan, */}
+            {/*        { [cls.forgotPasswordSpanInvisible]: type.isRegActive }, */}
+            {/*      ) */}
+            {/*    } */}
+            {/* > */}
+            {/*  {t('Забыли пароль? ')} */}
+            {/*  <Link className={classNames(cls.recoverPasswordLink)} to="/"> */}
+            {/*    {t('Восстановить')} */}
+            {/*  </Link> */}
+            {/* </span> */}
+            {/* )} */}
           </label>
         </fieldset>
       </div>
@@ -179,12 +222,14 @@ const AuthForm = (props: IAuthFormProps) => {
       <div className={cls.submitWrapper}>
         <button
           type="submit"
-          disabled={isLoading}
+          disabled={isLoading || !isValid}
           className={classNames(cls.submitBtn)}
         >
           {renderTextInButton()}
         </button>
-        <span className={cls.errorMessage}>{error}</span>
+        <span className={cls.errorMessage}>
+          {error}
+        </span>
       </div>
 
       <div className={cls.altLogin}>

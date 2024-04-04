@@ -29,7 +29,10 @@ export const royalApiInterceptors = (
   // обновление токенов
   $royalApi.interceptors.response.use((config) => config, (async (error) => {
     const originalRequest = error.config;
-    if (error.response.status === 401 && error.config && !error._isRetry) {
+    if (error.response.status === 401
+      && error.response.data.message === 'С токеном что-то не так...'
+      && error.config
+      && !error._isRetry) {
       originalRequest._isRetry = true;
       try {
         const res = await $royalApi.get('/auth/refresh', { withCredentials: true });
