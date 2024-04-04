@@ -41,7 +41,7 @@ export const Tanks = memo(({ dataList }: TanksProps) => {
   return (
     <section className={cls.tanks}>
       <h2 className={cls.title}>
-        {`В ангаре ${filterList.length} ${wordTanks} с выбранными параметрами`}
+        {`У игрока ${filterList.length} ${wordTanks} с выбранными параметрами`}
       </h2>
       <Filter />
       <ul className={cls.list}>

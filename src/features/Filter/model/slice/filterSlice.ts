@@ -7,13 +7,11 @@ import { LOCAL_STORAGE_CHECKBOXES, LOCAL_STORAGE_FILTER_DATA } from 'shared/cons
 const initialState: FilterSchema = 'checkboxes' in localStorage
   ? {
     data: JSON.parse(localStorage.getItem(LOCAL_STORAGE_FILTER_DATA)),
-    params: null,
     checkboxes:
     JSON.parse(localStorage.getItem(LOCAL_STORAGE_CHECKBOXES)),
   }
   : {
     data: null,
-    params: null,
     checkboxes: clearFiterData,
   };
 
@@ -24,12 +22,6 @@ export const filterSlice = createSlice({
     setFilterData: (state, action: PayloadAction<TUserTanks[]>) => {
       state.data = action.payload;
     },
-    // setFilterParams: (
-    //   state,
-    //   action: PayloadAction<Record<string, string[]>>,
-    // ) => {
-    //   state.params = action.payload;
-    // },
     setCheckbox: (state, action: PayloadAction<Record<string, boolean>>) => {
       state.checkboxes = {
         ...state.checkboxes,

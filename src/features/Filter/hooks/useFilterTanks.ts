@@ -20,7 +20,7 @@ export const useFilterTanks = () => {
     if (data.every((itemData) => !itemData)) {
       return result;
     }
-
+    // ToDo: избавиться от any
     return result
       .filter((tank: {[key: string]:any}) => data
         .find((tankItem) => tankItem === tank[`${param[0]}`][`${param[1]}`].toString()));

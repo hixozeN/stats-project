@@ -6,12 +6,13 @@ import { IStatList, statList } from 'entities/Tank/config/TankData';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { sortItem } from 'features/Filter/types/sort';
 import { SearchForm } from 'features/Search';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { getCheckboxesFilterState } from 'features/Filter/model/selectors';
 import { filterActions } from 'features/Filter/model/slice/filterSlice';
 import { useFilterTanks } from 'features/Filter/hooks/useFilterTanks';
 import { TUserTanks } from 'entities/Lesta/model/types/tanks';
-import { getLestaUserTanks } from 'entities/Lesta';
+import { ParamData, getLestaUserTanks } from 'entities/Lesta';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { Button } from '../../../../shared/ui/Button/Button';
 import { FilterItem } from './FilterItem';
 import { filterData } from '../../config/filterData';
@@ -21,26 +22,20 @@ import cls from './Filter.module.scss';
 function FilterWithCurtain() {
   const { t } = useTranslation('tank');
   const [isOpenFilter, setOpenFilter] = useState(false);
-  const [sortState, setSortState] = useState<Record<string, any>>({});
-  const dispatch = useDispatch();
+  const [sortState, setSortState] = useState<Record<string, sortItem>>({});
+  const dispatch = useAppDispatch();
   const checkboxes = useSelector(getCheckboxesFilterState);
   const { filter } = useFilterTanks();
   const tanks = useSelector(getLestaUserTanks);
-
-  // useEffect(() => {
-  //   if ('checkboxes' in localStorage) {
-  //     dispatch(filterActions.setFilterData(filter));
-  //   }
-  // }, [dispatch]);
-
   const onChangeFilter = useCallback(
     (e) => {
       const { checked, name, id } = e.target;
-      const param = id.split('-')[0];
+      const [param] = id.split('-');
       dispatch(filterActions.setCheckbox({ name, checked, param }));
     },
     [dispatch],
   );
+
   const setSortStateInit = () => {
     statList.map((item) => setSortState((state: Record<string, sortItem>) => {
       if (item.nameItem === 'lastBattle') {
@@ -64,11 +59,11 @@ function FilterWithCurtain() {
     setOpenFilter(false);
   };
 
-  const applyFilter = () => {
+  const applyFilter = useCallback(() => {
     setSortStateInit();
     closeFilter();
     dispatch(filterActions.setFilterData(filter));
-  };
+  }, [dispatch, filter]);
 
   const clearFilter = useCallback(() => {
     dispatch(filterActions.clearFilter());
@@ -79,8 +74,9 @@ function FilterWithCurtain() {
     setOpenFilter(true);
   };
 
-  const clickSort = async (nameItem: string, paramItem: string) => {
+  const clickSort = (nameItem: string, paramItem: keyof ParamData) => {
     let listSort: TUserTanks[] = [];
+
     statList.map((item) => setSortState((state: Record<string, sortItem>) => {
       if (nameItem === item.nameItem) {
         if (state[nameItem].isDown) {
@@ -99,16 +95,25 @@ function FilterWithCurtain() {
         [item.nameItem]: { isActive: false, isUp: false, isDown: false },
       };
     }));
+
     if (sortState[`${nameItem}`].isDown) {
+      const getStatisticValue = (h: TUserTanks):string | number => h.statistics[paramItem];
+
       listSort = [...filter].sort(
-        (a: {[key: string]:any}, b: {[key: string]:any}) => a.statistics[`${paramItem}`] - b.statistics[`${paramItem}`],
+        (a, b) => Number(getStatisticValue(a))
+        - Number(getStatisticValue(b)),
       );
     }
-    if (sortState[`${nameItem}`].isUp || !sortState[`${nameItem}`].isActive) {
+
+    if (sortState[nameItem].isUp || !sortState[nameItem].isActive) {
+      const getStatisticValue = (h: TUserTanks):string | number => h.statistics[paramItem];
+
       listSort = [...filter].sort(
-        (a: {[key: string]:any}, b: {[key: string]:any}) => b.statistics[`${paramItem}`] - a.statistics[`${paramItem}`],
+        (a, b) => Number(getStatisticValue(b))
+        - Number(getStatisticValue(a)),
       );
     }
+
     dispatch(filterActions.setFilterData(listSort));
   };
 

@@ -62,7 +62,7 @@ const statList: IStatList[] = [
   {
     nameItem: 'wins',
     text: 'Побед',
-    param: 'wins',
+    param: 'winRate',
   },
   {
     nameItem: 'wn8',
