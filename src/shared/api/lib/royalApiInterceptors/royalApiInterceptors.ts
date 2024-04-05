@@ -9,6 +9,9 @@ import { StateSchema } from 'app/providers/StoreProvider';
 import { UnknownAsyncThunkAction } from '@reduxjs/toolkit/dist/matchers';
 import { $royalApi } from '../../royalApi';
 
+const TOKEN_ERROR = 'С токеном что-то не так...';
+const TOKEN_LESTA_ERROR = 'Токен Lesta Games недействителен.';
+
 export const royalApiInterceptors = (
   store: Store<StateSchema, Action> & {
     dispatch: ThunkDispatch<StateSchema, unknown, UnknownAsyncThunkAction>;
@@ -30,7 +33,7 @@ export const royalApiInterceptors = (
   $royalApi.interceptors.response.use((config) => config, (async (error) => {
     const originalRequest = error.config;
     if (error.response.status === 401
-      && error.response.data.message === 'С токеном что-то не так...'
+      && error.response.data.message === TOKEN_ERROR
       && error.config
       && !error._isRetry) {
       originalRequest._isRetry = true;
@@ -49,8 +52,9 @@ export const royalApiInterceptors = (
   }));
 
   $royalApi.interceptors.response.use((config) => config, (async (error) => {
-    if (error.response.status === 407) {
+    if (error.response.status === 401 && error.response.data.message === TOKEN_LESTA_ERROR) {
       store.dispatch(userActions.logout());
+      await $royalApi.post('/auth/logout', { withCredentials: true });
       navigate(RoutePath.main);
     }
 

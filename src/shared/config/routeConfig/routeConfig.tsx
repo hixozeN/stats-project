@@ -8,10 +8,11 @@ import i18n from 'shared/config/i18n/i18n';
 import { UserProfilePage } from 'pages/UserProfilePage';
 import { RouterUtils, ReduxLayout, AppLayout } from 'layouts';
 import { UserProfileForm } from 'entities/User';
-import { TournamentsPage } from 'pages/TournamentsPage/index';
+import { TournamentsPage } from 'pages/TournamentsPage';
 import TeamsPage from 'pages/TeamsPage/ui/TeamsPage';
 import { UserPage } from 'pages/UserPage';
 import { AuthorizationLestaPage } from 'pages/AuthorizationLestaPage/AuthorizationLestaPage';
+import { OpenAuthPage } from 'pages/OpenAuthPage';
 
 // interface IRouterPath {
 //   [key:string]: string;
@@ -26,6 +27,7 @@ export enum AppRoutes {
   FRIENDS = 'friends',
   AUTH = 'auth',
   AUTH_LESTA = 'authLesta',
+  AUTH_CONNECT_LESTA = 'connectLesta',
   USER_ID = 'user_id',
   PROFILE = 'profile',
   USER = 'user',
@@ -48,6 +50,7 @@ export const RoutePath: Record<AppRoutes, string> = {
   [AppRoutes.FRIENDS]: '/friends',
   [AppRoutes.AUTH]: '/auth',
   [AppRoutes.AUTH_LESTA]: '/auth/lesta',
+  [AppRoutes.AUTH_CONNECT_LESTA]: '/auth/connect',
   [AppRoutes.USER_ID]: '/user',
   [AppRoutes.PROFILE]: '/profile',
   [AppRoutes.USER]: '/user/:id',
@@ -108,6 +111,10 @@ export const routerConfiguration = createBrowserRouter([
               {
                 path: RoutePath.authLesta,
                 element: <AuthorizationLestaPage />,
+              },
+              {
+                path: RoutePath.connectLesta,
+                element: <OpenAuthPage />,
               },
               {
                 path: RoutePath.profile,

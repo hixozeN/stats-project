@@ -95,6 +95,7 @@ const UserPage = ({ className }: IUserPageProps) => {
     <ErrorBoundary>
       <SeoUpdater
         title={`${t('Статистика игрока')} - ${userNickname}`}
+        OGTitle={`${t('Статистика игрока')} - ${userNickname}`}
       />
       <Background />
       <div className={classNames(cls.UserPage, {}, [className])}>

@@ -60,7 +60,7 @@ const AuthForm = (props: IAuthFormProps) => {
     defaultValues: {
       [FormInputs.EMAIL]: '',
       [FormInputs.USERNAME]: '',
-      [FormInputs.USERNAME]: '',
+      [FormInputs.PASSWORD]: '',
     },
     mode: 'all',
   });

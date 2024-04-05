@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import {
-  Suspense, useEffect, useState,
+  Suspense, useCallback, useEffect, useState,
 } from 'react';
-import { Outlet, useSearchParams } from 'react-router-dom';
+import { Outlet, useMatch, useSearchParams } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Sidebar } from 'widgets/Sidebar';
 import { LOCAL_STORAGE_LESTA } from 'shared/consts/localstorage';
@@ -18,6 +18,7 @@ import { authByLestaOpenID } from 'features/AuthUser';
 import { Theme, useTheme } from 'app/providers/ThemeProvider';
 import { Toaster } from 'react-hot-toast';
 import { useToasts } from 'shared/hooks/useToasts/useToasts';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import cls from './AppLayout.module.scss';
 
 function AppLayout() {
@@ -25,10 +26,28 @@ function AppLayout() {
   const isAuthInitiated = useSelector(getUserAuthInitiation);
   const isLoggedIn = useSelector(getLoggedInStatus);
   const currentUserError = useSelector(getCurrentUserError);
+  const isMainPage = useMatch(RoutePath.main);
   const dispatch = useAppDispatch();
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [queryParams] = useSearchParams();
   const { toastWithError } = useToasts();
+
+  const handleOpenAuth = useCallback(() => {
+    const lestaAuthStatus = queryParams.get(LOCAL_STORAGE_LESTA.STATUS);
+    const isLestaAuth = !!lestaAuthStatus;
+
+    if (isLestaAuth && lestaAuthStatus === 'ok') {
+      const lestaData = {
+        status: lestaAuthStatus,
+        access_token: queryParams.get(LOCAL_STORAGE_LESTA.TOKEN),
+        nickname: queryParams.get(LOCAL_STORAGE_LESTA.NICKNAME),
+        account_id: +queryParams.get(LOCAL_STORAGE_LESTA.ID),
+        expires_at: +queryParams.get(LOCAL_STORAGE_LESTA.EXPIRES_AT),
+      };
+
+      dispatch(authByLestaOpenID(lestaData));
+    }
+  }, [dispatch, queryParams]);
 
   useEffect(() => {
     if (currentUserError) {
@@ -52,21 +71,8 @@ function AppLayout() {
   }, [dispatch, isAuthInitiated]);
 
   useEffect(() => {
-    const lestaAuthStatus = queryParams.get(LOCAL_STORAGE_LESTA.STATUS);
-    const isLestaAuth = !!lestaAuthStatus;
-
-    if (isLestaAuth && lestaAuthStatus === 'ok') {
-      const lestaData = {
-        status: lestaAuthStatus,
-        access_token: queryParams.get(LOCAL_STORAGE_LESTA.TOKEN),
-        nickname: queryParams.get(LOCAL_STORAGE_LESTA.NICKNAME),
-        account_id: +queryParams.get(LOCAL_STORAGE_LESTA.ID),
-        expires_at: +queryParams.get(LOCAL_STORAGE_LESTA.EXPIRES_AT),
-      };
-
-      dispatch(authByLestaOpenID(lestaData));
-    }
-  }, [dispatch, isLoggedIn, queryParams]);
+    if (isMainPage) handleOpenAuth();
+  }, [isMainPage, handleOpenAuth]);
 
   return (
     <Suspense fallback={<Loader />}>
