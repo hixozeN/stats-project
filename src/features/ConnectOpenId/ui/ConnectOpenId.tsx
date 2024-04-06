@@ -9,16 +9,14 @@ import {
   ReducerList,
   useDynamicReducerLoader,
 } from 'shared/hooks/useDynamicReducerLoader/useDynamicReducerLoader';
-import { getOpenIdState } from 'features/ConnectOpenId/model/selectors/index';
 import { Navigate, useSearchParams } from 'react-router-dom';
 import { LOCAL_STORAGE_LESTA } from 'shared/consts/localstorage';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
-import {
-  connectLestaOpenId,
-} from 'features/ConnectOpenId/model/services/connectLestaOpenId/connectLestaOpenId';
 import { CONNECT_ID_URL } from 'shared/consts/openID';
 import Loader from 'shared/ui/Loader/Loader';
 import { useToasts } from 'shared/hooks/useToasts/useToasts';
+import { getOpenIdState } from '../model/selectors';
+import { connectLestaOpenId } from '../model/services/connectLestaOpenId/connectLestaOpenId';
 import cls from './ConnectOpenId.module.scss';
 
 interface ConnectOpenIdProps {
@@ -26,11 +24,17 @@ interface ConnectOpenIdProps {
 }
 
 const initialReducers: ReducerList = { openId: openIdReducer };
+const OPEN_AUTH_ERROR_MESSAGES: Record<number, string> = {
+  0: 'unexpectedError',
+  401: 'canceledByUser',
+  403: 'authTimedOut',
+  410: 'authError',
+};
 
 export const ConnectOpenId = memo((props: ConnectOpenIdProps) => {
   const { className } = props;
   useDynamicReducerLoader({ reducers: initialReducers, removeAfterUnmount: true });
-  const { toastSuccess } = useToasts();
+  const { toastSuccess, toastWithError } = useToasts();
   const { t } = useTranslation('openID');
   const authData = useSelector(getUserData);
   const { isInitiated = false, isLoading = false, error = '' } = useSelector(getOpenIdState);
@@ -61,7 +65,13 @@ export const ConnectOpenId = memo((props: ConnectOpenIdProps) => {
         status: authStatus,
       }));
     }
-  }, [dispatch, queryParams]);
+
+    if (authStatus === 'error') {
+      const errorCode = +queryParams.get('code') ?? 0;
+      const message = OPEN_AUTH_ERROR_MESSAGES[errorCode];
+      toastWithError(t(message));
+    }
+  }, [dispatch, queryParams, toastWithError, t]);
 
   if (isInitiated && isLoading) return <Loader />;
 

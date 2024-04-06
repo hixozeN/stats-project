@@ -5,5 +5,3 @@ export const getOpenIdState = (state: StateSchema) => state?.openId || {
   isLoading: false,
   error: '',
 };
-
-const getOpenIdInit = (state: StateSchema) => state?.openId?.isInitiated || false;
