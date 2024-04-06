@@ -24,13 +24,9 @@ export const searchUsersAndClans = createAsyncThunk<FoundData, ThunkProps, Thunk
 
       if (!response.data) rejectWithValue(serverError);
 
-      if (response.data.players.length > 0) {
-        dispatch(searchActions.setFoundPlayers(response.data.players));
-      }
+      dispatch(searchActions.setFoundPlayers(response.data.players));
 
-      if (response.data.clans.length > 0) {
-        dispatch(searchActions.setFoundClans(response.data.clans));
-      }
+      dispatch(searchActions.setFoundClans(response.data.clans));
 
       // возвращаем полученные данные
       return response.data;
