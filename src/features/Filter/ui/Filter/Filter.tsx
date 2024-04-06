@@ -1,4 +1,4 @@
-import {
+import React, {
   memo, useCallback, useEffect, useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -21,7 +21,8 @@ import cls from './Filter.module.scss';
 
 function FilterWithCurtain() {
   const { t } = useTranslation('tank');
-  const [isOpenFilter, setOpenFilter] = useState(false);
+  const [isOpenFilter, setFilterOpen] = useState(false);
+  const [isSortOpen, setSortOpen] = useState(false);
   const [sortState, setSortState] = useState<Record<string, sortItem>>({});
   const dispatch = useAppDispatch();
   const checkboxes = useSelector(getCheckboxesFilterState);
@@ -55,15 +56,15 @@ function FilterWithCurtain() {
     setSortStateInit();
   }, []);
 
-  const closeFilter = () => {
-    setOpenFilter(false);
-  };
+  const closeFilter = useCallback(() => {
+    setFilterOpen(false);
+  }, []);
 
   const applyFilter = useCallback(() => {
     setSortStateInit();
     closeFilter();
     dispatch(filterActions.setFilterData(filter));
-  }, [dispatch, filter]);
+  }, [closeFilter, dispatch, filter]);
 
   const clearFilter = useCallback(() => {
     dispatch(filterActions.clearFilter());
@@ -71,7 +72,7 @@ function FilterWithCurtain() {
   }, [dispatch, tanks]);
 
   const openFilter = () => {
-    setOpenFilter(true);
+    setFilterOpen(true);
   };
 
   const clickSort = (nameItem: string, paramItem: keyof ParamData) => {
@@ -97,42 +98,64 @@ function FilterWithCurtain() {
     }));
 
     if (sortState[`${nameItem}`].isDown) {
-      const getStatisticValue = (h: TUserTanks):string | number => h.statistics[paramItem];
+      const getStatisticValue = (h: TUserTanks): string | number => h.statistics[paramItem];
 
       listSort = [...filter].sort(
-        (a, b) => Number(getStatisticValue(a))
-        - Number(getStatisticValue(b)),
+        (a, b) => Number(getStatisticValue(a)) - Number(getStatisticValue(b)),
       );
     }
 
     if (sortState[nameItem].isUp || !sortState[nameItem].isActive) {
-      const getStatisticValue = (h: TUserTanks):string | number => h.statistics[paramItem];
+      const getStatisticValue = (h: TUserTanks): string | number => h.statistics[paramItem];
 
       listSort = [...filter].sort(
-        (a, b) => Number(getStatisticValue(b))
-        - Number(getStatisticValue(a)),
+        (a, b) => Number(getStatisticValue(b)) - Number(getStatisticValue(a)),
       );
     }
 
     dispatch(filterActions.setFilterData(listSort));
   };
 
+  const handleChangeMenu = useCallback((e: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => {
+    e.stopPropagation();
+    setSortOpen(!isSortOpen);
+  }, [isSortOpen]);
+
   return (
-    <div className={cls.tanks}>
-      <SearchForm />
-      <ul className={cls.sortList}>
-        {statList.map((item: IStatList) => (
-          <Sort
-            data={item}
-            key={item.nameItem}
-            clickSort={clickSort}
-            state={sortState}
-          />
-        ))}
-      </ul>
-      <Button onClick={openFilter}>{t('Настроить фильтр')}</Button>
-      <div className={classNames(cls.wrapper, { [cls.open]: isOpenFilter })}>
-        <form className={cls.filterForm}>
+    <>
+      <div
+        tabIndex={0}
+        role="button"
+        aria-label={t('Закрыть список сессий')}
+        className={classNames(cls.overlay, { [cls.overlayActive]: isSortOpen || isOpenFilter })}
+        onClick={isSortOpen ? handleChangeMenu : closeFilter}
+      />
+      <div className={cls.tanks}>
+        <SearchForm />
+        <div className={cls.sortWrapper}>
+          <ul className={classNames(cls.sortList, { [cls.openSort]: isSortOpen })}>
+            {statList.map((item: IStatList) => (
+              <Sort
+                data={item}
+                key={item.nameItem}
+                clickSort={clickSort}
+                state={sortState}
+              />
+            ))}
+          </ul>
+          <Button
+            className={cls.buttonSort}
+            onClick={handleChangeMenu}
+            theme="icon-right"
+            variant="sort"
+          >
+            {t('Сортировка')}
+          </Button>
+        </div>
+        <Button className={cls.buttonFilter} onClick={openFilter} theme="icon-right" variant="filter">
+          {t('Фильтровать')}
+        </Button>
+        <form className={classNames(cls.filterForm, { [cls.open]: isOpenFilter })}>
           {filterData.map((data) => (
             <fieldset className={cls.group} key={data.name} id={data.param}>
               <legend className={cls.legend}>{t(`${data.text}`)}</legend>
@@ -165,7 +188,7 @@ function FilterWithCurtain() {
           </ul>
         </form>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -52,7 +52,7 @@
     position: absolute;
     border-radius: 4px;
     bottom: -50px;
-    right: 0;
+    left: 0;
     z-index: 10;
     box-shadow: 0 0 0 1px var(--bg-tab-inactive);
   }
@@ -63,5 +63,9 @@
 
   .button {
     background-color: var(--button-icon-bg);
+  }
+
+  .inputWrapper {
+    max-width: 200px;
   }
 }

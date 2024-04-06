@@ -7,6 +7,7 @@ import { TUserTanks } from 'entities/Lesta/model/types/tanks';
 // import { t } from 'i18next';
 import { useSelector } from 'react-redux';
 import { getDataFilterState } from 'features/Filter/model/selectors';
+import { getLestaUserTanks } from 'entities/Lesta';
 import cls from './Tanks.module.scss';
 
 interface TanksProps {
@@ -16,6 +17,7 @@ interface TanksProps {
 export const Tanks = memo(({ dataList }: TanksProps) => {
   const isAuthPage = useMatch(RoutePath.auth);
   const filterList = useSelector(getDataFilterState) || dataList;
+  const tanks = useSelector(getLestaUserTanks);
   let wordTanks;
 
   if (isAuthPage) return null;
@@ -41,7 +43,9 @@ export const Tanks = memo(({ dataList }: TanksProps) => {
   return (
     <section className={cls.tanks}>
       <h2 className={cls.title}>
-        {`У игрока ${filterList.length} ${wordTanks} с выбранными параметрами`}
+        {tanks.length === filterList.length
+          ? `У игрока ${filterList.length} ${wordTanks}`
+          : `У игрока ${filterList.length} ${wordTanks} с выбранными параметрами`}
       </h2>
       <Filter />
       <ul className={cls.list}>

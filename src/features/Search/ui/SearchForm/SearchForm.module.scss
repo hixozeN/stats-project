@@ -2,4 +2,8 @@
   max-width: 276px;
   width: 100%;
   display: flex;
+
+  @media (width <= 768px) {
+    max-width: 200px;
+  }
 }

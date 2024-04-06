@@ -15,7 +15,7 @@ export const useFilterTanks = () => {
     const data = Object.entries(checkboxes[`${item}`]).map(
       ([key, value]) => (value && key),
     );
-    const param = item.split('.');
+    const [dataParam, param] = item.split('.');
 
     if (data.every((itemData) => !itemData)) {
       return result;
@@ -23,7 +23,7 @@ export const useFilterTanks = () => {
     // ToDo: избавиться от any
     return result
       .filter((tank: {[key: string]:any}) => data
-        .find((tankItem) => tankItem === tank[`${param[0]}`][`${param[1]}`].toString()));
+        .find((tankItem) => tankItem === tank[dataParam][param].toString()));
   }, tanksData);
 
   localStorage.setItem(LOCAL_STORAGE_FILTER_DATA, JSON.stringify(filter));
