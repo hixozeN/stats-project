@@ -10,7 +10,7 @@
   display: block;
   align-self: center;
   background: var(--input-bg-color);
-  padding: 5px;
+  padding: 5px 45px 5px 5px;
   border-radius: 4px;
 }
 
@@ -20,6 +20,10 @@
 
 .SearchInput::placeholder {
   color: var(--input-placeholder-color);
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  display: none;
 }
 
 .inputWrapper {
@@ -36,32 +40,28 @@
   display: flex;
 }
 
-.button {
-  background-color: var(--input-bg-color);
-  order: -1;
-}
-
 @media (width <= 768px) {
   .SearchInput {
-    display: none;
+    padding: 5px;
+    width: 385px;
     outline: 1px solid var(--bg-tab-inactive);
   }
 
-  .open {
+  .inputWrapper {
+    max-width: 385px;
+  }
+
+  .visible {
     display: block;
-    position: absolute;
-    border-radius: 4px;
-    bottom: -50px;
-    right: 0;
-    z-index: 10;
-    box-shadow: 0 0 0 1px var(--bg-tab-inactive);
+  }
+}
+
+@media (width <= 425px) {
+  .SearchInput {
+    width: 300px;
   }
 
-  .searchWrapper {
-    flex-direction: column;
-  }
-
-  .button {
-    background-color: var(--button-icon-bg);
+  .inputWrapper {
+    max-width: 300px;
   }
 }
