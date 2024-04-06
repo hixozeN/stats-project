@@ -7,7 +7,7 @@ export const openIdDTOConverter = (data: UserOpenID | User): User => {
     _id: data._id,
     username: data.username,
     email: data.email,
-    lestaData: data.lestaData,
+    lestaData: { nickname: data.lestaData?.nickname || '', account_id: data.lestaData?.account_id },
     avatar: data.avatar,
     created_at: data.created_at,
     roles: data.roles,

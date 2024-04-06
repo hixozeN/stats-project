@@ -9,13 +9,13 @@ export enum UserRoles {
 }
 
 export interface LestaUserData {
-  nickname: string;
-  account_id: number;
-  created_at: number;
-  last_battle_time: number;
+  nickname?: string;
+  account_id?: number;
+  created_at?: number;
+  last_battle_time?: number;
   expires_at?: number;
   access_token?: string;
-  statistics: LestaUserStatistics;
+  statistics?: LestaUserStatistics;
 }
 
 export type LestaOpenAuthData = {

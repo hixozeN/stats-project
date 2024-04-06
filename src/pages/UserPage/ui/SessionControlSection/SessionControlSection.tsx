@@ -13,7 +13,7 @@ import {
   fetchUserDataByLestaId,
 } from 'entities/Lesta';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
-import { LOCAL_STORAGE_LESTA } from 'shared/consts/localstorage';
+import { getLestaAccessToken } from 'entities/User';
 import cls from './SessionControlSection.module.scss';
 
 interface SessionControlSectionProps {
@@ -34,18 +34,18 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
   const userSessions = useSelector(getUserSessions);
   const reversedUserSessions = userSessions ? [...userSessions].reverse() : [];
   const userLastSession = useSelector(getUserLastSessionId);
+  const lestaAccessToken = useSelector(getLestaAccessToken);
 
   const handleUpdateSessionData = useCallback(() => {
     dispatch(fetchLestaUserSessionById(
       { sessionId: currentSession },
     ));
 
-    const lestaAccessToken = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LESTA.TOKEN));
     dispatch(fetchUserDataByLestaId({
       id: Number(id),
-      lestaAccessToken: lestaAccessToken ?? null,
+      lestaAccessToken,
     }));
-  }, [id, dispatch, currentSession]);
+  }, [id, dispatch, currentSession, lestaAccessToken]);
 
   const handleChangeSession = useCallback((targetSession) => {
     dispatch(fetchLestaUserSessionById({ sessionId: targetSession }));

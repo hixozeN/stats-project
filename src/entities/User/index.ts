@@ -13,7 +13,6 @@ export { userSlice, userReducer, userActions } from './model/slice/userSlice';
 export { UserProfileForm } from './ui/UserProfileForm/UserProfileForm';
 
 export { checkUserAuth } from './model/services/checkUserAuth/checkUserAuth';
-export { refreshLestaToken } from './model/services/refreshLestaToken/refreshLestaToken';
 export { logoutUser } from './model/services/logoutUser/logoutUser';
 
 // SELECTORS

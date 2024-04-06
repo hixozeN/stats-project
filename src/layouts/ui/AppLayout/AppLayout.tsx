@@ -8,7 +8,7 @@ import { Sidebar } from 'widgets/Sidebar';
 import { LOCAL_STORAGE_LESTA } from 'shared/consts/localstorage';
 import {
   getLoggedInStatus, getUserAuthInitiation,
-  checkUserAuth, getCurrentUserError, refreshLestaToken,
+  checkUserAuth, getCurrentUserError,
 } from 'entities/User';
 import Loader from 'shared/ui/Loader/Loader';
 import { Header } from 'widgets/Header';
@@ -66,7 +66,6 @@ function AppLayout() {
   useEffect(() => {
     if (!isAuthInitiated) {
       dispatch(checkUserAuth());
-      dispatch(refreshLestaToken());
     }
   }, [dispatch, isAuthInitiated]);
 

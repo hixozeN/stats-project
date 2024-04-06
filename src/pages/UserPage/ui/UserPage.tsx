@@ -16,7 +16,6 @@ import {
   getUserNickname, getUserLastSessionId,
 } from 'entities/Lesta';
 import { useSelector } from 'react-redux';
-import { LOCAL_STORAGE_LESTA } from 'shared/consts/localstorage';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { SeoUpdater } from 'shared/lib/SeoUpdater/SeoUpdater';
@@ -26,7 +25,7 @@ import {
 import {
   fetchLestaUserSessionById,
 } from 'entities/Lesta/model/services/fetchLestaUserSession/fetchLestaUserSession';
-import { getTokenUpdateStatus } from 'entities/User/index';
+import { getLestaAccessToken, getTokenUpdateStatus } from 'entities/User/index';
 import { SessionControlSection } from '../ui/SessionControlSection/SessionControlSection';
 import cls from './UserPage.module.scss';
 
@@ -43,6 +42,7 @@ const UserPage = ({ className }: IUserPageProps) => {
   const isNotFound = useSelector(getUserNotFoundStatus);
   const userLastSession = useSelector(getUserLastSessionId);
   const isTokenUpdating = useSelector(getTokenUpdateStatus);
+  const lestaAccessToken = useSelector(getLestaAccessToken);
 
   const [tab, setTab] = useState(0);
   const tabList = useMemo(() => [t('Статистика'), t('Сессия'), t('Рейтинг')], [t]);
@@ -57,19 +57,19 @@ const UserPage = ({ className }: IUserPageProps) => {
 
   useEffect(() => {
     if (!isTokenUpdating) {
-      const lestaAccessToken = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LESTA.TOKEN));
+      // const lestaAccessToken = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LESTA.TOKEN));
       dispatch(
         fetchLestaUserDataByIdV2({
           id: Number(id),
-          lestaAccessToken: lestaAccessToken ?? null,
+          lestaAccessToken,
         }),
       );
       dispatch(fetchUserDataByLestaId({
         id: Number(id),
-        lestaAccessToken: lestaAccessToken ?? null,
+        lestaAccessToken,
       }));
     }
-  }, [id, dispatch, isTokenUpdating]);
+  }, [id, dispatch, isTokenUpdating, lestaAccessToken]);
 
   if (isNotFound) {
     return (

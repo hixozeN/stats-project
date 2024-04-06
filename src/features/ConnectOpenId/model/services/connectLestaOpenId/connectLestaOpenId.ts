@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider/index';
 import { SERVER_ERROR_MESSAGE } from 'shared/consts/global';
-import { LOCAL_STORAGE_LESTA, LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
+import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { User, userActions, UserOpenID } from 'entities/User';
 
 interface ThunkProps {
@@ -33,9 +33,6 @@ export const connectLestaOpenId = createAsyncThunk<User, ThunkProps, ThunkConfig
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { refreshToken, ...data } = res.data.userData;
       localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(data));
-      localStorage.setItem(LOCAL_STORAGE_LESTA.TOKEN, JSON.stringify(ThunkProps.access_token));
-      localStorage
-        .setItem(LOCAL_STORAGE_LESTA.EXPIRES_AT, JSON.stringify(ThunkProps.expires_at));
 
       dispatch(userActions.setAuthData(data));
 
