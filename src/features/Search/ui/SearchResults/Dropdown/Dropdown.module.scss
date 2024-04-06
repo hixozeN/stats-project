@@ -1,0 +1,62 @@
+.Dropdown {
+  min-height: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.loader {
+  height: 100px;
+}
+
+.notFound {
+  margin: auto 0;
+  text-align: center;
+  white-space: pre-wrap;
+}
+
+.list {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  text-align: center;
+  transition: opacity .2s ease;
+}
+
+.icons {
+  padding: 0;
+  width: 24px;
+  height: 24px;
+}
+
+@media screen and (width <= 768px) {
+  .Dropdown {
+    height: 300px;
+    overflow-y: auto;
+  }
+
+  .Dropdown::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .Dropdown::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: var(--accent-color);
+  }
+
+  .Dropdown::-webkit-scrollbar-track {
+    background-color: #333239;
+    border-radius: 5px;
+  }
+
+  .loader {
+    margin: 5px 0 245px;
+    height: 50px;
+  }
+
+  .notFound {
+    margin: 20px auto 0;
+  }
+}
+
