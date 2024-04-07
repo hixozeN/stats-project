@@ -6,8 +6,6 @@
   border-radius: 15px;
   gap: 20px;
   padding: 15px;
-
-  // backdrop-filter: blur(5px);
   background-color: var(--bg-card);
 }
 
@@ -102,7 +100,103 @@
   height: 32px;
 }
 
-@media (width <= 1024px) {
+@media (1590px >= width > 1280px), (1090px >= width > 768px), (480px > width >= 380px) {
+  .card {
+    max-width: 360px;
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .infoWrapper {
+    gap: 12px;
+    padding: 0;
+  }
+
+  .tankImg {
+    width: 100px;
+    height: 98px;
+    margin: 0;
+  }
+
+  .title {
+    font-size: 14px;
+    max-width: 160px;
+  }
+
+  .inner {
+    // gap: 0;
+  }
+
+  .tier {
+    font-size: 14px;
+  }
+
+  .type {
+    width: 15px;
+    height: 15px;
+  }
+
+  .mastery {
+    width: 24px;
+    height: 24px;
+  }
+
+  .statList {
+    grid-template-columns: repeat(2, 110px);
+    gap: 7px 5px;
+
+    div:last-child {
+      font-size: 12px;
+    }
+  }
+}
+@media (1280px >= width > 1090px), (768px >= width >= 480px) {
+  .card {
+    max-width: 460px;
+    padding: 15px;
+    gap: 20px;
+  }
+
+  .infoWrapper {
+    gap: 12px;
+    padding: 0;
+  }
+
+  .tankImg {
+    width: 140px;
+    height: 145px;
+  }
+
+  .title {
+    font-size: 18px;
+    max-width: 200px;
+  }
+
+  .tier {
+    font-size: 16px;
+  }
+
+  .type {
+    width: 20px;
+    height: 20px;
+  }
+
+  .mastery {
+    width: 32px;
+    height: 32px;
+  }
+
+  .statList {
+    grid-template-columns: repeat(2, 120px);
+    gap: 20px 15px;
+
+    div:last-child {
+      font-size: 14px;
+    }
+  }
+}
+
+@media (width < 380px) {
   .card {
     max-width: 300px;
     padding: 10px;
@@ -123,13 +217,6 @@
   .title {
     font-size: 14px;
     max-width: 160px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-
-    &.premium {
-      color: var(--accent-color);
-    }
   }
 
   .inner {

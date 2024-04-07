@@ -70,7 +70,19 @@
   color: var(--wn8-super-unicim-color);
 }
 
-@media (width <= 1024px) {
+@media (1590px >= width > 1280px), (1090px >= width > 768px), (480px > width >= 380px) {
+  .wrapper {
+    font-size: 14px;
+  }
+}
+
+@media (1280px >= width > 1090px), (768px >= width >= 480px) {
+  .wrapper {
+    font-size: 16px;
+  }
+}
+
+@media (width < 380px) {
   .wrapper {
     font-size: 12px;
   }

@@ -97,17 +97,15 @@ function FilterWithCurtain() {
       };
     }));
 
-    if (sortState[`${nameItem}`].isDown) {
-      const getStatisticValue = (h: TUserTanks): string | number => h.statistics[paramItem];
+    const getStatisticValue = (tank: TUserTanks): string | number => tank.statistics[paramItem];
 
+    if (sortState[`${nameItem}`].isDown) {
       listSort = [...filter].sort(
         (a, b) => Number(getStatisticValue(a)) - Number(getStatisticValue(b)),
       );
     }
 
     if (sortState[nameItem].isUp || !sortState[nameItem].isActive) {
-      const getStatisticValue = (h: TUserTanks): string | number => h.statistics[paramItem];
-
       listSort = [...filter].sort(
         (a, b) => Number(getStatisticValue(b)) - Number(getStatisticValue(a)),
       );
@@ -130,7 +128,7 @@ function FilterWithCurtain() {
         className={classNames(cls.overlay, { [cls.overlayActive]: isSortOpen || isOpenFilter })}
         onClick={isSortOpen ? handleChangeMenu : closeFilter}
       />
-      <div className={cls.tanks}>
+      <div className={cls.filterPanel}>
         <SearchForm />
         <div className={cls.sortWrapper}>
           <ul className={classNames(cls.sortList, { [cls.openSort]: isSortOpen })}>

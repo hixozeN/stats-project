@@ -1,6 +1,9 @@
 .tanks {
   border-top: 1px solid var(--bg-tab-inactive);
   padding-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
@@ -17,21 +20,32 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, 460px);
   gap: 30px;
-  flex-wrap: wrap;
   justify-content: center;
   margin: 0 auto;
 }
 
-@media (width <= 1024px) {
+.buttonMore {
+  margin-top: 35px;
+}
+
+@media (1590px >= width > 1280px), (1090px >= width > 768px), (480px > width >= 380px) {
   .list {
     gap: 20px;
     padding: 0;
-    grid-template-columns: repeat(auto-fit, 300px);
+    grid-template-columns: repeat(auto-fit, 360px);
   }
 }
 
-@media (width <= 480px) {
+@media (1280px >= width > 1090px), (768px >= width >= 480px) {
   .list {
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, 460px);
+  }
+}
+
+@media (width < 380px) {
+  .list {
+    grid-template-columns: repeat(auto-fit, 300px);
     gap: 15px;
   }
 

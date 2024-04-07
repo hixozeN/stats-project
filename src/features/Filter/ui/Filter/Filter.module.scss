@@ -1,9 +1,10 @@
-.tanks {
+.filterPanel {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 25px 10px;
   position: relative;
+  width: 100%;
 
   @media (width <= 768px) {
     margin: 15px 0;
