@@ -56,6 +56,8 @@ export interface ThunkExtraArgument {
   lestaApi: AxiosInstance,
   royalApi: AxiosInstance,
   navigate: (to: To, options?: NavigateOptions) => void,
+  toastSuccess: (text: string) => void,
+  toastWithError: (text: string) => void,
 }
 
 export interface ThunkConfig<T> {

@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { authByLestaOpenID } from 'features/AuthUser/index';
+import { patchCurrentUser } from 'features/editCurrentUserPorfile/index';
 import { logoutUser } from '../services/logoutUser/logoutUser';
 import { checkUserAuth } from '../services/checkUserAuth/checkUserAuth';
 import { User, UserSchema } from '../types/user';
 
 const initialState: UserSchema = {
-  isLoggedIn: !!localStorage.getItem(LOCAL_STORAGE_USER_KEY),
+  isLoggedIn: false,
   isInitiated: false,
 };
 
@@ -58,6 +58,12 @@ export const userSlice = createSlice({
         state.isLoggedIn = false;
         state.authData = null;
         localStorage.clear();
+      })
+      .addCase(patchCurrentUser.fulfilled, (state, { payload }) => {
+        state.authData = { ...state.authData, ...payload };
+      })
+      .addCase(patchCurrentUser.rejected, (state, { payload }) => {
+        state.updateProfileError = payload;
       });
   },
 });

@@ -71,6 +71,7 @@ export interface UserSchema {
   isLoading?: boolean;
   isTokenRefreshing?: boolean;
   error?: string;
+  updateProfileError?: string;
 
   isInitiated: boolean;
 }

@@ -8,8 +8,10 @@
   padding: 5px 8px;
 }
 
-.input:focus, textarea:focus {
-  outline: 1px solid var(--secondary-color);
+.span {
+  color: var(--secondary-color);
+  grid-column: 1;
+  grid-row: 1;
 }
 
 .label {
@@ -55,8 +57,9 @@
   color: #3fb66f;
 }
 
-.span {
-  color: var(--secondary-color);
+.input, .textarea {
+  grid-column: 2;
+  grid-row: 1;
 }
 
 .textarea {
@@ -77,13 +80,21 @@
 }
 
 .textarea::-webkit-scrollbar-track {
-  background-color:#5A5D66;
+  background-color: #5A5D66;
   border-radius: 5px;
 }
 
 .textarea::-webkit-scrollbar-thumb {
   border-radius: 5px;
   background-color: var(--accent-color);
+}
+
+.textarea:focus, .input:focus {
+  outline: 1px solid var(--secondary-color);
+}
+
+.textarea:focus + .span, .input:focus + .span {
+  color: var(--primary-color);
 }
 
 .text {
@@ -96,6 +107,31 @@
   }
 }
 
+.error {
+  color: var(--error-color);
+  outline: 1px solid var(--error-color);
+}
+
+.correctValue {
+  color: var(--green-color);
+}
+
+.btnConnectDiscord {
+  height: 34px;
+  width: 100%;
+  max-width: 477px;
+}
+
+/* Меняем стилизацию автокомплита */
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus {
+  border-radius: 5px;
+  -webkit-text-fill-color: var(--primary-color);
+  box-shadow: 0 0 0 1000px rgb(0 0 0 / 0%) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 @media (hover: hover) {
   .label:hover {
     cursor: pointer;
@@ -103,6 +139,10 @@
     & svg path {
       fill: var(--primary-color);
     }
+  }
+
+  .span:hover {
+    color: var(--accent-color);
   }
 }
 

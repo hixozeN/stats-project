@@ -7,3 +7,4 @@ export const getCurrentUserError = (state: StateSchema) => state?.user?.error ||
 export const getFullUserState = (state: StateSchema) => state?.user || null;
 export const getTokenUpdateStatus = (state: StateSchema) => state?.user?.isTokenRefreshing || false;
 export const getLestaAccessToken = (state: StateSchema) => state?.user?.authData?.lestaData?.access_token || null;
+export const getUpdateProfileError = (state: StateSchema) => state?.user?.updateProfileError || '';

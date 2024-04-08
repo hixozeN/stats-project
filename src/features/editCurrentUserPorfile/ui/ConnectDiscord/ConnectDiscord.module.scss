@@ -1,0 +1,11 @@
+.ConnectDiscord {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+}
+
+.span {
+  color: var(--secondary-color);
+  grid-column: 1;
+  grid-row: 1;
+}

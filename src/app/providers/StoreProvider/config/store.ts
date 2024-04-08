@@ -19,6 +19,8 @@ export function createReduxStore(
   asyncReducers?: ReducersMapObject<StateSchema>,
   // eslint-disable-next-line no-unused-vars
   navigate?: (to: To, options?: NavigateOptions) => void,
+  toastSuccess?: (text: string) => void,
+  toastWithError?: (text: string) => void,
 ) {
   const rootReducers: ReducersMapObject<StateSchema> = {
     ...asyncReducers,
@@ -47,6 +49,8 @@ export function createReduxStore(
           lestaApi: $lestaApi,
           royalApi: $royalApi,
           navigate,
+          toastSuccess,
+          toastWithError,
         },
       },
     }),
