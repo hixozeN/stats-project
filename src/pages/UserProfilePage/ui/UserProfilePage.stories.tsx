@@ -8,6 +8,8 @@ import {
 } from 'storybook-addon-react-router-v6';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import i18n from 'shared/config/i18n/i18n';
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
+import { STORYBOOK_STORE } from 'shared/config/storybook/store';
 import UserProfilePage from './UserProfilePage';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -21,7 +23,10 @@ export default meta;
 type Story = StoryObj<typeof UserProfilePage>;
 
 export const ProfileEdit: Story = {
-  decorators: [ThemeDecorator(Theme.DARK)],
+  decorators: [
+    StoreDecorator(STORYBOOK_STORE),
+    ThemeDecorator(Theme.DARK),
+  ],
   parameters: {
     reactRouter: reactRouterParameters({
       routing: reactRouterOutlet({
