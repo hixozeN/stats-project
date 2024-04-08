@@ -84,5 +84,6 @@ module.exports = {
     LESTA_API_URL: true,
     LESTA_AUTH_API_URL: true,
     LESTA_APP_ID: true,
+    OptionalRecord: true,
   },
 };

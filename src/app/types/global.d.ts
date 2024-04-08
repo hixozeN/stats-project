@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 declare module '*.module.css';
 declare module '*.module.scss';
 declare module '*.svg' {
@@ -19,3 +18,7 @@ declare const ROYAL_ARENA_API_URL: string;
 declare const LESTA_API_URL: string;
 declare const LESTA_AUTH_API_URL: string;
 declare const LESTA_APP_ID: string;
+
+type OptionalRecord<K extends keyof any, T> = {
+  [P in K]?: T;
+};
