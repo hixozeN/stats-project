@@ -6,13 +6,15 @@ import { NotFoundPage } from 'pages/NotFoundPage';
 import { AuthorizationPage } from 'pages/AuthorizationPage';
 import i18n from 'shared/config/i18n/i18n';
 import { UserProfilePage } from 'pages/UserProfilePage';
-import { RouterUtils, ReduxLayout, AppLayout } from 'layouts';
-import { UserProfileForm } from 'entities/User';
+import {
+  RouterUtils, ReduxLayout, AppLayout, RequireAuth,
+} from 'layouts';
 import { TournamentsPage } from 'pages/TournamentsPage';
 import TeamsPage from 'pages/TeamsPage/ui/TeamsPage';
 import { UserPage } from 'pages/UserPage';
 import { AuthorizationLestaPage } from 'pages/AuthorizationLestaPage/AuthorizationLestaPage';
 import { OpenAuthPage } from 'pages/OpenAuthPage';
+import { UserProfileForm } from 'features/editCurrentUserPorfile';
 
 // interface IRouterPath {
 //   [key:string]: string;
@@ -40,7 +42,7 @@ export enum AppRoutes {
   NOT_FOUND = 'not_found',
 }
 
-export const RoutePath: Record<AppRoutes, string> = {
+export const RoutePath: OptionalRecord<AppRoutes, string> = {
   [AppRoutes.NOT_FOUND]: '*',
   [AppRoutes.MAIN]: '/',
   [AppRoutes.ABOUT]: '/about',
@@ -113,36 +115,41 @@ export const routerConfiguration = createBrowserRouter([
                 element: <AuthorizationLestaPage />,
               },
               {
-                path: RoutePath.connectLesta,
-                element: <OpenAuthPage />,
-              },
-              {
-                path: RoutePath.profile,
-                element: <UserProfilePage />,
+                element: <RequireAuth />,
                 children: [
                   {
-                    path: RoutePath.profile_edit,
-                    element: <UserProfileForm />,
+                    path: RoutePath.connectLesta,
+                    element: <OpenAuthPage />,
                   },
                   {
-                    path: RoutePath.profile_stats,
-                    element: <div>{i18n.t('stats')}</div>,
-                  },
-                  {
-                    path: RoutePath.profile_history,
-                    element: <div>{i18n.t('history')}</div>,
-                  },
-                  {
-                    path: RoutePath.profile_settings,
-                    element: <div>{i18n.t('settings')}</div>,
-                  },
-                  {
-                    path: RoutePath.profile_blacklist,
-                    element: <div>{i18n.t('blacklist')}</div>,
-                  },
-                  {
-                    path: RoutePath.profile_sessions,
-                    element: <div>{i18n.t('sessions')}</div>,
+                    path: RoutePath.profile,
+                    element: <UserProfilePage />,
+                    children: [
+                      {
+                        path: RoutePath.profile_edit,
+                        element: <UserProfileForm />,
+                      },
+                      {
+                        path: RoutePath.profile_stats,
+                        element: <div>{i18n.t('stats')}</div>,
+                      },
+                      {
+                        path: RoutePath.profile_history,
+                        element: <div>{i18n.t('history')}</div>,
+                      },
+                      {
+                        path: RoutePath.profile_settings,
+                        element: <div>{i18n.t('settings')}</div>,
+                      },
+                      {
+                        path: RoutePath.profile_blacklist,
+                        element: <div>{i18n.t('blacklist')}</div>,
+                      },
+                      {
+                        path: RoutePath.profile_sessions,
+                        element: <div>{i18n.t('sessions')}</div>,
+                      },
+                    ],
                   },
                 ],
               },
