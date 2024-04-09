@@ -3,9 +3,14 @@ export {
   userTanksActions,
   userTanksReducer,
 } from './model/slice/lestaTanksSlice';
+export { clanActions, clanReducers } from './model/slice/lestaClanSlice';
 export { PersonalUserDataResponse } from './model/types/users/PersonalUserData';
 export {
-  LestaSchema, LestaUserDataSchema, LestaUserSessionSchema, LestaTanksSchema,
+  LestaSchema,
+  LestaClanSchema,
+  LestaUserDataSchema,
+  LestaUserSessionSchema,
+  LestaTanksSchema,
 } from './model/types';
 export {
   TLestaUserData,
@@ -23,9 +28,11 @@ export { fetchLestaUserTanksDataById } from './model/services/fetchLestaUserTank
 export { createLestaUserSession } from './model/services/createLestaUserSession/createLestaUserSession';
 export { fetchLestaUserSessionById } from './model/services/fetchLestaUserSession/fetchLestaUserSession';
 export { fetchUserDataByLestaId } from './model/services/fetchUserDataByLestaId/fetchUserDataByLestaId';
+export { fetchLestaClanData } from './model/services/fetchLestaClanData/fetchLestaClanData';
 export { ParamData } from './model/types/default';
 
 // Selectors
 export { getLestaUserTanks } from './model/selectors/getLestaUserTanks/getLestaUserTanks';
 export * from './model/selectors/lestaUserDataSelectors';
 export * from './model/selectors/lestaUserSessionSelectors';
+export * from './model/selectors/clanSelectors';

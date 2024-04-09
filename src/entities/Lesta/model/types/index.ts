@@ -46,3 +46,10 @@ export type LestaUserSessionSchema = {
   error?: string;
   data: TUserSession;
 }
+
+export type LestaClanSchema = {
+  clan?: LestaClan,
+  isLoading: boolean,
+  error?: string,
+  isNotFound?: boolean;
+}

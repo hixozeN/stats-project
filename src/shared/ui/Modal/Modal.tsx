@@ -1,6 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import React, { ReactNode, useCallback, useEffect } from 'react';
 import { Portal } from 'shared/ui/Portal/Portal';
+import { Button } from '../Button/Button';
 import cls from './Modal.module.scss';
 
 interface IModalProps {
@@ -60,6 +61,13 @@ export function Modal(props: IModalProps) {
             role="button"
             tabIndex={0}
           >
+            <Button
+              variant="close"
+              size="size_s"
+              theme="clear"
+              className={cls.button}
+              onClick={handleClose}
+            />
             {children}
             {`Very long message (close to 100 symbols) for test modal window.
           Very long message (close to 100 symbols) for test modal window.
@@ -91,6 +99,13 @@ export function Modal(props: IModalProps) {
             role="button"
             tabIndex={0}
           >
+            <Button
+              variant="close"
+              size="size_s"
+              theme="clear"
+              className={cls.button}
+              onClick={handleClose}
+            />
             {children}
           </div>
         </div>

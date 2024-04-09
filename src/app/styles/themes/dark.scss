@@ -22,6 +22,8 @@
   --bg-tournament-info: #191821;
   --bg-stat-item: rgb(248 248 248 / 10%);
   --bg-navmenu: #1a1a1c1a;
+  --bg-burger-menu: #1d1d21;
+  --bg-icon-burger-menu: #242424;
 
   /* font colors */
   --primary-color: #f8f8f8;
@@ -80,4 +82,8 @@
   /* shadow */
   --shadow-menu: 0px 4px 4px 0px rgb(0 0 0 / 25%);
   --shadow-sessions-history: 0 0 5px 5px rgb(255 255 255 / 1%);
+  --shadow-burger-menu: 0 2px 5px 0 #3030337f;
+  --shadow-opened-button-burger-menu: inset 0 0 10px 4px #3030337f;
+  --shadow-active-button-burger-menu: 0 0 10px 4px #18181b;
+  --shadow-icon-burger-menu: inset 0 0px 5px 0px #3f3d46;
 }

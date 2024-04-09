@@ -18,6 +18,7 @@ import {
   LestaUserDataSchema,
   LestaTanksSchema,
   LestaUserSessionSchema,
+  LestaClanSchema,
 } from 'entities/Lesta';
 import { TeamsSchema } from 'entities/Team/model/types/team';
 import { FilterSchema } from 'features/Filter/types/filter';
@@ -29,6 +30,7 @@ export interface StateSchema {
   tournaments: TournamentSchema;
   lesta: LestaSchema,
   teams: TeamsSchema;
+  lestaClanData: LestaClanSchema,
   lestaUserData: LestaUserDataSchema;
   lestaUserSession: LestaUserSessionSchema;
   filter: FilterSchema;

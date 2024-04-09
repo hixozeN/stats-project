@@ -1,0 +1,19 @@
+.list {
+  max-width: 700px;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  list-style: none;
+}
+
+@media screen and (width < 700px) {
+  .list {
+    max-width: 320px;
+  }
+}
+
+@media screen and (width < 570px){
+  .list {
+    grid-gap: 10px;
+  }
+}

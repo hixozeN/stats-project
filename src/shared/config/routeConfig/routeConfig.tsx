@@ -11,6 +11,7 @@ import {
 } from 'layouts';
 import { TournamentsPage } from 'pages/TournamentsPage';
 import TeamsPage from 'pages/TeamsPage/ui/TeamsPage';
+import { TeamPage } from 'pages/TeamPage';
 import { UserPage } from 'pages/UserPage';
 import { AuthorizationLestaPage } from 'pages/AuthorizationLestaPage/AuthorizationLestaPage';
 import { OpenAuthPage } from 'pages/OpenAuthPage';
@@ -26,6 +27,7 @@ export enum AppRoutes {
   MATCHES = 'matches',
   TOURNAMENTS = 'tournaments',
   TEAMS = 'teams',
+  TEAM = 'team',
   FRIENDS = 'friends',
   AUTH = 'auth',
   AUTH_LESTA = 'authLesta',
@@ -49,10 +51,10 @@ export const RoutePath: OptionalRecord<AppRoutes, string> = {
   [AppRoutes.MATCHES]: '/matches',
   [AppRoutes.TOURNAMENTS]: '/tournaments',
   [AppRoutes.TEAMS]: '/teams',
+  [AppRoutes.TEAM]: '/team/:clanId',
   [AppRoutes.FRIENDS]: '/friends',
   [AppRoutes.AUTH]: '/auth',
   [AppRoutes.AUTH_LESTA]: '/auth/lesta',
-  [AppRoutes.AUTH_CONNECT_LESTA]: '/auth/connect',
   [AppRoutes.USER_ID]: '/user',
   [AppRoutes.PROFILE]: '/profile',
   [AppRoutes.USER]: '/user/:id',
@@ -97,6 +99,10 @@ export const routerConfiguration = createBrowserRouter([
               {
                 path: RoutePath.teams,
                 element: <TeamsPage />,
+              },
+              {
+                path: RoutePath.team,
+                element: <TeamPage />,
               },
               {
                 path: RoutePath.friends,
