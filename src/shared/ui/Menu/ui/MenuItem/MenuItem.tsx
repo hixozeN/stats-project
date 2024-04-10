@@ -1,9 +1,9 @@
 import { memo, ReactElement, useCallback } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { userActions } from 'entities/User';
+import { logoutUser } from 'entities/User';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { MenuTheme } from '../../config/profileMenuData';
 import cls from './MenuItem.module.scss';
 
@@ -22,9 +22,9 @@ export const MenuItem = memo((props: MenuItemProps) => {
     name, path, icon, theme, cb, isCollapsed, isOpenMenu,
   } = props;
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const onLogout = useCallback(() => {
-    dispatch(userActions.logout());
+    dispatch(logoutUser());
   }, [dispatch]);
 
   const handleClick = () => {
