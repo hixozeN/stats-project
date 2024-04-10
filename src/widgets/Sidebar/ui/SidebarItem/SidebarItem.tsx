@@ -11,11 +11,12 @@ interface ISidebarItemProps {
   icon: ReactElement;
   isCollapsed: boolean;
   isOpenMenu?: boolean;
+  notificationCount?: number;
 }
 
 export const SidebarItem = memo((props: ISidebarItemProps) => {
   const {
-    name, link, icon, isCollapsed, className, isOpenMenu,
+    name, link, icon, isCollapsed, className, isOpenMenu, notificationCount = 0,
   } = props;
   const { t } = useTranslation();
 
@@ -39,10 +40,10 @@ export const SidebarItem = memo((props: ISidebarItemProps) => {
         <span
           className={classNames(
             cls.notification,
-            { [cls.collapsed]: isCollapsed, [cls.notificationActive]: cls.active },
+            { [cls.collapsed]: isCollapsed, [cls.notificationActive]: !!notificationCount },
           )}
         >
-          3
+          {notificationCount}
         </span>
         <span className={classNames(
           cls.linkText,

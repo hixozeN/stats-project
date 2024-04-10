@@ -79,7 +79,7 @@ export const Sidebar = memo(({
         {isCollapsed ? '>' : '<'}
       </Button>
       <div className={cls.switchers}>
-        <ThemeSwitcher />
+        {IS_DEV && <ThemeSwitcher />}
         <LangSwitcher isShort={isCollapsed} />
       </div>
     </aside>
