@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { User, userActions } from 'entities/User/index';
+import { User, userActions } from 'entities/User';
 import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
-import { ThunkConfig } from 'app/providers/StoreProvider/index';
+import { ThunkConfig } from 'app/providers/StoreProvider';
 import { SERVER_ERROR_MESSAGE } from 'shared/consts/global';
-import { openIdDTOConverter } from 'features/AuthUser/model/dto/openIdDTOConverter';
+import { openIdDTOConverter } from '../../dto/openIdDTOConverter';
 
 interface AuthUserProps {
   variant: 'registration' | 'login',

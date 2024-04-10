@@ -22,7 +22,7 @@ import {
 } from 'entities/Lesta';
 import { TeamsSchema } from 'entities/Team/model/types/team';
 import { FilterSchema } from 'features/Filter/types/filter';
-import { OpenIdSchema } from 'features/ConnectOpenId/model/types/OpenIdSchema';
+import { OpenIdSchema } from 'features/ConnectOpenId';
 
 export interface StateSchema {
   user: UserSchema;

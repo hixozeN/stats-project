@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { useToasts } from 'shared/hooks/useToasts/useToasts';
 import { Button } from 'shared/ui/Button/Button';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
-import { patchCurrentUser } from 'features/editCurrentUserPorfile/model/services/patchCurrentUser';
+import { patchCurrentUser } from '../../model/services/patchCurrentUser';
 import cls from '../UserProfileFormInput/UserProfileFormInput.module.scss';
 import { DiscordOAuth2 } from '../../model/types/DiscordOAuth2';
 

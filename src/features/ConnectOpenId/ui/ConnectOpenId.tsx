@@ -4,7 +4,6 @@ import { Button } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getUserData } from 'entities/User';
-import { openIdReducer } from 'features/ConnectOpenId/model/slice/openIdSlice';
 import {
   ReducerList,
   useDynamicReducerLoader,
@@ -15,6 +14,7 @@ import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { CONNECT_ID_URL } from 'shared/consts/openID';
 import Loader from 'shared/ui/Loader/Loader';
 import { useToasts } from 'shared/hooks/useToasts/useToasts';
+import { openIdReducer } from '../model/slice/openIdSlice';
 import { getOpenIdState } from '../model/selectors';
 import { connectLestaOpenId } from '../model/services/connectLestaOpenId/connectLestaOpenId';
 import cls from './ConnectOpenId.module.scss';
