@@ -1,7 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
-import DiscordIcon from '../../../../shared/assets/icons/ds-circle.svg';
-import TelegramIcon from '../../../../shared/assets/icons/tg-circle.svg';
-import VKIcon from '../../../../shared/assets/icons/vk-circle.svg';
+import DiscordIcon from 'shared/assets/icons/ds-circle.svg';
+import TelegramIcon from 'shared/assets/icons/tg-circle.svg';
+import VKIcon from 'shared/assets/icons/vk-circle.svg';
 import cls from './FooterSocials.module.scss';
 
 interface IFooterSocials {
