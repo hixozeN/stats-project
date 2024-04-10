@@ -8,7 +8,7 @@ import cls from './Footer.module.scss';
 
 interface FooterProps {
   className?: string;
-  isCollapsed: boolean;
+  isCollapsed?: boolean;
 }
 
 export const Footer = (props : FooterProps) => {
