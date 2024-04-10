@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { TournamentStars } from 'widgets/TournamentStars/index';
-import { Footer } from 'widgets/Footer/index';
 import cls from './MainPage.module.scss';
 
 function MainPage() {
@@ -29,7 +28,6 @@ function MainPage() {
         </div>
       </section>
       <TournamentStars />
-      <Footer />
     </>
 
   );
