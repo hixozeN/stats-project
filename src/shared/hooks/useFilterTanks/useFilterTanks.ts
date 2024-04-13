@@ -1,15 +1,23 @@
 import { useSelector } from 'react-redux';
-import { getLestaUserTanks } from 'entities/Lesta';
+import { getLestaUserTanks, getUserSessionTanks } from 'entities/Lesta';
 import { TUserTanks } from 'entities/Lesta/model/types/tanks';
-import { LOCAL_STORAGE_FILTER_DATA } from 'shared/consts/localstorage';
-import { getCheckboxesFilterState } from '../model/selectors';
+import {
+  getCheckboxesFilterState,
+} from 'features/Filter/model/selectors/getCheckboxesFilterState/getCheckboxesFilterState';
 
-export const useFilterTanks = () => {
+export const useFilterTanks = (tab:number) => {
   const checkboxes = useSelector(getCheckboxesFilterState);
   const tanks = useSelector(getLestaUserTanks);
-  const tanksData: TUserTanks[] = tanks.length !== 0
-    ? tanks
-    : JSON.parse(localStorage.getItem(LOCAL_STORAGE_FILTER_DATA));
+  const sessionTanks = useSelector(getUserSessionTanks);
+
+  const getTanksList = ():TUserTanks[] => {
+    if (tab === 0) {
+      return tanks;
+    } if (tab === 1) {
+      return sessionTanks;
+    }
+    return [];
+  };
 
   const filter = Object.keys(checkboxes).reduce((result, item) => {
     const data = Object.entries(checkboxes[`${item}`]).map(
@@ -24,9 +32,7 @@ export const useFilterTanks = () => {
     return result
       .filter((tank: {[key: string]:any}) => data
         .find((tankItem) => tankItem === tank[dataParam][param].toString()));
-  }, tanksData);
-
-  localStorage.setItem(LOCAL_STORAGE_FILTER_DATA, JSON.stringify(filter));
+  }, getTanksList());
 
   return { filter };
 };

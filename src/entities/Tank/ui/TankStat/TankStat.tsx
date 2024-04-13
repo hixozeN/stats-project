@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { formatter } from 'entities/Tank/lib/converterTank';
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -11,34 +11,47 @@ interface TankStatProps {
   data: string;
   statistics: ParamData;
   tankData: LestaTankData;
+  tab?: number;
 }
 
 export const TankStat = memo(
-  ({ data, statistics, tankData }: TankStatProps) => {
+  ({
+    data, statistics, tankData, tab,
+  }: TankStatProps) => {
     const {
       battles, winRate, avgDamage, wn8, last_battle_time,
     } = statistics;
     const { tier } = tankData;
     const { t } = useTranslation('tank');
 
-    const lasteDate = last_battle_time
-      ? formatter(last_battle_time)
-      : 'никогда';
-    const WN8 = () => {
+    const lasteDate = useMemo(() => {
+      if (last_battle_time) {
+        return formatter(last_battle_time);
+      }
+      if (!last_battle_time && battles) {
+        return 'давно';
+      }
+      return 'никогда';
+    }, [battles, last_battle_time]);
+
+    const WN8 = useMemo(() => {
       if (tier >= 6) {
-        if (battles > 0 && wn8 === 0) {
-          return 'калибровка';
+        if (battles >= 0 && (wn8 === 0 || !last_battle_time)) {
+          return 'обкатка';
         }
         return Math.round(wn8);
       }
       return 'нет';
-    };
+    }, [battles, last_battle_time, tier, wn8]);
 
     const isNice = winRate >= 50;
     const isGood = winRate < 70 && winRate >= 60;
     const isGreat = winRate >= 70;
-    const isVisible = data === 'WN8'
-      && (battles < 100 || (tier < 6 && wn8 === 0));
+    const isVisible = data === 'WN8' && tab !== 1
+      && ((battles >= 0 && !last_battle_time)
+        || tier < 6
+        || !last_battle_time
+        || battles < 100);
 
     const isVeryBadWN8 = wn8 < 300;
     const isBadWN8 = wn8 >= 300 && wn8 < 450;
@@ -51,7 +64,7 @@ export const TankStat = memo(
     const isUnicum = wn8 >= 2450 && wn8 < 2900;
     const isSuperUnicum = wn8 >= 2900;
 
-    const classNameRate = () => {
+    const classNameRate = useMemo(() => {
       if (data === 'Побед') {
         return {
           [cls.nice]: isNice,
@@ -75,33 +88,43 @@ export const TankStat = memo(
         };
       }
       return {};
-    };
+    }, [
+      data, isAboveAverageWN8, isAverageWN8, isBadWN8,
+      isBelowAverageWN8, isGood, isGreat, isGreatWN8, isGroodWN8, isNice,
+      isSuperUnicum, isUnicum, isVeryBadWN8, isVeryGroodWN8, isVisible,
+    ]);
 
-    const textTollTip = () => {
+    const textTollTip = useMemo(() => {
       if (tier < 6) {
         return 'Для такна ниже VI уровня расчет не ведется';
+      }
+      if (battles > 0 && !last_battle_time) {
+        return 'Необходимо заново собрать статистику';
+      }
+      if (battles === 0 && !last_battle_time) {
+        return 'Начните играть этим танком';
       }
       if (wn8 === 0 && battles >= 0) {
         return `Осталось боёв: ${100 - battles}`;
       }
       return null;
-    };
+    }, [battles, last_battle_time, tier, wn8]);
 
     const statParams: Record<string, string | number> = {
       Боёв: battles,
       Побед: `${winRate.toFixed(2)}%`,
       // Побед: `${winRate.toFixed(2).replace(/\./g, ',')}%`,
       'Ср. урон': avgDamage,
-      WN8: WN8(),
+      WN8,
       'Последний бой': lasteDate,
     };
 
     return (
       <div className={cls.wrapper}>
         <dt className={cls.term}>{`${t(`${data}`)}:`}</dt>
-        <dd className={classNames(cls.definition, classNameRate())}>
+        <dd className={classNames(cls.definition, classNameRate)}>
           {statParams[`${data}`]}
-          <ToolTip text={textTollTip()} isVisible={isVisible} />
+          <ToolTip text={textTollTip} isVisible={isVisible} />
         </dd>
       </div>
     );

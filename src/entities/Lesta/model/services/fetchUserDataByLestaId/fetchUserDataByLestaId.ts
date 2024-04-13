@@ -56,7 +56,7 @@ export const fetchUserDataByLestaId = createAsyncThunk<ReturnData, ThunkProps, T
       // записываем данные о танках игрока
       if (response?.data?.userTanks) {
         dispatch(userTanksActions.setUserTanks([...response.data.userTanks]));
-        dispatch(filterActions.setFilterData([...response.data.userTanks]));
+        // dispatch(filterActions.setFilterData([...response.data.userTanks]));
       }
 
       // если был передан, записываем приватные данные аккаунта

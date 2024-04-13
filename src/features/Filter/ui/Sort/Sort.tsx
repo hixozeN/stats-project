@@ -1,26 +1,23 @@
 import { memo, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { IStatList } from 'entities/Tank/config/TankData';
-import { sortItem } from 'features/Filter/types/sort';
-import { Button } from '../../../../shared/ui/Button/Button';
+import { IStatList, NameSortItem } from 'features/Filter/config/sortData';
+import { Button } from 'shared/ui/Button/Button';
+import { getSortList } from 'features/Filter/model/selectors/getSortList/getSortList';
+import { useSelector } from 'react-redux';
 import cls from './Sort.module.scss';
 
 interface SortProps {
   data?: IStatList;
-  clickSort?: (nameItem: string, paramItem: string) => void;
-  state?: Record<string, sortItem>;
+  clickSort?: (nameItem: NameSortItem, paramItem: string) => void;
 }
 
-function SortItem({ data, clickSort, state }: SortProps) {
+function SortItem({ data, clickSort }: SortProps) {
   const { t } = useTranslation('tank');
   const { nameItem: name, text, param } = data;
-  const stateSort = state[name] || {
-    isActive: false,
-    isUp: false,
-    isDown: false,
-  };
+  const stateSort = useSelector(getSortList)[name];
   const { isActive, isUp, isDown } = stateSort;
+
   const sort = useCallback(() => {
     clickSort(name, param);
   }, [clickSort, name, param]);

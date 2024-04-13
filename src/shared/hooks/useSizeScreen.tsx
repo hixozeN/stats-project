@@ -43,6 +43,6 @@ export const useSizeScreen = (): { width: number; height: number; device: keyof 
       window.removeEventListener('resize', handleResize);
     };
   }, [getWindowHeight, getWindowWidth]);
-  console.log(device);
+
   return { width, height, device };
 };

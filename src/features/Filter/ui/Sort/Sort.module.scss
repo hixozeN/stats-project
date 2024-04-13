@@ -8,6 +8,10 @@
   & button {
     gap: 0;
     color: var(--primary-color);
+
+    & span {
+      display: none;  
+    }
   }
 
   @media screen and (width <= 1280px) {
@@ -64,6 +68,10 @@
 
 .activeArrow button {
   color: var(--accent-color);
+
+  & span {
+    display: flex;
+  }
 
   @media screen and (width > 1280px) {
     outline: 1px solid var(--accent-color);

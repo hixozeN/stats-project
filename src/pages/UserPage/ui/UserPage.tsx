@@ -10,15 +10,12 @@ import { Background } from 'shared/ui/Background/Background';
 import { Tabs } from 'shared/ui/Tabs/Tabs';
 import { Tanks } from 'widgets/Tanks';
 import {
-  getLestaUserTanks,
   getUserNotFoundStatus,
   getUserNickname,
   getUserLastSessionId,
 } from 'entities/Lesta';
 import { useSelector } from 'react-redux';
-import {
-  LOCAL_STORAGE_LESTA,
-} from 'shared/consts/localstorage';
+import { LOCAL_STORAGE_LESTA } from 'shared/consts/localstorage';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { SeoUpdater } from 'shared/lib/SeoUpdater/SeoUpdater';
@@ -34,7 +31,6 @@ interface IUserPageProps {
 const UserPage = ({ className }: IUserPageProps) => {
   const { t } = useTranslation('userPage');
   const { id } = useParams<{ id: string }>();
-  const tanks = useSelector(getLestaUserTanks);
   // NEW
   const userNickname = useSelector(getUserNickname);
   const isNotFound = useSelector(getUserNotFoundStatus);
@@ -94,7 +90,7 @@ const UserPage = ({ className }: IUserPageProps) => {
           <Tabs tab={tab} tabList={tabList} handleChangeTab={setTab} />
           <SessionControlSection id={Number(id)} />
           <UserStats tab={tab} id={Number(id)} />
-          <Tanks dataList={tanks} />
+          {tab !== 2 && <Tanks tab={tab} />}
         </div>
       </div>
     </ErrorBoundary>

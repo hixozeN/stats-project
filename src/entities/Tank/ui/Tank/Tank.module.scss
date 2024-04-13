@@ -4,7 +4,7 @@
   display: flex;
   outline: 1px solid var(--bg-stat-item);
   border-radius: 15px;
-  gap: 20px;
+  gap: 30px;
   padding: 15px;
   background-color: var(--bg-card);
 }
@@ -100,11 +100,14 @@
   height: 32px;
 }
 
-@media (1590px >= width > 1280px), (1090px >= width > 768px), (480px > width >= 380px) {
+@media (1590px >= width > 1280px),
+  (1090px >= width > 768px),
+  (480px > width >= 380px) {
   .card {
     max-width: 360px;
+    min-height: 120px;
     padding: 10px;
-    gap: 10px;
+    gap: 20px;
   }
 
   .infoWrapper {
@@ -121,10 +124,6 @@
   .title {
     font-size: 14px;
     max-width: 160px;
-  }
-
-  .inner {
-    // gap: 0;
   }
 
   .tier {
@@ -154,7 +153,7 @@
   .card {
     max-width: 460px;
     padding: 15px;
-    gap: 20px;
+    gap: 30px;
   }
 
   .infoWrapper {
@@ -199,8 +198,9 @@
 @media (width < 380px) {
   .card {
     max-width: 300px;
+    min-height: 112px;
     padding: 10px;
-    gap: 15px;
+    gap: 20px;
   }
 
   .infoWrapper {

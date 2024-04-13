@@ -53,5 +53,3 @@ export const clearFiterData = filterData.reduce((result, item) => {
     [`${item.param}`]: value,
   };
 }, {});
-
-export const sortData = ['Побед', 'Ср. урон', 'WN8', 'Фильтр'];

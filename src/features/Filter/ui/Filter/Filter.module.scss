@@ -1,10 +1,9 @@
 .filterPanel {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
   margin: 25px 10px;
   position: relative;
   width: 100%;
+  grid-template-columns: 280px 1fr 280px;
 
   @media (width <= 768px) {
     margin: 15px 0;
@@ -88,6 +87,8 @@
   color: var(--button-primary-color);
   max-width: 170px;
   gap: 5px;
+  
+  margin-left: auto;
 
   @media (hover: hover) {
     &:hover {
@@ -110,7 +111,6 @@
 
 .buttonSort {
   outline: 1px solid var(--bg-stat-item);
-  max-width: fit-content;
   display: none;
   min-width: 170px;
 
@@ -142,10 +142,10 @@
 }
 
 .sortWrapper {
-  margin-right: 25px;
   position: relative;
   min-width: 170px;
   display: flex;
+  justify-self: center;
 
   @media (width <= 1280px) {
     margin-left: auto;
@@ -267,6 +267,16 @@
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+@media (width <= 1280px) {
+  .filterPanel {
+    display: flex;
+  }
+
+  .buttonFilter {
+    margin-left: 25px;
+  }
 }
 
 @media (width <= 1024px) {

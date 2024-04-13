@@ -2,18 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TUserTanks } from 'entities/Lesta/model/types/tanks';
 import { clearFiterData } from 'features/Filter/config/filterData';
 import { FilterSchema } from 'features/Filter/types/filter';
-import { LOCAL_STORAGE_CHECKBOXES, LOCAL_STORAGE_FILTER_DATA } from 'shared/consts/localstorage';
 
-const initialState: FilterSchema = 'checkboxes' in localStorage
-  ? {
-    data: JSON.parse(localStorage.getItem(LOCAL_STORAGE_FILTER_DATA)),
-    checkboxes:
-    JSON.parse(localStorage.getItem(LOCAL_STORAGE_CHECKBOXES)),
-  }
-  : {
-    data: null,
-    checkboxes: clearFiterData,
-  };
+const initialState: FilterSchema = {
+  data: null,
+  checkboxes: clearFiterData,
+  isActiveFilter: false,
+};
 
 export const filterSlice = createSlice({
   name: 'filter',
@@ -21,6 +15,9 @@ export const filterSlice = createSlice({
   reducers: {
     setFilterData: (state, action: PayloadAction<TUserTanks[]>) => {
       state.data = action.payload;
+    },
+    setIsActiveFilter: (state) => {
+      state.isActiveFilter = true;
     },
     setCheckbox: (state, action: PayloadAction<Record<string, boolean>>) => {
       state.checkboxes = {
@@ -30,17 +27,10 @@ export const filterSlice = createSlice({
           [`${action.payload.name}`]: action.payload.checked,
         },
       };
-      localStorage.setItem(
-        LOCAL_STORAGE_CHECKBOXES,
-        JSON.stringify(state.checkboxes),
-      );
     },
     clearFilter: (state) => {
-      localStorage.setItem(
-        LOCAL_STORAGE_CHECKBOXES,
-        JSON.stringify(clearFiterData),
-      );
       state.checkboxes = clearFiterData;
+      state.isActiveFilter = false;
     },
   },
 });

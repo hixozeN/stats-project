@@ -1,5 +1,5 @@
 .tooltip {
-  position: relative;
+  position: absolute;
   max-width: 100px;
   width: 100%;
   color: var(--primary-color);
@@ -7,7 +7,7 @@
   line-height: normal;
   min-height: 16px;
   display: none;
-  top: -80%;
+  top: 0;
 }
 
 .text {
