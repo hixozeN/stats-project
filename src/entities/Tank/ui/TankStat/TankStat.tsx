@@ -65,7 +65,7 @@ export const TankStat = memo(
     const isSuperUnicum = wn8 >= 2900;
 
     const classNameRate = useMemo(() => {
-      if (data === 'Побед') {
+      if (data === 'Винрейт') {
         return {
           [cls.nice]: isNice,
           [cls.good]: isGood,
@@ -111,10 +111,9 @@ export const TankStat = memo(
     }, [battles, last_battle_time, tier, wn8]);
 
     const statParams: Record<string, string | number> = {
-      Боёв: battles,
-      Побед: `${winRate.toFixed(2)}%`,
-      // Побед: `${winRate.toFixed(2).replace(/\./g, ',')}%`,
-      'Ср. урон': avgDamage,
+      Бои: battles,
+      Винрейт: `${winRate.toFixed(2)}%`,
+      'С/У': avgDamage,
       WN8,
       'Последний бой': lasteDate,
     };

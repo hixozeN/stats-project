@@ -49,7 +49,7 @@
 .statList {
   display: grid;
   grid-template-columns: repeat(2, 120px);
-  gap: 20px 15px;
+  gap: 20px;
 
   div:last-child {
     color: var(--input-font-color);
@@ -142,7 +142,7 @@
 
   .statList {
     grid-template-columns: repeat(2, 110px);
-    gap: 7px 5px;
+    gap: 7px 10px;
 
     div:last-child {
       font-size: 12px;
@@ -187,7 +187,7 @@
 
   .statList {
     grid-template-columns: repeat(2, 120px);
-    gap: 20px 15px;
+    gap: 20px;
 
     div:last-child {
       font-size: 14px;
@@ -239,7 +239,7 @@
   .statList {
     display: grid;
     grid-template-columns: repeat(2, 95px);
-    gap: 5px;
+    gap: 5px 10px;
 
     div:last-child {
       color: var(--input-font-color);

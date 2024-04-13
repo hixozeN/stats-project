@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
-import { filterActions } from 'features/Filter/model/slice/filterSlice';
 import { userDataActions } from '../../../model/slice/userDataSlice';
 import { TUserTanks } from '../../types/tanks';
 import { TUserData } from '../../types/users';

@@ -6,7 +6,6 @@ import { Filter } from 'features/Filter';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Tank } from 'entities/Tank/ui/Tank/Tank';
 import { TUserTanks } from 'entities/Lesta/model/types/tanks';
-import { t } from 'i18next';
 import { useSelector } from 'react-redux';
 import { getIsActiveFilter } from 'features/Filter/model/selectors/getIsActiveFilter/getIsActiveFilter';
 import { Button } from 'shared/ui/Button/Button';
@@ -16,6 +15,7 @@ import { filterActions } from 'features/Filter/model/slice/filterSlice';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { getDataFilterState } from 'features/Filter/model/selectors/getDataFilterState/getDataFilterState';
 import { sortActions } from 'features/Filter/model/slice/sortSlice';
+import { useTranslation } from 'react-i18next';
 import cls from './Tanks.module.scss';
 import { DEVICE_SETTING } from '../config/deviceData';
 import { getWordTanks } from '../lib/getWordTanks';
@@ -29,6 +29,8 @@ export const Tanks = memo(({ tab }: TanksProps) => {
   const isAuthPage = useMatch(RoutePath.auth);
   const tanks = useSelector(getLestaUserTanks);
   const sessionTanks = useSelector(getUserSessionTanks);
+
+  const { t } = useTranslation('tank');
 
   const getTanksList = useCallback(
     (tabIndex): TUserTanks[] => {
@@ -61,8 +63,8 @@ export const Tanks = memo(({ tab }: TanksProps) => {
   }, [device, filterList]);
 
   useEffect(() => {
-    dispatch(filterActions.setFilterData(getTanksList(tab)));
     dispatch(filterActions.clearFilter());
+    dispatch(filterActions.setFilterData(getTanksList(tab)));
     dispatch(sortActions.clearSort());
   }, [dispatch, getTanksList, tab]);
 
@@ -78,11 +80,10 @@ export const Tanks = memo(({ tab }: TanksProps) => {
 
   const titleFilter = useCallback(
     () => (isActiveFilter
-      ? `У игрока ${filterList.length} ${getWordTanks(
-        filterList.length,
-      )} с выбранными параметрами`
-      : `У игрока ${filterList.length} ${getWordTanks(filterList.length)}`),
-    [filterList, isActiveFilter],
+      ? `${t('PLAYER_HAS')} ${filterList.length} ${t(`${getWordTanks(filterList.length)}`)} 
+      ${t('WITH_PARAMETRS')}`
+      : `${t('PLAYER_HAS')} ${filterList.length} ${t(`${getWordTanks(filterList.length)}`)}`),
+    [filterList.length, isActiveFilter, t],
   );
 
   if (isAuthPage) return null;
@@ -90,7 +91,7 @@ export const Tanks = memo(({ tab }: TanksProps) => {
   return (
     <section className={cls.tanks}>
       <h2 className={cls.title}>{titleFilter()}</h2>
-      <Filter tab={tab} />
+      <Filter tab={tab} dataList={getTanksList(tab)} />
       <ul className={cls.list}>
         {filterList.slice(0, maxShowMovies).map((data: TUserTanks) => (
           <Tank data={data} key={data.tank_id} tab={tab} />
@@ -102,11 +103,8 @@ export const Tanks = memo(({ tab }: TanksProps) => {
           size="size_xl"
           onClick={handleClickMore}
         >
-          {t(
-            `Ещё ${getRestTanks(filterList, maxShowMovies)} ${getWordTanks(
-              getRestTanks(filterList, maxShowMovies),
-            )}`,
-          )}
+          {`${t('Ещё')} ${getRestTanks(filterList, maxShowMovies)} 
+          ${t(`${getWordTanks(getRestTanks(filterList, maxShowMovies))}`)}`}
         </Button>
       )}
     </section>

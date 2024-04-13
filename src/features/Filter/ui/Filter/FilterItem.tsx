@@ -21,21 +21,21 @@ type HTMLInputProps = Omit<
   'checked' | 'onChange'
 >;
 
-interface IAuthInputProps extends HTMLInputProps {
+interface IFilterInputProps extends HTMLInputProps {
   className?: string;
   checked?: boolean;
   onChange?: (checked: React.ChangeEvent<HTMLInputElement>) => void;
   ref?: LegacyRef<HTMLInputElement>;
   value: string;
   param: string;
-  name: string;
+  nameParam: string;
 }
 
-export const FilterItem = forwardRef((props: IAuthInputProps, ref:ForwardedRef<HTMLInputElement>) => {
+export const FilterItem = forwardRef((props: IFilterInputProps, ref:ForwardedRef<HTMLInputElement>) => {
   const { t } = useTranslation('filter');
 
   const {
-    className, checked, onChange, value, param, name, ...otherProps
+    className, checked, onChange, value, param, nameParam, ...otherProps
   } = props;
 
   const mastery: Record<number, ReactElement> = useMemo(() => masteryTank, []);
@@ -46,10 +46,10 @@ export const FilterItem = forwardRef((props: IAuthInputProps, ref:ForwardedRef<H
   );
 
   const renderContent = () => {
-    if (param === 'tankData.tier') {
+    if (nameParam === 'tier') {
       return <span className={cls.text}>{getLevelRoman(Number(value))}</span>;
     }
-    if (param === 'tankData.type') {
+    if (nameParam === 'type') {
       return (
         <>
           {typeTank[value]}
@@ -57,7 +57,7 @@ export const FilterItem = forwardRef((props: IAuthInputProps, ref:ForwardedRef<H
         </>
       );
     }
-    if (param === 'tankData.nation') {
+    if (nameParam === 'nation') {
       return (
         <>
           {nationTank[value]}
@@ -65,7 +65,7 @@ export const FilterItem = forwardRef((props: IAuthInputProps, ref:ForwardedRef<H
         </>
       );
     }
-    if (param === 'statistics.mark_of_mastery') {
+    if (nameParam === 'mark_of_mastery') {
       return (
         <img
           className={cls.mastery}
@@ -91,7 +91,7 @@ export const FilterItem = forwardRef((props: IAuthInputProps, ref:ForwardedRef<H
         {...otherProps}
       />
       <label
-        className={classNames(cls.label, {}, [cls[name]])}
+        className={classNames(cls.label, {}, [cls[nameParam]])}
         htmlFor={`${param}-${value}`}
       >
         {renderContent()}

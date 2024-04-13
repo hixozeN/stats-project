@@ -1,6 +1,6 @@
 import { SortScheme } from '../types/sort';
 
-export type NameSortItem = 'battles' | 'average' | 'wins' | 'wn8' | 'lastBattle';
+export type NameSortItem = 'battles' | 'average' | 'winRate' | 'wn8' | 'lastBattle';
 
 export interface IStatList {
   nameItem: NameSortItem;
@@ -11,17 +11,17 @@ export interface IStatList {
 export const statList: IStatList[] = [
   {
     nameItem: 'battles',
-    text: 'Боёв',
+    text: 'Бои',
     param: 'battles',
   },
   {
     nameItem: 'average',
-    text: 'Ср. урон',
+    text: 'С/У',
     param: 'avgDamage',
   },
   {
-    nameItem: 'wins',
-    text: 'Побед',
+    nameItem: 'winRate',
+    text: 'Винрейт',
     param: 'winRate',
   },
   {
@@ -36,7 +36,7 @@ export const statList: IStatList[] = [
   },
 ];
 
-export const sortData = ['Побед', 'Ср. урон', 'WN8', 'Фильтр'];
+export const sortData = ['Винрейт', 'С/У', 'WN8', 'Фильтр'];
 
 export const clearSortData: SortScheme = statList.reduce<SortScheme>((result, item) => {
   if (item.nameItem === 'lastBattle') {
