@@ -1,6 +1,7 @@
 .card {
   max-width: 460px;
   width: 100%;
+  min-height: 175px;
   display: flex;
   outline: 1px solid var(--bg-stat-item);
   border-radius: 15px;
@@ -152,6 +153,7 @@
 @media (1280px >= width > 1090px), (768px >= width >= 480px) {
   .card {
     max-width: 460px;
+    min-height: 175px;
     padding: 15px;
     gap: 30px;
   }

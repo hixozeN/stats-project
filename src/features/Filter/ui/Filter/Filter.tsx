@@ -16,7 +16,7 @@ import { useSorting } from 'shared/hooks/useSorting/useSorting';
 import { Button } from '../../../../shared/ui/Button/Button';
 import { FilterItem } from './FilterItem';
 import { getFilterItem } from '../../config/filterData';
-import { Sort } from '../Sort/Sort';
+import { Sort } from '../SortItem/SortItem';
 import cls from './Filter.module.scss';
 
 interface FilterProps {

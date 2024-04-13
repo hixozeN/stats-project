@@ -1,9 +1,11 @@
 import { ReactElement, memo, useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import { getLevelRoman } from 'entities/Tank/lib/converterTank';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { TUserTanks } from 'entities/Lesta/model/types/tanks';
 import { statList } from 'features/Filter/config/sortData';
-import cls from './Tank.module.scss';
+import { getUserDataLoadingStatus } from 'entities/Lesta';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import {
   masteryTank,
   nationFlag,
@@ -11,6 +13,7 @@ import {
   typeIcon,
 } from '../../config/TankData';
 import { TankStat } from '../TankStat/TankStat';
+import cls from './Tank.module.scss';
 
 interface TankProps {
   data?: TUserTanks;
@@ -18,6 +21,7 @@ interface TankProps {
 }
 
 export const Tank = memo(({ data, tab }: TankProps) => {
+  const isUserDataLoading = useSelector(getUserDataLoadingStatus);
   const mastery: Record<number, ReactElement> = useMemo(() => masteryTank, []);
   const typeTank: Record<string, ReactElement> = useMemo(() => typeIcon, []);
   const nationTank: Record<string, ReactElement> = useMemo(
@@ -36,6 +40,12 @@ export const Tank = memo(({ data, tab }: TankProps) => {
     [cls.premium]: is_premium,
     [cls.collectible]: is_collectible,
   };
+
+  if (isUserDataLoading) {
+    return (
+      <Skeleton className={cls.card} />
+    );
+  }
 
   return (
     <li className={cls.card}>

@@ -5,7 +5,7 @@ import { IStatList, NameSortItem } from 'features/Filter/config/sortData';
 import { Button } from 'shared/ui/Button/Button';
 import { getSortList } from 'features/Filter/model/selectors/getSortList/getSortList';
 import { useSelector } from 'react-redux';
-import cls from './Sort.module.scss';
+import cls from './SortItem.module.scss';
 
 interface SortProps {
   data?: IStatList;
