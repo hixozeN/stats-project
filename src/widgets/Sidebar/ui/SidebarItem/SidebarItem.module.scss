@@ -41,7 +41,7 @@
 
 .active {
   color: var(--highlight-color);
-  background-color: var(--button-pressed);
+  background-color: var(--accent-color);
   border-radius: 5px;
 
   & svg path {
@@ -166,7 +166,7 @@
 
 @media (hover: hover) {
   .SidebarItem:hover {
-    background-color: var(--accent-color);
+    background-color: var(--button-pressed);
   }
 
   .SidebarItem:focus {

@@ -20,9 +20,9 @@ export const dataList = [
   },
   {
     id: 2,
-    name: 'Турниры',
+    name: 'Рейтинги',
     icon: <TournamentIcon />,
-    link: '/tournaments',
+    link: '/rating',
   },
   {
     id: 3,

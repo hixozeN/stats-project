@@ -16,6 +16,7 @@ import { UserPage } from 'pages/UserPage';
 import { AuthorizationLestaPage } from 'pages/AuthorizationLestaPage/AuthorizationLestaPage';
 import { OpenAuthPage } from 'pages/OpenAuthPage';
 import { UserProfileForm } from 'features/editCurrentUserPorfile';
+import { RatingPage } from 'pages/RatingPage';
 
 // interface IRouterPath {
 //   [key:string]: string;
@@ -26,6 +27,7 @@ export enum AppRoutes {
   ABOUT = 'about',
   MATCHES = 'matches',
   TOURNAMENTS = 'tournaments',
+  RATING = 'rating',
   TEAMS = 'teams',
   TEAM = 'team',
   FRIENDS = 'friends',
@@ -50,6 +52,7 @@ export const RoutePath: OptionalRecord<AppRoutes, string> = {
   [AppRoutes.ABOUT]: '/about',
   [AppRoutes.MATCHES]: '/matches',
   [AppRoutes.TOURNAMENTS]: '/tournaments',
+  [AppRoutes.RATING]: '/rating',
   [AppRoutes.TEAMS]: '/teams',
   [AppRoutes.TEAM]: '/team/:clanId',
   [AppRoutes.FRIENDS]: '/friends',
@@ -95,6 +98,10 @@ export const routerConfiguration = createBrowserRouter([
               {
                 path: RoutePath.tournaments,
                 element: <TournamentsPage />,
+              },
+              {
+                path: RoutePath.rating,
+                element: <RatingPage />,
               },
               {
                 path: RoutePath.teams,
