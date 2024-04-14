@@ -1,4 +1,6 @@
-import { ReactElement, memo, useMemo } from 'react';
+import {
+  ReactElement, memo, useCallback, useMemo,
+} from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { TUserTanks, getUserDataLoadingStatus } from 'entities/Lesta';
@@ -42,6 +44,10 @@ export const Tank = memo(({ data, tab }: TankProps) => {
     [cls.collectible]: is_collectible,
   };
 
+  const onImageError = useCallback((e) => {
+    e.target.src = plug;
+  }, []);
+
   if (isUserDataLoading) {
     return (
       <Skeleton className={cls.card} />
@@ -73,6 +79,7 @@ export const Tank = memo(({ data, tab }: TankProps) => {
         <img
           className={cls.tankImg}
           src={`${image_preview}` ?? plug}
+          onError={onImageError}
           alt={name}
           loading="lazy"
         />
@@ -80,7 +87,7 @@ export const Tank = memo(({ data, tab }: TankProps) => {
           <p className={cls.tier}>{getLevelRoman(tier)}</p>
           <span className={cls.type}>{typeTank[type]}</span>
         </div>
-        {mark_of_mastery !== 0 && tab === 0 && (
+        {(mark_of_mastery !== 0 || mark_of_mastery !== undefined) && tab === 0 && (
           <img
             className={cls.mastery}
             src={`${mastery[mark_of_mastery]}`}
