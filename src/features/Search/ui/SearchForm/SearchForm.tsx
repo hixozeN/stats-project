@@ -1,5 +1,5 @@
 import React, {
-  memo, useCallback, useEffect, useState,
+  memo, useCallback, useContext, useEffect, useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,25 +10,19 @@ import useDebounce from 'shared/hooks/useDebounce';
 import { searchActions } from '../../model/slice/searchSlice';
 import { getSearchState } from '../../model/selectors/getSearchState/getSearchState';
 import { searchUsersAndClans } from '../../model/services/searchUsersAndClans/searchUsersAndClans';
+import { DeviceContext } from '../Search/Search';
+import { DesktopContext } from '../SearchDesktop/SearchDesktop';
 import { SearchInput } from '../SearchInput/SearchInput';
 import cls from './SearchForm.module.scss';
 
 interface IAuthFormProps {
   className?: string;
-  isOpen?: boolean;
-  setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
-  isOpenPopup?: boolean;
-  isMobile?: boolean;
   resultsRef?: React.MutableRefObject<HTMLInputElement>;
 }
 
 export const SearchForm = memo((props: IAuthFormProps) => {
   const {
     className,
-    isOpen,
-    setIsOpen,
-    isOpenPopup,
-    isMobile,
     resultsRef,
   } = props;
   const { t } = useTranslation('search');
@@ -37,6 +31,8 @@ export const SearchForm = memo((props: IAuthFormProps) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [searchValue, setSearchValue] = useState<string>('');
   const debouncedSearch = useDebounce(searchValue, 500);
+  const { isMobile } = useContext(DeviceContext);
+  const { isOpen, setIsOpen } = useContext(DesktopContext);
 
   useClickOutside(resultsRef, () => {
     if (isOpen) setTimeout(() => setIsOpen(false), 50);
@@ -92,7 +88,6 @@ export const SearchForm = memo((props: IAuthFormProps) => {
           placeholder={t('Поиск')}
           onChange={onChangeSearch}
           value={search}
-          isOpenPopup={isOpenPopup}
           onFocus={onFocus}
         />
       </form>
