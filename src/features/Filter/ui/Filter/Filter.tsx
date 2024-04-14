@@ -42,7 +42,7 @@ function FilterWithCurtain({ dataList, tab }: FilterProps) {
         onClick={isSortOpen ? handleChangeMenu : closeFilter}
       />
       <div className={cls.filterPanel}>
-        <SearchForm />
+        {IS_DEV && <SearchForm />}
         <div className={cls.sortWrapper}>
           <ul
             className={classNames(cls.sortList, { [cls.openSort]: isSortOpen })}

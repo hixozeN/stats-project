@@ -87,7 +87,7 @@ export const Tank = memo(({ data, tab }: TankProps) => {
           <p className={cls.tier}>{getLevelRoman(tier)}</p>
           <span className={cls.type}>{typeTank[type]}</span>
         </div>
-        {(mark_of_mastery !== 0 || mark_of_mastery !== undefined) && tab === 0 && (
+        {(mark_of_mastery !== 0 && mark_of_mastery !== undefined) && tab === 0 && (
           <img
             className={cls.mastery}
             src={`${mastery[mark_of_mastery]}`}

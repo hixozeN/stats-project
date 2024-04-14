@@ -93,6 +93,8 @@ export const Tanks = memo(({ tab }: TanksProps) => {
     [filterList.length, isActiveFilter, t],
   );
 
+  const handleClickUp = useCallback(() => { window.scrollTo(0, 0); }, []);
+
   if (isAuthPage) return null;
 
   return (
@@ -118,7 +120,8 @@ export const Tanks = memo(({ tab }: TanksProps) => {
           ${t(`${getWordTanks(getRestTanks(filterList, maxShowMovies))}`)}`}
         </Button>
       )}
-      <Button className={cls.buttonUp} theme="icon" variant="down-arrow" onClick={() => { window.scrollTo(0, 0); }} />
+      {filterList.length > 24
+      && <Button className={cls.buttonUp} theme="icon" variant="down-arrow" onClick={handleClickUp} />}
     </section>
   );
 });
