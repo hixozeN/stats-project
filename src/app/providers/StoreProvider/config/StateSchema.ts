@@ -23,6 +23,7 @@ import {
 import { TeamsSchema } from 'entities/Team/model/types/team';
 import { FilterSchema } from 'features/Filter/types/filter';
 import { OpenIdSchema } from 'features/ConnectOpenId';
+import { LeaderboardSchema } from 'features/playersLeaderboard';
 
 export interface StateSchema {
   user: UserSchema;
@@ -35,9 +36,11 @@ export interface StateSchema {
   lestaUserSession: LestaUserSessionSchema;
   filter: FilterSchema;
   userTanks: LestaTanksSchema;
+  stars: LeaderboardSchema;
   // async reducers
   authForm?: AuthSchema;
   openId?: OpenIdSchema;
+  leaderboard?: LeaderboardSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
