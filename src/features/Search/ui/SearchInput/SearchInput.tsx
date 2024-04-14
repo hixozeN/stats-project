@@ -1,10 +1,10 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-
 import React, {
   ForwardedRef,
   forwardRef,
-  InputHTMLAttributes, LegacyRef,
+  InputHTMLAttributes, LegacyRef, useContext,
 } from 'react';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { MobileContext } from '../SearchMobile/SearchMobile';
 import cls from './SearchInput.module.scss';
 
 type HTMLInputProps = Omit<
@@ -17,7 +17,6 @@ interface IAuthInputProps extends HTMLInputProps {
   value?: string;
   onChange?: (value: React.ChangeEvent<HTMLInputElement>) => void;
   ref?: LegacyRef<HTMLInputElement>;
-  isOpenPopup?: boolean;
 }
 
 export const SearchInput = forwardRef(
@@ -26,9 +25,10 @@ export const SearchInput = forwardRef(
       className,
       value,
       onChange,
-      isOpenPopup,
       ...otherProps
     } = props;
+
+    const { isOpenPopup } = useContext(MobileContext);
 
     return (
       <div className={cls.searchWrapper}>
@@ -41,6 +41,7 @@ export const SearchInput = forwardRef(
             value={value}
             onChange={onChange}
             {...otherProps}
+            maxLength={24}
           />
         </label>
       </div>
