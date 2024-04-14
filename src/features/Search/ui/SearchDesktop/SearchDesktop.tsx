@@ -1,21 +1,49 @@
-import React, { useState } from 'react';
+import React, { createContext, useMemo, useState } from 'react';
+import { Button } from 'shared/ui/Button/Button';
+import { classNames } from 'shared/lib/classNames/classNames';
 import { SearchForm } from '../SearchForm/SearchForm';
 import { SearchResults } from '../SearchResults/SearchResults';
+import cls from './SearchDesktop.module.scss';
 
 interface ISearchDesktop {
-  isMobile: boolean,
+  className?: string,
 }
+
+type DesktopContextType = {
+  isOpen: boolean,
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+};
+
+const initialDesktopContextValue: DesktopContextType = {
+  isOpen: false,
+  setIsOpen: () => {},
+};
+
+export const DesktopContext = createContext<DesktopContextType>(initialDesktopContextValue);
+
 export const SearchDesktop = (props: ISearchDesktop) => {
   const {
-    isMobile,
+    className,
   } = props;
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const desktopContextValue = useMemo(() => ({ isOpen, setIsOpen }), [isOpen, setIsOpen]);
+
   const resultsRef = React.useRef<HTMLInputElement>(null);
+
   return (
-    <div>
-      <SearchForm isOpen={isOpen} setIsOpen={setIsOpen} isMobile={isMobile} resultsRef={resultsRef} />
-      <SearchResults isOpen={isOpen} setIsOpen={setIsOpen} isMobile={isMobile} resultsRef={resultsRef} />
+    <div className={classNames(cls.SearchDesktop, {}, [className])}>
+      <DesktopContext.Provider value={desktopContextValue}>
+        <SearchForm resultsRef={resultsRef} />
+        <Button
+          type="button"
+          theme="icon"
+          variant="magnifier"
+          className={cls.button}
+        />
+        <SearchResults resultsRef={resultsRef} />
+      </DesktopContext.Provider>
     </div>
   );
 };
