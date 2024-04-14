@@ -1,11 +1,7 @@
-import { useSelector } from 'react-redux';
-import { TUserTanks } from 'entities/Lesta/model/types/tanks';
-import {
-  getCheckboxesFilterState,
-} from 'features/Filter/model/selectors/getCheckboxesFilterState/getCheckboxesFilterState';
 import { useCallback, useState } from 'react';
-import { sortActions } from 'features/Filter/model/slice/sortSlice';
-import { filterActions } from 'features/Filter/model/slice/filterSlice';
+import { useSelector } from 'react-redux';
+import { TUserTanks } from 'entities/Lesta';
+import { sortActions, filterActions, getCheckboxesFilterState } from 'features/Filter';
 import { useAppDispatch } from '../useAppDispatch/useAppDispatch';
 
 export const useFilterTanks = (dataList: TUserTanks[]) => {

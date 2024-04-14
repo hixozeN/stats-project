@@ -9,11 +9,8 @@ import React, {
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import {
-  masteryTank,
-  nationFlag,
-  typeIcon,
-} from 'entities/Tank/config/TankData';
-import { getLevelRoman } from 'entities/Tank/lib/converterTank';
+  masteryTank, nationFlag, typeIcon, getLevelRoman,
+} from 'entities/Tank';
 import cls from './Filter.module.scss';
 
 type HTMLInputProps = Omit<

@@ -37,21 +37,21 @@ export const filterData: FilterTanks[] = [
   },
 ];
 
-export const getFilterItem = (tab: number) => (tab === 1
-  ? filterData.filter((item) => item.nameParam !== 'mark_of_mastery')
-  : filterData);
+// export const getFilterItem = (tab: number) => (tab === 1
+//   ? filterData.filter((item) => item.nameParam !== 'mark_of_mastery')
+//   : filterData);
 
-export const clearFiterData = filterData.reduce((result, item) => {
-  const value = item.values.reduce(
-    (resultInner, itemInner) => ({
-      ...resultInner,
-      [`${itemInner}`]: false,
-    }),
-    {},
-  );
+// export const clearFiterData = filterData.reduce((result, item) => {
+//   const value = item.values.reduce(
+//     (resultInner, itemInner) => ({
+//       ...resultInner,
+//       [`${itemInner}`]: false,
+//     }),
+//     {},
+//   );
 
-  return {
-    ...result,
-    [`${item.param}`]: value,
-  };
-}, <Record<string, Record<string, boolean>>>{});
+//   return {
+//     ...result,
+//     [`${item.param}`]: value,
+//   };
+// }, <Record<string, Record<string, boolean>>>{});

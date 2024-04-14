@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TUserTanks } from 'entities/Lesta/model/types/tanks';
-import { clearFiterData } from 'features/Filter/config/filterData';
-import { FilterSchema } from 'features/Filter/types/filter';
+import { FilterSchema } from '../../types/filter';
+import { clearFiterData } from '../../lib/getFilterData/getClearFilterData';
 
 const initialState: FilterSchema = {
   data: null,

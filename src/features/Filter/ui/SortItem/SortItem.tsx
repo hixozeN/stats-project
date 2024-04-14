@@ -1,11 +1,11 @@
 import { memo, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { IStatList, NameSortItem } from 'features/Filter/config/sortData';
 import { Button } from 'shared/ui/Button/Button';
-import { getSortList } from 'features/Filter/model/selectors/getSortList/getSortList';
-import { useSelector } from 'react-redux';
 import cls from './SortItem.module.scss';
+import { IStatList, NameSortItem } from '../../config/sortData';
+import { getSortList } from '../../model/selectors';
 
 interface SortProps {
   data?: IStatList;

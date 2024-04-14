@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { clearSortData, NameSortItem } from 'features/Filter/config/sortData';
-import { SortScheme } from 'features/Filter/types/sort';
+import { clearSortData, NameSortItem } from '../../config/sortData';
+import { SortScheme } from '../../types/sort';
 
 const initialState: SortScheme = clearSortData;
 

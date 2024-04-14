@@ -1,10 +1,8 @@
 import { ReactElement, memo, useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import { getLevelRoman } from 'entities/Tank/lib/converterTank';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { TUserTanks } from 'entities/Lesta/model/types/tanks';
-import { statList } from 'features/Filter/config/sortData';
-import { getUserDataLoadingStatus } from 'entities/Lesta';
+import { TUserTanks, getUserDataLoadingStatus } from 'entities/Lesta';
+import { statList } from 'features/Filter';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import {
   masteryTank,
@@ -12,6 +10,7 @@ import {
   plug,
   typeIcon,
 } from '../../config/TankData';
+import { getLevelRoman } from '../../lib/converterTank';
 import { TankStat } from '../TankStat/TankStat';
 import cls from './Tank.module.scss';
 
@@ -19,6 +18,8 @@ interface TankProps {
   data?: TUserTanks;
   tab?: number;
 }
+
+export type CarsSize = 'small' | 'medium' | 'large';
 
 export const Tank = memo(({ data, tab }: TankProps) => {
   const isUserDataLoading = useSelector(getUserDataLoadingStatus);

@@ -1,10 +1,9 @@
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { formatter } from 'entities/Tank/lib/converterTank';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ToolTip } from 'shared/ui/ToolTip/ToolTip';
-import { LestaTankData } from 'entities/Lesta/model/types/tanks';
-import { ParamData } from 'entities/Lesta/model/types/default';
+import { LestaTankData, ParamData } from 'entities/Lesta';
+import { formatter } from '../../lib/converterTank';
 import cls from './TankStat.module.scss';
 
 interface TankStatProps {

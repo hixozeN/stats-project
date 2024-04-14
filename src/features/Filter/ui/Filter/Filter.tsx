@@ -1,22 +1,20 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { SearchForm } from 'features/Search';
 import { useSelector } from 'react-redux';
-import { useFilterTanks } from 'shared/hooks/useFilterTanks/useFilterTanks';
 import { TUserTanks } from 'entities/Lesta/model/types/tanks';
-import {
-  getCheckboxesFilterState,
-} from 'features/Filter/model/selectors/getCheckboxesFilterState/getCheckboxesFilterState';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { useFilterTanks } from 'shared/hooks/useFilterTanks/useFilterTanks';
+import { useSorting } from 'shared/hooks/useSorting/useSorting';
+import { Button } from 'shared/ui/Button/Button';
+import { FilterItem } from './FilterItem';
+import { Sort } from '../SortItem/SortItem';
+import { SearchForm } from '../../../Search';
 import {
   IStatList,
   statList,
-} from 'features/Filter/config/sortData';
-import { useSorting } from 'shared/hooks/useSorting/useSorting';
-import { Button } from '../../../../shared/ui/Button/Button';
-import { FilterItem } from './FilterItem';
-import { getFilterItem } from '../../config/filterData';
-import { Sort } from '../SortItem/SortItem';
+} from '../../config/sortData';
+import { getCheckboxesFilterState } from '../../model/selectors';
+import { getFilterItem } from '../../lib/getFilterData/getFilterItem';
 import cls from './Filter.module.scss';
 
 interface FilterProps {

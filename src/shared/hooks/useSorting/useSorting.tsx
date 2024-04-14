@@ -1,11 +1,9 @@
 import React, { useCallback, useState } from 'react';
-import { sortActions } from 'features/Filter/model/slice/sortSlice';
 import { useSelector } from 'react-redux';
-import { getSortList } from 'features/Filter/model/selectors/getSortList/getSortList';
-import { TUserTanks } from 'entities/Lesta/model/types/tanks';
-import { filterActions } from 'features/Filter/model/slice/filterSlice';
-import { NameSortItem } from 'features/Filter/config/sortData';
-import { ParamData } from 'entities/Lesta';
+import { ParamData, TUserTanks } from 'entities/Lesta';
+import {
+  getSortList, sortActions, filterActions, NameSortItem,
+} from 'features/Filter';
 import { useAppDispatch } from '../useAppDispatch/useAppDispatch';
 
 export const useSorting = (filter: TUserTanks[]) => {

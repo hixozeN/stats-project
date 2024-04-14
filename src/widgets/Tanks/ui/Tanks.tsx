@@ -1,25 +1,22 @@
 import {
   memo, useCallback, useEffect, useState,
 } from 'react';
-import { useMatch } from 'react-router-dom';
-import { Filter } from 'features/Filter';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
-import { Tank } from 'entities/Tank/ui/Tank/Tank';
-import { TUserTanks } from 'entities/Lesta/model/types/tanks';
 import { useSelector } from 'react-redux';
-import { getIsActiveFilter } from 'features/Filter/model/selectors/getIsActiveFilter/getIsActiveFilter';
+import { useMatch } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import {
+  Filter, getDataFilterState, getIsActiveFilter, filterActions, sortActions,
+} from 'features/Filter';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { Tank } from 'entities/Tank';
 import { Button } from 'shared/ui/Button/Button';
 import { useSizeScreen } from 'shared/hooks/useSizeScreen';
 import {
   getLestaUserTanks,
   getUserDataLoadingStatus,
-  getUserSessionTanks,
+  getUserSessionTanks, TUserTanks,
 } from 'entities/Lesta';
-import { filterActions } from 'features/Filter/model/slice/filterSlice';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
-import { getDataFilterState } from 'features/Filter/model/selectors/getDataFilterState/getDataFilterState';
-import { sortActions } from 'features/Filter/model/slice/sortSlice';
-import { useTranslation } from 'react-i18next';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { DEVICE_SETTING } from '../config/deviceData';
 import { getWordTanks } from '../lib/getWordTanks';
