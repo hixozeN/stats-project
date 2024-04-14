@@ -21,17 +21,11 @@ import cls from './Dropdown.module.scss';
 interface IDropdown {
   className?: string,
   tab: number,
-  setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>,
-  setIsOpenPopup?: React.Dispatch<React.SetStateAction<boolean>>;
-  isMobile:boolean,
 }
 
 export const Dropdown = memo((props: IDropdown) => {
   const {
     className, tab,
-    setIsOpen,
-    setIsOpenPopup,
-    isMobile,
   } = props;
   const { t } = useTranslation('search');
   const players = useSelector(getSearchPlayers);
@@ -64,21 +58,22 @@ export const Dropdown = memo((props: IDropdown) => {
 
   const data = useMemo(() => [dataPlayers, dataClans], [dataPlayers, dataClans]);
 
+  const assignTextAndDownload = (text: string, status: boolean) => {
+    setMessage(text);
+    setLoadingSearch(status);
+  };
+
   useEffect(() => {
-    setMessage('');
-    setLoadingSearch(true);
+    assignTextAndDownload('', true);
     if (search.length <= 1 && tab === 1) {
-      setMessage(`${t('Для поиска клана введите не менее 2-х символов.')}`);
-      setLoadingSearch(false);
+      assignTextAndDownload(`${t('Для поиска клана введите не менее 2-х символов.')}`, false);
     } else if (search.length <= 2 && tab === 0) {
-      setMessage(`${t('Для поиска игроков введите не менее 3-х символов.')}`);
-      setLoadingSearch(false);
+      assignTextAndDownload(`${t('Для поиска игроков введите не менее 3-х символов.')}`, false);
     } else if ((!loadingSearch && debouncedSearch.length >= 3 && dataPlayers.length === 0 && tab === 0)
       || (!loadingSearch && debouncedSearch.length >= 2 && dataClans.length === 0 && tab === 1)) {
-      setLoadingSearch(false);
-      setMessage(`${t('Не найдены.')}`);
+      assignTextAndDownload(`${t('Не найдены.')}`, false);
     } else {
-      setLoadingSearch(false);
+      assignTextAndDownload('', false);
     }
   }, [dataClans, dataPlayers, search, tab, debouncedSearch, isLoading, loadingSearch, t]);
 
@@ -95,9 +90,6 @@ export const Dropdown = memo((props: IDropdown) => {
               icon={item?.icon}
               name={item?.name}
               tag={item?.tag}
-              setIsOpen={setIsOpen}
-              setIsOpenPopup={setIsOpenPopup}
-              isMobile={isMobile}
             />
           ))}
         </ul>
