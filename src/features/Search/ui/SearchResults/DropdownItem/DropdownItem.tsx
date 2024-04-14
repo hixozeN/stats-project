@@ -1,6 +1,9 @@
-import React, { memo } from 'react';
+import React, { memo, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { DeviceContext } from '../../Search/Search';
+import { MobileContext } from '../../SearchMobile/SearchMobile';
+import { DesktopContext } from '../../SearchDesktop/SearchDesktop';
 import cls from './DropdownItem.module.scss';
 
 interface IDropdownItem {
@@ -9,9 +12,6 @@ interface IDropdownItem {
   icon: React.ReactElement,
   name: string,
   tag: string,
-  setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>,
-  setIsOpenPopup?: React.Dispatch<React.SetStateAction<boolean>>,
-  isMobile: boolean,
 }
 export const DropdownItem = memo((props: IDropdownItem) => {
   const {
@@ -20,10 +20,11 @@ export const DropdownItem = memo((props: IDropdownItem) => {
     icon,
     name,
     tag,
-    setIsOpen,
-    setIsOpenPopup,
-    isMobile,
   } = props;
+
+  const isMobile = useContext(DeviceContext);
+  const { setIsOpenPopup } = useContext(MobileContext);
+  const { setIsOpen } = useContext(DesktopContext);
 
   const handleClose = () => {
     if (isMobile) {
