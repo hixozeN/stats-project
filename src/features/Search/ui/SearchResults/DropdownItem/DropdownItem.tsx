@@ -22,7 +22,7 @@ export const DropdownItem = memo((props: IDropdownItem) => {
     tag,
   } = props;
 
-  const isMobile = useContext(DeviceContext);
+  const { isMobile } = useContext(DeviceContext);
   const { setIsOpenPopup } = useContext(MobileContext);
   const { setIsOpen } = useContext(DesktopContext);
 
