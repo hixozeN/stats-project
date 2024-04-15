@@ -16,9 +16,9 @@
   top: -30px;
   right: -30px;
 
-  @media screen and (width <= 425px) {
-    top: -40px;
-    right: 0;
+  @media screen and (width <= 540px) {
+    top: -45px;
+    right: 5px;
   }
 }
 
@@ -34,7 +34,7 @@
   flex-direction: column;
   align-items: center;
   position: relative;
-  background: var(--bg-color);
+  background: var(--bg-modal);
   border-radius: 12px;
   padding: 35px;
   transform: scale(0.5);
@@ -59,4 +59,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (width <=768px) {
+  .content {
+    padding: 20px;
+    max-width: 425px;
+  }
+}
+
+@media screen and (width <=425px) {
+  .content {
+    padding: 20px 10px;
+    max-width: 320px;
+  }
 }
