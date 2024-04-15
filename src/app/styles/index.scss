@@ -4,6 +4,10 @@
 @import './themes/normal';
 @import './themes/dark';
 
+*, html {
+  scroll-behavior: smooth !important;
+}
+
 body {
   background-color: var(--app-background);
 }
