@@ -1,0 +1,28 @@
+.item {
+  padding: 5px;
+  color: var(--primary-color);
+  transition: color 0.2s;
+}
+
+.link {
+  display: flex;
+  gap: 5px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.name {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@media (hover: hover) {
+  .item:hover {
+    color: var(--accent-color);
+
+    .icons:hover {
+      color:inherit;
+    }
+  }
+}

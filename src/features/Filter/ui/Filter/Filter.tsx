@@ -8,7 +8,6 @@ import { useSorting } from 'shared/hooks/useSorting/useSorting';
 import { Button } from 'shared/ui/Button/Button';
 import { FilterItem } from './FilterItem';
 import { Sort } from '../SortItem/SortItem';
-import { SearchForm } from '../../../Search';
 import {
   IStatList,
   statList,
@@ -42,7 +41,7 @@ function FilterWithCurtain({ dataList, tab }: FilterProps) {
         onClick={isSortOpen ? handleChangeMenu : closeFilter}
       />
       <div className={cls.filterPanel}>
-        {IS_DEV && <SearchForm />}
+        <div />
         <div className={cls.sortWrapper}>
           <ul
             className={classNames(cls.sortList, { [cls.openSort]: isSortOpen })}
