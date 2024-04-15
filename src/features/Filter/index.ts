@@ -6,3 +6,5 @@ export { NameSortItem, statList } from './config/sortData';
 export {
   getSortList, getCheckboxesFilterState, getDataFilterState, getIsActiveFilter,
 } from './model/selectors';
+export { FilterSchema } from './types/filter';
+export { SortSchema } from './types/sort';

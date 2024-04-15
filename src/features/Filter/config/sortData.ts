@@ -1,4 +1,4 @@
-import { SortScheme } from '../types/sort';
+import { SortSchema } from '../types/sort';
 
 export type NameSortItem = 'battles' | 'average' | 'winRate' | 'wn8' | 'lastBattle';
 
@@ -38,7 +38,7 @@ export const statList: IStatList[] = [
 
 export const sortData = ['Винрейт', 'С/У', 'WN8', 'Фильтр'];
 
-export const clearSortData: SortScheme = statList.reduce<SortScheme>((result, item) => {
+export const clearSortData: SortSchema = statList.reduce<SortSchema>((result, item) => {
   if (item.nameItem === 'lastBattle') {
     return { ...result, [`${item.nameItem}`]: { isActive: true, isUp: false, isDown: true } };
   }
@@ -46,4 +46,4 @@ export const clearSortData: SortScheme = statList.reduce<SortScheme>((result, it
     ...result,
     [`${item.nameItem}`]: { isActive: false, isUp: false, isDown: false },
   };
-}, <SortScheme>{});
+}, <SortSchema>{});

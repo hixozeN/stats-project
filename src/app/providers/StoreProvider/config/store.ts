@@ -12,8 +12,7 @@ import { royalApiInterceptors } from 'shared/api/lib/royalApiInterceptors/royalA
 import { userTanksReducer } from 'entities/Lesta/model/slice/lestaTanksSlice';
 import { userDataReducer } from 'entities/Lesta/model/slice/userDataSlice';
 import { userSessionReducer } from 'entities/Lesta/model/slice/userSessionSlice';
-import { filterReducer } from 'features/Filter/model/slice/filterSlice';
-import { sortReducer } from 'features/Filter/model/slice/sortSlice';
+import { filterReducer, sortReducer } from 'features/Filter';
 import { StateSchema } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 

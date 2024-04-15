@@ -1,5 +1,5 @@
 export interface FilterTanks {
-  nameParam: string;
+  nameParam: 'tier' | 'type' | 'nation' | 'mark_of_mastery';
   values: string[];
   param: string;
 }

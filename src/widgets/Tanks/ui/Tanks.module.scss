@@ -35,8 +35,8 @@
   right: 15px;
   bottom: 25px;
   transform: rotate(180deg);
-  color: var(--primary-color)
-  
+  color: var(--primary-color);
+
   & svg {
     width: 22px;
     height: 22px;
@@ -52,7 +52,7 @@
 }
 
 @media (480px > width) {
-   .buttonMore {
+  .buttonMore {
     max-width: 150px;
   }
 }

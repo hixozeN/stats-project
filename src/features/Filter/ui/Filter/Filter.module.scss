@@ -35,7 +35,6 @@
 }
 
 .openSort {
-  opacity: 1;
   overflow: auto;
   visibility: visible;
   opacity: 1;
@@ -87,7 +86,6 @@
   color: var(--button-primary-color);
   max-width: 170px;
   gap: 5px;
-  
   margin-left: auto;
 
   @media (hover: hover) {
@@ -101,6 +99,7 @@
     font-size: small;
     max-width: 130px;
   }
+
   @media screen and (width <= 440px) {
     font-size: 0;
     min-width: 0;
@@ -247,6 +246,10 @@
 
 .type svg {
   width: 16px;
+}
+
+.tier, .nation, .mark_of_mastery, .text {
+  width: 100%;
 }
 
 @media (hover: hover) {

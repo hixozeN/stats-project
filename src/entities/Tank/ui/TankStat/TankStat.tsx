@@ -57,8 +57,8 @@ export const TankStat = memo(
     const isBelowAverageWN8 = wn8 >= 450 && wn8 < 650;
     const isAverageWN8 = wn8 >= 650 && wn8 < 900;
     const isAboveAverageWN8 = wn8 >= 900 && wn8 < 1200;
-    const isGroodWN8 = wn8 >= 1200 && wn8 < 1600;
-    const isVeryGroodWN8 = wn8 >= 1600 && wn8 < 2000;
+    const isGoodWN8 = wn8 >= 1200 && wn8 < 1600;
+    const isVeryGoodWN8 = wn8 >= 1600 && wn8 < 2000;
     const isGreatWN8 = wn8 >= 2000 && wn8 < 2450;
     const isUnicum = wn8 >= 2450 && wn8 < 2900;
     const isSuperUnicum = wn8 >= 2900;
@@ -78,8 +78,8 @@ export const TankStat = memo(
           [cls.belowAverageWN8]: isBelowAverageWN8,
           [cls.averageWN8]: isAverageWN8,
           [cls.aboveAverageWN8]: isAboveAverageWN8,
-          [cls.goodWN8]: isGroodWN8,
-          [cls.veryGoodWN8]: isVeryGroodWN8,
+          [cls.goodWN8]: isGoodWN8,
+          [cls.veryGoodWN8]: isVeryGoodWN8,
           [cls.greatWN8]: isGreatWN8,
           [cls.unicumWN8]: isUnicum,
           [cls.superUnicumWN8]: isSuperUnicum,
@@ -89,19 +89,19 @@ export const TankStat = memo(
       return {};
     }, [
       data, isAboveAverageWN8, isAverageWN8, isBadWN8,
-      isBelowAverageWN8, isGood, isGreat, isGreatWN8, isGroodWN8, isNice,
-      isSuperUnicum, isUnicum, isVeryBadWN8, isVeryGroodWN8, isVisible,
+      isBelowAverageWN8, isGood, isGreat, isGreatWN8, isGoodWN8, isNice,
+      isSuperUnicum, isUnicum, isVeryBadWN8, isVeryGoodWN8, isVisible,
     ]);
 
     const textTollTip = useMemo(() => {
       if (tier < 6) {
-        return 'Для такна ниже VI уровня расчет не ведется';
+        return 'Для танка ниже VI уровня расчет не ведется';
       }
       if (battles > 0 && !last_battle_time) {
         return 'Необходимо заново собрать статистику';
       }
       if (battles === 0 && !last_battle_time) {
-        return 'Начните играть этим танком';
+        return 'Начните играть на этом танке';
       }
       if (wn8 === 0 && battles >= 0) {
         return `Осталось боёв: ${100 - battles}`;
@@ -120,7 +120,7 @@ export const TankStat = memo(
     return (
       <div className={cls.wrapper}>
         <dt className={cls.term}>{`${t(`${data}`)}:`}</dt>
-        <dd className={classNames(cls.definition, classNameRate)}>
+        <dd className={classNames('', classNameRate)}>
           {statParams[`${data}`]}
           <ToolTip text={textTollTip} isVisible={isVisible} />
         </dd>

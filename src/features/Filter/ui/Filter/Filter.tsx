@@ -26,7 +26,7 @@ function FilterWithCurtain({ dataList, tab }: FilterProps) {
   const { t } = useTranslation('filter');
   const checkboxes = useSelector(getCheckboxesFilterState);
   const {
-    isOpenFilter, filter, openFilter, handlwApplyFilter, closeFilter, handleClearFilter, onChangeFilter,
+    isOpenFilter, filter, openFilter, handleApplyFilter, closeFilter, handleClearFilter, onChangeFilter,
   } = useFilterTanks(dataList);
   const { clickSort, handleChangeMenu, isSortOpen } = useSorting(filter);
 
@@ -95,7 +95,7 @@ function FilterWithCurtain({ dataList, tab }: FilterProps) {
               </Button>
             </li>
             <li className={cls.buttonItem}>
-              <Button onClick={handlwApplyFilter}>{t('filter')}</Button>
+              <Button onClick={handleApplyFilter}>{t('filter')}</Button>
             </li>
             <li className={cls.buttonItem}>
               <Button theme="clear" variant="close" onClick={closeFilter} />

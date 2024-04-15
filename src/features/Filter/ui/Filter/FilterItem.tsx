@@ -4,7 +4,7 @@ import React, {
   LegacyRef,
   ReactElement,
   forwardRef,
-  useMemo,
+  useMemo, useCallback,
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -25,7 +25,7 @@ interface IFilterInputProps extends HTMLInputProps {
   ref?: LegacyRef<HTMLInputElement>;
   value: string;
   param: string;
-  nameParam: string;
+  nameParam: 'tier' | 'type' | 'nation' | 'mark_of_mastery';
 }
 
 export const FilterItem = forwardRef((props: IFilterInputProps, ref:ForwardedRef<HTMLInputElement>) => {
@@ -42,7 +42,7 @@ export const FilterItem = forwardRef((props: IFilterInputProps, ref:ForwardedRef
     [],
   );
 
-  const renderContent = () => {
+  const renderContent = useCallback(() => {
     if (nameParam === 'tier') {
       return <span className={cls.text}>{getLevelRoman(Number(value))}</span>;
     }
@@ -73,7 +73,7 @@ export const FilterItem = forwardRef((props: IFilterInputProps, ref:ForwardedRef
       );
     }
     return null;
-  };
+  }, [mastery, typeTank, nameParam, nationTank, t, value]);
 
   return (
     <li className={cls.filterItem}>

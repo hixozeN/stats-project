@@ -2,12 +2,10 @@ import {
   memo, useCallback, useEffect, useState,
 } from 'react';
 import { useSelector } from 'react-redux';
-import { useMatch } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {
   Filter, getDataFilterState, getIsActiveFilter, filterActions, sortActions,
 } from 'features/Filter';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Tank } from 'entities/Tank';
 import { Button } from 'shared/ui/Button/Button';
 import { useSizeScreen } from 'shared/hooks/useSizeScreen';
@@ -29,7 +27,6 @@ interface TanksProps {
 
 export const Tanks = memo(({ tab }: TanksProps) => {
   const isUserDataLoading = useSelector(getUserDataLoadingStatus);
-  const isAuthPage = useMatch(RoutePath.auth);
   const tanks = useSelector(getLestaUserTanks);
   const sessionTanks = useSelector(getUserSessionTanks);
 
@@ -67,9 +64,15 @@ export const Tanks = memo(({ tab }: TanksProps) => {
 
   useEffect(() => {
     dispatch(filterActions.clearFilter());
-    dispatch(filterActions.setFilterData(getTanksList(tab)));
     dispatch(sortActions.clearSort());
-  }, [dispatch, getTanksList, tab]);
+    if (tab === 0 && tanks?.length > 0) {
+      dispatch(filterActions.setFilterData(tanks));
+    }
+
+    if (tab === 1 && sessionTanks?.length > 0) {
+      dispatch(filterActions.setFilterData(sessionTanks));
+    }
+  }, [dispatch, tanks, sessionTanks, tab]);
 
   useEffect(() => {
     if (filterList) {
@@ -95,8 +98,6 @@ export const Tanks = memo(({ tab }: TanksProps) => {
 
   const handleClickUp = useCallback(() => { window.scrollTo(0, 0); }, []);
 
-  if (isAuthPage) return null;
-
   return (
     <section className={cls.tanks}>
       {isUserDataLoading ? (
@@ -104,7 +105,7 @@ export const Tanks = memo(({ tab }: TanksProps) => {
       ) : (
         <h2 className={cls.title}>{titleFilter()}</h2>
       )}
-      <Filter tab={tab} dataList={getTanksList(tab)} />
+      {filterList?.length > 0 && <Filter tab={tab} dataList={getTanksList(tab)} />}
       <ul className={cls.list}>
         {filterList.slice(0, maxShowMovies).map((data: TUserTanks) => (
           <Tank data={data} key={data.tank_id} tab={tab} />

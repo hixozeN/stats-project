@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { TUserTanks } from 'entities/Lesta';
 import { sortActions, filterActions, getCheckboxesFilterState } from 'features/Filter';
@@ -9,7 +9,7 @@ export const useFilterTanks = (dataList: TUserTanks[]) => {
   const dispatch = useAppDispatch();
   const checkboxes = useSelector(getCheckboxesFilterState);
 
-  const filter = Object.keys(checkboxes).reduce((result, item) => {
+  const filter = useMemo(() => Object.keys(checkboxes).reduce((result, item) => {
     const data = Object.entries(checkboxes[`${item}`]).map(
       ([key, value]) => value && key,
     );
@@ -23,22 +23,22 @@ export const useFilterTanks = (dataList: TUserTanks[]) => {
       (tankItem) => !!tank[dataParam][param]
           && tankItem === tank[dataParam][param].toString(),
     ));
-  }, dataList);
+  }, dataList), [checkboxes, dataList]);
 
   const closeFilter = useCallback(() => {
     setFilterOpen(false);
   }, []);
 
-  const handlwApplyFilter = useCallback(() => {
+  const handleApplyFilter = useCallback(() => {
     dispatch(sortActions.clearSort());
     dispatch(filterActions.setFilterData(filter));
     dispatch(filterActions.setIsActiveFilter());
     closeFilter();
   }, [closeFilter, dispatch, filter]);
 
-  const openFilter = () => {
+  const openFilter = useCallback(() => {
     setFilterOpen(true);
-  };
+  }, []);
 
   const handleClearFilter = useCallback(() => {
     dispatch(filterActions.clearFilter());
@@ -56,6 +56,6 @@ export const useFilterTanks = (dataList: TUserTanks[]) => {
   );
 
   return {
-    isOpenFilter, filter, openFilter, handlwApplyFilter, closeFilter, handleClearFilter, onChangeFilter,
+    isOpenFilter, filter, openFilter, handleApplyFilter, closeFilter, handleClearFilter, onChangeFilter,
   };
 };

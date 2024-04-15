@@ -1,5 +1,5 @@
 import React, {
-  memo, useCallback, useEffect, useState,
+  memo, useCallback, useEffect, useMemo, useState,
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
@@ -36,7 +36,7 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
 
   const dispatch = useAppDispatch();
   const userSessions = useSelector(getUserSessions);
-  const reversedUserSessions = userSessions ? [...userSessions].reverse() : [];
+  const reversedUserSessions = useMemo(() => (userSessions ? [...userSessions].reverse() : []), [userSessions]);
   const userLastSession = useSelector(getUserLastSessionId);
 
   const handleUpdateSessionData = useCallback(() => {

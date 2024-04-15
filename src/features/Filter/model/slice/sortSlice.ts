@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { clearSortData, NameSortItem } from '../../config/sortData';
-import { SortScheme } from '../../types/sort';
+import { SortSchema } from '../../types/sort';
 
-const initialState: SortScheme = clearSortData;
+const initialState: SortSchema = clearSortData;
 
 export const sortSlice = createSlice({
   name: 'sort',
   initialState,
   reducers: {
-    setSortData: (state: SortScheme, action: PayloadAction<NameSortItem>) => {
+    setSortData: (state: SortSchema, action: PayloadAction<NameSortItem>) => {
       if (action.payload) {
         if (state[`${action.payload}`].isDown) {
           state = {

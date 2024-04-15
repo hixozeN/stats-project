@@ -20,8 +20,7 @@ import {
   LestaUserSessionSchema,
 } from 'entities/Lesta';
 import { TeamsSchema } from 'entities/Team/model/types/team';
-import { FilterSchema } from 'features/Filter/types/filter';
-import { SortScheme } from 'features/Filter/types/sort';
+import { FilterSchema, SortSchema } from 'features/Filter';
 
 export interface StateSchema {
   user: UserSchema;
@@ -32,7 +31,7 @@ export interface StateSchema {
   lestaUserData: LestaUserDataSchema;
   lestaUserSession: LestaUserSessionSchema;
   filter: FilterSchema;
-  sort: SortScheme;
+  sort: SortSchema;
   userTanks: LestaTanksSchema;
   // async reducers
   authForm?: AuthSchema;

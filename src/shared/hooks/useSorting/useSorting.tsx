@@ -11,7 +11,7 @@ export const useSorting = (filter: TUserTanks[]) => {
   const stateSortList = useSelector(getSortList);
   const dispatch = useAppDispatch();
 
-  const clickSort = (nameItem: NameSortItem, paramItem: keyof ParamData) => {
+  const clickSort = useCallback((nameItem: NameSortItem, paramItem: keyof ParamData) => {
     let listSort: TUserTanks[] = [];
     dispatch(sortActions.setSortData(nameItem));
 
@@ -30,7 +30,7 @@ export const useSorting = (filter: TUserTanks[]) => {
     }
 
     dispatch(filterActions.setFilterData(listSort));
-  };
+  }, [dispatch, filter, stateSortList]);
 
   const handleChangeMenu = useCallback(
     (e: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => {

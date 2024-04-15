@@ -6,4 +6,4 @@ export type TSortItem = {
   isDown: boolean;
 };
 
-export type SortScheme = Record<NameSortItem, TSortItem>;
+export type SortSchema = Record<NameSortItem, TSortItem>;
