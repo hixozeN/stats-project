@@ -40,6 +40,7 @@ export const SearchInput = forwardRef(
             className={classNames(cls.SearchInput, { [cls.visible]: isOpenPopup }, [className])}
             value={value}
             onChange={onChange}
+            spellCheck={false}
             {...otherProps}
             maxLength={24}
           />

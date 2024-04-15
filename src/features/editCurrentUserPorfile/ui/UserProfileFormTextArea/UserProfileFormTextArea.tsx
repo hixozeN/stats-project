@@ -32,6 +32,7 @@ export const UserProfileFormTextArea = forwardRef(
           value={value}
           className={classNames(cls.textarea, {}, [className])}
           ref={ref}
+          spellCheck={false}
           {...otherProps}
         />
         <span className={cls.span}>{label}</span>
