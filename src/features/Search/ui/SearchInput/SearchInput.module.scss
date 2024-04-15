@@ -53,6 +53,30 @@ input[type="search"]::-webkit-search-cancel-button {
 
   .visible {
     display: block;
+    position: absolute;
+    border-radius: 4px;
+    bottom: -50px;
+    right: 0;
+    z-index: 10;
+    box-shadow: 0 0 0 1px var(--bg-tab-inactive);
+  }
+
+  .open {
+    display: block;
+    position: absolute;
+    border-radius: 4px;
+    bottom: -50px;
+    left: 0;
+    z-index: 10;
+    box-shadow: 0 0 0 1px var(--bg-tab-inactive);
+  }
+
+  .searchWrapper {
+    flex-direction: column;
+  }
+
+  .button {
+    background-color: var(--button-icon-bg);
   }
 }
 

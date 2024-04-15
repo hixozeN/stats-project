@@ -3,6 +3,10 @@
   width: 100%;
   display: flex;
   position: relative;
+
+  @media (width <= 768px) {
+    max-width: 200px;
+  }
 }
 
 .buttonSubmit {

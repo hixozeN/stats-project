@@ -10,10 +10,9 @@ import { Background } from 'shared/ui/Background/Background';
 import { Tabs } from 'shared/ui/Tabs/Tabs';
 import { Tanks } from 'widgets/Tanks';
 import {
-  getLestaUserTanks,
-  fetchLestaUserDataByIdV2,
   getUserNotFoundStatus,
-  getUserNickname, getUserLastSessionId,
+  getUserNickname,
+  getUserLastSessionId,
 } from 'entities/Lesta';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -36,7 +35,6 @@ interface IUserPageProps {
 const UserPage = ({ className }: IUserPageProps) => {
   const { t } = useTranslation('userPage');
   const { id } = useParams<{ id: string }>();
-  const tanks = useSelector(getLestaUserTanks);
   // NEW
   const userNickname = useSelector(getUserNickname);
   const isNotFound = useSelector(getUserNotFoundStatus);
@@ -45,7 +43,10 @@ const UserPage = ({ className }: IUserPageProps) => {
   const lestaAccessToken = useSelector(getLestaAccessToken);
 
   const [tab, setTab] = useState(0);
-  const tabList = useMemo(() => [t('Статистика'), t('Сессия'), t('Рейтинг')], [t]);
+  const tabList = useMemo(
+    () => [t('Статистика'), t('Сессия'), t('Рейтинг')],
+    [t],
+  );
 
   const dispatch = useAppDispatch();
 
@@ -57,13 +58,6 @@ const UserPage = ({ className }: IUserPageProps) => {
 
   useEffect(() => {
     if (!isTokenUpdating) {
-      // const lestaAccessToken = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LESTA.TOKEN));
-      dispatch(
-        fetchLestaUserDataByIdV2({
-          id: Number(id),
-          lestaAccessToken,
-        }),
-      );
       dispatch(fetchUserDataByLestaId({
         id: Number(id),
         lestaAccessToken,
@@ -104,7 +98,7 @@ const UserPage = ({ className }: IUserPageProps) => {
           <Tabs tab={tab} tabList={tabList} handleChangeTab={setTab} />
           <SessionControlSection id={Number(id)} />
           <UserStats tab={tab} id={Number(id)} />
-          <Tanks dataList={tanks} />
+          {tab !== 2 && <Tanks tab={tab} />}
         </div>
       </div>
     </ErrorBoundary>
