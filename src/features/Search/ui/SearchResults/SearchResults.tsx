@@ -1,24 +1,24 @@
-import React, { memo, useState } from 'react';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Tabs } from 'shared/ui/Tabs/Tabs';
+import React, { memo, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Tabs } from 'shared/ui/Tabs/Tabs';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { DeviceContext } from '../Search/Search';
+import { DesktopContext } from '../SearchDesktop/SearchDesktop';
 import { Dropdown } from './Dropdown/Dropdown';
 import cls from './SearchResults.module.scss';
 
 interface ISearchResults {
   className?: string;
-  isOpen?: boolean;
-  setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>,
-  setIsOpenPopup?: React.Dispatch<React.SetStateAction<boolean>>,
-  isMobile?: boolean;
   resultsRef?: React.MutableRefObject<HTMLInputElement>;
 }
 export const SearchResults = memo(({
-  className, isOpen, setIsOpen, setIsOpenPopup, isMobile, resultsRef,
+  className, resultsRef,
 }: ISearchResults) => {
   const { t } = useTranslation('search');
   const tabList = [t('Игроки'), t('Кланы')];
   const [tab, setTab] = useState(0);
+  const { isMobile } = useContext(DeviceContext);
+  const { isOpen } = useContext(DesktopContext);
 
   return (
     <div
@@ -35,7 +35,7 @@ export const SearchResults = memo(({
       ref={resultsRef}
     >
       <Tabs tab={tab} tabList={tabList} handleChangeTab={setTab} />
-      <Dropdown tab={tab} setIsOpen={setIsOpen} setIsOpenPopup={setIsOpenPopup} isMobile={isMobile} />
+      <Dropdown tab={tab} />
     </div>
   );
 });
