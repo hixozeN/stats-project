@@ -22,6 +22,7 @@ import {
 } from 'entities/Lesta';
 import { TeamsSchema } from 'entities/Team/model/types/team';
 import { FilterSchema } from 'features/Filter/types/filter';
+import { OpenIdSchema } from 'features/ConnectOpenId';
 
 export interface StateSchema {
   user: UserSchema;
@@ -36,6 +37,7 @@ export interface StateSchema {
   userTanks: LestaTanksSchema;
   // async reducers
   authForm?: AuthSchema;
+  openId?: OpenIdSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
@@ -56,6 +58,8 @@ export interface ThunkExtraArgument {
   lestaApi: AxiosInstance,
   royalApi: AxiosInstance,
   navigate: (to: To, options?: NavigateOptions) => void,
+  toastSuccess: (text: string) => void,
+  toastWithError: (text: string) => void,
 }
 
 export interface ThunkConfig<T> {

@@ -32,6 +32,11 @@
   border-radius: 50%;
   background-color: var(--bg-accent-color);
   text-align: center;
+  visibility: hidden;
+}
+
+.notificationActive {
+  visibility: visible;
 }
 
 .active {
@@ -161,7 +166,7 @@
 
 @media (hover: hover) {
   .SidebarItem:hover {
-    background-color: var(--button-hover);
+    background-color: var(--accent-color);
   }
 
   .SidebarItem:focus {

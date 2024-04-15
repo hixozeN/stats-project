@@ -11,10 +11,10 @@ import {
   getUserSessionDelta,
   getUserSessionStats,
   getUserStats,
-} from 'entities/Lesta/index';
-import { getUserData } from 'entities/User/model/selectors/getUserData/getUserData';
+} from 'entities/Lesta';
+import { getUserData } from 'entities/User';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
-import { getStatsList } from 'widgets/UserStats/lib/getStatsList';
+import { getStatsList } from '../../lib/getStatsList';
 import { UserStatsList } from '../UserStatsList/UserStatsList';
 import cls from './UserStats.module.scss';
 

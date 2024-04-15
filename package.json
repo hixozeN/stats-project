@@ -54,6 +54,7 @@
     "babel-loader": "^8.2.3",
     "babel-plugin-i18next-extract": "^0.8.3",
     "concurrently": "^8.2.1",
+    "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^6.6.0",
     "deelay": "^2.0.0",
     "eslint": "^8.10.0",
@@ -100,6 +101,8 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.51.2",
+    "react-hot-toast": "^2.4.1",
     "react-i18next": "^11.15.5",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.19.0"

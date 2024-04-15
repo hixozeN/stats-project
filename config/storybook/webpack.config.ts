@@ -1,20 +1,20 @@
 import path from 'path';
 import webpack, { DefinePlugin, RuleSetRule } from 'webpack';
 import { buildCssLoaders } from '../build/loaders/buildCssLoaders';
-import { BuildPaths } from '../build/types/config';
+// import { BuildPaths } from '../build/types/config';
 
 export default ({ config }: {config: webpack.Configuration}) => {
-  const paths: BuildPaths = {
-    src: path.resolve(__dirname, '..', '..', 'src'),
-    build: '',
-    html: '',
-    entry: '',
-  };
-
-  const svgLoader = {
-    test: /\.svg$/,
-    use: ['@svgr/webpack'],
-  };
+  // const paths: BuildPaths = {
+  //   src: path.resolve(__dirname, '..', '..', 'src'),
+  //   build: '',
+  //   html: '',
+  //   entry: '',
+  // };
+  //
+  // const svgLoader = {
+  //   test: /\.svg$/,
+  //   use: ['@svgr/webpack'],
+  // };
 
   config.resolve.modules = [
     path.resolve(__dirname, '../../src'),
@@ -46,6 +46,8 @@ export default ({ config }: {config: webpack.Configuration}) => {
     API_URL: JSON.stringify(''),
     ROYAL_ARENA_API_URL: JSON.stringify(''),
     LESTA_API_URL: JSON.stringify(''),
+    LESTA_AUTH_API_URL: JSON.stringify(''),
+    LESTA_APP_ID: JSON.stringify(''),
   }));
 
   return config;
