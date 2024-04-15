@@ -54,8 +54,13 @@ export const SearchForm = memo((props: IAuthFormProps) => {
   };
 
   const handleSubmit = useCallback(async (value: string) => {
-    dispatch(searchUsersAndClans({ string: value, limit: 10 }));
-  }, [dispatch]);
+    if (!isMobile) {
+      inputRef.current.focus();
+    }
+    if (debouncedSearch.length >= 2) {
+      dispatch(searchUsersAndClans({ string: value, limit: 10 }));
+    }
+  }, [dispatch, debouncedSearch, isMobile, inputRef]);
 
   useEffect(() => {
     if (debouncedSearch.length >= 2) {
@@ -90,8 +95,23 @@ export const SearchForm = memo((props: IAuthFormProps) => {
           value={search}
           onFocus={onFocus}
         />
+        <Button
+          type="submit"
+          theme="icon"
+          variant="magnifier"
+          className={cls.buttonSubmit}
+          onClick={(evt) => { evt.preventDefault(); handleSubmit(search); }}
+        />
       </form>
-      {search && !isMobile && <Button className={cls.button} theme="clear" variant="close" onClick={onClickClear} />}
+      {search && !isMobile
+        && (
+        <Button
+          className={cls.buttonClose}
+          theme="clear"
+          variant="close"
+          onClick={onClickClear}
+        />
+        )}
     </div>
   );
 });
