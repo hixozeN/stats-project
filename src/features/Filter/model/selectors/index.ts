@@ -1,4 +1,6 @@
-import { StateSchema } from 'app/providers/StoreProvider/config/StateSchema';
+import { StateSchema } from 'app/providers/StoreProvider';
 
-export const getDataFilterState = (state: StateSchema) => state?.filter?.data;
-export const getParamsFilterState = (state: StateSchema) => state?.filter?.params;
+export const getCheckboxesFilterState = (state: StateSchema) => state?.filter?.checkboxes || {};
+export const getDataFilterState = (state: StateSchema) => state?.filter?.data || null;
+export const getIsActiveFilter = (state: StateSchema) => state?.filter?.isActiveFilter || false;
+export const getSortList = (state: StateSchema) => state?.sort || null;

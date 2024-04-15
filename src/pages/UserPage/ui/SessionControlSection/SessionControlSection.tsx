@@ -1,5 +1,5 @@
 import React, {
-  memo, useCallback, useEffect, useState,
+  memo, useCallback, useEffect, useMemo, useState,
 } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -32,7 +32,7 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
 
   const dispatch = useAppDispatch();
   const userSessions = useSelector(getUserSessions);
-  const reversedUserSessions = userSessions ? [...userSessions].reverse() : [];
+  const reversedUserSessions = useMemo(() => (userSessions ? [...userSessions].reverse() : []), [userSessions]);
   const userLastSession = useSelector(getUserLastSessionId);
   const lestaAccessToken = useSelector(getLestaAccessToken);
 

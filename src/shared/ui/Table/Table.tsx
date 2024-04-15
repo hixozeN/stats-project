@@ -14,7 +14,6 @@ import firstStage from 'shared/assets/icons/mastery/first_stage.png';
 import secondStage from 'shared/assets/icons/mastery/second_stage.png';
 import thirdStage from 'shared/assets/icons/mastery/third_stage.png';
 import { getWinRate } from 'shared/lib/statCounters/getWinRate';
-import { getAvgDamage } from 'shared/lib/statCounters/getAvgDamage';
 import { TUserTanks } from 'entities/Lesta/model/types/tanks';
 import cls from './Table.module.scss';
 import { Button } from '../Button/Button';

@@ -1,8 +1,13 @@
 {
-  "Боёв": "Fights",
-  "Побед": "Wins",
-  "Ср. урон": "AVG",
+  "Бои": "Battles",
+  "Винрейт": "Winrate",
+  "С/У": "AVG DMG",
   "WN8": "WN8",
-  "Последний бой":"Last fight",
-  "Техника": "Technic"
+  "Последний бой":"Last battle",
+  "Ещё": "More",
+  "танка": "tanks",
+  "танков": "tanks",
+  "танк": "tanks",
+  "PLAYER_HAS": "Player has",
+  "WITH_PARAMETRS": "with the selected parameters"
 }

@@ -16,6 +16,8 @@ import UK from 'shared/assets/icons/tank/nation/nation-uk.svg';
 import USA from 'shared/assets/icons/tank/nation/nation-usa.svg';
 import USSR from 'shared/assets/icons/tank/nation/nation-ussr.svg';
 
+import plug from 'shared/assets/images/plug_tank_200x200.png';
+
 const masteryTank = {
   4: master,
   3: firstStage,
@@ -42,40 +44,6 @@ const nationFlag = {
   ussr: <USSR />,
 };
 
-interface IStatList {
-  nameItem: string;
-  text: string;
-  param: string;
-}
-
-const statList: IStatList[] = [
-  {
-    nameItem: 'battles',
-    text: 'Боёв',
-    param: 'statistics.battles',
-  },
-  {
-    nameItem: 'average',
-    text: 'Ср. урон',
-    param: '',
-  },
-  {
-    nameItem: 'win',
-    text: 'Побед',
-    param: '',
-  },
-  {
-    nameItem: 'wn8',
-    text: 'WN8',
-    param: '',
-  },
-  {
-    nameItem: 'lastBattle',
-    text: 'Последний бой',
-    param: '',
-  },
-];
-
 export {
-  masteryTank, typeIcon, nationFlag, statList, IStatList,
+  masteryTank, typeIcon, nationFlag, plug,
 };

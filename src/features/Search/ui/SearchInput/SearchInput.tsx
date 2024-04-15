@@ -1,11 +1,10 @@
-import { classNames } from 'shared/lib/classNames/classNames';
-
 import React, {
   ForwardedRef,
   forwardRef,
-  InputHTMLAttributes, LegacyRef, useState,
+  InputHTMLAttributes, LegacyRef, useContext,
 } from 'react';
-import { Button } from 'shared/ui/Button/Button';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { MobileContext } from '../SearchMobile/SearchMobile';
 import cls from './SearchInput.module.scss';
 
 type HTMLInputProps = Omit<
@@ -16,23 +15,20 @@ type HTMLInputProps = Omit<
 interface IAuthInputProps extends HTMLInputProps {
   className?: string;
   value?: string;
-  // eslint-disable-next-line no-unused-vars
   onChange?: (value: React.ChangeEvent<HTMLInputElement>) => void;
   ref?: LegacyRef<HTMLInputElement>;
 }
 
 export const SearchInput = forwardRef(
   (props: IAuthInputProps, ref: ForwardedRef<HTMLInputElement>) => {
-    const [isOpenSearch, setOpenSearch] = useState(false);
-    const clickSearch = () => {
-      if (window.innerWidth <= 768) {
-        setOpenSearch(!isOpenSearch);
-      }
-    };
-
     const {
-      className, value, onChange, ...otherProps
+      className,
+      value,
+      onChange,
+      ...otherProps
     } = props;
+
+    const { isOpenPopup } = useContext(MobileContext);
 
     return (
       <div className={cls.searchWrapper}>
@@ -41,19 +37,13 @@ export const SearchInput = forwardRef(
             id="search"
             type="search"
             ref={ref}
-            className={classNames(cls.SearchInput, { [cls.open]: isOpenSearch }, [className])}
+            className={classNames(cls.SearchInput, { [cls.visible]: isOpenPopup }, [className])}
             value={value}
             onChange={onChange}
             {...otherProps}
+            maxLength={24}
           />
         </label>
-        <Button
-          type="submit"
-          theme="icon"
-          variant="magnifier"
-          className={cls.button}
-          onClick={clickSearch}
-        />
       </div>
     );
   },

@@ -1,24 +1,36 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { TUserTanks } from 'entities/Lesta/model/types/tanks';
-import { FilterSchema } from 'features/Filter/types/filter';
+import { FilterSchema } from '../../types/filter';
+import { clearFiterData } from '../../lib/getFilterData/getClearFilterData';
 
 const initialState: FilterSchema = {
   data: null,
-  params: null,
+  checkboxes: clearFiterData,
+  isActiveFilter: false,
 };
 
 export const filterSlice = createSlice({
   name: 'filter',
   initialState,
   reducers: {
-    setFilterData: (state, action: PayloadAction<TUserTanks>) => {
+    setFilterData: (state, action: PayloadAction<TUserTanks[]>) => {
       state.data = action.payload;
     },
-    setFilterParams: (state, action: PayloadAction<Record<string, string[]>>) => {
-      state.params = action.payload;
+    setIsActiveFilter: (state) => {
+      state.isActiveFilter = true;
+    },
+    setCheckbox: (state, action: PayloadAction<Record<string, boolean>>) => {
+      state.checkboxes = {
+        ...state.checkboxes,
+        [`${action.payload.param}`]: {
+          ...state.checkboxes[`${action.payload.param}`],
+          [`${action.payload.name}`]: action.payload.checked,
+        },
+      };
     },
     clearFilter: (state) => {
-      localStorage.clear();
+      state.checkboxes = clearFiterData;
+      state.isActiveFilter = false;
     },
   },
 });
