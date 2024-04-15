@@ -3,7 +3,7 @@ import React, { useCallback, useEffect } from 'react';
 export const useClickOutside = (
   ref: React.MutableRefObject<HTMLInputElement>,
   callback: () => void,
-  isMobile: boolean,
+  isMobile?: boolean,
 ) => {
   const handleClick = useCallback((evt: MouseEvent) => {
     if (ref.current && !ref.current.contains(evt.target as Node)) {
@@ -12,7 +12,7 @@ export const useClickOutside = (
   }, [ref, callback]);
 
   useEffect(() => {
-    if (!isMobile) {
+    if (!isMobile || null) {
       const handleClickOutside = (event: MouseEvent) => handleClick(event);
       document.addEventListener('mousedown', handleClickOutside);
 
