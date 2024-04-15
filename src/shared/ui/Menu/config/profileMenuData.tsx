@@ -12,8 +12,7 @@ import TournamentIcon from 'shared/assets/icons/Sidebar/tournaments.svg';
 import TeamsIcon from 'shared/assets/icons/Sidebar/teams.svg';
 import FriendIcon from 'shared/assets/icons/Sidebar/friends.svg';
 import AdminIcon from 'shared/assets/icons/Sidebar/admin.svg';
-import { useSelector } from 'react-redux';
-import { getUserData } from 'entities/User/model/selectors/getUserData/getUserData';
+import { User } from 'entities/User';
 
 export interface MenuData {
   name: string;
@@ -27,9 +26,17 @@ export type MenuTheme =
   | 'userSidebar'
   | 'adminSidebar';
 
-export const getMenuElements = (module: MenuTheme) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const authData = useSelector(getUserData);
+interface MenuElementsProps {
+  module: MenuTheme;
+  authData: User;
+}
+
+export const getMenuElements = (props: MenuElementsProps) => {
+  const { module, authData } = props;
+  const isOpenIdAccount = !!authData?.lestaData?.account_id;
+  const profileLink = isOpenIdAccount
+    ? `${RoutePath.user_id}/${authData?.lestaData?.account_id}`
+    : RoutePath.connectLesta;
 
   const data = {
     stat: {
@@ -44,7 +51,7 @@ export const getMenuElements = (module: MenuTheme) => {
     },
     user: {
       name: 'Профиль',
-      path: `${RoutePath.user_id}/${authData?.lestaData?.account_id}`,
+      path: profileLink,
       icon: <ProfileIcon />,
     },
     edit: {
@@ -62,7 +69,7 @@ export const getMenuElements = (module: MenuTheme) => {
       path: RoutePath.profile_sessions,
       icon: <HistoryIcon />,
     },
-    logaut: {
+    logout: {
       name: 'Выйти из аккаунта',
       path: RoutePath.main,
       icon: <LogoutIcon />,
@@ -101,7 +108,7 @@ export const getMenuElements = (module: MenuTheme) => {
 
   const elements = {
     profileSidebar: [data.sessions, data.blacklist, data.edit],
-    navbar: [data.user, data.sessions, data.blacklist, data.edit, data.logaut],
+    navbar: [data.user, data.sessions, data.blacklist, data.edit, data.logout],
     userSidebar: [
       data.main,
       data.matches,

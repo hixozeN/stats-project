@@ -1,23 +1,19 @@
 import React, {
   memo, useCallback, useEffect, useMemo, useState,
 } from 'react';
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
 import { formatDate } from 'shared/lib/formatDate/formatDate';
 import {
   getUserLastSessionId,
   getUserSessions,
+  fetchLestaUserSessionById,
+  fetchUserDataByLestaId,
 } from 'entities/Lesta';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
-import { useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import {
-  fetchLestaUserSessionById,
-} from 'entities/Lesta/model/services/fetchLestaUserSession/fetchLestaUserSession';
-import { LOCAL_STORAGE_LESTA } from 'shared/consts/localstorage';
-import {
-  fetchUserDataByLestaId,
-} from 'entities/Lesta/model/services/fetchUserDataByLestaId/fetchUserDataByLestaId';
+import { getLestaAccessToken } from 'entities/User';
 import cls from './SessionControlSection.module.scss';
 
 interface SessionControlSectionProps {
@@ -38,18 +34,18 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
   const userSessions = useSelector(getUserSessions);
   const reversedUserSessions = useMemo(() => (userSessions ? [...userSessions].reverse() : []), [userSessions]);
   const userLastSession = useSelector(getUserLastSessionId);
+  const lestaAccessToken = useSelector(getLestaAccessToken);
 
   const handleUpdateSessionData = useCallback(() => {
     dispatch(fetchLestaUserSessionById(
       { sessionId: currentSession },
     ));
 
-    const lestaAccessToken = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LESTA.TOKEN));
     dispatch(fetchUserDataByLestaId({
       id: Number(id),
-      lestaAccessToken: lestaAccessToken ?? null,
+      lestaAccessToken,
     }));
-  }, [id, dispatch, currentSession]);
+  }, [id, dispatch, currentSession, lestaAccessToken]);
 
   const handleChangeSession = useCallback((targetSession) => {
     dispatch(fetchLestaUserSessionById({ sessionId: targetSession }));

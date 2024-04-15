@@ -10,7 +10,17 @@
   "Почта": "E-mail",
   "Введите адрес почты": "Enter your email",
   "Discord": "Discord",
+  "VK": "VK",
+  "Telegram": "Telegram",
+  "YouTube": "YouTube",
   "Аккаунт": "Account",
   "Введите логин в discord": "Enter your discord",
-  "Сохранить": "Save"
+  "Сохранить": "Save",
+  "ID_COPIED": "Copied!",
+  "userProfileTitle": "Personal profile | RoyalArena.ru",
+  "SOCIAL_SECTION": "Social links",
+  "DS_PLACEHOLDER": "Your Discord ID",
+  "VK_PLACEHOLDER": "https://vk.com/olrcyteam",
+  "TG_PLACEHOLDER": "https://t.me/blitzstats",
+  "YT_PLACEHOLDER": "https://youtube.com/@Enjoykin"
 }

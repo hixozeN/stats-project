@@ -4,12 +4,12 @@ import {
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useSelector } from 'react-redux';
 import { getUserDataLoadingStatus, getUserPrivateData } from 'entities/Lesta';
-import {
-  UserPrivateDataItem,
-} from 'widgets/UserProfile/ui/UserPrivateDataItem/UserPrivateDataItem';
-import { getUserData } from 'entities/User/model/selectors/getUserData/getUserData';
+import { getUserData } from 'entities/User';
 import { useParams } from 'react-router-dom';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import {
+  UserPrivateDataItem,
+} from '../UserPrivateDataItem/UserPrivateDataItem';
 import cls from './UserPrivateDataList.module.scss';
 
 interface UserPrivateDataListProps {
@@ -29,8 +29,8 @@ export const UserPrivateDataList = memo((props: UserPrivateDataListProps) => {
   if (isUserDataLoading && isProfileOwner) {
     return (
       <ul className={classNames(cls.privateData, {}, [cls.skeleton])}>
-        {/* eslint-disable-next-line @typescript-eslint/no-unused-vars */}
-        {[...new Array(4)].map((_) => <Skeleton width={100} height={20} borderRadius="5px" />)}
+        {/* eslint-disable-next-line @typescript-eslint/no-unused-vars,react/no-array-index-key */}
+        {[...new Array(4)].map((_, index) => <Skeleton key={index} width={100} height={20} borderRadius="5px" />)}
       </ul>
     );
   }

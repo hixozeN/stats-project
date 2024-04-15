@@ -3,13 +3,12 @@ import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { useSelector } from 'react-redux';
-import { getLoggedInStatus } from 'entities/User/model/selectors/getLoggedInStatus/getLoggedInStatus';
+import { getLoggedInStatus, getUserData } from 'entities/User';
 import {
   memo, useCallback, useEffect, useState,
 } from 'react';
 import LoginIcon from 'shared/assets/icons/button/login.svg';
 import { Button } from 'shared/ui/Button/Button';
-import { getUserData } from 'entities/User/model/selectors/getUserData/getUserData';
 import { useSizeScreen } from 'shared/hooks/useSizeScreen';
 import { Menu } from 'shared/ui/Menu';
 import cls from './Navbar.module.scss';

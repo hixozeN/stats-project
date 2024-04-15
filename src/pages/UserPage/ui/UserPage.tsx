@@ -15,12 +15,16 @@ import {
   getUserLastSessionId,
 } from 'entities/Lesta';
 import { useSelector } from 'react-redux';
-import { LOCAL_STORAGE_LESTA } from 'shared/consts/localstorage';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { SeoUpdater } from 'shared/lib/SeoUpdater/SeoUpdater';
-import { fetchUserDataByLestaId } from 'entities/Lesta/model/services/fetchUserDataByLestaId/fetchUserDataByLestaId';
-import { fetchLestaUserSessionById } from 'entities/Lesta/model/services/fetchLestaUserSession/fetchLestaUserSession';
+import {
+  fetchUserDataByLestaId,
+} from 'entities/Lesta/model/services/fetchUserDataByLestaId/fetchUserDataByLestaId';
+import {
+  fetchLestaUserSessionById,
+} from 'entities/Lesta/model/services/fetchLestaUserSession/fetchLestaUserSession';
+import { getLestaAccessToken, getTokenUpdateStatus } from 'entities/User/index';
 import { SessionControlSection } from '../ui/SessionControlSection/SessionControlSection';
 import cls from './UserPage.module.scss';
 
@@ -35,6 +39,8 @@ const UserPage = ({ className }: IUserPageProps) => {
   const userNickname = useSelector(getUserNickname);
   const isNotFound = useSelector(getUserNotFoundStatus);
   const userLastSession = useSelector(getUserLastSessionId);
+  const isTokenUpdating = useSelector(getTokenUpdateStatus);
+  const lestaAccessToken = useSelector(getLestaAccessToken);
 
   const [tab, setTab] = useState(0);
   const tabList = useMemo(
@@ -51,21 +57,20 @@ const UserPage = ({ className }: IUserPageProps) => {
   }, [dispatch, userLastSession]);
 
   useEffect(() => {
-    const lestaAccessToken = JSON.parse(
-      localStorage.getItem(LOCAL_STORAGE_LESTA.TOKEN),
-    );
-    dispatch(
-      fetchUserDataByLestaId({
+    if (!isTokenUpdating) {
+      dispatch(fetchUserDataByLestaId({
         id: Number(id),
-        lestaAccessToken: lestaAccessToken ?? null,
-      }),
-    );
-  }, [id, dispatch]);
+        lestaAccessToken,
+      }));
+    }
+  }, [id, dispatch, isTokenUpdating, lestaAccessToken]);
 
   if (isNotFound) {
     return (
       <ErrorBoundary>
-        <SeoUpdater title={t('Пользователь не найден')} />
+        <SeoUpdater
+          title={t('Пользователь не найден')}
+        />
         <Background />
         <div className={classNames(cls.UserPage, {}, [className])}>
           <section
@@ -82,7 +87,10 @@ const UserPage = ({ className }: IUserPageProps) => {
 
   return (
     <ErrorBoundary>
-      <SeoUpdater title={`${t('Статистика игрока')} - ${userNickname}`} />
+      <SeoUpdater
+        title={`${t('Статистика игрока')} - ${userNickname}`}
+        OGTitle={`${t('Статистика игрока')} - ${userNickname}`}
+      />
       <Background />
       <div className={classNames(cls.UserPage, {}, [className])}>
         <div className={cls.wrapper}>

@@ -41,6 +41,6 @@ export const fetchLestaUserSessionById = createAsyncThunk<
       return response.data;
     } catch (e) {
     // возвращаем ошибку с бэка
-      return rejectWithValue(e);
+      return rejectWithValue(e?.response?.data?.message ?? serverError);
     }
   });

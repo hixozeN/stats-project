@@ -1,6 +1,8 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { useSelector } from 'react-redux';
+import { getUserData } from 'entities/User/index';
 import { MenuItem } from '../MenuItem/MenuItem';
 import {
   MenuData,
@@ -21,8 +23,9 @@ export const Menu = memo(
     theme, cb, isCollapsed, isOpenMenu,
   }: IProfileSidebarProps) => {
     const { t } = useTranslation();
+    const authData = useSelector(getUserData);
 
-    const dataList = getMenuElements(theme);
+    const dataList = getMenuElements({ module: theme, authData });
 
     return (
       <ul

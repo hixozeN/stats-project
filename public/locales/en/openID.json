@@ -1,0 +1,12 @@
+{
+  "title": "Connect Lesta account",
+  "restrictedStats": "Viewing your own game statistics is only available on accounts with a linked ",
+  "connectLesta": "Connect Lesta ID",
+  "Lesta Games Open ID": "Lesta\u00A0Games\u00A0/Open\u00A0/ID",
+  "successConnect": "Lesta Games Open ID successfully connected.",
+  "failedConnect": "Something went wrong... Try again later.",
+  "unexpectedError": "An unexpected error occurred. Please try again later.",
+  "canceledByUser": "Authorization was cancelled by user.",
+  "authTimedOut": "User authorization timed out.",
+  "authError": "Authorization data error."
+}
