@@ -10,6 +10,7 @@ export interface SearchSchema {
   isNotFoundClans: boolean,
   isNotFoundPlayers: boolean,
   error: string,
+  requestId?: string;
 }
 const initialState: SearchSchema = {
   search: '',
@@ -36,20 +37,24 @@ export const searchSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(searchUsersAndClans.pending, (state) => {
+      .addCase(searchUsersAndClans.pending, (state, action) => {
         state.isLoading = true;
         state.isNotFoundClans = false;
         state.isNotFoundPlayers = false;
+        state.requestId = action.meta.requestId;
       })
       .addCase(searchUsersAndClans.rejected, (state, { payload }) => {
         state.error = payload;
         state.isLoading = false;
       })
-      .addCase(searchUsersAndClans.fulfilled, (state, { payload }) => {
-        state.isLoading = false;
-
-        if (!payload.clans.length) state.isNotFoundClans = true;
-        if (!payload.players.length) state.isNotFoundPlayers = true;
+      .addCase(searchUsersAndClans.fulfilled, (state, { payload, meta }) => {
+        if (state.requestId === meta.requestId) {
+          state.isLoading = false;
+          state.clans = payload.clans;
+          state.players = payload.players;
+          if (!payload.clans.length) state.isNotFoundClans = true;
+          if (!payload.players.length) state.isNotFoundPlayers = true;
+        }
       });
   },
 });
