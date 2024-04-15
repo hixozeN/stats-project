@@ -1,5 +1,4 @@
 import React, { createContext, useMemo, useState } from 'react';
-import { Button } from 'shared/ui/Button/Button';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { SearchForm } from '../SearchForm/SearchForm';
 import { SearchResults } from '../SearchResults/SearchResults';
@@ -36,12 +35,6 @@ export const SearchDesktop = (props: ISearchDesktop) => {
     <div className={classNames(cls.SearchDesktop, {}, [className])}>
       <DesktopContext.Provider value={desktopContextValue}>
         <SearchForm resultsRef={resultsRef} />
-        <Button
-          type="button"
-          theme="icon"
-          variant="magnifier"
-          className={cls.button}
-        />
         <SearchResults resultsRef={resultsRef} />
       </DesktopContext.Provider>
     </div>
