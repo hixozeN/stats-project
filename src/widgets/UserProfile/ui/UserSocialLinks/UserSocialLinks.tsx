@@ -47,7 +47,7 @@ const socialIcons: SocialLinks = {
     icon: <DiscordIcon className={classNames(cls.socialIcon, {}, [cls.discord])} />,
   },
   youtube: {
-    link: 'https://youtube.com/@',
+    link: 'https://youtube.com/',
     icon: <YouTubeIcon className={classNames(cls.socialIcon, {}, [cls.yt])} />,
   },
 };

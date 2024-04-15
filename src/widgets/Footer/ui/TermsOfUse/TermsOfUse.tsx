@@ -14,7 +14,7 @@ export const TermsOfUse = (props: ITermsOfUse) => {
   return (
     <Modal isOpen={isOpen} onClose={handleClose}>
       <div className={classNames(cls.TermsOfUse, {}, [className])}>
-        <h1 className={cls.title}>Условия использования сервиса статистики игроков игры Tanks Blitz:</h1>
+        <h1 className={cls.title}>Условия&nbsp;использования сервиса&nbsp;статистики&nbsp;игроков для&nbsp;игры&nbsp;Tanks&nbsp;Blitz:</h1>
         <ol className={cls.list}>
           <li className={cls.item}>
             <span className={cls.bold}>Общее положение:</span>
@@ -41,6 +41,12 @@ export const TermsOfUse = (props: ITermsOfUse) => {
             <span className={cls.bold}>Изменения в условиях использования: </span>
             Сервис оставляет за собой право вносить изменения
             в условия использования без предварительного уведомления пользователей.
+          </li>
+          <li className={cls.item}>
+            <span className={cls.bold}>Сотрудничество и коммерция: </span>
+            Сотрудничество с проектом осуществляется <span className={cls.bold}>только через почту</span>, указанную в п. Контактная информация.
+            Любые другие источники связи носят исключительно информационный характер и не предназначены для обсуждения коммерческих вопросов.
+            Будьте бдительны.
           </li>
           <li className={cls.item}>
             <span className={cls.bold}>Контактная информация: </span>

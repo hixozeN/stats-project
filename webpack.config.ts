@@ -11,6 +11,8 @@ export default (env: BuildEnv) => {
     build: path.resolve(__dirname, 'build'),
     html: path.resolve(__dirname, 'public', 'index.html'),
     src: path.resolve(__dirname, 'src'),
+    locales: path.resolve(__dirname, 'public', 'locales'),
+    buildLocales: path.resolve(__dirname, 'build', 'locales'),
   };
 
   const mode = env.mode || 'development';
@@ -20,7 +22,7 @@ export default (env: BuildEnv) => {
 
   const isDev = mode === 'development';
 
-  const royalArenaApiUrl = 'http://localhost:3030';
+  const royalArenaApiUrl = process.env.ROYAL_API_URL;
 
   const lestaApiUrl = 'https://papi.tanksblitz.ru/wotb';
   const lestaAuthApiUrl = 'https://api.tanki.su/wot/auth';

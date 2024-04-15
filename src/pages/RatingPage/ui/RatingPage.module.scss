@@ -1,0 +1,25 @@
+.RatingPage {
+  border-radius: 15px 0 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding: 0 130px;
+
+  @media screen and (width <= 1700px) {
+    padding: 0 30px;
+  }
+
+  @media screen and (width <= 1024px) {
+    border-radius: 0;
+    padding: 0 10px;
+  }
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}

@@ -22,7 +22,9 @@ export type ButtonVariant =
   | 'magnifier'
   | 'burger'
   | 'close'
-  | 'down-arrow';
+  | 'down-arrow'
+  | 'sort'
+  | 'filter';
 
 export type ButtonTheme =
   | 'default'

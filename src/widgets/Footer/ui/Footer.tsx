@@ -37,7 +37,7 @@ export const Footer = (props : FooterProps) => {
             </button>
           </div>
           <span className={classNames(cls.copyright, {}, [cls.darkText])}>
-            {`${t('COPYRIGHT')}© ${currentYear}` }
+            {`${t('COPYRIGHT')} © ${currentYear}` }
           </span>
         </div>
       </footer>

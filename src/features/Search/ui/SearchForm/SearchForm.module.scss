@@ -2,4 +2,47 @@
   max-width: 276px;
   width: 100%;
   display: flex;
+  position: relative;
+
+  @media (width <= 768px) {
+    max-width: 200px;
+  }
+}
+
+.buttonSubmit {
+  background-color: var(--input-bg-color);
+  order: -1;
+}
+
+.buttonClose {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  width: auto;
+  height: auto;
+  transform: scale(0.75);
+}
+
+@media screen and (width <= 768px) {
+  .container {
+    display: none;
+  }
+
+  .opened {
+    display: block;
+  }
+
+  .SearchForm {
+    max-width: 385px;
+  }
+
+  .buttonSubmit {
+    display: none;
+  }
+}
+
+@media screen and (width <= 425px) {
+  .SearchForm {
+    max-width: 300px;
+  }
 }

@@ -1,3 +1,8 @@
 {
-  "Поиск": "Search"
+  "Поиск": "Search",
+  "Для поиска клана введите не менее 2-х символов.": "To search for a clan, enter at least 2 characters.",
+  "Для поиска игроков введите не менее 3-х символов.": "To search for players, enter at least 3 characters.",
+  "Не найдены.": "Not found.",
+  "Игроки": "Players",
+  "Кланы": "Clans"
 }

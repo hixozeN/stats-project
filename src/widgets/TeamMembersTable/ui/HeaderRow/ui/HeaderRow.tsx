@@ -2,6 +2,7 @@ import { flexRender, HeaderGroup } from '@tanstack/react-table';
 import IconChevron from 'shared/assets/icons/button/chevron-down.svg';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { LestaClanUser } from 'entities/Lesta/model/types/clans';
+import { useTranslation } from 'react-i18next';
 import cls from './HeaderRow.module.scss';
 
 interface IHeaderRow {
@@ -11,6 +12,7 @@ interface IHeaderRow {
 
 export const HeaderRow = (props: IHeaderRow) => {
   const { className, headerGroup } = props;
+  const { t } = useTranslation('teamPage');
 
   return (
     <tr key={headerGroup.id} className={classNames(cls.headerRow, {}, [className])}>
@@ -22,7 +24,7 @@ export const HeaderRow = (props: IHeaderRow) => {
               onClick: header.column.getToggleSortingHandler(),
             }}
           >
-            {flexRender(header.column.columnDef.header, header.getContext())}
+            {flexRender(`${t(`${header.column.columnDef.header}`)}`, header.getContext())}
             <span className={cls.buttonZone}>
               {header.column.getIsSorted() === 'desc' || header.column.getIsSorted() !== 'asc' ? (
                 <IconChevron

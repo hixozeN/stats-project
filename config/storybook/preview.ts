@@ -10,7 +10,7 @@ import { withRouter } from 'storybook-addon-react-router-v6';
 const preview: Preview = {
   decorators: [
     StyleDecorator,
-    ThemeDecorator(Theme.LIGHT),
+    ThemeDecorator(Theme.DARK),
     // RouterDecorator, // deprecated decorator, actual - withRouter from 'storybook-addon-react-router-v6' package
     withRouter,
     TranslationDecorator,
