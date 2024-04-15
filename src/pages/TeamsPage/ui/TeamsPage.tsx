@@ -9,7 +9,7 @@ import { Background } from 'shared/ui/Background/Background';
 import { Pagination } from 'widgets/Pagination';
 import { SliderArrow } from 'widgets/TournamentsSlider';
 import {
-  TeamsList,
+  // TeamsList,
   fetchTeamsData,
   getTeamsLoadingStatus,
 } from 'entities/Team';
@@ -69,7 +69,7 @@ const TeamsPage = () => {
             tabList={tabs}
             handleChangeTab={setTab}
           />
-          <TeamsList activeTab={tab} />
+          {/* <TeamsList activeTab={tab} /> */}
         </div>
         {items.length > 1 && (
           <div className={cls.pagination}>

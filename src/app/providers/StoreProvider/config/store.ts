@@ -11,6 +11,7 @@ import { $royalApi } from 'shared/api/royalApi';
 import { userTanksReducer } from 'entities/Lesta/model/slice/lestaTanksSlice';
 import { userDataReducer } from 'entities/Lesta/model/slice/userDataSlice';
 import { userSessionReducer } from 'entities/Lesta/model/slice/userSessionSlice';
+import { starsReducer } from 'features/playersLeaderboard';
 import { filterReducer, sortReducer } from 'features/Filter';
 import { StateSchema } from './StateSchema';
 import { createReducerManager } from './reducerManager';
@@ -34,6 +35,7 @@ export function createReduxStore(
     teams: teamReducer,
     lestaClanData: clanReducers,
     userTanks: userTanksReducer,
+    stars: starsReducer,
     filter: filterReducer,
     sort: sortReducer,
     // async reducers
