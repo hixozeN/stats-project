@@ -7,10 +7,10 @@ import { AuthorizationPage } from 'pages/AuthorizationPage';
 import i18n from 'shared/config/i18n/i18n';
 import { UserProfilePage } from 'pages/UserProfilePage';
 import {
-  RouterUtils, ReduxLayout, AppLayout, RequireAuth,
+  RouterUtils, ReduxLayout, AppLayout, RequireAuth, UserHOC,
 } from 'layouts';
 import { TournamentsPage } from 'pages/TournamentsPage';
-import TeamsPage from 'pages/TeamsPage/ui/TeamsPage';
+import { TeamsPage } from 'pages/TeamsPage';
 import { TeamPage } from 'pages/TeamPage';
 import { UserPage } from 'pages/UserPage';
 import { AuthorizationLestaPage } from 'pages/AuthorizationLestaPage/AuthorizationLestaPage';
@@ -84,6 +84,10 @@ export const routerConfiguration = createBrowserRouter([
                 element: <MainPage />,
               },
               {
+                path: RoutePath.user_id,
+                element: <UserHOC />,
+              },
+              {
                 path: RoutePath.user,
                 element: <UserPage />,
               },
@@ -114,10 +118,6 @@ export const routerConfiguration = createBrowserRouter([
               {
                 path: RoutePath.friends,
                 element: <div>{i18n.t('friends')}</div>,
-              },
-              {
-                path: RoutePath.user_id,
-                element: <div>{i18n.t('user')}</div>,
               },
               {
                 path: RoutePath.auth,
@@ -156,11 +156,11 @@ export const routerConfiguration = createBrowserRouter([
                       },
                       {
                         path: RoutePath.profile_blacklist,
-                        element: <div>{i18n.t('blacklist')}</div>,
+                        element: <div>{i18n.t('Данный раздел находится в разработке \uD83D\uDEE0')}</div>,
                       },
                       {
                         path: RoutePath.profile_sessions,
-                        element: <div>{i18n.t('sessions')}</div>,
+                        element: <div>{i18n.t('Данный раздел находится в разработке \uD83D\uDEE0')}</div>,
                       },
                     ],
                   },
