@@ -1,13 +1,4 @@
 {
-  "Рейтинг": "Rating",
-  "Лучшие команды": "Best teams",
-  "Рейтинг игроков": "Top players",
-  "Турниры": "Tournaments",
-  "Ладдеры": "Ladders",
-  "Регулярные": "Regular",
-  "О площадке": "About us",
-  "Поддержка": "Support",
-  "Как играть": "How to play",
-  "Пользовательское соглашение": "User agreement",
-  "Все права защищены.": "All rights reserved."
+  "USER_AGREEMENT": "User agreement",
+  "COPYRIGHT": "Developed by the RoyalArena team"
 }
