@@ -1,5 +1,5 @@
-export const CLIENT_URL = 'https://royalarena.ru';
-export const DEFAULT_TITLE = 'Статистика и турниры Tanks Blitz | RoyalArena.ru';
+export const CLIENT_URL = 'https://blitzstats.ru';
+export const DEFAULT_TITLE = 'Статистика и турниры Tanks Blitz | BlitzStats.ru';
 export const DEFAULT_KEYWORDS = [
   'статистика Tanks Blitz', 'статистика world of tanks blitz', 'статистика wot blitz',
   'статистика в танках', 'неофициальная статистика', 'отслеживание сессий tanks blitz',

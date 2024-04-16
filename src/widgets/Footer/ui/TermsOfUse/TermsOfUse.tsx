@@ -52,7 +52,7 @@ export const TermsOfUse = (props: ITermsOfUse) => {
             <span className={cls.bold}>Контактная информация: </span>
             Для связи с сервисом и разрешения возможных вопросов, пользователи могут обращаться по электронной почте:
             {' '}
-            <a href="mailto:contact@royalarena.ru" className={cls.link}>contact@royalarena.ru</a>
+            <a href="mailto:contact@blitzstats.ru" className={cls.link}>contact@blitzstats.ru</a>
           </li>
         </ol>
       </div>
