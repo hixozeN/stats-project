@@ -98,6 +98,14 @@ export const Tanks = memo(({ tab }: TanksProps) => {
 
   const handleClickUp = useCallback(() => { window.scrollTo(0, 0); }, []);
 
+  if (tab === 1 && !sessionTanks?.length) {
+    return (
+      <section className={cls.tanks}>
+        <h2 className={cls.title}>{t('NO_SESSION_TANKS')}</h2>
+      </section>
+    );
+  }
+
   return (
     <section className={cls.tanks}>
       {isUserDataLoading ? (
@@ -105,7 +113,7 @@ export const Tanks = memo(({ tab }: TanksProps) => {
       ) : (
         <h2 className={cls.title}>{titleFilter()}</h2>
       )}
-      {filterList?.length > 0 && <Filter tab={tab} dataList={getTanksList(tab)} />}
+      <Filter tab={tab} dataList={getTanksList(tab)} />
       <ul className={cls.list}>
         {filterList.slice(0, maxShowMovies).map((data: TUserTanks) => (
           <Tank data={data} key={data.tank_id} tab={tab} />
