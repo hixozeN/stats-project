@@ -1,39 +1,69 @@
-.tanks {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px;
-}
+.filterPanel {
+  display: grid;
+  margin: 25px 10px;
+  position: relative;
+  width: 100%;
+  grid-template-columns: 280px 1fr 280px;
 
-.title {
-  font-size: 18px;
-  font-weight: 500;
-  line-height: normal;
-  margin: 0;
+  @media (width <= 768px) {
+    margin: 15px 0;
+  }
 }
 
 .sortList {
   display: flex;
   list-style: none;
   gap: 15px;
+
+  @media screen and (width <= 1280px) {
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: var(--bg-navmenu);
+    box-shadow: var(--shadow-menu);
+    border-radius: 4px;
+    padding: 1px 4px;
+    z-index: var(--overlay-index);
+    opacity: 0;
+    transition: all 0.2s;
+    visibility: hidden;
+    display: flex;
+    transform: translateY(-50px);
+  }
 }
 
-.wrapper {
+.openSort {
+  overflow: auto;
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(20px);
+}
+
+.overlay {
+  display: none;
   position: fixed;
-  display: flex;
-  z-index: -1;
   top: 0;
-  right: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--bg-color-50-opacity);
-  justify-content: flex-end;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / 20%);
+  z-index: 1;
+}
+
+.overlayActive {
+  display: block;
+  cursor: pointer;
 }
 
 .filterForm {
+  position: fixed;
   max-width: 520px;
+  top: 0;
+  bottom: 0;
   width: 100%;
-  left: 520px;
+  right: -530px;
   padding: 25px;
   background-color: var(--bg-color);
   border-top-left-radius: 15px;
@@ -42,16 +72,86 @@
   border-right: none;
   display: flex;
   flex-direction: column;
-  position: relative;
-  transition: transform 0.5s;
+  transition: all 0.5s;
+  transition-timing-function: cubic-bezier(0.68, 1.55, 0.265, 1);
+  z-index: 10;
 }
 
 .open {
-  z-index: 10;
+  transform: translateX(-530px);
+}
 
-  & .filterForm {
-    transform: translateX(-520px);
-    transition-timing-function: cubic-bezier(0.68, 1.55, 0.265, 1);
+.buttonFilter {
+  background-color: var(--button-default);
+  color: var(--button-primary-color);
+  max-width: 170px;
+  gap: 5px;
+  margin-left: auto;
+
+  @media (hover: hover) {
+    &:hover {
+      box-shadow: 0 0 15px 1px var(--button-hover);
+      opacity: 1;
+    }
+  }
+
+  @media screen and (width <= 768px) {
+    font-size: small;
+    max-width: 130px;
+  }
+
+  @media screen and (width <= 440px) {
+    font-size: 0;
+    min-width: 0;
+    max-width: 42px;
+    gap: 0;
+  }
+}
+
+.buttonSort {
+  outline: 1px solid var(--bg-stat-item);
+  display: none;
+  min-width: 170px;
+
+  @media screen and (width <= 1280px) {
+    display: flex;
+
+    @media (hover: hover) {
+      &:hover {
+        & button {
+          opacity: 1;
+          color: var(--accent-color);
+        }
+
+        color: var(--accent-color);
+        outline: 1px solid var(--accent-color);
+
+        & svg path {
+          fill: var(--accent-color);
+        }
+      }
+    }
+  }
+
+  @media screen and (width <= 768px) {
+    font-size: 0;
+    min-width: 42px;
+    gap: 0;
+  }
+}
+
+.sortWrapper {
+  position: relative;
+  min-width: 170px;
+  display: flex;
+  justify-self: center;
+
+  @media (width <= 1280px) {
+    margin-left: auto;
+  }
+
+  @media screen and (width <= 768px) {
+    min-width: 0;
   }
 }
 
@@ -148,6 +248,9 @@
   width: 16px;
 }
 
+.tier, .nation, .mark_of_mastery, .text {
+  width: 100%;
+}
 
 @media (hover: hover) {
   .label:hover {
@@ -167,6 +270,16 @@
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+@media (width <= 1280px) {
+  .filterPanel {
+    display: flex;
+  }
+
+  .buttonFilter {
+    margin-left: 25px;
+  }
 }
 
 @media (width <= 1024px) {
@@ -204,9 +317,5 @@
     justify-content: space-around;
     padding: 0 10px;
     margin-bottom: 15px;
-  }
-
-  .title {
-    font-size: 14px;
   }
 }

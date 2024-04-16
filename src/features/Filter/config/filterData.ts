@@ -1,26 +1,22 @@
 export interface FilterTanks {
-  name: string;
-  text: string;
+  nameParam: 'tier' | 'type' | 'nation' | 'mark_of_mastery';
   values: string[];
   param: string;
 }
 
 export const filterData: FilterTanks[] = [
   {
-    name: 'tier',
-    text: 'Уровень',
+    nameParam: 'tier',
     values: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
     param: 'tankData.tier',
   },
   {
-    name: 'type',
-    text: 'Тип танка',
+    nameParam: 'type',
     values: ['lightTank', 'mediumTank', 'heavyTank', 'AT-SPG'],
     param: 'tankData.type',
   },
   {
-    name: 'nation',
-    text: 'Нация',
+    nameParam: 'nation',
     values: [
       'uk',
       'germany',
@@ -35,11 +31,27 @@ export const filterData: FilterTanks[] = [
     param: 'tankData.nation',
   },
   {
-    name: 'mastery',
-    text: 'Классность',
+    nameParam: 'mark_of_mastery',
     values: ['4', '3', '2', '1'],
-    param: 'mark_of_mastery',
+    param: 'statistics.mark_of_mastery',
   },
 ];
 
-// export const sortData = ['Побед', 'Ср. урон', 'WN8', 'Фильтр'];
+// export const getFilterItem = (tab: number) => (tab === 1
+//   ? filterData.filter((item) => item.nameParam !== 'mark_of_mastery')
+//   : filterData);
+
+// export const clearFiterData = filterData.reduce((result, item) => {
+//   const value = item.values.reduce(
+//     (resultInner, itemInner) => ({
+//       ...resultInner,
+//       [`${itemInner}`]: false,
+//     }),
+//     {},
+//   );
+
+//   return {
+//     ...result,
+//     [`${item.param}`]: value,
+//   };
+// }, <Record<string, Record<string, boolean>>>{});

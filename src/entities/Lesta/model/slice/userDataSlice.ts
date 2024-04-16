@@ -53,6 +53,7 @@ export const userDataSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchUserDataByLestaId.pending, (state) => {
+        state.clan = null;
         state.error = '';
         state.isLoading = true;
         state.isNotFound = false;

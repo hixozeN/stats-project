@@ -1,0 +1,23 @@
+{
+  "uk": "UK",
+  "germany": "Germany",
+  "china": "China",
+  "european": "European",
+  "other": "Other",
+  "ussr": "USSR",
+  "usa": "USA",
+  "france": "France",
+  "japan": "Japan",
+  "lightTank": "Light tank",
+  "mediumTank": "Medium tank",
+  "heavyTank": "Heavy tank",
+  "AT-SPG": "AT-SPG",
+  "tier": "Tier",
+  "type": "Type",
+  "nation": "Nation",
+  "mark_of_mastery": "Mark of mastery",
+  "throw_off": "Throw off",
+  "to_filter": "To filter",
+  "filter": "Filter",
+  "sorting": "Sorting"
+}

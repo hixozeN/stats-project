@@ -1,0 +1,183 @@
+.tableRow {
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  grid-template-columns: 40px 250px repeat(4, 1fr);
+  outline: 1px solid var(--bg-stat-item);
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 0 40px;
+  position: relative;
+  transition: transform 0.2s ease-in;
+
+  @media screen and (width <= 768px) {
+    max-width: 550px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 5px;
+    justify-content: center;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    grid-template-areas:
+      "nickname nickname"
+      "battles winrate"
+      "damage wn8";
+
+    .battles {
+      grid-area: battles;
+      justify-self: flex-end;
+    }
+
+    .winrate {
+      grid-area: winrate;
+      margin-right: auto;
+    }
+
+    .damage {
+      grid-area: damage;
+      justify-self: flex-end;
+    }
+
+    .wn8 {
+      grid-area: wn8;
+      margin-right: auto;
+    }
+  }
+}
+
+.tableRow:nth-child(2n) {
+  background-color: rgb(221 220 220 / 2%);
+}
+
+.player {
+  padding: 25px 0;
+  z-index: 2;
+
+  @media screen and (width <= 768px) {
+    padding: 0;
+    grid-area: nickname;
+    text-align: center;
+  }
+}
+
+.tableRow::before {
+  outline: 1px solid var(--secondary-color);
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  content: attr(data-position);
+
+  @media screen and (width <= 768px) {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+
+  @media screen and (width <= 450px) {
+    display: none;
+  }
+}
+
+.tableRow:nth-child(1)::before {
+  outline: 1px solid var(--accent-color);
+}
+
+.tableRow:nth-child(2)::before {
+  outline: 1px solid var(--stats-aqua-color);
+}
+
+.tableRow:nth-child(3)::before {
+  outline: 1px solid var(--stats-green-color);
+}
+
+.link {
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: var(--transition-default);
+  padding: 25px 5px;
+
+  &.player {
+    font-weight: 500;
+  }
+
+  &.clan {
+    color: var(--secondary-color);
+  }
+
+  @media screen and (width <= 768px) {
+    padding: 0 5px;
+  }
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media screen and (width <= 768px) {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, 60px);
+    gap: 5px;
+  }
+
+  @media screen and (width <= 450px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.columnName {
+  font-size: var(--font-size-m);
+  font-weight: 500;
+  color: var(--inverted-primary-color);
+
+  @media screen and (width <= 768px) {
+    font-size: 14px;
+  }
+}
+
+.columnValue {
+  font-size: var(--font-size-m);
+
+  @media screen and (width <= 768px) {
+    font-size: 14px;
+  }
+}
+
+@media screen and (hover: hover) {
+  .link:hover {
+    color: var(--accent-color);
+  }
+
+  .tableRow:hover {
+    cursor: pointer;
+    outline: 1px solid var(--accent-color);
+    transform: scale(1.01);
+
+    & .player {
+      color: var(--accent-color);
+    }
+
+    & .clan {
+      color: var(--primary-color);
+    }
+  }
+}
+
+@media screen and (width <= 450px) {
+  .tableRow:nth-child(1) {
+    outline: 1px solid var(--accent-color);
+  }
+
+  .tableRow:nth-child(2) {
+    outline: 1px solid var(--stats-aqua-color);
+  }
+
+  .tableRow:nth-child(3) {
+    outline: 1px solid var(--stats-green-color);
+  }
+}

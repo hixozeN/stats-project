@@ -1,64 +1,47 @@
-import { FC } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Logo } from 'shared/ui/Logo/Logo';
-import DiscordIcon from 'shared/assets/icons/discord.svg';
-import YoutubeIcon from 'shared/assets/icons/youtube.svg';
 import Crown from 'shared/assets/icons/crown.svg';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
-import { dataList } from '../config/dataList';
+import { FooterSocials } from './FooterSocials/FooterSocials';
+import { TermsOfUse } from './TermsOfUse/TermsOfUse';
 import cls from './Footer.module.scss';
 
 interface FooterProps {
   className?: string;
+  isCollapsed?: boolean;
 }
 
-export const Footer: FC<FooterProps> = ({ className }) => {
+export const Footer = (props : FooterProps) => {
+  const { className, isCollapsed } = props;
   const { t } = useTranslation('footer');
   const currentYear = new Date().getFullYear();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const handleClose = useCallback(() => {
+    setIsOpen(false);
+  }, []);
 
   return (
-    <footer className={classNames(cls.Footer, {}, [className])}>
-      <Crown className={cls.crownBackground} />
-      <div className={cls.wrapper}>
-        <Logo theme="footer" />
-        <nav>
-          <ul className={cls.list}>
-            {dataList.map(({ id, title, list }) => (
-              <li className={cls.item} key={id}>
-                <h2 className={cls.title}>{t(title)}</h2>
-                <ul className={classNames(cls.list, {}, [cls.inner])}>
-                  {list.map(({ name, link }) => (
-                    <li
-                      className={classNames(cls.item, {}, [])}
-                      key={`${name}-${link}`}
-                    >
-                      <AppLink
-                        theme={AppLinkTheme.PRIMARY}
-                        to={link}
-                        className={cls.link}
-                      >
-                        {t(name)}
-                      </AppLink>
-                    </li>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <div className={cls.socials}>
-          <AppLink to="/" theme={AppLinkTheme.PRIMARY}>
-            <DiscordIcon />
-          </AppLink>
-          <AppLink to="/" theme={AppLinkTheme.PRIMARY}>
-            <YoutubeIcon />
-          </AppLink>
+    <>
+      <footer className={classNames(cls.Footer, { [cls.collapsed]: !isCollapsed }, [className])}>
+        <Crown className={cls.crownBackground} />
+        <div className={classNames(cls.container, { }, [])}>
+          <div className={cls.wrapper}>
+            <FooterSocials />
+            <button
+              className={classNames(cls.button, {}, [cls.darkText])}
+              type="button"
+              onClick={() => setIsOpen(true)}
+            >
+              {t('USER_AGREEMENT')}
+            </button>
+          </div>
+          <span className={classNames(cls.copyright, {}, [cls.darkText])}>
+            {`${t('COPYRIGHT')} © ${currentYear}` }
+          </span>
         </div>
-      </div>
-      <p className={classNames(cls.copyright, {}, [cls.darkText])}>
-        {`${t('Все права защищены.')} ${currentYear}`}
-      </p>
-    </footer>
+      </footer>
+      <TermsOfUse isOpen={isOpen} handleClose={handleClose} />
+    </>
   );
 };

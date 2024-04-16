@@ -1,0 +1,79 @@
+.sortItem {
+  display: flex;
+  outline: 1px solid var(--bg-stat-item);
+  border-radius: 5px;
+  margin-bottom: auto;
+  background-color: var(--bg-card);
+  
+  & button {
+    gap: 0;
+    color: var(--primary-color);
+
+    & span {
+      display: none;  
+    }
+  }
+
+  @media screen and (width <= 1280px) {
+    outline: none;
+    border-radius: 0;
+    background-color: transparent;
+    border-bottom: 1px solid var(--secondary-color);
+
+    &:last-child {
+      border: none;
+    }
+
+    & button {
+      min-width: 162px;
+    }
+  }
+
+  @media screen and (width <= 768px) {
+    font-size: 12px;
+  }
+
+  @media screen and (width <= 440px) {
+    font-size: 12px;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      & button {
+        opacity: 1;
+        color: var(--accent-color);
+      }
+
+      color: var(--accent-color);
+      outline: 1px solid var(--accent-color);
+
+      & svg path {
+        fill: var(--accent-color);
+      }
+
+      @media screen and (width <= 1280px) {
+        outline: none;
+      }
+    }
+  }
+}
+
+.up svg {
+  transform: rotate(180deg);
+}
+
+.down svg {
+  transform: rotate(0);
+}
+
+.activeArrow button {
+  color: var(--accent-color);
+
+  & span {
+    display: flex;
+  }
+
+  @media screen and (width > 1280px) {
+    outline: 1px solid var(--accent-color);
+  }
+}

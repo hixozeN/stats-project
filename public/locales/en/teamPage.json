@@ -5,9 +5,10 @@
   "Боёв": "Battles",
   "Винрейт": "Winrate",
   "WN8": "WN8",
-  "Последний бой": "Last battle",
+  "В бою": "Last battle",
   "В клане": "Joined Clan",
   "Побед": "Wins",
   "Урон": "Damage",
-  "Участников": "Members"
+  "Участников": "Members",
+  "UNDER_CONSTRUCTION": "The clan section is currently under development, but you can already use the search and find the clan you are interested in."
 }

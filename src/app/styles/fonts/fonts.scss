@@ -46,5 +46,52 @@
   font-weight: 900;
   font-display: swap;
   src: url("app/styles/fonts/Roboto-Black.ttf") format("truetype");
+}
 
+@font-face {
+  font-family: Play;
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url("app/styles/fonts/Play-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Play;
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("app/styles/fonts/Play-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Play;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("app/styles/fonts/Play-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Play;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("app/styles/fonts/Play-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Play;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("app/styles/fonts/Play-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Play;
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("app/styles/fonts/Play-Bold.ttf") format("truetype");
 }

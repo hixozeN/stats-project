@@ -27,8 +27,6 @@ export const getUserPrivateData = (state: StateSchema) => state?.lestaUserData?.
 
 // лестовские данные
 export const getUserLestaId = (state: StateSchema) => state?.lestaUserData?.personal?.lestaData?.account_id || null;
-export const getUserLestaToken = (state: StateSchema) => state?.lestaUserData?.personal?.lestaData?.access_token || '';
-export const getUserLestaTokenEAT = (state: StateSchema) => state?.lestaUserData?.personal?.lestaData?.expires_at || '';
 
 // основная статистика
 export const getUserStats = (state: StateSchema) => state?.lestaUserData?.statistics || null;

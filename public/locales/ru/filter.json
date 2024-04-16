@@ -11,5 +11,13 @@
   "lightTank": "Легкий",
   "mediumTank": "Средний",
   "heavyTank": "Тяжелый",
-  "AT-SPG": "ПТ-САУ"
+  "AT-SPG": "ПТ-САУ",
+  "tier": "Уровень",
+  "type": "Тип танка",
+  "nation": "Нация",
+  "mark_of_mastery": "Классность",
+  "throw_off": "Сбросить",
+  "to_filter": "Фильтровать",
+  "filter": "Фильтр",
+  "sorting": "Сортировка"
 }

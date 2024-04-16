@@ -1,13 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { authByLestaOpenID } from 'features/AuthUser/index';
+import { patchCurrentUser } from 'features/editCurrentUserPorfile/index';
+import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
+import { logoutUser } from '../services/logoutUser/logoutUser';
+import { checkUserAuth } from '../services/checkUserAuth/checkUserAuth';
 import { User, UserSchema } from '../types/user';
 
 const initialState: UserSchema = {
-  isLoggedIn: false,
-  authData: null,
+  isLoggedIn: !!localStorage.getItem(LOCAL_STORAGE_USER_KEY),
+  isInitiated: false,
 };
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: 'currentUser',
   initialState,
   reducers: {
     setAuthData: (state, action: PayloadAction<User>) => {
@@ -21,6 +26,46 @@ export const userSlice = createSlice({
       state.authData = null;
       state.isLoggedIn = false;
     },
+    setError: (state, action: PayloadAction<string>) => {
+      state.error = action.payload;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(checkUserAuth.pending, (state) => {
+        state.error = '';
+        state.isLoading = true;
+        state.isInitiated = true;
+        state.isTokenRefreshing = true;
+      })
+      .addCase(checkUserAuth.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.isLoading = false;
+        state.isLoggedIn = false;
+        state.isTokenRefreshing = false;
+        localStorage.clear();
+      })
+      .addCase(checkUserAuth.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.isLoggedIn = true;
+        state.isTokenRefreshing = false;
+        state.authData = payload;
+      })
+      .addCase(authByLestaOpenID.fulfilled, (state, { payload }) => {
+        state.isLoggedIn = true;
+        state.authData = payload;
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.isLoggedIn = false;
+        state.authData = null;
+        localStorage.clear();
+      })
+      .addCase(patchCurrentUser.fulfilled, (state, { payload }) => {
+        state.authData = { ...state.authData, ...payload };
+      })
+      .addCase(patchCurrentUser.rejected, (state, { payload }) => {
+        state.updateProfileError = payload;
+      });
   },
 });
 

@@ -36,8 +36,8 @@
   transition: all 0.5s;
 
   &.open {
-    transform: translateY(360px);
     transition-timing-function: cubic-bezier(0.68, 1.55, 0.265, 1);
+    transform: translateY(360px);
   }
 }
 

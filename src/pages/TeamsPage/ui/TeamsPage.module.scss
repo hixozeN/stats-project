@@ -13,13 +13,48 @@
 
   @media screen and (width <= 1024px) {
     border-radius: 0;
+    padding: 28px 30px;
+  }
+
+  @media screen and (width <= 768px) {
+    border-radius: 0;
+    padding: 28px 10px;
   }
 }
 
 .wrapper {
   width: 100%;
-  max-width: 1920px;
+  max-width: 80%;
+  min-height: 100%;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (width <= 1024px) {
+    max-width: 100%;
+  }
+}
+
+.title {
+  padding: 100px;
+  outline: 1px solid var(--bg-stat-item);
+  background-color: rgb(0 0 0 / 20%);
+  border-radius: 15px;
+  max-width: 768px;
+  font: var(--font-xl);
+  text-align: center;
+
+  @media screen and (width <= 768px) {
+    font: var(--font-l);
+    padding: 50px 20px;
+  }
+
+  @media screen and (width <= 450px) {
+    font: var(--font-m);
+    font-weight: 500;
+    padding: 50px 10px;
+  }
 }
 
 .test {

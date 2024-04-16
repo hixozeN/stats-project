@@ -32,11 +32,16 @@
   border-radius: 50%;
   background-color: var(--bg-accent-color);
   text-align: center;
+  visibility: hidden;
+}
+
+.notificationActive {
+  visibility: visible;
 }
 
 .active {
   color: var(--highlight-color);
-  background-color: var(--button-pressed);
+  background-color: var(--accent-color);
   border-radius: 5px;
 
   & svg path {
@@ -161,7 +166,7 @@
 
 @media (hover: hover) {
   .SidebarItem:hover {
-    background-color: var(--button-hover);
+    background-color: var(--button-pressed);
   }
 
   .SidebarItem:focus {
