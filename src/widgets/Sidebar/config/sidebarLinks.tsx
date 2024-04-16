@@ -3,7 +3,7 @@ import MatchIcon from 'shared/assets/icons/Sidebar/matches.svg';
 import TournamentIcon from 'shared/assets/icons/Sidebar/tournaments.svg';
 import TeamsIcon from 'shared/assets/icons/Sidebar/teams.svg';
 import FriendIcon from 'shared/assets/icons/Sidebar/friends.svg';
-import AdminIcon from 'shared/assets/icons/Sidebar/admin.svg';
+// import AdminIcon from 'shared/assets/icons/Sidebar/admin.svg';
 
 export const dataList = [
   {
@@ -14,9 +14,9 @@ export const dataList = [
   },
   {
     id: 1,
-    name: 'Матчи',
+    name: 'Статистика',
     icon: <MatchIcon />,
-    link: '/matches',
+    link: '/user',
   },
   {
     id: 2,
@@ -32,14 +32,14 @@ export const dataList = [
   },
   {
     id: 4,
-    name: 'Друзья',
+    name: 'Профиль',
     icon: <FriendIcon />,
-    link: '/friends',
+    link: '/profile',
   },
-  {
-    id: 5,
-    name: 'Админка',
-    icon: <AdminIcon />,
-    link: '/',
-  },
+  // {
+  //   id: 5,
+  //   name: 'Админка',
+  //   icon: <AdminIcon />,
+  //   link: '/',
+  // },
 ];

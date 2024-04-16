@@ -30,8 +30,12 @@
   "Новая сессия": "New session",
   "Изображение лиги пользователя в виде цветного щита": "Illustration of player's league by colored shield",
   "Или можете войти с помощью LestaID": "Or you can sign in by LestaID",
-  "Сессии": "Сессии",
-  "История сессий": "История сессий",
-  "Автообновление": "Автообновление",
-  "Закрыть список сессий": "Закрыть список сессий"
+  "Сессии": "Sessions",
+  "История сессий": "Sessions history",
+  "Настройки": "Settings",
+  "Автообновление": "Auto-update",
+  "Обновить данные": "Update data",
+  "Закрыть список сессий": "Close sessions list",
+  "Профиль": "Profile",
+  "UNDER_CONSTRUCTION": "This section is under development \uD83D\uDEE0"
 }

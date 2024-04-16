@@ -1,6 +1,8 @@
 import React, { memo, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { searchActions } from 'features/Search/index';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { DeviceContext } from '../../Search/Search';
 import { MobileContext } from '../../SearchMobile/SearchMobile';
 import { DesktopContext } from '../../SearchDesktop/SearchDesktop';
@@ -25,8 +27,10 @@ export const DropdownItem = memo((props: IDropdownItem) => {
   const { isMobile } = useContext(DeviceContext);
   const { setIsOpenPopup } = useContext(MobileContext);
   const { setIsOpen } = useContext(DesktopContext);
+  const dispatch = useAppDispatch();
 
   const handleClose = () => {
+    dispatch(searchActions.setSearch(''));
     if (isMobile) {
       setIsOpenPopup(false);
     } else {
