@@ -13,7 +13,7 @@ import { getUserData } from 'entities/User/model/selectors/getUserData/getUserDa
 import { useSizeScreen } from 'shared/hooks/useSizeScreen';
 import { Menu } from 'shared/ui/Menu';
 import { useClickOutside } from 'shared/hooks/useClickOutside';
-import { Dropdown } from 'features/Dropdown/Dropdown';
+import { Notification } from 'entities/Notification';
 import cls from './Navbar.module.scss';
 
 interface INavbarProps {
@@ -29,10 +29,17 @@ export const Navbar = memo(({ className }: INavbarProps) => {
   const { t } = useTranslation('nav');
   const { width } = useSizeScreen();
   const notificationRef = useRef(null);
+  const profileDropdownRef = useRef(null);
 
   useClickOutside(notificationRef, () => {
     if (!isOpenPopup) return null;
     if (isOpenPopup) setTimeout(() => setIsOpenPopup(false), 150);
+    return null;
+  });
+
+  useClickOutside(profileDropdownRef, () => {
+    if (!isOpenMenu) return null;
+    if (isOpenMenu) setTimeout(() => setOpenMenu(false), 150);
     return null;
   });
 
@@ -55,10 +62,6 @@ export const Navbar = memo(({ className }: INavbarProps) => {
   if (isLoggedIn) {
     return (
       <>
-        <div
-          className={classNames(cls.overlay, { [cls.overlayOpened]: isOpenMenu })}
-          onClick={handleClickMenu}
-        />
         <div className={cls.navWrapper}>
           <Button
             type="button"
@@ -73,6 +76,7 @@ export const Navbar = memo(({ className }: INavbarProps) => {
               { [cls.open]: isOpenMenu },
               [],
             )}
+            ref={profileDropdownRef}
           >
             <Menu theme="navbar" cb={handleClickMenu} />
           </nav>
@@ -86,9 +90,9 @@ export const Navbar = memo(({ className }: INavbarProps) => {
             <span className={cls.userName}>{userData?.username ?? ''}</span>
           </Button>
         </div>
-        <Dropdown isOpen={isOpenPopup} dropdownRef={notificationRef}>
+        <Notification isOpen={isOpenPopup} dropdownRef={notificationRef}>
           <span>{t('Нет уведомлений')}</span>
-        </Dropdown>
+        </Notification>
       </>
     );
   }
