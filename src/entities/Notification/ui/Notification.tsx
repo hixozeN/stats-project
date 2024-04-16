@@ -1,15 +1,15 @@
 import React, { ReactNode } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import cls from './Dropdown.module.scss';
+import cls from './Notification.module.scss';
 
-interface IDropdown {
+interface INotification {
   className?: string,
   isOpen?: boolean;
   children?: ReactNode,
   dropdownRef?: React.Ref<HTMLDivElement>,
 }
 
-export const Dropdown = (props: IDropdown) => {
+export const Notification = (props: INotification) => {
   const {
     className, isOpen, dropdownRef, children,
   } = props;
