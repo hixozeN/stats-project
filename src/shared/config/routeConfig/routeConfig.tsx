@@ -67,6 +67,7 @@ export const RoutePath: OptionalRecord<AppRoutes, string> = {
   [AppRoutes.PROFILE_HISTORY]: '/profile/history',
   [AppRoutes.PROFILE_SETTINGS]: '/profile/settings',
   [AppRoutes.PROFILE_BLACKLIST]: '/profile/blacklist',
+  [AppRoutes.AUTH_CONNECT_LESTA]: '/auth/connect',
 };
 
 export const routerConfiguration = createBrowserRouter([

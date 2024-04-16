@@ -8,7 +8,7 @@ import { Sidebar } from 'widgets/Sidebar';
 import { LOCAL_STORAGE_LESTA } from 'shared/consts/localstorage';
 import {
   getLoggedInStatus, getUserAuthInitiation,
-  checkUserAuth, getCurrentUserError,
+  checkUserAuth, getCurrentUserError, getFullUserState,
 } from 'entities/User';
 import Loader from 'shared/ui/Loader/Loader';
 import { Header } from 'widgets/Header';
@@ -25,6 +25,7 @@ function AppLayout() {
   const { theme } = useTheme();
   const isAuthInitiated = useSelector(getUserAuthInitiation);
   const isLoggedIn = useSelector(getLoggedInStatus);
+  const isAuthLoading = useSelector(getFullUserState).isLoading;
   const currentUserError = useSelector(getCurrentUserError);
   const isMainPage = useMatch(RoutePath.main);
   const dispatch = useAppDispatch();
@@ -72,6 +73,10 @@ function AppLayout() {
   useEffect(() => {
     if (isMainPage) handleOpenAuth();
   }, [isMainPage, handleOpenAuth]);
+
+  if (isAuthLoading || !isAuthInitiated) {
+    return <Loader />;
+  }
 
   return (
     <Suspense fallback={<Loader />}>
