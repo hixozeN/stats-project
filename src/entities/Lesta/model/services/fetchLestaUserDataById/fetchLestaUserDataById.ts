@@ -29,7 +29,7 @@ export const fetchLestaUserDataById = createAsyncThunk<
     // обновляем сессию игрока
     if (shouldRefreshSession) {
       await extra.royalApi.patch(
-        'http://localhost:3030/sessions/update',
+        '/sessions/update',
         {},
         { withCredentials: true },
       );

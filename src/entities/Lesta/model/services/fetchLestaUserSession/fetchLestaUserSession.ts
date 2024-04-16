@@ -24,7 +24,7 @@ export const fetchLestaUserSessionById = createAsyncThunk<
     try {
     // обновляем сессию игрока
       if (shouldRefreshSession) {
-        await extra.royalApi.get(`http://localhost:3030/sessions/v2/${sessionId}`);
+        await extra.royalApi.get(`/sessions/v2/${sessionId}`);
       }
 
       // отправляем пост запрос через аксиос с собранными данными
