@@ -4,13 +4,15 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { useSelector } from 'react-redux';
 import { getLoggedInStatus, getUserData } from 'entities/User';
-import {
-  memo, useCallback, useEffect, useState,
+import React, {
+  memo, useCallback, useEffect, useRef, useState,
 } from 'react';
 import LoginIcon from 'shared/assets/icons/button/login.svg';
 import { Button } from 'shared/ui/Button/Button';
 import { useSizeScreen } from 'shared/hooks/useSizeScreen';
 import { Menu } from 'shared/ui/Menu';
+import { useClickOutside } from 'shared/hooks/useClickOutside';
+import { Notification } from 'entities/Notification';
 import cls from './Navbar.module.scss';
 
 interface INavbarProps {
@@ -20,12 +22,25 @@ interface INavbarProps {
 export const Navbar = memo(({ className }: INavbarProps) => {
   const [isOpenMenu, setOpenMenu] = useState(false);
   const [isMobile, setMobile] = useState(false);
+  const [isOpenPopup, setIsOpenPopup] = useState(false);
   const isLoggedIn = useSelector(getLoggedInStatus);
   const userData = useSelector(getUserData);
   const { t } = useTranslation('nav');
   const { width } = useSizeScreen();
+  const notificationRef = useRef(null);
+  const profileDropdownRef = useRef(null);
 
-  const handelClick = useCallback(() => {}, []);
+  useClickOutside(notificationRef, () => {
+    if (!isOpenPopup) return null;
+    if (isOpenPopup) setTimeout(() => setIsOpenPopup(false), 150);
+    return null;
+  });
+
+  useClickOutside(profileDropdownRef, () => {
+    if (!isOpenMenu) return null;
+    if (isOpenMenu) setTimeout(() => setOpenMenu(false), 150);
+    return null;
+  });
 
   const handleClickMenu = useCallback(() => {
     setOpenMenu(false);
@@ -46,20 +61,13 @@ export const Navbar = memo(({ className }: INavbarProps) => {
   if (isLoggedIn) {
     return (
       <>
-        <div
-          className={classNames(cls.overlay, { [cls.overlayOpened]: isOpenMenu })}
-          onClick={handleClickMenu}
-        />
         <div className={cls.navWrapper}>
           <Button
             type="button"
             theme="icon"
             variant="notification"
-            onClick={handelClick}
-          >
-            {/* ToDo: количество notification вынести в отдельный компонент из сайдбара и отсюда */}
-            <span className={cls.notification}>2</span>
-          </Button>
+            onClick={() => setIsOpenPopup(!isOpenPopup)}
+          />
 
           <nav
             className={classNames(
@@ -67,6 +75,7 @@ export const Navbar = memo(({ className }: INavbarProps) => {
               { [cls.open]: isOpenMenu },
               [],
             )}
+            ref={profileDropdownRef}
           >
             <Menu theme="navbar" cb={handleClickMenu} />
           </nav>
@@ -80,6 +89,9 @@ export const Navbar = memo(({ className }: INavbarProps) => {
             <span className={cls.userName}>{userData?.username ?? ''}</span>
           </Button>
         </div>
+        <Notification isOpen={isOpenPopup} dropdownRef={notificationRef}>
+          <span>{t('Нет уведомлений')}</span>
+        </Notification>
       </>
     );
   }
