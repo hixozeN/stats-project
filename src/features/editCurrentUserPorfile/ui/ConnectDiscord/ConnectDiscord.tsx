@@ -40,8 +40,6 @@ export const ConnectDiscord = memo((props: ConnectDiscordProps) => {
       ? 'https://discord.com/oauth2/authorize?client_id=1052413956788080641&response_type=token&redirect_uri=https%3A%2F%2Fhixozen.ru%2Fprofile%2Fedit%2F&scope=identify'
       // ? 'https://discord.com/oauth2/authorize?client_id=1052413956788080641&response_type=token&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fprofile%2Fedit%2F%3F&scope=identify'
       // eslint-disable-next-line max-len
-      // : 'https://discord.com/oauth2/authorize?client_id=1052413956788080641&response_type=token&redirect_uri=https%3A%2F%2Froyalarena.ru%2Fprofile%2Fedit%2F&scope=identify';
-      // eslint-disable-next-line max-len
       : 'https://discord.com/oauth2/authorize?client_id=1052413956788080641&response_type=token&redirect_uri=https%3A%2F%2Fhixozen.ru%2Fprofile%2Fedit%2F&scope=identify';
     window.location.replace(url);
   };
