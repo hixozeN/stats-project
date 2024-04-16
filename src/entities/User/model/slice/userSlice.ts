@@ -7,7 +7,8 @@ import { checkUserAuth } from '../services/checkUserAuth/checkUserAuth';
 import { User, UserSchema } from '../types/user';
 
 const initialState: UserSchema = {
-  isLoggedIn: !!localStorage.getItem(LOCAL_STORAGE_USER_KEY),
+  // isLoggedIn: !!localStorage.getItem(LOCAL_STORAGE_USER_KEY),
+  isLoggedIn: false,
   isInitiated: false,
 };
 
