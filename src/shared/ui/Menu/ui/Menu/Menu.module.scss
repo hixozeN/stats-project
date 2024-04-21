@@ -17,6 +17,10 @@
   }
 }
 
+.collapsed {
+  visibility: hidden;
+}
+
 @media screen and (width <= 810px) {
   .list.profileSidebar {
     flex-direction: row;

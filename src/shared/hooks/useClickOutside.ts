@@ -21,6 +21,6 @@ export const useClickOutside = (
       };
     }
 
-    return null;
+    return () => undefined;
   }, [handleClick, isMobile]);
 };

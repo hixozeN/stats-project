@@ -7,6 +7,11 @@ export interface BuildPaths {
   src: string;
   locales: string;
   buildLocales: string;
+  favicon: string;
+  iconAndroidBigSize: string;
+  iconAndroidSmallSize: string;
+  iconAppleTouch: string;
+  webManifest: string;
 }
 
 export interface BuildEnv {

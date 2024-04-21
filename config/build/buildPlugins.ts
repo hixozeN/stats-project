@@ -38,6 +38,11 @@ export default function buildPlugins(
     plugins.push(new CopyPlugin({
       patterns: [
         { from: paths.locales, to: paths.buildLocales },
+        { from: paths.favicon, to: paths.build },
+        { from: paths.iconAndroidSmallSize, to: paths.build },
+        { from: paths.iconAndroidBigSize, to: paths.build },
+        { from: paths.iconAppleTouch, to: paths.build },
+        { from: paths.webManifest, to: paths.build },
       ],
     }));
   }

@@ -1,4 +1,3 @@
-import { FC, lazy } from 'react';
-import { IAuthFormProps } from './AuthForm';
+import { lazy } from 'react';
 
-export const AuthFormLazy = lazy<FC<IAuthFormProps>>(() => import('./AuthForm'));
+export const AuthFormLazy = lazy(() => import('./AuthForm'));
