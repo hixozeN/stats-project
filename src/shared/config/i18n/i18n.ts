@@ -18,6 +18,7 @@ i18n
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
     fallbackLng: 'ru',
+    lng: 'ru',
     // глобальная перменная из конфига вебпака, объявленная через webpack.DefinePlugins.
     // isDev мы используем в конфиге вебпака и оттуда же выдергиваем настройку сборки
     debug: IS_DEV,

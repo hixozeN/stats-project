@@ -1,0 +1,162 @@
+.input {
+  max-width: 477px;
+  border-radius: 5px;
+  background: #333239;
+  border: none;
+  outline: none;
+  color: var(--primary-color);
+  padding: 5px 8px;
+}
+
+.span {
+  color: var(--secondary-color);
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.label {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  align-items: center;
+}
+
+.idWrapper {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+}
+
+.iconWrapper {
+  position: relative;
+
+  & svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.popup {
+  position: absolute;
+  top: -45px;
+  right: -100px;
+  padding: 10px;
+  background-color: #2d2d2d;
+  border-radius: 10px 10px 10px 0;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+}
+
+.popupActive {
+  opacity: 1;
+  visibility: visible;
+}
+
+.popupText {
+  font-size: 12px;
+  color: #3fb66f;
+}
+
+.input, .textarea {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.textarea {
+  resize: none;
+  min-height: 82px;
+  max-width: 477px;
+  border-radius: 5px;
+  background: #333239;
+  border: none;
+  outline: none;
+  color: var(--primary-color);
+  padding: 5px 8px;
+  font-size: 14px;
+}
+
+.textarea::-webkit-scrollbar {
+  width: 5px;
+}
+
+.textarea::-webkit-scrollbar-track {
+  background-color: #5A5D66;
+  border-radius: 5px;
+}
+
+.textarea::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: var(--accent-color);
+}
+
+.textarea:focus, .input:focus {
+  outline: 1px solid var(--secondary-color);
+}
+
+.textarea:focus + .span, .input:focus + .span {
+  color: var(--primary-color);
+}
+
+.text {
+  color: var(--primary-color);
+}
+
+.iconClicked {
+  & path {
+    fill: green;
+  }
+}
+
+.error {
+  color: var(--error-color);
+  outline: 1px solid var(--error-color);
+}
+
+.correctValue {
+  color: var(--green-color);
+}
+
+.btnConnectDiscord {
+  height: 34px;
+  width: 100%;
+  max-width: 477px;
+}
+
+/* Меняем стилизацию автокомплита */
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus {
+  border-radius: 5px;
+  -webkit-text-fill-color: var(--primary-color);
+  box-shadow: 0 0 0 1000px rgb(0 0 0 / 0%) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+@media (hover: hover) {
+  .label:hover {
+    cursor: pointer;
+
+    & svg path {
+      fill: var(--primary-color);
+    }
+  }
+
+  .span:hover {
+    color: var(--accent-color);
+  }
+}
+
+@media screen and (width <= 810px) {
+  .span {
+    display: none;
+  }
+
+  .label {
+    display: flex;
+    justify-content: center;
+  }
+
+  .input, .textarea {
+    width: 100%;
+  }
+}

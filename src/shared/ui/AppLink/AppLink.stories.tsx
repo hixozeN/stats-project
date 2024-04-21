@@ -50,6 +50,21 @@ export const SecondaryDark: Story = {
   decorators: [ThemeDecorator(Theme.DARK)],
 };
 
+export const Button: Story = {
+  args: {
+    theme: AppLinkTheme.BUTTON,
+    children: 'Link',
+  },
+};
+
+export const ButtonDark: Story = {
+  args: {
+    theme: AppLinkTheme.BUTTON,
+    children: 'Link',
+  },
+  decorators: [ThemeDecorator(Theme.DARK)],
+};
+
 // export const Dark: Story = {
 //   args: {},
 //   decorators: [ThemeDecorator(Theme.DARK)],

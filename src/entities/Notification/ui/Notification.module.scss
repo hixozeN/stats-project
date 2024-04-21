@@ -1,0 +1,29 @@
+.notification {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  width: 320px;
+  top: 75px;
+  right: 30px;
+  padding: 15px;
+  background-color: var(--input-bg-color);
+  border-radius: 5px;
+  box-shadow: var(--shadow-dropdown);
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.notificationOpened {
+  visibility: visible;
+  opacity: 1;
+}
+
+@media screen and (width <= 768px){
+  .notification {
+    top: 50px;
+    right: 0;
+    width: 100%;
+    padding: 15px 5px;
+  }
+}

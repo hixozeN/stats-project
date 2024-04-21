@@ -1,21 +1,102 @@
 .Sidebar {
-  height: calc(100vh - var(--navbar-height));
-  width: var(--sidebar-width);
-  background: var(--inverted-bg-color);
-  position: relative;
+  height: calc(100svh - var(--navbar-height));
+  padding: 0 20px;
+  background: transparent;
+  position: fixed;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: var(--transition-default);
-}
-
-.collapsed {
-  width: var(--sidebar-collapsed-width);
+  transition: all 0.4s ease-in-out;
+  z-index: 10;
 }
 
 .switchers {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: auto;
   gap: 5px;
+}
+
+.collapsedBtn {
+  position: absolute;
+  right: -32px;
+  bottom: 32px;
+  border-radius: 0 5px 5px 0;
+  z-index: 1;
+}
+
+.navList {
+  margin-top: 27px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.collapsed {
+  padding: 0 10px;
+
+  .switchers {
+    flex-direction: column;
+  }
+}
+
+@media screen and (width <= 1024px) {
+  .navList {
+    margin: 0;
+  }
+
+  .Sidebar {
+    width: 42px;
+    height: 42px;
+    position: fixed;
+    bottom: -117px;
+    left: -117px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: transparent;
+    z-index: 10;
+  }
+
+  .burgerMenu {
+    display: block;
+    border-radius: 50%;
+    box-shadow: var(--shadow-burger-menu);
+    position: absolute;
+    bottom: 141px;
+    left: 141px;
+    z-index: 10;
+    width: 45px;
+    height: 45px;
+  }
+
+  .Sidebar.active .burgerMenu {
+    box-shadow: var(--shadow-opened-button-burger-menu);
+    transform: rotate(90deg);
+  }
+
+  .Sidebar .burgerMenu:active {
+    box-shadow: var(--shadow-active-button-burger-menu);
+  }
+
+  .Sidebar::after {
+    display: block;
+    content: ' ';
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 141px;
+    left: 141px;
+    z-index: -2;
+    background-color: var(--bg-burger-menu);
+    transition: all 0.3s ease;
+  }
+
+  .Sidebar.active::after {
+    box-shadow: 0 2px 5px 0 var(--bg-color);
+    transform: scale3d(7.8, 7.8, 1);
+    transition-timing-function: cubic-bezier(0.68, 1.55, 0.265, 1);
+  }
 }

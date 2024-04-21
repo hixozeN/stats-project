@@ -1,0 +1,75 @@
+.teams {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100%;
+}
+
+.teamCount {
+  color: var(--secondary-color-accent);
+  font-weight: 500;
+}
+
+.teamList {
+  position: relative;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.teamList::after {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  content: "";
+  bottom: 0;
+  background: var(--bg-dark-gradient-container);
+  z-index: var(--overlay-index);
+}
+
+.teamItem {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.teamLogo {
+  width: 42px;
+  height: 42px;
+}
+
+.teamName {
+  font-weight: 500;
+}
+
+.teamRating {
+  color: var(--accent-color);
+  font-weight: 500;
+}
+
+.joinBtn {
+  align-self: center;
+  margin-top: auto;
+  margin-bottom: 14px;
+}
+
+@media screen and (width <= 1555px) {
+  .joinBtn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+  }
+
+  .teamList::after {
+    display: none;
+  }
+}
+
+
+@media screen and (width <= 400px) {
+  .joinBtn {
+    right: 10px;
+  }
+}

@@ -1,0 +1,76 @@
+.Logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 110px;
+  height: 110px;
+  color: var(--accent-color);
+  transition: .4s;
+}
+
+.header {
+  width: 70px;
+  height: 70px;
+  gap: 6px;
+
+  .image {
+    width: 51px;
+    height: 51px;
+    min-height: fill-available;
+  }
+
+  .text {
+    width: 62px;
+    height: 7px;
+  }
+}
+
+.auth {
+  width: 110px;
+
+  .image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .text {
+    width: 98px;
+    height: 11px;
+  }
+}
+
+.footer {
+  width: 170px;
+  height: 170px;
+  gap: 15px;
+
+  .image {
+    width: 124px;
+    height: 124px;
+  }
+
+  .text {
+    width: 162px;
+    height: 17px;
+  }
+
+  @media screen and (width <= 850px) {
+    display: none;
+  }
+}
+
+@media (hover: hover) {
+  .Logo:hover {
+    cursor: pointer;
+
+    svg {
+      overflow:visible
+    }
+
+    .image path {
+      filter: drop-shadow(0 -3px 10px var(--button-danger-default));
+    }
+  }
+}

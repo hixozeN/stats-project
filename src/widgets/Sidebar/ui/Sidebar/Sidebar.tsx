@@ -1,39 +1,87 @@
-import { FC, useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { memo, useCallback, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Button, ThemeButton } from 'shared/ui/Button/Button';
+import { Button } from 'shared/ui/Button/Button';
 import { LangSwitcher } from 'widgets/LangSwitcher';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
+import { useSizeScreen } from 'shared/hooks/useSizeScreen';
+import { dataList } from '../../config/sidebarLinks';
+import { SidebarItem } from '../SidebarItem/SidebarItem';
 import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
   className?: string;
+  isCollapsed?: boolean;
+  // eslint-disable-next-line no-unused-vars
+  setIsCollapsed?: (value: boolean) => void;
 }
 
-export const Sidebar: FC<SidebarProps> = ({ className }) => {
-  const [collapsed, setCollapsed] = useState(false);
-  const { t } = useTranslation();
+export const Sidebar = memo(({
+  className,
+  isCollapsed,
+  setIsCollapsed,
+}: SidebarProps) => {
+  const { width } = useSizeScreen();
+  const [isOpenMenu, setOpenMenu] = useState(false);
 
   const onToggle = () => {
-    setCollapsed((prev) => !prev);
+    setIsCollapsed(!isCollapsed);
   };
 
+  const handleClickBurger = useCallback(() => {
+    setOpenMenu(!isOpenMenu);
+  }, [isOpenMenu]);
+
   return (
-    <div
+    <aside
       data-testid="sidebar"
-      className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [className])}
+      className={classNames(
+        cls.Sidebar,
+        { [cls.collapsed]: isCollapsed, [cls.active]: isOpenMenu },
+        [className],
+      )}
     >
+      {width <= 1024 && (
+        <Button
+          theme="icon-circle"
+          variant="burger"
+          onClick={handleClickBurger}
+          className={classNames(cls.burgerMenu)}
+        />
+      )}
+      <nav>
+        <ul
+          className={classNames(cls.navList, {
+            [cls.active]: isOpenMenu,
+          })}
+        >
+          {dataList.map(({
+            id, name, link, icon,
+          }) => (
+            <SidebarItem
+              key={id}
+              name={name}
+              link={link}
+              isCollapsed={isCollapsed}
+              icon={icon}
+              isOpenMenu={isOpenMenu}
+            />
+          ))}
+        </ul>
+      </nav>
       <Button
         data-testid="sidebar-toggle"
-        theme={ThemeButton.CLEAR}
+        theme="clear"
         onClick={onToggle}
+        className={cls.collapsedBtn}
+        square
+        fontSize="font_l"
       >
-        {collapsed ? t('Открыть сайдбар') : t('Закрыть сайдбар')}
+        {isCollapsed ? '>' : '<'}
       </Button>
       <div className={cls.switchers}>
-        <ThemeSwitcher />
-        <LangSwitcher />
+        {IS_DEV && <ThemeSwitcher />}
+        <LangSwitcher isShort={isCollapsed} />
       </div>
-    </div>
+    </aside>
   );
-};
+});

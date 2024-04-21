@@ -1,0 +1,51 @@
+.profile {
+  padding: 50px;
+  display: flex;
+  justify-content: center;
+
+  // flex-grow: 1;
+  gap: 44px;
+  height: 100%;
+  position: relative;
+}
+
+.wrapper {
+  max-width: 1024px;
+  display: flex;
+  flex-grow: 1;
+  padding: 30px 59px;
+  border-radius: 15px;
+  background: var(--bg-profile-wrapper);
+  backdrop-filter: blur(60px);
+
+  // max-height: 700px;
+}
+
+@media screen and (width >= 1920px) {
+  .profile {
+    padding: 50px 300px;
+  }
+}
+
+@media screen and (width <= 1430px) {
+  .wrapper {
+    max-height: none;
+  }
+}
+
+@media screen and (width <= 1024px) {
+  .profile {
+    padding: 20px;
+    gap: 10px;
+  }
+}
+
+@media screen and (width <= 810px) {
+  .profile {
+    flex-direction: column;
+  }
+
+  .wrapper {
+    padding: 30px 10px;
+  }
+}

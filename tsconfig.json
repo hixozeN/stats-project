@@ -9,11 +9,17 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      "*": ["./src/*"]
+      "*": [
+        "./src/*"
+      ]
     },
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "plugins": [{ "name": "typescript-plugin-css-modules" }]
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules"
+      }
+    ]
   },
   "ts-node": {
     "compilerOptions": {
@@ -23,7 +29,7 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "global.d.ts",
-    "./config/jest/setupTests.ts"
+    "src/app/types/global.d.ts",
+    "./config/jest/setupTests.ts",
   ]
 }

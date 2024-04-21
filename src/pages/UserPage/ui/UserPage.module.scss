@@ -1,0 +1,47 @@
+.UserPage {
+  border-radius: 15px 0 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  padding-bottom: 50px;
+
+  // padding: 0 130px;
+
+  @media screen and (width <= 1700px) {
+    padding: 0 30px;
+  }
+
+  @media screen and (width <= 1024px) {
+    border-radius: 0;
+    padding: 0 10px;
+  }
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.notFoundSection {
+  max-width: 320px;
+  margin: 50px auto;
+  padding: 50px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0 0 0 / 10%);
+  border-radius: 15px;
+  outline: 1px solid var(--bg-stat-item);
+}
+
+.notFoundSectionHeading {
+  font-size: 20px;
+
+  @media screen and (width <= 400px) {
+    font-size: 18px;
+  }
+}

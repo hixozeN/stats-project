@@ -1,0 +1,14 @@
+{
+  "Бои": "Battles",
+  "Винрейт": "Winrate",
+  "С/У": "AVG DMG",
+  "WN8": "WN8",
+  "Последний бой":"Last battle",
+  "Ещё": "More",
+  "танка": "tanks",
+  "танков": "tanks",
+  "танк": "tanks",
+  "PLAYER_HAS": "Player has",
+  "WITH_PARAMETRS": "with the selected parameters",
+  "NO_SESSION_TANKS": "Viewing detailed statistics on tanks is not available, because the player has not yet played for the current session."
+}

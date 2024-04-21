@@ -3,6 +3,10 @@
   text-decoration: none;
   font: var(--font-m);
   transition: var(--transition-default);
+  white-space: nowrap;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .primary {
@@ -13,8 +17,18 @@
   color: var(--inverted-primary-color);
 }
 
-@media (hover: hover) {
-  .AppLink:hover {
-    opacity: var(--opacity-hover);
+.button {
+  background-color: var(--bg-accent-color);
+  font: var(--font-btn-default);
+  color: var(--button-primary-color);
+  width: 255px;
+  height: 42px;
+  justify-content: center;
+  padding: 9px;
+  border-radius: 4px;
+
+  &:hover {
+    opacity: 1;
+    box-shadow: 0 0 15px 1px var(--button-hover);
   }
 }

@@ -4,12 +4,15 @@ import { BuildOptions } from './types/config';
 
 export default function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
   const svgLoader = {
-    test: /\.svg$/,
-    use: ['@svgr/webpack'],
+    test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+    issuer: /\.[jt]sx?$/,
+    use: [{
+      loader: '@svgr/webpack',
+    }],
   };
 
   const babelLoader = {
-    test: /\.(js|ts|tsx|tsx)$/,
+    test: /\.(js|jsx|ts|tsx)$/,
     exclude: /node_modules/,
     use: {
       loader: 'babel-loader',
@@ -38,12 +41,13 @@ export default function buildLoaders(options: BuildOptions): webpack.RuleSetRule
   const cssLoader = buildCssLoaders(options.isDev);
 
   const fileLoader = {
-    test: /\.(png|jpe?g|gif|woff|woff2)$/i,
-    use: [
-      {
-        loader: 'file-loader',
-      },
-    ],
+    test: /\.(png|jpe?g|webp|gif|woff|woff2)$/i,
+    // use: [
+    //   {
+    //     loader: 'file-loader',
+    //   },
+    // ],
+    type: 'asset/resource',
   };
 
   return [fileLoader, svgLoader, babelLoader, typeScriptLoader, cssLoader];

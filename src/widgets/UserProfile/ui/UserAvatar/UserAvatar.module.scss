@@ -1,0 +1,25 @@
+.avatarWrapper {
+  grid-area: avatar;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-right: 50px;
+}
+
+.avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+}
+
+@media screen and (width <= 768px) {
+  .avatarWrapper {
+    padding: 15px 0 0;
+  }
+
+  .avatar {
+    width: 140px;
+    height: 140px;
+  }
+}

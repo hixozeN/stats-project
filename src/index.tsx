@@ -1,20 +1,24 @@
-import { render } from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { createRoot } from 'react-dom/client';
 import { ThemeContextProvider } from 'app/providers/ThemeProvider';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary';
-import App from './app/App';
+import 'app/styles/index.scss';
 
 import 'shared/config/i18n/i18n';
+import App from 'app/App';
 
-render(
-  <BrowserRouter>
-    <ErrorBoundary>
-      <ThemeContextProvider>
+const container = document.getElementById('root');
+const root = createRoot(container);
 
-        <App />
+if (!container) {
+  throw new Error('Root container not found. Can\'t mount react app.');
+}
 
-      </ThemeContextProvider>
-    </ErrorBoundary>
-  </BrowserRouter>,
-  document.getElementById('root'),
+root.render(
+  <ErrorBoundary>
+    <ThemeContextProvider>
+
+      <App />
+
+    </ThemeContextProvider>
+  </ErrorBoundary>,
 );

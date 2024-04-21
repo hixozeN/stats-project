@@ -1,55 +1,260 @@
 .Button {
-  padding: 5px;
+  margin: 0;
+  padding: 9px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
   cursor: pointer;
-  color: var(--inverted-primary-color);
-  transition: var(--transition-default);
+  color: var(--button-primary-color);
+  transition: 0.2s;
+  font: var(--font-btn-default);
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.Button:disabled {
+  background: var(--button-disabled);
+}
+
+.default {
+  background-color: var(--button-default);
 }
 
 .clear {
-  margin: 0;
-  border: none;
+  color: var(--primary-color);
   background: none;
-  outline: none;
+
+  &:hover {
+    color: var(--accent-color);
+  }
+}
+
+.danger {
+  background-color: var(--button-danger-default);
+}
+
+.send-results {
+  color: var(--button-results);
+  border: 1px solid var(--accent-color);
+  background: var(--button-results-bg);
 }
 
 .inverted {
-  margin: 0;
-  border: none;
-  background: none;
-  outline: none;
+  background: var(--inverted-bg-color);
+}
+
+.team {
+  color: var(--button-team-color);
+  background: var(--button-team-bg);
+  backdrop-filter: blur(10px);
+}
+
+.icon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background-color: var(--button-icon-bg);
+}
+
+.profile-icon {
+  width: 56px;
+  background-color: var(--button-icon-bg);
+  backdrop-filter: blur(10px);
+}
+
+// 'edit' | 'create' | 'join' | 'save' | 'block' | 'add-friend'
+.iconSpan {
+  width: 22px;
+  height: 22px;
+  background-repeat: no-repeat;
+  background-size: 22px 22px;
+}
+
+.icon-right {
+  max-width: 255px;
+  width: 100%;
+  background-color: transparent;
+  color: var(--button-team-color);
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.icon-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: var(--button-icon-bg);
+}
+
+.icon-circle .iconSpan {
+  width: 36px;
+  height: 36px;
+}
+
+.icon-right .iconSpan {
+  order: 1;
+}
+
+.size_s {
+  width: 56px;
+}
+
+.size_m {
+  width: 194px;
+}
+
+.size_l {
+  width: 255px;
+}
+
+.size_xl {
+  width: 270px;
+}
+
+.size_xxl {
+  width: 530px;
+}
+
+.font_m {
+  font: var(--font-m);
+}
+
+.font_l {
+  font: var(--font-l);
+  height: 50px;
+}
+
+.font_xl {
+  font: var(--font-xl);
+  height: 60px;
+}
+
+.square {
+  padding: 0;
+}
+
+.square.size_m {
+  width: var(--font-line-m);
+  height: var(--font-line-m);
+  font: var(--font-m);
+}
+
+.square.size_l {
+  width: var(--font-line-l);
+  height: var(--font-line-l);
+  font: var(--font-l);
+}
+
+.square.size_xl {
+  width: var(--font-line-xl);
+  height: var(--font-line-xl);
+  font: var(--font-xl);
+}
+
+.loader {
+  width: 24px;
+  height: 24px;
+  border: 4px dotted #fff;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 2s linear infinite;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.dots {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  background-color: transparent;
+  border-radius: 0;
+
+  &::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: #ffffffb3;
+    border-radius: 50%;
+  }
+
+  &.active::after {
+    background-color: var(--accent-color);
+  }
+}
+
+.numbers {
+  width: 72px;
+  height: 42px;
+  background-color: transparent;
   color: var(--primary-color);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: normal;
+  border-radius: 2px;
+
+  &.active {
+    background-color: var(--accent-color);
+    color: var(--highlight-color);
+  }
 }
 
-.highlight {
-  margin: 0;
-  border: none;
-  background: none;
-  outline: none;
-  color: var(--highlight-color);
-}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
 
-.border {
-  margin: 0;
-  padding: 5px;
-  border: 1px solid var(--button-border-color);
-  border-radius: 5px;
-  background: none;
-  outline: none;
-  color: var(--primary-color);
-}
-
-.border-inverted {
-  margin: 0;
-  padding: 5px;
-  border: 1px solid var(--button-border-color);
-  border-radius: 5px;
-  background: none;
-  outline: none;
-  color: var(--inverted-primary-color);
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @media (hover: hover) {
-  .Button:hover {
-    opacity: var(--opacity-hover);
+  .Button:disabled:hover {
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .default:hover {
+    box-shadow: 0 0 15px 1px var(--button-hover);
+  }
+
+  .danger:hover {
+    box-shadow: 0 0 15px 1px var(--button-danger-hover);
+  }
+
+  .send-results:hover {
+    box-shadow: 0 0 15px 1px var(--button-send-results-hover);
+  }
+
+  .team:hover,
+  .icon:hover,
+  .profile-icon:hover {
+    box-shadow: 0 0 15px 1px var(--button-team-hover);
+  }
+
+  .clear:hover,
+  .inverted:hover {
+    color: var(--accent-color);
+  }
+
+  .dots {
+    background-color: rgba(0 0 0 / 20%);
+
+    &:hover::after {
+      background-color: var(--accent-color);
+    }
+  }
+
+  .numbers:hover {
+    background-color: var(--accent-color);
   }
 }

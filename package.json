@@ -4,9 +4,12 @@
   "description": "",
   "private": true,
   "scripts": {
-    "start": "webpack serve --env port=3000 mode=development",
+    "start": "concurrently \"webpack serve --env port=3000 mode=development\" \"node ./json-server/index.js\"",
+    "start:dev:jsonserver": "node ./json-server/index.js",
     "build:prod": "webpack --env mode=production",
     "build:dev": "webpack --env mode=development",
+    "analyze:prod": "webpack --env mode=production analyze=1",
+    "analyze:dev": "webpack --env mode=development analyze=1",
     "lint:ts": "npx eslint \"**/*.{ts,tsx}\"",
     "lint:ts:fix": "npx eslint \"**/*.{ts,tsx}\" --fix",
     "lint:scss": "npx stylelint \"**/*.scss\"",
@@ -14,6 +17,7 @@
     "test:unit": "jest --config ./config/jest/jest.config.ts",
     "test:ui": "npx loki test",
     "test:ui:ok": "npx loki approve",
+    "test:ui:ci": "concurrently --kill-others --raw --success first \"npm run storybook\" \"npx loki update\" \"npm run test:ui\" \"deelay\"",
     "storybook": "storybook dev -p 6006 -c ./config/storybook",
     "storybook:build": "storybook build -c ./config/storybook"
   },
@@ -39,7 +43,8 @@
     "@types/jest": "^27.4.1",
     "@types/node": "^17.0.21",
     "@types/react": "^17.0.39",
-    "@types/react-dom": "^17.0.11",
+    "@types/react-dom": "^18.2.25",
+    "@types/react-helmet": "^6.1.11",
     "@types/react-router-dom": "^5.3.3",
     "@types/webpack": "^5.28.0",
     "@types/webpack-bundle-analyzer": "^4.4.1",
@@ -48,7 +53,10 @@
     "@typescript-eslint/parser": "^5.12.1",
     "babel-loader": "^8.2.3",
     "babel-plugin-i18next-extract": "^0.8.3",
+    "concurrently": "^8.2.1",
+    "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^6.6.0",
+    "deelay": "^2.0.0",
     "eslint": "^8.10.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-i18next": "^5.1.2",
@@ -61,34 +69,55 @@
     "html-webpack-plugin": "^5.5.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
+    "json-server": "^0.17.4",
+    "loki": "^0.35.0",
     "mini-css-extract-plugin": "^2.5.3",
     "regenerator-runtime": "^0.13.9",
     "sass": "^1.49.9",
     "sass-loader": "^12.6.0",
     "storybook": "^7.3.2",
+    "storybook-addon-react-router-v6": "^2.0.10",
     "style-loader": "^3.3.1",
-    "stylelint": "^14.5.3",
-    "stylelint-config-standard-scss": "^3.0.0",
+    "stylelint": "^15.11.0",
+    "stylelint-config-standard-scss": "^11.1.0",
     "ts-loader": "^9.2.6",
     "ts-node": "^10.5.0",
     "typescript": "^4.5.5",
     "typescript-plugin-css-modules": "^5.0.1",
+    "url-loader": "^4.1.1",
     "webpack": "^5.69.1",
     "webpack-bundle-analyzer": "^4.5.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.8.0",
-    "axios": "^0.26.1",
+    "@reduxjs/toolkit": "^1.9.0",
+    "@tanstack/react-table": "^8.12.0",
+    "axios": "^1.6.8",
+    "dotenv": "^16.4.5",
     "i18next": "^21.6.11",
     "i18next-browser-languagedetector": "^6.1.3",
     "i18next-http-backend": "^1.3.2",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.2.0",
+    "react-device-detect": "^2.2.3",
+    "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.51.2",
+    "react-hot-toast": "^2.4.1",
     "react-i18next": "^11.15.5",
-    "react-redux": "^7.2.6",
-    "react-router-dom": "^6.2.1"
+    "react-redux": "^7.2.7",
+    "react-router-dom": "^6.19.0"
+  },
+  "overrides": {
+    "loki": {
+      "@storybook/react": "$@storybook/react"
+    }
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.tsx",
+      "!**/node_modules/**"
+    ]
   },
   "loki": {
     "configurations": {

@@ -1,0 +1,29 @@
+.emptyData {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.emptyDataHeading {
+  color: var(--accent-color);
+  font-size: 24px;
+}
+
+.statList {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(min(1%), max(250px)));
+  grid-auto-rows: 110px;
+  justify-content: center;
+  gap: 45px;
+  border-radius: 15px;
+
+  @media screen and (width <= 1435px) {
+    gap: 20px;
+  }
+
+  @media screen and (width <= 768px) {
+    gap: 10px;
+    grid-template-columns: repeat(2, minmax(min(1%), max(250px)));
+  }
+}

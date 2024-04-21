@@ -8,3 +8,5 @@ node_modules
 .2do
 /.idea/
 /extractedTranslations/
+/storybook-static
+coverage

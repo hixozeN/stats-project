@@ -15,6 +15,16 @@ export default {
   // The directory where Jest should store its cached dependency information
   // cacheDirectory: "C:\\Users\\Владос\\AppData\\Local\\Temp\\jest",
 
+  // A set of global variables that need to be available in all test environments
+  globals: {
+    IS_DEV: true,
+    API_URL: '',
+    ROYAL_ARENA_API_URL: '',
+    LESTA_API_URL: '',
+    LESTA_AUTH_API_URL: '',
+    LESTA_APP_ID: '',
+  },
+
   // Automatically clear mock calls, instances and results before every test
   clearMocks: true,
   // The test environment that will be used for testing
@@ -50,7 +60,8 @@ export default {
   ],
   moduleNameMapper: {
     '\\.s?css$': 'identity-obj-proxy',
-    '\\.svg': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+    '.+\\.(png|jpg|svg)$': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+    '^axios$': 'axios/dist/node/axios.cjs',
   },
 
   // Indicates whether the coverage information should be collected while executing the test
@@ -90,9 +101,6 @@ export default {
 
   // A path to a module which exports an async function that is triggered once after all test suites
   // globalTeardown: undefined,
-
-  // A set of global variables that need to be available in all test environments
-  // globals: {},
 
   // The maximum amount of workers used to run your tests. Can be specified as % or a number. E.g. maxWorkers: 10% will use 10% of your CPU amount + 1 as the maximum worker number. maxWorkers: 2 will use a maximum of 2 workers.
   // maxWorkers: "50%",

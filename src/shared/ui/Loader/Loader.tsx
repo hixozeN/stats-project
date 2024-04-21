@@ -1,11 +1,17 @@
-import './Loader.scss';
+import { classNames } from 'shared/lib/classNames/classNames';
+import cls from './Loader.module.scss';
 
-const Loader = () => (
-  <div className="lds-ellipsis">
-    <div />
-    <div />
-    <div />
-    <div />
+interface ILoader {
+  className?: string
+}
+const Loader = ({ className }: ILoader) => (
+  <div className={classNames(cls.wrapper, {}, [className])}>
+    <div className={cls['lds-ellipsis']}>
+      <div />
+      <div />
+      <div />
+      <div />
+    </div>
   </div>
 );
 

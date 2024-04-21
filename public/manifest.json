@@ -1,0 +1,35 @@
+{
+  "name":"BlitzStats",
+  "short_name":"BlitzStats",
+  "start_url": "/index.html",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes":"192x192",
+      "type":"image/png"
+    },
+    {
+      "src":"/android-chrome-512x512.png",
+      "sizes":"512x512",
+      "type":"image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "scope": "/",
+  "orientation": "any",
+  "description": "Неофициальный сервис статистики для игры Tanks Blitz",
+  "lang": "ru",
+  "theme_color":"#0C0C0E",
+  "background_color":"#0C0C0E",
+  "display":"standalone"
+}

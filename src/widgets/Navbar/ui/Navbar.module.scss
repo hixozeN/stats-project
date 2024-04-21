@@ -1,15 +1,66 @@
 .Navbar {
-  width: 100%;
-  height: var(--navbar-height);
-  background: var(--inverted-bg-color);
+  background: var(--bg-secondary-color);
   display: flex;
   align-items: center;
-  padding: 20px;
   transition: var(--transition-default);
+  gap: 20px;
 }
 
-.links {
-  margin-left: auto;
+.navWrapper {
   display: flex;
   gap: 20px;
+  align-items: center;
+  position: relative;
+  margin-left: auto;
+}
+
+.userName {
+  max-width: 150px;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.menuProfile {
+  position: absolute;
+  bottom: 120px;
+  right: 0;
+  background-color: var(--bg-navmenu);
+  box-shadow: var(--shadow-menu);
+  z-index: 2;
+  border-radius: 4px;
+  transition: all 0.5s;
+
+  &.open {
+    transition-timing-function: cubic-bezier(0.68, 1.55, 0.265, 1);
+    transform: translateY(360px);
+  }
+}
+
+@media (width <= 768px) {
+  .addAccount {
+    width: 40px;
+    height: 40px;
+    background-image: url('shared/assets/icons/button/add-friend.svg');
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .Navbar {
+    gap: 10px;
+  }
+
+  .userName {
+    font-size: 12px;
+    max-width: 60px;
+  }
+
+  .navWrapper {
+    gap: 0;
+  }
 }

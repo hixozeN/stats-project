@@ -1,25 +1,10 @@
-import './styles/index';
-import { Navbar } from 'widgets/Navbar';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { Sidebar } from 'widgets/Sidebar';
-import { Suspense } from 'react';
-import { useTheme } from './providers/ThemeProvider';
-import { AppRouter } from './providers/router';
+import { routerConfiguration } from 'shared/config/routeConfig/routeConfig';
+import { RouterProvider } from 'react-router-dom';
+import Loader from 'shared/ui/Loader/Loader';
 
 function App() {
-  const { theme } = useTheme();
-
   return (
-    <div className={classNames('app', {}, [theme])}>
-      {/* suspense для подгрузки чанков с переводами */}
-      <Suspense fallback="">
-        <Navbar />
-        <div className="page-content">
-          <Sidebar />
-          <AppRouter />
-        </div>
-      </Suspense>
-    </div>
+    <RouterProvider fallbackElement={<Loader />} router={routerConfiguration} />
   );
 }
 

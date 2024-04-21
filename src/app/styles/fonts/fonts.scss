@@ -1,29 +1,97 @@
 @font-face {
-  font-family: Inter;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url("app/styles/fonts/Roboto-Thin.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("app/styles/fonts/Roboto-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Roboto;
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src:
-    url("app/styles/fonts/Inter-Regular.woff2") format("woff2"),
-    url("app/styles/fonts/Inter-Regular.woff") format("woff");
+  src: url("app/styles/fonts/Roboto-Regular.ttf") format("truetype");
 }
 
 @font-face {
-  font-family: Inter;
+  font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src:
-    url("app/styles/fonts/Inter-Medium.woff2") format("woff2"),
-    url("app/styles/fonts/Inter-Medium.woff") format("woff");
+  src: url("app/styles/fonts/Roboto-Medium.ttf") format("truetype");
+
 }
 
 @font-face {
-  font-family: Inter;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("app/styles/fonts/Roboto-Bold.ttf") format("truetype");
+
+}
+
+@font-face {
+  font-family: Roboto;
   font-style: normal;
   font-weight: 900;
   font-display: swap;
-  src:
-    url("app/styles/fonts/Inter-Black.woff2") format("woff2"),
-    url("app/styles/fonts/Inter-Black.woff") format("woff");
+  src: url("app/styles/fonts/Roboto-Black.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Play;
+  font-style: normal;
+  font-weight: 100;
+  font-display: swap;
+  src: url("app/styles/fonts/Play-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Play;
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("app/styles/fonts/Play-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Play;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("app/styles/fonts/Play-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Play;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("app/styles/fonts/Play-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Play;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("app/styles/fonts/Play-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: Play;
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("app/styles/fonts/Play-Bold.ttf") format("truetype");
 }

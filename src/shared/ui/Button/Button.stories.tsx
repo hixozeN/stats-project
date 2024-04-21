@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Theme } from 'app/providers/ThemeProvider';
 import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
-import { Button, ThemeButton } from './Button';
+import { Button } from './Button';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta: Meta<typeof Button> = {
@@ -18,45 +18,155 @@ type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {
   args: {
-    children: 'Button',
+    children: 'Стандартная кнопка',
   },
 };
 
-// More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
+export const DefaultDark: Story = {
+  args: {
+    children: 'Стандартная кнопка',
+  },
+  decorators: [ThemeDecorator(Theme.DARK)],
+};
+
 export const Clear: Story = {
   args: {
-    ...Default.args,
-    theme: ThemeButton.CLEAR,
+    children: 'Прозрачная кнопка',
+    theme: 'clear',
   },
+};
 
+export const ClearDark: Story = {
+  args: {
+    children: 'Прозрачная кнопка',
+    theme: 'clear',
+  },
+  decorators: [ThemeDecorator(Theme.DARK)],
+};
+
+export const Danger: Story = {
+  args: {
+    children: 'Кнопка',
+    theme: 'danger',
+  },
+};
+
+export const DangerDark: Story = {
+  args: {
+    children: 'Кнопка',
+    theme: 'danger',
+  },
+  decorators: [ThemeDecorator(Theme.DARK)],
 };
 
 export const Inverted: Story = {
   args: {
-    ...Default.args,
-    theme: ThemeButton.INVERTED,
-  },
-  // decorators: [ThemeDecorator(Theme.DARK)],
-};
-
-export const Bordered: Story = {
-  args: {
-    ...Default.args,
-    theme: ThemeButton.BORDER,
+    children: 'Кнопка',
+    theme: 'inverted',
   },
 };
 
-export const BorderInverted: Story = {
+export const InvertedDark: Story = {
   args: {
-    ...Default.args,
-    theme: ThemeButton.BORDER_INVERTED,
+    children: 'Кнопка',
+    theme: 'inverted',
+  },
+  decorators: [ThemeDecorator(Theme.DARK)],
+};
+
+export const Results: Story = {
+  args: {
+    children: 'Отправить результаты',
+    theme: 'send-results',
   },
 };
 
-export const HighlightedDark: Story = {
+export const ResultsDark: Story = {
   args: {
-    ...Default.args,
-    theme: ThemeButton.HIGHLIGHT,
+    children: 'Отправить результаты',
+    theme: 'send-results',
+  },
+  decorators: [ThemeDecorator(Theme.DARK)],
+};
+
+export const TeamPage: Story = {
+  args: {
+    children: 'Пригласить игрока',
+    variant: 'invite-player',
+    theme: 'team',
+  },
+};
+
+export const TeamPageDark: Story = {
+  args: {
+    children: 'Пригласить игрока',
+    variant: 'invite-player',
+    theme: 'team',
+  },
+  decorators: [ThemeDecorator(Theme.DARK)],
+};
+
+export const DisbandExtraLarge: Story = {
+  args: {
+    children: 'Распустить состав',
+    variant: 'disband',
+    theme: 'danger',
+    size: 'size_xxl',
+  },
+};
+
+export const DisbandExtraLargeDark: Story = {
+  args: {
+    children: 'Распустить состав',
+    variant: 'disband',
+    theme: 'danger',
+    size: 'size_xxl',
+  },
+  decorators: [ThemeDecorator(Theme.DARK)],
+};
+
+export const Disabled: Story = {
+  args: {
+    children: 'Создать',
+    variant: 'create',
+    theme: 'default',
+    disabled: true,
+    size: 'size_m',
+  },
+  decorators: [ThemeDecorator(Theme.DARK)],
+};
+
+export const Loading: Story = {
+  args: {
+    variant: 'create',
+    theme: 'default',
+    isLoading: true,
+    size: 'size_m',
+  },
+  decorators: [ThemeDecorator(Theme.DARK)],
+};
+
+export const NotificationIcon: Story = {
+  args: {
+    variant: 'notification',
+    theme: 'icon',
+  },
+  decorators: [ThemeDecorator(Theme.DARK)],
+};
+
+export const ProfileIcon: Story = {
+  args: {
+    variant: 'send-message',
+    theme: 'profile-icon',
+  },
+  decorators: [ThemeDecorator(Theme.DARK)],
+};
+
+export const ChevronDownIcon: Story = {
+  args: {
+    variant: 'chevron-down',
+    theme: 'icon-right',
+    children: 'Admin',
   },
   decorators: [ThemeDecorator(Theme.DARK)],
 };

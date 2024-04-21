@@ -1,0 +1,126 @@
+.statItem {
+  max-width: 250px;
+  height: 110px;
+  border-radius: 15px;
+  border: 1px solid var(--bg-stat-item);
+  backdrop-filter: blur(5px);
+  display: grid;
+  grid-template-columns: minmax(min(1%), max(1.5fr)) minmax(min(1%), max(2.5fr));
+  align-items: center;
+  position: relative;
+}
+
+.icon {
+  max-width: 75px;
+  margin-left: auto;
+
+  @media screen and (width <= 1280px) {
+    max-width: 55px;
+  }
+
+  @media screen and (width <= 450px) {
+    max-width: 35px;
+  }
+}
+
+.dataWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding-right: 10px;
+
+  @media screen and (width <= 460px) {
+    padding: 0;
+  }
+}
+
+.delta {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.positive {
+  color: var(--green-color);
+}
+
+.negative {
+  color: var(--error-color);
+}
+
+.counter {
+  font-size: 22px;
+  font-weight: 500;
+
+  @media screen and (width <= 1280px) {
+    font-size: 20px;
+  }
+
+  @media screen and (width <= 1024px) {
+    font-size: 16px;
+  }
+}
+
+.counterSession {
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.name {
+  font-size: 14px;
+  white-space: nowrap;
+
+  @media screen and (width <= 1024px) {
+    font-size: 12px;
+  }
+}
+
+.purple {
+  color: var(--stats-purple-color);
+}
+
+.aqua {
+  color: var(--stats-aqua-color);
+}
+
+.green {
+  color: var(--stats-green-color);
+}
+
+@media screen and (hover: hover) {
+  .statItem:hover {
+    border: 1px solid #858585;
+  }
+}
+
+.skeleton {
+  position: relative;
+  background-color: transparent;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: -150px;
+    height: 100%;
+    width: 80%;
+    background: linear-gradient(to right, transparent 0%, rgb(250 199 64 / 20%) 50%, transparent 100%);
+    animation: load 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+}
+
+@keyframes load {
+  from {
+    left: -150px;
+  }
+
+  to {
+    left: 100%;
+  }
+}

@@ -1,3 +1,22 @@
 {
-  "Главная страница": "Main page"
+  "Главная страница": "Main page",
+  "PROMO_HEADING": "Statistics and sessions Tanks Blitz",
+  "STEP_ONE": "Register an account",
+  "STEP_TWO": "Watch sessions",
+  "STEP_THREE": "Share results",
+  "STEP_FOUR": "Become pro",
+  "Звёзды RoyalCup": "RoyalCup Heroes",
+  "Рейтинг": "Rating",
+  "Турниров": "Tournaments",
+  "Режимы": "Modes",
+  "Участников": "Members",
+  "Награды": "Awards",
+  "LEADERBOARD_HEADING": "Hall of fame",
+  "LEADERBOARD_DESCRIPTION": "Only players who have more than 10.000 battles",
+  "BATTLES": "Battles",
+  "WN8": "WN8",
+  "DAMAGE": "Damage",
+  "DAMAGE_SHORT": "AvgDmg",
+  "WINRATE": "Winrate",
+  "ITEM_ARIA_LABEL": "Player stats at leaderboard"
 }

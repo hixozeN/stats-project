@@ -1,7 +1,7 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { Button, ThemeButton } from 'shared/ui/Button/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Button } from 'shared/ui/Button/Button';
+import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import cls from './NotFoundPage.module.scss';
 
@@ -15,19 +15,28 @@ export function NotFoundPage({ className }: INotFoundPageProps) {
 
   return (
     <div className={classNames(cls.NotFoundPage, {}, [className])}>
-      <h1 className={classNames(cls.title)}>{t('Страница не найдена')}</h1>
-      <div>
-        <span>
-          {t('Вернуться ')}
-          <Link
-            className="link-hovered highlight-color "
-            to={RoutePath.main}
+      <div className={cls.wrapper}>
+        <h1 className={classNames(cls.title)}>{t('Страница не найдена')}</h1>
+        <p className={cls.caption}>
+          {t('Описание 404')}
+        </p>
+        <div className={cls.message}>
+          <Button
+            onClick={() => navigate(RoutePath.main)}
+            size="size_m"
+            className={cls.button}
           >
             {t('на главную')}
-          </Link>
-          {t(' или ')}
-          <Button theme={ThemeButton.HIGHLIGHT} onClick={() => navigate(-1)}>{t('назад?')}</Button>
-        </span>
+          </Button>
+          <Button
+            theme="danger"
+            size="size_m"
+            onClick={() => navigate(-1)}
+            className={cls.button}
+          >
+            {t('назад?')}
+          </Button>
+        </div>
       </div>
     </div>
   );

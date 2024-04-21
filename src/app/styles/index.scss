@@ -1,27 +1,49 @@
-@import "reset";
-@import "fonts/fonts";
-@import "variables/global";
-@import "themes/normal";
-@import "themes/dark";
+@import 'reset';
+@import './fonts/fonts';
+@import './variables/global';
+@import './themes/normal';
+@import './themes/dark';
 
-html,
+*, html {
+  scroll-behavior: smooth !important;
+}
+
 body {
-  scrollbar-gutter: stable;
+  background-color: var(--app-background);
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #424242;
+  border-radius: 20px;
 }
 
 .app {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
   font: var(--font-m);
   background: var(--bg-color);
   color: var(--primary-color);
+  transition: var(--transition-default);
+}
+
+.storybook {
   min-height: 100vh;
+  font: var(--font-m);
+  background: var(--bg-color);
+  color: var(--primary-color);
   transition: var(--transition-default);
 }
 
 .page-content {
   display: flex;
-}
-
-.page-wrapper {
-  padding: 25px;
   flex-grow: 1;
 }

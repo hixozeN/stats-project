@@ -1,7 +1,10 @@
 @import "./mixins/index";
 
 :root {
-  --font-family-main: "Inter", arial, sans-serif;
+  --font-family-main: "Play", "Roboto", arial, sans-serif;
+
+  // Общая высота
+  --vh: 0;
 
   // Шрифт M - основной шрифт приложения
   --font-size-m: 16px;
@@ -15,19 +18,58 @@
   --font-weight-l: 500;
   --font-l: var(--font-weight-l) var(--font-size-l) / var(--font-line-l) var(--font-family-main);
 
+  // Шрифт XL - для заголовков
+  --font-size-xl: 32px;
+  --font-line-xl: 40px;
+  --font-weight-xl: 500;
+  --font-xl: var(--font-weight-xl) var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
+
+  // Шрифт XXL - для заголовков
+  --font-size-xxl: 48px;
+  --font-line-xxl: 1.2;
+  --font-weight-xxl: 900;
+  --font-xxl: var(--font-weight-xxl) var(--font-size-xxl) / var(--font-line-xxl) var(--font-family-main);
+
+  // Шрифт XXXL - для заголовков
+  --font-size-xxxl: 56px;
+  --font-line-xxxl: 1.2;
+  --font-weight-xxxl: 600;
+  --font-xxxl: var(--font-weight-xxxl) var(--font-size-xxxl) / var(--font-line-xxxl) var(--font-family-main);
+
+  // Шрифты кнопок
+  // Дефолт
+  --font-btn-default: var(--font-weight-l) var(--font-size-m) / var(--font-line-m) var(--font-family-main);
+
   // цвета
   --error-color: #de3333;
+  --overlay-color: rgba(0 0 0 / 50%);
+  --overlay-color-30: #0000004C;
 
   // анимации
-  --transition-default: all 0.2s ease-in-out;
+  --transition-default: all 0.4s ease-in-out;
   --opacity-hover: 0.7;
 
   // Размер навбара
-  --navbar-height: 50px;
+  --navbar-height: 90px;
 
   // Размер сайдбара
-  --sidebar-width: 300px;
-  --sidebar-collapsed-width: 80px;
+  --sidebar-width: 120px;
+  --sidebar-collapsed-width: 70px;
+
+  // Размер сайдбара профиля
+  --profile-sidebar-height: 279px;
+
+  // Размер кнопок слайдера
+  --slider-arrow-size: 64px;
+  --slider-arrow-margin: 18px;
+  --slider-arrow-size-small: 32px;
+  --slider-arrow-margin-small: 18px;
+
+  // Z-indexes
+  --modal-index: 10;
+  --footer-index: 1;
+  --overlayed-content-index: 2;
+  --overlay-index: 3;
 }
 
 .link-hovered {

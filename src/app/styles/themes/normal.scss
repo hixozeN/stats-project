@@ -1,10 +1,61 @@
 .app.light {
+  /* bg colors */
   --bg-color: #d7d7e1;
-  --inverted-bg-color: #202020;
+  --bg-secondary-color: #dcdcec;
+  --bg-gradient-color: linear-gradient(180deg, rgb(78 78 116) 0%, #0c0c0e 100%);
+  --bg-notification-selected-color: #101011;
+  --inverted-bg-color: #2d2d2d;
+  --bg-accent-color: #70d3f8;
+  --bg-tab-inactive: #606060;
+  --bg-tab-active: #62b8d9;
+  --bg-profile-wrapper: #25252e;
+  --bg-footer: #C3C3C8;
+
+  /* font colors */
   --primary-color: #0e0d0d;
   --secondary-color: #2e2e2e;
-  --highlight-color: #b9bbd9;
-  --inverted-primary-color: #ececec;
+  --highlight-color: #18181b;
+  --accent-color: #c9c9ec;
+  --secondary-highlight-color: #c9c9ec;
+  --inverted-primary-color: #2e2e2e;
   --inverted-secondary-color: #c6c5c5;
+  --green-color: #4CBF39;
+  --stats-purple-color: #ae27ee;
+  --stats-purple-ligth-color: #9989e6;
+  --stats-aqua-color: #72d1ff;
+  --stats-green-color: #a8e689;
+  --wn8-very-bad-color: #000;
+  --wn8-bad-color: #c20000;
+  --wn8-below-average-color: #ffbf01;
+  --wn8-average-color: #cecd3b;
+  --wn8-above-average-color: #849b24;
+  --wn8-good-color: #4d7326;
+  --wn8-very-good-color: #4099bf;
+  --wn8-great-color: #3972c6;
+  --wn8-unicum-color: #a61a95;
+  --wn8-super-unicim-color: #6f319e;
+  --is-premium-color: #fac704;
+  --is-collectible: #35DBFF;
+
+  /* btn themes */
+  --button-primary-color: #e5e5e5;
   --button-border-color: #828282;
+  --button-team-color: #ecebeb;
+  --button-default: #55a2be;
+  --button-danger-default: #fc3c3c;
+  --button-results: #f2f2f2;
+  --button-results-bg: #3fb66f;
+  --button-team-bg: #3F3E3EB2;
+  --button-icon-bg: #242424;
+  --button-disabled: #bbb;
+  --button-hover: #62b8d9;
+  --button-danger-hover: #FC646491;
+  --button-send-results-hover: #3FB66FB0;
+  --button-team-hover: #93939BB5;
+  --button-focus: #fba904;
+  --button-pressed: #55a2be;
+  --button-warning-pressed: #f02;
+
+  /* loader themes */
+  --loader-color: #000;
 }

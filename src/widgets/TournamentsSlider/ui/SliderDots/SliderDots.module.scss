@@ -1,0 +1,44 @@
+.dots {
+  position: absolute;
+  bottom: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  border-radius: 10px;
+  background-color: var(--bg-slider-dots);
+  z-index: var(--overlay-index);
+  overflow: hidden;
+}
+
+.dotItem {
+  padding: 10px;
+  list-style: none;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #FFFFFFB3;
+  border-radius: 50%;
+}
+
+.active {
+  background-color: var(--accent-color);
+}
+
+@media (hover: hover) {
+  .dotItem:hover {
+    cursor: pointer;
+    background-color: rgba(0 0 0 / 20%);
+
+    & .dot {
+      background-color: var(--accent-color);
+    }
+  }
+}
+
+@media screen and (width < 1555px) {
+  .dots {
+    bottom: 10px;
+  }
+}
