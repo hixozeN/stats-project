@@ -1,6 +1,6 @@
 {
-  "name":"RoyalArena",
-  "short_name":"RoyalArena",
+  "name":"BlitzStats",
+  "short_name":"BlitzStats",
   "start_url": "/index.html",
   "icons": [
     {
@@ -17,6 +17,12 @@
       "src":"/android-chrome-512x512.png",
       "sizes":"512x512",
       "type":"image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
     }
   ],
   "scope": "/",
