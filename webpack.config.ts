@@ -13,6 +13,11 @@ export default (env: BuildEnv) => {
     src: path.resolve(__dirname, 'src'),
     locales: path.resolve(__dirname, 'public', 'locales'),
     buildLocales: path.resolve(__dirname, 'build', 'locales'),
+    favicon: path.resolve(__dirname, 'public', 'favicon.ico'),
+    iconAndroidSmallSize: path.resolve(__dirname, 'public', 'android-chrome-192x192.png'),
+    iconAndroidBigSize: path.resolve(__dirname, 'public', 'android-chrome-512x512.png'),
+    iconAppleTouch: path.resolve(__dirname, 'public', 'apple-touch-icon.png'),
+    webManifest: path.resolve(__dirname, 'public', 'manifest.json'),
   };
 
   const mode = env.mode || 'development';

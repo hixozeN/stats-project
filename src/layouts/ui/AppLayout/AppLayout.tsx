@@ -33,7 +33,7 @@ function AppLayout() {
   const [queryParams] = useSearchParams();
   const { toastWithError } = useToasts();
 
-  const handleOpenAuth = useCallback(() => {
+  const handleOpenAuth = useCallback(async () => {
     const lestaAuthStatus = queryParams.get(LOCAL_STORAGE_LESTA.STATUS);
     const isLestaAuth = !!lestaAuthStatus;
 
@@ -46,7 +46,7 @@ function AppLayout() {
         expires_at: +queryParams.get(LOCAL_STORAGE_LESTA.EXPIRES_AT),
       };
 
-      dispatch(authByLestaOpenID(lestaData));
+      await dispatch(authByLestaOpenID(lestaData));
     }
   }, [dispatch, queryParams]);
 
