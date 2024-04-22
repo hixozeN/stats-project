@@ -15,6 +15,7 @@ import {
 } from 'entities/Lesta';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
+import { SeoUpdater } from 'shared/lib/SeoUpdater/SeoUpdater';
 import cls from './TeamPage.module.scss';
 
 interface TeamPageProps {
@@ -44,6 +45,7 @@ export const TeamPage = memo((props: TeamPageProps) => {
   if (isNotFound) {
     return (
       <ErrorBoundary>
+        <SeoUpdater title={t('PAGE_TITLE')} />
         <Background />
         <main className={classNames(cls.TeamPage, {}, [className])}>
           <div className={cls.wrapper}>
@@ -56,6 +58,7 @@ export const TeamPage = memo((props: TeamPageProps) => {
 
   return (
     <ErrorBoundary>
+      <SeoUpdater title={t('PAGE_TITLE')} />
       <Background
         theme="blur"
         url={renderLogo()}

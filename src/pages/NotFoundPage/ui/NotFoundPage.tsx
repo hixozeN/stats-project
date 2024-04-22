@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Button } from 'shared/ui/Button/Button';
 import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { SeoUpdater } from 'shared/lib/SeoUpdater/SeoUpdater';
 import cls from './NotFoundPage.module.scss';
 
 interface INotFoundPageProps {
@@ -15,6 +16,7 @@ export function NotFoundPage({ className }: INotFoundPageProps) {
 
   return (
     <div className={classNames(cls.NotFoundPage, {}, [className])}>
+      <SeoUpdater title={t('PAGE_NOT_FOUND_TITLE')} />
       <div className={cls.wrapper}>
         <h1 className={classNames(cls.title)}>{t('Страница не найдена')}</h1>
         <p className={cls.caption}>
