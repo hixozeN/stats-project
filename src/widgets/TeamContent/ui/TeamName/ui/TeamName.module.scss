@@ -11,9 +11,15 @@
   text-align: center;
 }
 
-@media screen and (width <=480px) {
-  .TeamName {
-    padding: 0 20px;
-    flex-direction: column;
+@media screen and (width <= 530px) {
+  .text {
+    font: var(--font-m);
+  }
+
+  .name {
+    max-width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 }

@@ -14,8 +14,8 @@ export const TeamName = (props: TeamNameProps) => {
 
   return (
     <section className={classNames(cls.TeamName, {}, [className])}>
-      <span className={cls.text}>{name}</span>
       <span className={cls.text}>{`[${tag}]`}</span>
+      <span className={classNames(cls.text, {}, [cls.name])}>{name}</span>
     </section>
   );
 };
