@@ -13,8 +13,10 @@ export const PrimaryTeamData = (props: IPrimaryTeamData) => {
 
   return (
     <section className={classNames(cls.PrimaryTeamData, {}, [className])}>
-      <TeamAvatar />
-      <TeamName />
+      <div className={cls.container}>
+        <TeamAvatar />
+        <TeamName />
+      </div>
       <TeamDescription />
     </section>
   );
