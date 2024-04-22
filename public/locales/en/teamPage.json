@@ -10,5 +10,6 @@
   "Побед": "Wins",
   "Урон": "Damage",
   "Участников": "Members",
-  "UNDER_CONSTRUCTION": "The clan section is currently under development, but you can already use the search and find the clan you are interested in."
+  "UNDER_CONSTRUCTION": "The clan section is currently under development, but you can already use the search and find the clan you are interested in.",
+  "ARIA_LABEL_SECTION_PLAYERS": "list of clan players"
 }
