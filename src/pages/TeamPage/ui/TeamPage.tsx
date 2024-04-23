@@ -9,7 +9,6 @@ import { TeamContent } from 'widgets/TeamContent';
 import { TeamMembersTable } from 'widgets/TeamMembersTable';
 import {
   fetchLestaClanData,
-  getLestaClanLogo,
   getClanLoadingStatus,
   getClanNotFoundStatus,
 } from 'entities/Lesta';
@@ -28,17 +27,11 @@ export const TeamPage = memo((props: TeamPageProps) => {
   const { clanId } = useParams<{ clanId: string }>();
   const isLoading = useSelector(getClanLoadingStatus);
   const isNotFound = useSelector(getClanNotFoundStatus);
-  const logo = useSelector(getLestaClanLogo);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchLestaClanData({ id: clanId }));
   }, [clanId, dispatch]);
-
-  const renderLogo = (): string => {
-    if (!logo) return '';
-    return `https://wotblitz-gc.gcdn.co/icons/clanEmblems1x/clan-icon-v2-${logo}.png`;
-  };
 
   if (isLoading) return <Loader />;
 
@@ -59,10 +52,7 @@ export const TeamPage = memo((props: TeamPageProps) => {
   return (
     <ErrorBoundary>
       <SeoUpdater title={t('PAGE_TITLE')} />
-      <Background
-        theme="blur"
-        url={renderLogo()}
-      />
+      <Background />
       <main className={classNames(cls.TeamPage, {}, [className])}>
         <div className={cls.wrapper}>
           <TeamContent />
