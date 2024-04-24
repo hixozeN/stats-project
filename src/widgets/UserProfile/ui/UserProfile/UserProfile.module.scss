@@ -4,7 +4,7 @@
   border-radius: 0 0 15px 15px;
   display: grid;
   justify-content: center;
-  grid-template: "privateData privateData privateData" 50px "avatar publicData rating" 1fr "avatar publicData social" auto / auto 1fr auto;
+  grid-template: "privateData privateData privateData" 50px "avatar publicData rating" 1fr "avatar publicData social" 31px / auto 1fr auto;
 }
 
 .avatarWrapper {
