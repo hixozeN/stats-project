@@ -1,5 +1,5 @@
 import {
-  memo, useEffect, useMemo, useState,
+  memo, useCallback, useEffect, useMemo, useState,
 } from 'react';
 import { useParams } from 'react-router-dom';
 import { UserStats } from 'widgets/UserStats';
@@ -11,19 +11,13 @@ import { Tabs } from 'shared/ui/Tabs/Tabs';
 import { Tanks } from 'widgets/Tanks';
 import {
   getUserNotFoundStatus,
-  getUserNickname,
-  getUserLastSessionId,
+  fetchLestaUserSessionById,
+  fetchUserDataByLestaId,
 } from 'entities/Lesta';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { SeoUpdater } from 'shared/lib/SeoUpdater/SeoUpdater';
-import {
-  fetchUserDataByLestaId,
-} from 'entities/Lesta/model/services/fetchUserDataByLestaId/fetchUserDataByLestaId';
-import {
-  fetchLestaUserSessionById,
-} from 'entities/Lesta/model/services/fetchLestaUserSession/fetchLestaUserSession';
 import { getLestaAccessToken, getTokenUpdateStatus } from 'entities/User/index';
 import { SessionControlSection } from '../ui/SessionControlSection/SessionControlSection';
 import cls from './UserPage.module.scss';
@@ -36,9 +30,7 @@ const UserPage = ({ className }: IUserPageProps) => {
   const { t } = useTranslation('userPage');
   const { id } = useParams<{ id: string }>();
   // NEW
-  const userNickname = useSelector(getUserNickname);
   const isNotFound = useSelector(getUserNotFoundStatus);
-  const userLastSession = useSelector(getUserLastSessionId);
   const isTokenUpdating = useSelector(getTokenUpdateStatus);
   const lestaAccessToken = useSelector(getLestaAccessToken);
 
@@ -50,20 +42,28 @@ const UserPage = ({ className }: IUserPageProps) => {
 
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (userLastSession) {
-      dispatch(fetchLestaUserSessionById({ sessionId: userLastSession.id }));
-    }
-  }, [dispatch, userLastSession]);
+  const fetchUserData = useCallback(() => {
+    dispatch(fetchUserDataByLestaId({
+      id: Number(id),
+      lestaAccessToken,
+    }))
+      .unwrap()
+      .then((res) => {
+        const sessionId = res.userData.personal.sessions.length > 0
+          ? [...res.userData.personal.sessions].pop().id
+          : null;
+
+        if (sessionId) {
+          dispatch(fetchLestaUserSessionById({ sessionId }));
+        }
+      });
+  }, [dispatch, id, lestaAccessToken]);
 
   useEffect(() => {
     if (!isTokenUpdating) {
-      dispatch(fetchUserDataByLestaId({
-        id: Number(id),
-        lestaAccessToken,
-      }));
+      fetchUserData();
     }
-  }, [id, dispatch, isTokenUpdating, lestaAccessToken]);
+  }, [fetchUserData, isTokenUpdating]);
 
   if (isNotFound) {
     return (
@@ -89,14 +89,14 @@ const UserPage = ({ className }: IUserPageProps) => {
     <ErrorBoundary>
       <SeoUpdater
         title={t('PAGE_TITLE')}
-        OGTitle={`${t('Статистика игрока')} - ${userNickname}`}
+        OGTitle={`${t('Статистика игрока')}`}
       />
       <Background />
       <div className={classNames(cls.UserPage, {}, [className])}>
         <div className={cls.wrapper}>
           <UserProfile />
           <Tabs tab={tab} tabList={tabList} handleChangeTab={setTab} />
-          <SessionControlSection id={Number(id)} />
+          <SessionControlSection />
           <UserStats tab={tab} id={Number(id)} />
           {tab !== 2 && <Tanks tab={tab} />}
         </div>

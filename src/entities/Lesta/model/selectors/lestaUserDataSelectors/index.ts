@@ -38,7 +38,7 @@ export const getUserRatingValues = (state: StateSchema) => state?.lestaUserData?
 // сессии
 export const getUserLastSessionId = (state: StateSchema) => {
   if (state?.lestaUserData?.personal?.sessions?.length > 0) {
-    return [...state.lestaUserData.personal.sessions].pop();
+    return [...state.lestaUserData.personal.sessions].pop().id;
   }
   return null;
 };

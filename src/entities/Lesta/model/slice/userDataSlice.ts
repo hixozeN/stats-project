@@ -65,6 +65,14 @@ export const userDataSlice = createSlice({
       .addCase(fetchUserDataByLestaId.fulfilled, (state, { payload }) => {
         state.isLoading = false;
 
+        state.personal = payload.userData?.personal;
+        state.rating = payload.userData?.rating;
+        state.ratingValues = payload.userData?.ratingValues;
+        state.statistics = payload.userData?.statistics;
+
+        if (payload.userData?.clan) state.clan = payload.userData.clan;
+        if (payload.userData.private) state.private = payload.userData.private;
+
         if (!payload?.userData?.personal?.lestaData?.account_id) state.isNotFound = true;
       });
   },

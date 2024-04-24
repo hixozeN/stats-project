@@ -48,8 +48,11 @@ export const userSessionSlice = createSlice({
         state.isLoading = false;
         state.error = payload;
       })
-      .addCase(fetchLestaUserSessionById.fulfilled, (state) => {
+      .addCase(fetchLestaUserSessionById.fulfilled, (state, { payload }) => {
         state.isLoading = false;
+        state.data.delta = { ...payload.delta };
+        state.data.statistics = { ...payload.statistics };
+        state.data.tanks = payload.tanks;
       })
       .addCase(createLestaUserSession.pending, (state) => {
         state.error = '';
