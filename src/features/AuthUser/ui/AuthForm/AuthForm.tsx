@@ -8,12 +8,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { Logo } from 'shared/ui/Logo/Logo';
 import Eye from 'shared/assets/icons/eye.svg';
-import LestaLogo from 'shared/assets/icons/logo_lesta.svg';
+// import LestaLogo from 'shared/assets/icons/logo_lesta.svg';
 import { getLoggedInStatus } from 'entities/User';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { ReducerList, useDynamicReducerLoader } from 'shared/hooks/useDynamicReducerLoader/useDynamicReducerLoader';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { VALIDATION_MESSAGES } from 'shared/consts/validationMessages';
+import { Button } from 'shared/ui/Button/Button';
 import { getAuthError, getAuthLoading } from '../../model/selectors';
 import { authUserService } from '../../model/services/authUserService/authUserService';
 import { authReducer } from '../../model/slice/authSlice';
@@ -48,12 +49,18 @@ const AuthForm = (props: IAuthFormProps) => {
   const { className } = props;
   const { t } = useTranslation('auth');
   const [isPasswordVisible, setPasswordVisible] = useState(false);
-  const [type, setType] = useState<AuthFormType>({ isAuthActive: true, isRegActive: false });
+  const [type, setType] = useState<AuthFormType>({
+    isAuthActive: true,
+    isRegActive: false,
+  });
   const inputPasswordRef = useRef<HTMLInputElement>(null);
 
   const {
     handleSubmit,
-    formState: { errors, isValid },
+    formState: {
+      errors,
+      isValid,
+    },
     control,
     reset,
   } = useForm<AuthFormInputs>({
@@ -88,19 +95,36 @@ const AuthForm = (props: IAuthFormProps) => {
   const changeTab = useCallback((tabName) => {
     reset();
     if (tabName === 'auth') {
-      setType({ isAuthActive: true, isRegActive: false });
+      setType({
+        isAuthActive: true,
+        isRegActive: false,
+      });
     } else {
-      setType({ isAuthActive: false, isRegActive: true });
+      setType({
+        isAuthActive: false,
+        isRegActive: true,
+      });
     }
   }, [reset]);
 
   const onSubmit = useCallback(async (data: AuthFormInputs) => {
-    const { username, password, email } = data;
+    const {
+      username,
+      password,
+      email,
+    } = data;
     if (type.isAuthActive) {
-      await dispatch(authUserService({ email, password, variant: 'login' }));
+      await dispatch(authUserService({
+        email,
+        password,
+        variant: 'login',
+      }));
     } else {
       await dispatch(authUserService({
-        email, username, password, variant: 'registration',
+        email,
+        username,
+        password,
+        variant: 'registration',
       }));
     }
   }, [type, dispatch]);
@@ -120,15 +144,15 @@ const AuthForm = (props: IAuthFormProps) => {
   }, [changeTab, state]);
 
   const renderTextInButton = useCallback(() => {
-    if (isLoading) return <span className={cls.loader} />;
+    if (isLoading) return <span className={cls.loader}/>;
     return type.isAuthActive ? t('Войти') : t('Создать');
   }, [isLoading, type, t]);
 
   return (
     <form className={classNames(cls.AuthForm, {}, [className])} onSubmit={handleSubmit(onSubmit)}>
       <div className={cls.formWrapper}>
-        <Logo theme="auth" />
-        <AuthTabLinks type={type} changeTab={changeTab} />
+        <Logo theme="auth"/>
+        <AuthTabLinks type={type} changeTab={changeTab}/>
 
         <fieldset className={cls.fieldset}>
           <Controller
@@ -232,9 +256,20 @@ const AuthForm = (props: IAuthFormProps) => {
         </span>
       </div>
 
+      {/* <div className={cls.altLogin}> */}
+      {/*   <span className={cls.altLoginSpan}>{t('Или можете войти с помощью LestaID:')}</span> */}
+      {/*   <LestaLogo className={cls.lestaLogoIcon} onClick={() => navigate(RoutePath.authLesta)} /> */}
+      {/* </div> */}
       <div className={cls.altLogin}>
-        <span className={cls.altLoginSpan}>{t('Или можете войти с помощью LestaID:')}</span>
-        <LestaLogo className={cls.lestaLogoIcon} onClick={() => navigate(RoutePath.authLesta)} />
+        <Button
+          className={cls.arrowBack}
+          theme="clear"
+          type="button"
+          variant="down-arrow"
+          onClick={() => navigate(RoutePath.auth)}
+        >
+          {t('Вернуться обратно')}
+        </Button>
       </div>
     </form>
   );

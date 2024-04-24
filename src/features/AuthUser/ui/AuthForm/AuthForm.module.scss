@@ -130,20 +130,29 @@
 
 .altLogin {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin-top: auto;
-  padding-bottom: 10px;
+  padding-bottom: 25px;
+  gap: 5px;
 }
 
 .altLoginSpan {
   color: var(--secondary-color)
 }
 
-.lestaLogoIcon {
-  width: 200px;
-}
+//.lestaLogoIcon {
+//  width: 200px;
+//}
 
+
+.arrowBack {
+  color: var(--secondary-color);
+  & svg {
+    rotate: 90deg;
+    scale: 1.5;
+  }
+}
 
 @keyframes rotation {
   0% {
