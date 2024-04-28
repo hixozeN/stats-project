@@ -2,6 +2,7 @@
   position: relative;
   max-width: 677px;
   max-height: max-content;
+  width: 100%;
   height: max-content;
   display: flex;
   gap: 10px;
@@ -40,17 +41,22 @@
 
 .inner {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 242px);
+  grid-template-rows: 80px;
   margin: 0 0 5px;
 }
 
 .logoBlitz {
   color: var(--primary-color);
-  height: 93px;
-  width: 278.5px;
+  height: 80px;
+  width: 242px;
 
   & svg {
-    transform: scale(2.4, 2.8);
+    //flex-basis: 27px 192px;
+    transform: scale(2.1, 2.4);
+    //flex-basis: border-box;
+    //height: 26px;
+    //width: 192px;
   }
 
   @media (hover: hover) {
@@ -67,5 +73,23 @@
     &:hover {
       color: var(--accent-color);
     }
+  }
+}
+
+@media screen and (width <= 768px) {
+  .inner {
+    grid-template-columns: repeat(1, 242px);
+  }
+
+  .title {
+    margin-bottom: 15px;
+    line-height: 120%;
+    font-size: 20px;
+    padding: 0 15px;
+  }
+
+  .wrapper {
+    margin:0 10px;
+    padding: 25px 0;
   }
 }

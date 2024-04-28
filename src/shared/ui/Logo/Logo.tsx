@@ -1,9 +1,9 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import cls from './Logo.module.scss';
 import Crown from '../../assets/icons/crown.svg';
 import LogoText from '../../assets/icons/RoyalArena.svg';
-import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 
 export type LogoTheme = 'header' | 'auth' | 'footer';
 

@@ -24,6 +24,7 @@ import cls from './AuthForm.module.scss';
 
 export interface IAuthFormProps {
   className?: string;
+  setIsBlitzAuth: (state: boolean) => void;
 }
 
 export interface AuthFormType {
@@ -46,7 +47,7 @@ enum FormInputs {
 const initialReducers: ReducerList = { authForm: authReducer };
 
 const AuthForm = (props: IAuthFormProps) => {
-  const { className } = props;
+  const { className, setIsBlitzAuth } = props;
   const { t } = useTranslation('auth');
   const [isPasswordVisible, setPasswordVisible] = useState(false);
   const [type, setType] = useState<AuthFormType>({
@@ -144,15 +145,15 @@ const AuthForm = (props: IAuthFormProps) => {
   }, [changeTab, state]);
 
   const renderTextInButton = useCallback(() => {
-    if (isLoading) return <span className={cls.loader}/>;
+    if (isLoading) return <span className={cls.loader} />;
     return type.isAuthActive ? t('Войти') : t('Создать');
   }, [isLoading, type, t]);
 
   return (
     <form className={classNames(cls.AuthForm, {}, [className])} onSubmit={handleSubmit(onSubmit)}>
       <div className={cls.formWrapper}>
-        <Logo theme="auth"/>
-        <AuthTabLinks type={type} changeTab={changeTab}/>
+        <Logo theme="auth" />
+        <AuthTabLinks type={type} changeTab={changeTab} />
 
         <fieldset className={cls.fieldset}>
           <Controller
@@ -266,9 +267,9 @@ const AuthForm = (props: IAuthFormProps) => {
           theme="clear"
           type="button"
           variant="down-arrow"
-          onClick={() => navigate(RoutePath.auth)}
+          onClick={() => setIsBlitzAuth(false)}
         >
-          {t('Вернуться обратно')}
+          <span className={cls.altLoginSpan}>{t('Назад')}</span>
         </Button>
       </div>
     </form>

@@ -15,15 +15,21 @@ export const AuthSelect = ({ setIsBlitzAuth }: AuthSelectProps) => {
 
   return (
     <div className={cls.wrapper}>
-      <Logo theme="auth"/>
-      <h1 className={cls.title}>
-        {t('Выберите способ авторизации:')}
-      </h1>
+      <Logo theme="auth" />
+      <h1 className={cls.title}>{t('Выберите способ авторизации:')}</h1>
       <div className={cls.inner}>
-        <LestaLogo className={cls.logoLesta} onClick={() => navigate(RoutePath.authLesta)}/>
-        <Logo className={cls.logoBlitz} withoutCrown theme="auth" onClick={() => {
-          setIsBlitzAuth(true);
-        }}/>
+        <LestaLogo
+          className={cls.logoLesta}
+          onClick={() => navigate(RoutePath.authLesta)}
+        />
+        <Logo
+          className={cls.logoBlitz}
+          withoutCrown
+          theme="auth"
+          onClick={() => {
+            setIsBlitzAuth(true);
+          }}
+        />
       </div>
     </div>
   );
