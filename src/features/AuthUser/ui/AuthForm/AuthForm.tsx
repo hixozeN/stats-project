@@ -34,13 +34,13 @@ export interface AuthFormType {
 
 interface AuthFormInputs {
   email?: string;
-  username?: string;
+  nickname?: string;
   password?: string;
 }
 
 enum FormInputs {
   EMAIL = 'email',
-  USERNAME = 'username',
+  NICKNAME = 'nickname',
   PASSWORD = 'password',
 }
 
@@ -67,7 +67,7 @@ const AuthForm = (props: IAuthFormProps) => {
   } = useForm<AuthFormInputs>({
     defaultValues: {
       [FormInputs.EMAIL]: '',
-      [FormInputs.USERNAME]: '',
+      [FormInputs.NICKNAME]: '',
       [FormInputs.PASSWORD]: '',
     },
     mode: 'all',
@@ -110,7 +110,7 @@ const AuthForm = (props: IAuthFormProps) => {
 
   const onSubmit = useCallback(async (data: AuthFormInputs) => {
     const {
-      username,
+      nickname,
       password,
       email,
     } = data;
@@ -123,7 +123,7 @@ const AuthForm = (props: IAuthFormProps) => {
     } else {
       await dispatch(authUserService({
         email,
-        username,
+        nickname,
         password,
         variant: 'registration',
       }));
@@ -178,7 +178,7 @@ const AuthForm = (props: IAuthFormProps) => {
 
           {type.isRegActive && (
             <Controller
-              name="username"
+              name="nickname"
               rules={{
                 required: VALIDATION_MESSAGES.REQUIRED,
                 minLength: {
@@ -189,8 +189,8 @@ const AuthForm = (props: IAuthFormProps) => {
               render={({ field }) => (
                 <AuthInput
                   placeholder={t('Никнейм')}
-                  error={errors.username?.message}
-                  isError={!!errors.username?.message}
+                  error={errors.nickname?.message}
+                  isError={!!errors.nickname?.message}
                   {...field}
                 />
               )}
@@ -198,7 +198,7 @@ const AuthForm = (props: IAuthFormProps) => {
             />
           )}
 
-          <label htmlFor="password" className={cls.inputWrapper}>
+          <div className={cls.inputWrapper}>
             <Controller
               name="password"
               rules={{
@@ -215,6 +215,7 @@ const AuthForm = (props: IAuthFormProps) => {
                   type="password"
                   error={errors.password?.message}
                   isError={!!errors.password?.message}
+                  autoComplete={type.isAuthActive ? 'current-password' : 'new-password'}
                   {...field}
                   ref={inputPasswordRef}
                 />
@@ -240,7 +241,7 @@ const AuthForm = (props: IAuthFormProps) => {
             {/*  </Link> */}
             {/* </span> */}
             {/* )} */}
-          </label>
+          </div>
         </fieldset>
       </div>
 
