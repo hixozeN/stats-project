@@ -57,6 +57,7 @@ export const LeaderboardWithSorting = memo((props: LeaderboardWithSortingProps) 
 
   const renderButtonsWithBattles = useCallback(() => battlesCountList.map((battlesCount) => (
     <Button
+      key={battlesCount}
       theme={battles === battlesCount ? 'default' : 'send-results'}
       onClick={() => setBattles(battlesCount)}
     >
@@ -66,6 +67,7 @@ export const LeaderboardWithSorting = memo((props: LeaderboardWithSortingProps) 
 
   const renderButtonsWithSorting = useCallback(() => sortingList.map((sortItem: SortValue) => (
     <Button
+      key={sortItem}
       theme={sortBy === sortItem ? 'default' : 'send-results'}
       onClick={() => setSortBy(sortItem)}
     >
