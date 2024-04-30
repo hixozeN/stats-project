@@ -9,12 +9,12 @@ import { TeamContent } from 'widgets/TeamContent';
 import { TeamMembersTable } from 'widgets/TeamMembersTable';
 import {
   fetchLestaClanData,
-  getLestaClanLogo,
   getClanLoadingStatus,
   getClanNotFoundStatus,
 } from 'entities/Lesta';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
+import { SeoUpdater } from 'shared/lib/SeoUpdater/SeoUpdater';
 import cls from './TeamPage.module.scss';
 
 interface TeamPageProps {
@@ -27,23 +27,18 @@ export const TeamPage = memo((props: TeamPageProps) => {
   const { clanId } = useParams<{ clanId: string }>();
   const isLoading = useSelector(getClanLoadingStatus);
   const isNotFound = useSelector(getClanNotFoundStatus);
-  const logo = useSelector(getLestaClanLogo);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(fetchLestaClanData({ id: clanId }));
   }, [clanId, dispatch]);
 
-  const renderLogo = (): string => {
-    if (!logo) return '';
-    return `https://wotblitz-gc.gcdn.co/icons/clanEmblems1x/clan-icon-v2-${logo}.png`;
-  };
-
   if (isLoading) return <Loader />;
 
   if (isNotFound) {
     return (
       <ErrorBoundary>
+        <SeoUpdater title={t('PAGE_TITLE')} />
         <Background />
         <main className={classNames(cls.TeamPage, {}, [className])}>
           <div className={cls.wrapper}>
@@ -56,10 +51,8 @@ export const TeamPage = memo((props: TeamPageProps) => {
 
   return (
     <ErrorBoundary>
-      <Background
-        theme="blur"
-        url={renderLogo()}
-      />
+      <SeoUpdater title={t('PAGE_TITLE')} />
+      <Background />
       <main className={classNames(cls.TeamPage, {}, [className])}>
         <div className={cls.wrapper}>
           <TeamContent />

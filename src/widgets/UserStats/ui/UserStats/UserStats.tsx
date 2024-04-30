@@ -6,7 +6,7 @@ import { Button } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import {
-  createLestaUserSession,
+  createLestaUserSession, fetchLestaUserSessionById,
   getUserRatingStats,
   getUserSessionDelta,
   getUserSessionStats,
@@ -45,7 +45,12 @@ export const UserStats = memo(({
   const sessionStatItems = useMemo(() => getStatsList(userSessionStats), [userSessionStats]);
 
   const handleUpdateSession = useCallback(() => {
-    dispatch(createLestaUserSession());
+    dispatch(createLestaUserSession())
+      .unwrap()
+      .then((res) => {
+        const sessionId = [...res].pop().id;
+        dispatch(fetchLestaUserSessionById({ sessionId }));
+      });
   }, [dispatch]);
 
   return (
