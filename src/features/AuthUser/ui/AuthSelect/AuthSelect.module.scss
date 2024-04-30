@@ -65,6 +65,7 @@
 .logoLesta {
   cursor: pointer;
   color: var(--primary-color);
+
   @media (hover: hover) {
     &:hover {
       color: var(--accent-color);
