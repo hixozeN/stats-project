@@ -9,7 +9,7 @@ interface AuthUserProps {
   variant: 'registration' | 'login',
   email: string;
   password: string;
-  nickname?: string;
+  username?: string;
 }
 
 export const authUserService = createAsyncThunk<User, AuthUserProps, ThunkConfig<string>>(
@@ -18,7 +18,7 @@ export const authUserService = createAsyncThunk<User, AuthUserProps, ThunkConfig
     // деструктурируем нужные данные из thunkAPI
     const { rejectWithValue, dispatch, extra } = thunkAPI;
     const {
-      variant, email, password, nickname = '',
+      variant, email, password, username = '',
     } = authDataProps;
 
     try {
@@ -27,7 +27,7 @@ export const authUserService = createAsyncThunk<User, AuthUserProps, ThunkConfig
         `/auth/${variant}`,
         variant === 'login'
           ? { email, password }
-          : { email, password, nickname },
+          : { email, password, username },
       );
 
       // прокидываем ошибку, если данных нет

@@ -7,7 +7,6 @@ import { getLoggedInStatus, getUserData } from 'entities/User';
 import React, {
   memo, useCallback, useEffect, useRef, useState,
 } from 'react';
-import LoginIcon from 'shared/assets/icons/button/login.svg';
 import { Button } from 'shared/ui/Button/Button';
 import { useSizeScreen } from 'shared/hooks/useSizeScreen';
 import { Menu } from 'shared/ui/Menu';

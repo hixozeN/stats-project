@@ -1,25 +1,16 @@
-import React, { memo, useState } from 'react';
-import { AuthForm } from 'features/AuthUser';
+import { memo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary/index';
 import { SeoUpdater } from 'shared/lib/SeoUpdater/SeoUpdater';
-import { useTranslation } from 'react-i18next';
-import { AuthSelect } from 'features/AuthUser/ui/AuthSelect/AuthSelect';
-import cls from './AuthorizationPage.module.scss';
+import { Auth } from 'features/AuthUser/ui/Auth/Auth';
 
 function AuthorizationPage() {
   const { t } = useTranslation('auth');
-  const [isBlitzAuth, setIsBlitzAuth] = useState(false);
 
   return (
     <ErrorBoundary>
-      <SeoUpdater
-        title={t('authPageTitle')}
-        OGTitle={t('authPageTitle')}
-      />
-      <div className={cls.auth}>
-        {!isBlitzAuth && <AuthSelect setIsBlitzAuth={setIsBlitzAuth} />}
-        {isBlitzAuth && <AuthForm setIsBlitzAuth={setIsBlitzAuth} />}
-      </div>
+      <SeoUpdater title={t('authPageTitle')} OGTitle={t('authPageTitle')} />
+      <Auth />
     </ErrorBoundary>
   );
 }

@@ -123,7 +123,7 @@ const AuthForm = (props: IAuthFormProps) => {
     } else {
       await dispatch(authUserService({
         email,
-        nickname,
+        username: nickname,
         password,
         variant: 'registration',
       }));
