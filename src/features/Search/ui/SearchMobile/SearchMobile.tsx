@@ -4,6 +4,7 @@ import React, {
 import { Modal } from 'shared/ui/Modal/Modal';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
+import { useTranslation } from 'react-i18next';
 import { SearchForm } from '../SearchForm/SearchForm';
 import { SearchResults } from '../SearchResults/SearchResults';
 import cls from './SearchMobile.module.scss';
@@ -29,6 +30,8 @@ export const SearchMobile = (props: ISearchMobile) => {
     className,
   } = props;
 
+  const { t } = useTranslation('search');
+
   const [isOpenPopup, setIsOpenPopup] = useState(false);
 
   const mobileContextValue = useMemo(() => ({
@@ -46,6 +49,7 @@ export const SearchMobile = (props: ISearchMobile) => {
   return (
     <>
       <Button
+        aria-label={t('Поиск')}
         type="button"
         theme="icon"
         variant="magnifier"
