@@ -76,7 +76,7 @@ export const DarkRegistration: Story = {
     StoreDecorator(
       {
         authForm: {
-          username: 'ReactDeveloper',
+          nickname: 'ReactDeveloper',
           email: 'test@test.ru',
           password: 'test_password',
         },

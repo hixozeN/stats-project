@@ -34,3 +34,18 @@
   height: 100%;
   margin: -25% auto 0;
 }
+
+@media (width <= 1024px) {
+  .Background {
+    border-radius: 0;
+  }
+
+  .overlay {
+    border-radius: 0;
+    position: absolute;
+
+    &::after {
+      display: none;
+    }
+  }
+}

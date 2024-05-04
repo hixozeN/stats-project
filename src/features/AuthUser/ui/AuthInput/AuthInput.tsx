@@ -2,16 +2,17 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import React, {
   ForwardedRef,
   forwardRef,
-  InputHTMLAttributes, LegacyRef,
+  InputHTMLAttributes,
+  LegacyRef,
 } from 'react';
 import cls from './AuthInput.module.scss';
 
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
   'value' | 'onChange'
-  >;
+>;
 
-interface IAuthInputProps extends HTMLInputProps{
+interface IAuthInputProps extends HTMLInputProps {
   className?: string;
   value?: string;
   // eslint-disable-next-line no-unused-vars
@@ -32,13 +33,14 @@ export const AuthInput = forwardRef(
         <input
           id={otherProps.name}
           ref={ref}
-          className={classNames(cls.AuthInput, { [cls.error]: isError }, [className])}
+          className={classNames(cls.AuthInput, { [cls.error]: isError }, [
+            className,
+          ])}
           value={value}
+          autoComplete={otherProps.autoComplete ?? otherProps.name}
           {...otherProps}
         />
-        <span className={cls.errorMessage}>
-          {error}
-        </span>
+        <span className={cls.errorMessage}>{error}</span>
       </label>
     );
   },

@@ -1,5 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import {
+  memo,
   useCallback, useEffect, useRef, useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -8,12 +9,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import { Logo } from 'shared/ui/Logo/Logo';
 import Eye from 'shared/assets/icons/eye.svg';
-import LestaLogo from 'shared/assets/icons/logo_lesta.svg';
+// import LestaLogo from 'shared/assets/icons/logo_lesta.svg';
 import { getLoggedInStatus } from 'entities/User';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { ReducerList, useDynamicReducerLoader } from 'shared/hooks/useDynamicReducerLoader/useDynamicReducerLoader';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { VALIDATION_MESSAGES } from 'shared/consts/validationMessages';
+import { Button } from 'shared/ui/Button/Button';
 import { getAuthError, getAuthLoading } from '../../model/selectors';
 import { authUserService } from '../../model/services/authUserService/authUserService';
 import { authReducer } from '../../model/slice/authSlice';
@@ -23,6 +25,7 @@ import cls from './AuthForm.module.scss';
 
 export interface IAuthFormProps {
   className?: string;
+  setIsBlitzAuth: (state: boolean) => void;
 }
 
 export interface AuthFormType {
@@ -32,34 +35,40 @@ export interface AuthFormType {
 
 interface AuthFormInputs {
   email?: string;
-  username?: string;
+  nickname?: string;
   password?: string;
 }
 
 enum FormInputs {
   EMAIL = 'email',
-  USERNAME = 'username',
+  NICKNAME = 'nickname',
   PASSWORD = 'password',
 }
 
 const initialReducers: ReducerList = { authForm: authReducer };
 
-const AuthForm = (props: IAuthFormProps) => {
-  const { className } = props;
+export const AuthForm = memo((props: IAuthFormProps) => {
+  const { className, setIsBlitzAuth } = props;
   const { t } = useTranslation('auth');
   const [isPasswordVisible, setPasswordVisible] = useState(false);
-  const [type, setType] = useState<AuthFormType>({ isAuthActive: true, isRegActive: false });
+  const [type, setType] = useState<AuthFormType>({
+    isAuthActive: true,
+    isRegActive: false,
+  });
   const inputPasswordRef = useRef<HTMLInputElement>(null);
 
   const {
     handleSubmit,
-    formState: { errors, isValid },
+    formState: {
+      errors,
+      isValid,
+    },
     control,
     reset,
   } = useForm<AuthFormInputs>({
     defaultValues: {
       [FormInputs.EMAIL]: '',
-      [FormInputs.USERNAME]: '',
+      [FormInputs.NICKNAME]: '',
       [FormInputs.PASSWORD]: '',
     },
     mode: 'all',
@@ -88,19 +97,36 @@ const AuthForm = (props: IAuthFormProps) => {
   const changeTab = useCallback((tabName) => {
     reset();
     if (tabName === 'auth') {
-      setType({ isAuthActive: true, isRegActive: false });
+      setType({
+        isAuthActive: true,
+        isRegActive: false,
+      });
     } else {
-      setType({ isAuthActive: false, isRegActive: true });
+      setType({
+        isAuthActive: false,
+        isRegActive: true,
+      });
     }
   }, [reset]);
 
   const onSubmit = useCallback(async (data: AuthFormInputs) => {
-    const { username, password, email } = data;
+    const {
+      nickname,
+      password,
+      email,
+    } = data;
     if (type.isAuthActive) {
-      await dispatch(authUserService({ email, password, variant: 'login' }));
+      await dispatch(authUserService({
+        email,
+        password,
+        variant: 'login',
+      }));
     } else {
       await dispatch(authUserService({
-        email, username, password, variant: 'registration',
+        email,
+        username: nickname,
+        password,
+        variant: 'registration',
       }));
     }
   }, [type, dispatch]);
@@ -153,7 +179,7 @@ const AuthForm = (props: IAuthFormProps) => {
 
           {type.isRegActive && (
             <Controller
-              name="username"
+              name="nickname"
               rules={{
                 required: VALIDATION_MESSAGES.REQUIRED,
                 minLength: {
@@ -164,8 +190,8 @@ const AuthForm = (props: IAuthFormProps) => {
               render={({ field }) => (
                 <AuthInput
                   placeholder={t('Никнейм')}
-                  error={errors.username?.message}
-                  isError={!!errors.username?.message}
+                  error={errors.nickname?.message}
+                  isError={!!errors.nickname?.message}
                   {...field}
                 />
               )}
@@ -173,7 +199,7 @@ const AuthForm = (props: IAuthFormProps) => {
             />
           )}
 
-          <label htmlFor="password" className={cls.inputWrapper}>
+          <div className={cls.inputWrapper}>
             <Controller
               name="password"
               rules={{
@@ -190,6 +216,7 @@ const AuthForm = (props: IAuthFormProps) => {
                   type="password"
                   error={errors.password?.message}
                   isError={!!errors.password?.message}
+                  autoComplete={type.isAuthActive ? 'current-password' : 'new-password'}
                   {...field}
                   ref={inputPasswordRef}
                 />
@@ -215,7 +242,7 @@ const AuthForm = (props: IAuthFormProps) => {
             {/*  </Link> */}
             {/* </span> */}
             {/* )} */}
-          </label>
+          </div>
         </fieldset>
       </div>
 
@@ -232,12 +259,21 @@ const AuthForm = (props: IAuthFormProps) => {
         </span>
       </div>
 
+      {/* <div className={cls.altLogin}> */}
+      {/*   <span className={cls.altLoginSpan}>{t('Или можете войти с помощью LestaID:')}</span> */}
+      {/*   <LestaLogo className={cls.lestaLogoIcon} onClick={() => navigate(RoutePath.authLesta)} /> */}
+      {/* </div> */}
       <div className={cls.altLogin}>
-        <span className={cls.altLoginSpan}>{t('Или можете войти с помощью LestaID:')}</span>
-        <LestaLogo className={cls.lestaLogoIcon} onClick={() => navigate(RoutePath.authLesta)} />
+        <Button
+          className={cls.arrowBack}
+          theme="clear"
+          type="button"
+          variant="down-arrow"
+          onClick={() => setIsBlitzAuth(false)}
+        >
+          <span className={cls.altLoginSpan}>{t('Назад')}</span>
+        </Button>
       </div>
     </form>
   );
-};
-
-export default AuthForm;
+});

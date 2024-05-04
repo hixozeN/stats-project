@@ -1,6 +1,6 @@
 export interface AuthSchema {
   email: string;
-  username?: string;
+  nickname?: string;
   password: string;
   isLoading: boolean;
   error?: string;

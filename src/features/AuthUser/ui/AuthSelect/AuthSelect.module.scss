@@ -1,0 +1,92 @@
+.wrapper {
+  position: relative;
+  max-width: 677px;
+  max-height: max-content;
+  width: 100%;
+  height: max-content;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  z-index: 3;
+  padding: 25px 60px;
+  grid-column: 2 / 12;
+  margin-top: 100px;
+  align-items: center;
+
+  @media screen and (width > 1980px) {
+    grid-column: 4 / 12;
+  }
+}
+
+.wrapper::after {
+  position: absolute;
+  content: "";
+  background: rgb(248 248 248 / 5%);
+  backdrop-filter: blur(30px);
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  border-radius: 15px;
+}
+
+.title {
+  text-align: center;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  margin: 35px 0 0;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: repeat(2, 242px);
+  grid-template-rows: 80px;
+  margin: 0 0 5px;
+}
+
+.logoBlitz {
+  color: var(--primary-color);
+  height: 80px;
+  width: 242px;
+
+  & svg {
+    transform: scale(2.1, 2.4);
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
+}
+
+.logoLesta {
+  cursor: pointer;
+  color: var(--primary-color);
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
+}
+
+@media screen and (width <= 768px) {
+  .inner {
+    grid-template-columns: repeat(1, 242px);
+  }
+
+  .title {
+    margin-bottom: 15px;
+    line-height: 120%;
+    font-size: 20px;
+    padding: 0 15px;
+  }
+
+  .wrapper {
+    margin:0 10px;
+    padding: 25px 0;
+  }
+}

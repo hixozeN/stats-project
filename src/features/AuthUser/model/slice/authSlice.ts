@@ -5,7 +5,7 @@ import { authUserService } from '../services/authUserService/authUserService';
 const initialState: AuthSchema = {
   email: '',
   password: '',
-  username: '',
+  nickname: '',
   isLoading: false,
   error: '',
 };
@@ -21,7 +21,7 @@ export const authSlice = createSlice({
       state.password = action.payload;
     },
     setUserName: (state, action: PayloadAction<string>) => {
-      state.username = action.payload;
+      state.nickname = action.payload;
     },
   },
   extraReducers: (builder) => {
