@@ -39,5 +39,7 @@
   "Профиль": "Profile",
   "UNDER_CONSTRUCTION": "This section is under development \uD83D\uDEE0",
   "Выйти из аккаунта": "Logout",
-  "PAGE_NOT_FOUND_TITLE": "Page not found | BlitzStats.ru"
+  "PAGE_NOT_FOUND_TITLE": "Page not found | BlitzStats.ru",
+  "SIDEBAR_BURGER_BTN_LABEL": "Open navigation menu",
+  "NOTIFICATION_LABEL": "Show personal notifications"
 }

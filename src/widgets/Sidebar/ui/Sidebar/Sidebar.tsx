@@ -4,6 +4,7 @@ import { Button } from 'shared/ui/Button/Button';
 import { LangSwitcher } from 'widgets/LangSwitcher';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
 import { useSizeScreen } from 'shared/hooks/useSizeScreen';
+import { useTranslation } from 'react-i18next';
 import { dataList } from '../../config/sidebarLinks';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
 import cls from './Sidebar.module.scss';
@@ -20,6 +21,7 @@ export const Sidebar = memo(({
   isCollapsed,
   setIsCollapsed,
 }: SidebarProps) => {
+  const { t } = useTranslation();
   const { width } = useSizeScreen();
   const [isOpenMenu, setOpenMenu] = useState(false);
 
@@ -42,6 +44,7 @@ export const Sidebar = memo(({
     >
       {width <= 1024 && (
         <Button
+          aria-label={t('SIDEBAR_BURGER_BTN_LABEL')}
           theme="icon-circle"
           variant="burger"
           onClick={handleClickBurger}
