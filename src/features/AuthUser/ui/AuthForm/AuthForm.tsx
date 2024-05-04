@@ -1,5 +1,6 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import {
+  memo,
   useCallback, useEffect, useRef, useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -46,7 +47,7 @@ enum FormInputs {
 
 const initialReducers: ReducerList = { authForm: authReducer };
 
-const AuthForm = (props: IAuthFormProps) => {
+export const AuthForm = memo((props: IAuthFormProps) => {
   const { className, setIsBlitzAuth } = props;
   const { t } = useTranslation('auth');
   const [isPasswordVisible, setPasswordVisible] = useState(false);
@@ -275,6 +276,4 @@ const AuthForm = (props: IAuthFormProps) => {
       </div>
     </form>
   );
-};
-
-export default AuthForm;
+});

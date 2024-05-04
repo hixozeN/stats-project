@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AuthFormLazy as AuthForm } from '../AuthForm/AuthForm.lazy';
+import { AuthForm } from '../AuthForm/AuthForm';
 import { AuthSelect } from '../AuthSelect/AuthSelect';
 import cls from './Auth.module.scss';
 
