@@ -9,6 +9,12 @@ const initialState: FilterSchema = {
   isActiveFilter: false,
 };
 
+interface CheckboxPayload {
+  name: string;
+  checked: boolean;
+  param: string;
+}
+
 export const filterSlice = createSlice({
   name: 'filter',
   initialState,
@@ -19,7 +25,7 @@ export const filterSlice = createSlice({
     setIsActiveFilter: (state) => {
       state.isActiveFilter = true;
     },
-    setCheckbox: (state, action: PayloadAction<Record<string, boolean>>) => {
+    setCheckbox: (state, action: PayloadAction<CheckboxPayload>) => {
       state.checkboxes = {
         ...state.checkboxes,
         [`${action.payload.param}`]: {
