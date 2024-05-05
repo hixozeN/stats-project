@@ -55,7 +55,7 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
       });
   }, [dispatch, userId, lestaAccessToken, currentSession]);
 
-  const handleChangeSession = useCallback((targetSession) => {
+  const handleChangeSession = useCallback((targetSession: string) => {
     dispatch(fetchLestaUserSessionById({ sessionId: targetSession }));
     setCurrentSession(targetSession);
     setIsMenuOpen(false);
