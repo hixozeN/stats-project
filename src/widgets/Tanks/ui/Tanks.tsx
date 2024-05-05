@@ -33,7 +33,7 @@ export const Tanks = memo(({ tab }: TanksProps) => {
   const { t } = useTranslation('tank');
 
   const getTanksList = useCallback(
-    (tabIndex): TUserTanks[] => {
+    (tabIndex: number): TUserTanks[] => {
       if (tabIndex === 0) {
         return tanks;
       }

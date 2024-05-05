@@ -1,5 +1,5 @@
 import {
-  ReactElement, memo, useCallback, useMemo,
+  ReactElement, memo, useCallback, useMemo, SyntheticEvent,
 } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
@@ -44,8 +44,8 @@ export const Tank = memo(({ data, tab }: TankProps) => {
     [cls.collectible]: is_collectible,
   };
 
-  const onImageError = useCallback((e) => {
-    e.target.src = plug;
+  const onImageError = useCallback((e: SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = plug;
   }, []);
 
   if (isUserDataLoading) {

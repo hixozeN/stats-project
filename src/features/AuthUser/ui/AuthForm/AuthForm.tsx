@@ -33,6 +33,8 @@ export interface AuthFormType {
   isRegActive: boolean;
 }
 
+type TabName = 'auth' | 'reg';
+
 interface AuthFormInputs {
   email?: string;
   nickname?: string;
@@ -94,7 +96,7 @@ export const AuthForm = memo((props: IAuthFormProps) => {
     }
   }, []);
 
-  const changeTab = useCallback((tabName) => {
+  const changeTab = useCallback((tabName: TabName) => {
     reset();
     if (tabName === 'auth') {
       setType({
