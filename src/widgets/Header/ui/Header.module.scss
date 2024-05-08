@@ -15,14 +15,15 @@
   align-items: center;
 }
 
-@media (width <= 768px) {
+@media (width <= 1024px) {
   .Header {
     padding-left: 15px;
     padding-right: 15px;
+    position: relative;
   }
 
   .formWrapper {
-    gap: 20px;
+    gap: 10px;
     position: relative;
   }
 }

@@ -38,6 +38,7 @@ export const TankStat = memo(
         if (battles >= 0 && (wn8 === 0 || !last_battle_time)) {
           return 'обкатка';
         }
+        if (wn8 === -1) return 'не уч.';
         return Math.round(wn8);
       }
       return 'нет';
@@ -105,6 +106,9 @@ export const TankStat = memo(
       }
       if (wn8 === 0 && battles >= 0) {
         return `Осталось боёв: ${100 - battles}`;
+      }
+      if (wn8 === -1) {
+        return 'Для этого танка пока недостаточно данных для подсчета WN8.';
       }
       return null;
     }, [battles, last_battle_time, tier, wn8]);

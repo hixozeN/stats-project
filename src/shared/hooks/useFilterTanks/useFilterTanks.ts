@@ -1,4 +1,6 @@
-import { useCallback, useMemo, useState } from 'react';
+import {
+  ChangeEvent, useCallback, useMemo, useState,
+} from 'react';
 import { useSelector } from 'react-redux';
 import { TUserTanks } from 'entities/Lesta';
 import { sortActions, filterActions, getCheckboxesFilterState } from 'features/Filter';
@@ -47,7 +49,7 @@ export const useFilterTanks = (dataList: TUserTanks[]) => {
   }, [dataList, dispatch]);
 
   const onChangeFilter = useCallback(
-    (e) => {
+    (e: ChangeEvent<HTMLInputElement>) => {
       const { checked, name, id } = e.target;
       const [param] = id.split('-');
       dispatch(filterActions.setCheckbox({ name, checked, param }));

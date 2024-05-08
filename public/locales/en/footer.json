@@ -1,4 +1,7 @@
 {
   "USER_AGREEMENT": "User agreement",
-  "COPYRIGHT": "Developed by the BlitzStats team"
+  "COPYRIGHT": "Developed by the BlitzStats team",
+  "DISCORD_LABEL": "Link to discord server",
+  "TG_LABEL": "Link to telegram channel",
+  "VK_LABEL": "Link to vkontakte group"
 }

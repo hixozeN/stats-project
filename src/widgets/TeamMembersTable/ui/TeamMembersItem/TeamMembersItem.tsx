@@ -31,7 +31,7 @@ export const TeamMembersItem = (props: ITeamMembersItem) => {
   const { t } = useTranslation('teamPage');
   const navigate = useNavigate();
 
-  const handleClickOnItem = useCallback((e: React.MouseEvent<HTMLLIElement>, id) => {
+  const handleClickOnItem = useCallback((e: React.MouseEvent<HTMLLIElement>, id: number) => {
     navigate(`/user/${id}`, { preventScrollReset: false });
   }, [navigate]);
 

@@ -16,7 +16,7 @@ export const Background = memo((props: BackgroundProps) => {
   return (
     <div className={cls.overlay}>
       {theme === 'default' ? (
-        <DefaultBg className={cls.svgBg} />
+        <DefaultBg />
       ) : (
         <img
           src={url}
