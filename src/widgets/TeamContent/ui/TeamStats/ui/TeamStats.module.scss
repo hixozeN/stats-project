@@ -1,19 +1,22 @@
 .list {
-  max-width: 700px;
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  list-style: none;
-}
+  max-width: 1020px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px 24px;
 
-@media screen and (width < 700px) {
-  .list {
-    max-width: 320px;
+  @media screen and (width <= 1090px) {
+    max-width: 660px;
+    justify-content: center;
   }
-}
 
-@media screen and (width < 570px){
-  .list {
-    grid-gap: 10px;
+  @media screen and  (width <= 699px) {
+    max-width: 320px;
+    justify-content: center;
+    gap: 15px 10px;
+  }
+
+  @media screen and (width <= 330px) {
+    gap: 10px 6px;
   }
 }
