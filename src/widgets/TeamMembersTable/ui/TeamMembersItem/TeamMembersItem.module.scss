@@ -43,6 +43,18 @@
   font-size: var(--font-size-m);
 }
 
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.icon {
+  width: 17px;
+  height: 17px;
+  cursor: help;
+}
+
 @media screen and (width <= 1080px ) {
   .item {
     gap: 5px;

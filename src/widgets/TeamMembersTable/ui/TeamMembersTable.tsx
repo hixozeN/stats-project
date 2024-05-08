@@ -1,35 +1,48 @@
-import React, { memo } from 'react';
-import { useSelector } from 'react-redux';
+import React, {
+  memo, useEffect,
+} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { getLestaClanMembers, getLestaClanPlayers } from 'entities/Lesta';
-import { LestaClanUser } from 'entities/Lesta/model/types/clans';
+import { getClanMembers } from 'entities/Lesta';
 import { usersClan } from 'widgets/TeamMembersTable/lib/usersClan';
+import { SortClanListPlayers } from 'features/SortClanListPlayers';
+import { getSortListData } from 'features/SortClanListPlayers/model/selectors';
+import { sortListPlayersActions } from 'features/SortClanListPlayers/model/slice/SortListPlayerSlice';
 import { TeamMembersItem } from './TeamMembersItem/TeamMembersItem';
 import cls from './TeamMembersTable.module.scss';
 
 export const TeamMembersTable = memo(() => {
   const { t } = useTranslation('teamPage');
-  const playersSelector = useSelector(getLestaClanPlayers);
-  const membersSelector = useSelector(getLestaClanMembers);
-  const users: LestaClanUser[] = usersClan(playersSelector, membersSelector);
+  const members = useSelector(getClanMembers);
+  const dataSort = useSelector(getSortListData);
+  const dispatch = useDispatch();
 
-  if (!users) return null;
+  useEffect(() => {
+    dispatch(sortListPlayersActions.setSortListPLayers({
+      data: usersClan(members),
+    }));
+  }, [members, dispatch]);
+
+  if (!members) return null;
 
   return (
-    <section aria-label={t('ARIA_LABEL_SECTION_PLAYERS')}>
+    <section className={cls.TeamMembersTable} aria-label={t('ARIA_LABEL_SECTION_PLAYERS')}>
+      <div className={cls.wrapper}>
+        <SortClanListPlayers />
+      </div>
       <ul className={cls.list}>
-        {users.map((data) => (
+        {dataSort.map((player) => (
           <TeamMembersItem
-            key={data.account_id}
-            idAccount={data.account_id}
-            role={data.role}
-            name={data.account_name}
-            battles={data.statistics.battles}
-            wins={data.statistics.wins}
-            damage={data.statistics.damage_dealt}
-            wn8={data.wn8}
-            lastBattleTime={data.last_battle_time}
-            joinedAt={data.joined_at}
+            key={player.account_id}
+            idAccount={player.account_id}
+            joinedAt={player.joined_at}
+            name={player.nickname}
+            role={player.role}
+            damage={player.statistics.avgDamage}
+            battles={player.statistics.battles}
+            lastBattleTime={player.statistics.last_battle_time}
+            winRate={player.statistics.winRate}
+            wn8={player.statistics.wn8}
           />
         ))}
       </ul>
