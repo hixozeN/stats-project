@@ -21,7 +21,9 @@ export function usersClan(clanUsers: LestaClanMember[]): LestaClanMember[] {
 
   const commanders = usersWithRole.filter((user) => user.role === roleValues.commander);
   const executiveOfficers = usersWithRole.filter((user) => user.role === roleValues.executive_officer);
-  const otherUsers = usersWithRole.filter((user) => user.role !== roleValues.commander && user.role !== roleValues.executive_officer);
+  const otherUsers = usersWithRole.filter((user) => (
+    user.role !== roleValues.commander && user.role !== roleValues.executive_officer
+  ));
 
   const sortedUsers = [
     ...commanders,
