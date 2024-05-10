@@ -5,6 +5,16 @@ import { BuildEnv, BuildPaths } from './config/build/types/config';
 
 require('dotenv').config();
 
+function generateRandomNumber(length : number): string {
+  const chars = '0123456789';
+  const charLength = chars.length;
+  let result = '';
+  for (let i = 0; i < length; i += 1) {
+    result += chars.charAt(Math.floor(Math.random() * charLength));
+  }
+  return result;
+}
+
 export default (env: BuildEnv) => {
   const paths: BuildPaths = {
     entry: path.resolve(__dirname, 'src', 'index.tsx'),
@@ -33,6 +43,8 @@ export default (env: BuildEnv) => {
   const lestaAuthApiUrl = 'https://api.tanki.su/wot/auth';
   const lestaAppId = process.env.LESTA_APP_ID;
 
+  const buildHash = generateRandomNumber(9);
+
   const config: webpack.Configuration = buildWebpackConfig({
     mode,
     paths,
@@ -44,6 +56,7 @@ export default (env: BuildEnv) => {
     lestaApiUrl,
     lestaAuthApiUrl,
     lestaAppId,
+    buildHash,
   });
 
   return config;
