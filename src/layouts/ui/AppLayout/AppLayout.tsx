@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux';
 import {
-  Suspense, useCallback, useEffect, useState,
+  Suspense, useCallback, useEffect,
 } from 'react';
 import { Outlet, useMatch, useSearchParams } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Sidebar } from 'widgets/Sidebar';
 import { LOCAL_STORAGE_LESTA } from 'shared/consts/localstorage';
 import {
-  getLoggedInStatus, getUserAuthInitiation,
+  getUserAuthInitiation,
   checkUserAuth, getCurrentUserError, getFullUserState,
 } from 'entities/User';
 import Loader from 'shared/ui/Loader/Loader';
@@ -24,12 +24,10 @@ import cls from './AppLayout.module.scss';
 function AppLayout() {
   const { theme } = useTheme();
   const isAuthInitiated = useSelector(getUserAuthInitiation);
-  const isLoggedIn = useSelector(getLoggedInStatus);
   const isAuthLoading = useSelector(getFullUserState).isLoading;
   const currentUserError = useSelector(getCurrentUserError);
   const isMainPage = useMatch(RoutePath.main);
   const dispatch = useAppDispatch();
-  const [isCollapsed, setIsCollapsed] = useState(true);
   const [queryParams] = useSearchParams();
   const { toastWithError } = useToasts();
 
@@ -85,17 +83,13 @@ function AppLayout() {
       <div id="app" className={classNames('app', {}, [theme])}>
         <Header />
         <main className="page-content">
-          {isLoggedIn && (
-            <Sidebar
-              isCollapsed={isCollapsed}
-              setIsCollapsed={setIsCollapsed}
-            />
-          )}
+          {/* {!isAuthPage && <Sidebar />} */}
+          <Sidebar />
           <Suspense fallback={<Loader />}>
             <div
               className={classNames(
                 cls.pageWrapper,
-                { [cls.collapsed]: isCollapsed, [cls.loggedIn]: !isLoggedIn },
+                { [cls.collapsed]: false },
               )}
             >
               <Outlet />

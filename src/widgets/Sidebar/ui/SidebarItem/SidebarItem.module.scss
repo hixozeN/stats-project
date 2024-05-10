@@ -9,17 +9,21 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 3px;
   color: var(--inverted-primary-color);
   text-decoration: none;
   width: var(--sidebar-width);
-  height: 86px;
+  padding: 5px;
+
+  & svg {
+    width: 36px;
+    height: 36px;
+  }
 }
 
 .linkText {
-  font-size: 12px;
-  font-weight: 900;
+  font-size: 11px;
   text-transform: uppercase;
+  font-family: Roboto, sans-serif;
   opacity: 1;
 }
 
@@ -108,6 +112,17 @@
     left: 141px;
   }
 
+  .linkText {
+    display: none;
+  }
+
+  .link {
+    & svg {
+      width: 26px;
+      height: 26px;
+    }
+  }
+
   .notification {
     display: none;
   }
@@ -167,6 +182,15 @@
 @media (hover: hover) {
   .SidebarItem:hover {
     background-color: var(--button-pressed);
+
+    & .linkText {
+      font-weight: 500;
+      color: var(--highlight-color);
+    }
+
+    & svg path {
+      fill: var(--highlight-color);
+    }
   }
 
   .SidebarItem:focus {
