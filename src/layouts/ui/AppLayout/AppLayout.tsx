@@ -19,6 +19,7 @@ import { Theme, useTheme } from 'app/providers/ThemeProvider';
 import { Toaster } from 'react-hot-toast';
 import { useToasts } from 'shared/hooks/useToasts/useToasts';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
+import { Footer } from 'widgets/Footer/index';
 import cls from './AppLayout.module.scss';
 
 function AppLayout() {
@@ -96,6 +97,7 @@ function AppLayout() {
             </div>
           </Suspense>
         </main>
+        {isMainPage && <Footer />}
       </div>
     </Suspense>
   );
