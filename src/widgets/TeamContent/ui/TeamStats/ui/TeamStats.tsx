@@ -1,12 +1,10 @@
 import { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { getLestaUserClanData } from 'entities/Lesta';
 import {
-  avarageWinrate,
-  averageNumberDamage,
-  averageNumberFights,
-} from 'shared/lib/statsClan/statsClan';
+  getClanMembersCount,
+  getClanStatistics,
+} from 'entities/Lesta';
 import { statsData } from '../config/statsData';
 import { TeamStatsItem } from '../../TeamStatsItem';
 import cls from './TeamStats.module.scss';
@@ -23,16 +21,19 @@ interface IStatsData {
 
 export const TeamStats = (props: TeamStatsProps) => {
   const { className } = props;
-  const clanData = useSelector(getLestaUserClanData);
+  const clanStats = useSelector(getClanStatistics);
+  const clanMembersCount = useSelector(getClanMembersCount);
 
-  const battles = averageNumberFights(clanData);
-  const winrate = avarageWinrate(clanData);
-  const damage = averageNumberDamage(clanData);
-  const members = clanData?.members_count || 0;
+  const data: IStatsData[] = statsData(
+    clanStats?.battles,
+    clanStats?.winRate,
+    clanStats?.avgDamage,
+    clanStats?.avgRating,
+    clanStats?.wn8,
+    clanMembersCount,
+  );
 
-  const data: IStatsData[] = statsData(battles, winrate, damage, members);
-
-  if (!clanData) return null;
+  if (!clanStats) return null;
 
   return (
     <section className={classNames('', {}, [className])}>

@@ -1,0 +1,118 @@
+.container {
+  position: relative;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background-color: var(--bg-navmenu);
+  box-shadow: var(--shadow-menu);
+  border-radius: 4px;
+  padding: 1px 4px;
+  z-index: var(--overlay-index);
+  opacity: 0;
+  transition: all 0.2s;
+  visibility: hidden;
+  transform: translateY(-50px);
+
+  @media screen and (width <= 700px) {
+    width: 310px;
+  }
+}
+
+.open {
+  overflow: auto;
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(20px);
+}
+
+.item {
+  list-style: none;
+
+  @media screen and (width <= 768px) {
+    font-size: 12px;
+  }
+
+  @media screen and (width <= 700px) {
+    justify-content: center;
+  }
+
+  @media screen and (width <= 440px) {
+    font-size: 12px;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      & button {
+        opacity: 1;
+        color: var(--accent-color);
+      }
+
+      color: var(--accent-color);
+      outline: 1px solid var(--accent-color);
+
+      & svg path {
+        fill: var(--accent-color);
+      }
+    }
+  }
+}
+
+.buttonSort {
+  outline: 1px solid var(--bg-stat-item);
+  display: flex;
+  min-width: 170px;
+
+  @media screen and (width <= 1080px) {
+    display: flex;
+
+    @media (hover: hover) {
+      &:hover {
+        & button {
+          opacity: 1;
+          color: var(--accent-color);
+        }
+
+        color: var(--accent-color);
+        outline: 1px solid var(--accent-color);
+
+        & svg path {
+          fill: var(--accent-color);
+        }
+      }
+    }
+  }
+
+  @media screen and (width <= 700px) {
+    min-width: 310px;
+  }
+}
+
+.buttonReset {
+  max-width: none;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  border: none;
+  font: var(--font-btn-default);
+  color: var(--primary-color);
+  background-color: transparent;
+  transition: 0.2s;
+  cursor: pointer;
+  border-radius: 0;
+
+  & svg {
+    transform: scale(0.6);
+  }
+
+  & svg path {
+    fill: var(--inverted-primary-color);
+  }
+}
