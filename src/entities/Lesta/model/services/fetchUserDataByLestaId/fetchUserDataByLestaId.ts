@@ -1,5 +1,8 @@
+// noinspection ExceptionCaughtLocallyJS
+
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
+import { SERVER_ERROR_MESSAGE } from 'shared/consts/global';
 import { userDataActions } from '../../../model/slice/userDataSlice';
 import { TUserTanks } from '../../types/tanks';
 import { TUserData } from '../../types/users';
@@ -33,7 +36,7 @@ export const fetchUserDataByLestaId = createAsyncThunk<ReturnData, ThunkProps, T
       const response = await extra.royalApi.get<ReturnData>(endPoint);
 
       // прокидываем ошибку, если данных нет
-      if (!response.data) return rejectWithValue(serverError);
+      if (!response.data || response instanceof Error) throw response ?? SERVER_ERROR_MESSAGE;
 
       // записываем данные о танках игрока
       if (response?.data?.userTanks) {
