@@ -23,6 +23,7 @@ export default {
     LESTA_API_URL: '',
     LESTA_AUTH_API_URL: '',
     LESTA_APP_ID: '',
+    LESTA_DEV_APP_ID: '',
     BUILD_HASH: '',
   },
 

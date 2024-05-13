@@ -42,6 +42,7 @@ export default (env: BuildEnv) => {
   const lestaApiUrl = 'https://papi.tanksblitz.ru/wotb';
   const lestaAuthApiUrl = 'https://api.tanki.su/wot/auth';
   const lestaAppId = process.env.LESTA_APP_ID;
+  const lestaDevAppId = process.env.LESTA_DEV_APP_ID;
 
   const buildHash = generateRandomNumber(9);
 
@@ -57,6 +58,7 @@ export default (env: BuildEnv) => {
     lestaAuthApiUrl,
     lestaAppId,
     buildHash,
+    lestaDevAppId,
   });
 
   return config;

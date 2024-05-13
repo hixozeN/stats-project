@@ -18,6 +18,7 @@ declare const ROYAL_ARENA_API_URL: string;
 declare const LESTA_API_URL: string;
 declare const LESTA_AUTH_API_URL: string;
 declare const LESTA_APP_ID: string;
+declare const LESTA_DEV_APP_ID: string;
 declare const BUILD_HASH: string;
 
 type OptionalRecord<K extends keyof any, T> = {

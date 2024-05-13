@@ -35,5 +35,6 @@ export interface BuildOptions {
   lestaApiUrl: string;
   lestaAuthApiUrl: string;
   lestaAppId: string;
+  lestaDevAppId: string;
   buildHash: string;
 }
