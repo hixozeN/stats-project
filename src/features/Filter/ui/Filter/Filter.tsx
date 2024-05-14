@@ -6,6 +6,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useFilterTanks } from 'shared/hooks/useFilterTanks/useFilterTanks';
 import { useSorting } from 'shared/hooks/useSorting/useSorting';
 import { Button } from 'shared/ui/Button/Button';
+import { TankSearch } from 'features/SearchTanks/ui/SearchTanks';
 import { FilterItem } from './FilterItem';
 import { Sort } from '../SortItem/SortItem';
 import {
@@ -41,7 +42,7 @@ function FilterWithCurtain({ dataList, tab }: FilterProps) {
         onClick={isSortOpen ? handleChangeMenu : closeFilter}
       />
       <div className={cls.filterPanel}>
-        <div />
+        <TankSearch dataList={dataList} />
         <div className={cls.sortWrapper}>
           <ul
             className={classNames(cls.sortList, { [cls.openSort]: isSortOpen })}

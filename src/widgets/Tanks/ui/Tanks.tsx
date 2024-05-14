@@ -89,7 +89,7 @@ export const Tanks = memo(({ tab }: TanksProps) => {
       ? `${t('PLAYER_HAS')} ${filterList.length} ${t(
         `${getWordTanks(filterList.length)}`,
       )} 
-      ${t('WITH_PARAMETRS')}`
+      ${t('WITH_PARAMETERS')}`
       : `${t('PLAYER_HAS')} ${filterList.length} ${t(
         `${getWordTanks(filterList.length)}`,
       )}`),

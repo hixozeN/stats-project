@@ -1,0 +1,19 @@
+.SearchTanks {
+  display: flex;
+}
+
+.inputSearch {
+  margin: 0;
+  width: 217px;
+  height: 40px;
+  border: none;
+  outline: none;
+  color: var(--input-font-color);
+  transition: 0.2s;
+  font: var(--font-btn-default);
+  display: block;
+  align-self: center;
+  background: var(--input-bg-color);
+  padding: 5px 45px 5px 5px;
+  border-radius: 4px;
+}
