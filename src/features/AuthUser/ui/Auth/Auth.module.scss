@@ -1,7 +1,7 @@
 .auth {
   position: relative;
   width: 100%;
-  min-height: 100svh;
+  min-height: calc(100svh - var(--navbar-height));
   background-image: url("shared/assets/images/auth_bg.png");
   background-color: var(--bg-color);
   background-size: cover;

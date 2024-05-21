@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { TournamentStars } from 'widgets/TournamentStars';
-import { Footer } from 'widgets/Footer';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary';
 import { SeoUpdater } from 'shared/lib/SeoUpdater/SeoUpdater';
 import cls from './MainPage.module.scss';
@@ -34,7 +33,6 @@ function MainPage() {
         </div>
       </section>
       <TournamentStars />
-      <Footer />
     </ErrorBoundary>
 
   );

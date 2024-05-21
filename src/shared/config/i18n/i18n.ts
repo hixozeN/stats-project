@@ -19,7 +19,7 @@ i18n
   .init({
     fallbackLng: 'ru',
     lng: 'ru',
-    // глобальная перменная из конфига вебпака, объявленная через webpack.DefinePlugins.
+    // Глобальная перменная из конфига вебпака, объявленная через webpack.DefinePlugins.
     // isDev мы используем в конфиге вебпака и оттуда же выдергиваем настройку сборки
     debug: IS_DEV,
 
@@ -29,6 +29,9 @@ i18n
 
     backend: {
       loadPath: '/locales/{{lng}}/{{ns}}.json',
+      queryStringParams: {
+        v: BUILD_HASH,
+      },
     },
   });
 

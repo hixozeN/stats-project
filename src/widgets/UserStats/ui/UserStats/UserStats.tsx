@@ -14,6 +14,7 @@ import {
 } from 'entities/Lesta';
 import { getUserData } from 'entities/User';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
+import { useToasts } from 'shared/hooks/useToasts/useToasts';
 import { getStatsList } from '../../lib/getStatsList';
 import { UserStatsList } from '../UserStatsList/UserStatsList';
 import cls from './UserStats.module.scss';
@@ -30,6 +31,7 @@ export const UserStats = memo(({
   const { t } = useTranslation();
   const currentUser = useSelector(getUserData);
   const dispatch = useAppDispatch();
+  const { toastWithError } = useToasts();
 
   // NEW STORE
   const ratingData = useSelector(getUserRatingStats);
@@ -50,8 +52,9 @@ export const UserStats = memo(({
       .then((res) => {
         const sessionId = [...res].pop().id;
         dispatch(fetchLestaUserSessionById({ sessionId }));
-      });
-  }, [dispatch]);
+      })
+      .catch(toastWithError);
+  }, [dispatch, toastWithError]);
 
   return (
     <section

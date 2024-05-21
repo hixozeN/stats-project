@@ -1,6 +1,7 @@
 .Sidebar {
   height: calc(100svh - var(--navbar-height));
-  padding: 0 20px;
+  padding: 0 10px;
+  margin: 0 auto;
   background: transparent;
   position: fixed;
   display: flex;
@@ -32,6 +33,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 5px;
+
+  @media screen and (width <= 1024px) {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 .collapsed {
@@ -42,9 +49,18 @@
   }
 }
 
+.burgerMenu {
+  display: none;
+}
+
 @media screen and (width <= 1024px) {
   .navList {
     margin: 0;
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+    }
   }
 
   .Sidebar {

@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { SeoUpdater } from 'shared/lib/SeoUpdater/SeoUpdater';
 import { getLestaAccessToken, getTokenUpdateStatus } from 'entities/User/index';
+import { useToasts } from 'shared/hooks/useToasts/useToasts';
 import { SessionControlSection } from '../ui/SessionControlSection/SessionControlSection';
 import cls from './UserPage.module.scss';
 
@@ -33,6 +34,8 @@ const UserPage = ({ className }: IUserPageProps) => {
   const isNotFound = useSelector(getUserNotFoundStatus);
   const isTokenUpdating = useSelector(getTokenUpdateStatus);
   const lestaAccessToken = useSelector(getLestaAccessToken);
+
+  const { toastWithError } = useToasts();
 
   const [tab, setTab] = useState(0);
   const tabList = useMemo(
@@ -56,8 +59,9 @@ const UserPage = ({ className }: IUserPageProps) => {
         if (sessionId) {
           dispatch(fetchLestaUserSessionById({ sessionId }));
         }
-      });
-  }, [dispatch, id, lestaAccessToken]);
+      })
+      .catch(toastWithError);
+  }, [dispatch, id, lestaAccessToken, toastWithError]);
 
   useEffect(() => {
     if (!isTokenUpdating) {
