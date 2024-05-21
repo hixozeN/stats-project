@@ -33,6 +33,11 @@
   width: 140px;
   height: 140px;
   border-radius: 50%;
+
+  @media screen and (width <= 810px) {
+    width: 75px;
+    height: 75px;
+  }
 }
 
 .avatarChangeSpan {
@@ -78,13 +83,38 @@
   }
 }
 
-@media screen and (width <= 410px) {
+@media screen and (width <= 810px){
+  .wrapper {
+    gap: 0;
+  }
+
+  .avatarWrapper {
+    gap: 0;
+  }
+
+  .avatarChangeSpan {
+    padding: 5px;
+    height: 35px;
+  }
+
+  .inputsWrapper {
+    gap: 7px;
+  }
+
+  .sectionSplit {
+    margin: 15px 0;
+  }
+}
+
+
+
+@media screen and (width <= 425px) {
   .heading {
     display: none;
   }
 
   .UserProfileForm {
-    gap: 21px;
+    gap: 15px;
   }
 
   .sectionSplit {

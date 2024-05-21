@@ -159,4 +159,20 @@
   .input, .textarea {
     width: 100%;
   }
+
+  .idWrapper {
+    gap: 7px;
+  }
+  .iconWrapper {
+    height: 18px;
+  }
+  .btnConnectDiscord {
+    margin-top: 10px;
+  }
+}
+
+@media screen and (width <= 425px) {
+  .btnConnectDiscord {
+    font-size: 14px;
+  }
 }
