@@ -62,7 +62,7 @@ export const UserProfileFormInput = forwardRef(
     if (text) {
       return (
         <div className={cls.label}>
-          <span className={cls.span}>{label}</span>
+          <span className={classNames(cls.span, { [cls.visible]: label === 'ID' })}>{label}</span>
           {isCopyable && (
           <div className={cls.idWrapper} onClick={() => handleCopy(text)}>
             <p className={cls.text}>{text}</p>

@@ -151,6 +151,11 @@
     display: none;
   }
 
+  .visible {
+    display: block;
+    margin-right: 5px;
+  }
+
   .label {
     display: flex;
     justify-content: center;
@@ -163,9 +168,11 @@
   .idWrapper {
     gap: 7px;
   }
+
   .iconWrapper {
     height: 18px;
   }
+
   .btnConnectDiscord {
     margin-top: 10px;
   }
