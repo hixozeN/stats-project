@@ -1,5 +1,8 @@
 .SearchTanks {
   display: flex;
+  position: relative;
+  background: var(--input-bg-color);
+  border-radius: 4px;
 }
 
 .inputSearch {
@@ -16,4 +19,13 @@
   background: var(--input-bg-color);
   padding: 10px;
   border-radius: 4px;
+}
+
+.buttonClose {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  width: auto;
+  height: auto;
+  transform: scale(0.75);
 }
