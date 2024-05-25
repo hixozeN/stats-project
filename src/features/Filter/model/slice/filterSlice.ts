@@ -4,6 +4,7 @@ import { FilterSchema } from '../../types/filter';
 import { clearFiterData } from '../../lib/getFilterData/getClearFilterData';
 
 const initialState: FilterSchema = {
+  search: '',
   data: null,
   checkboxes: clearFiterData,
   isActiveFilter: false,
@@ -38,7 +39,16 @@ export const filterSlice = createSlice({
       state.checkboxes = clearFiterData;
       state.isActiveFilter = false;
     },
+    setSearchValue: (state, action: PayloadAction<string>) => {
+      state.search = action.payload;
+    },
+    clearSearch: (state) => {
+      state.search = '';
+    },
   },
 });
 
-export const { actions: filterActions, reducer: filterReducer } = filterSlice;
+export const {
+  actions: filterActions,
+  reducer: filterReducer,
+} = filterSlice;

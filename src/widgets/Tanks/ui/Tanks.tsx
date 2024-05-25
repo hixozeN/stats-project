@@ -64,7 +64,9 @@ export const Tanks = memo(({ tab }: TanksProps) => {
 
   useEffect(() => {
     dispatch(filterActions.clearFilter());
+    dispatch(filterActions.clearSearch());
     dispatch(sortActions.clearSort());
+
     if (tab === 0 && tanks?.length > 0) {
       dispatch(filterActions.setFilterData(tanks));
     }
@@ -96,7 +98,9 @@ export const Tanks = memo(({ tab }: TanksProps) => {
     [filterList.length, isActiveFilter, t],
   );
 
-  const handleClickUp = useCallback(() => { window.scrollTo(0, 0); }, []);
+  const handleClickUp = useCallback(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (tab === 1 && !sessionTanks?.length) {
     return (
@@ -115,9 +119,10 @@ export const Tanks = memo(({ tab }: TanksProps) => {
       )}
       <Filter tab={tab} dataList={getTanksList(tab)} />
       <ul className={cls.list}>
-        {filterList.slice(0, maxShowMovies).map((data: TUserTanks) => (
-          <Tank data={data} key={data.tank_id} tab={tab} />
-        ))}
+        {filterList.slice(0, maxShowMovies)
+          .map((data: TUserTanks) => (
+            <Tank data={data} key={data.tank_id} tab={tab} />
+          ))}
       </ul>
       {isShowMoreButton && (
         <Button
@@ -130,7 +135,7 @@ export const Tanks = memo(({ tab }: TanksProps) => {
         </Button>
       )}
       {filterList.length > 24
-      && <Button className={cls.buttonUp} theme="icon" variant="down-arrow" onClick={handleClickUp} />}
+        && <Button className={cls.buttonUp} theme="icon" variant="down-arrow" onClick={handleClickUp} />}
     </section>
   );
 });

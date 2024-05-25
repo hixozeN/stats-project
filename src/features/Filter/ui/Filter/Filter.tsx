@@ -6,15 +6,15 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useFilterTanks } from 'shared/hooks/useFilterTanks/useFilterTanks';
 import { useSorting } from 'shared/hooks/useSorting/useSorting';
 import { Button } from 'shared/ui/Button/Button';
-import { TankSearch } from 'features/SearchTanks/ui/SearchTanks';
 import { FilterItem } from './FilterItem';
-import { Sort } from '../SortItem/SortItem';
 import {
   IStatList,
   statList,
 } from '../../config/sortData';
 import { getCheckboxesFilterState } from '../../model/selectors';
 import { getFilterItem } from '../../lib/getFilterData/getFilterItem';
+import { Search } from '../Search/Search';
+import { Sort } from '../../ui/SortItem/SortItem';
 import cls from './Filter.module.scss';
 
 interface FilterProps {
@@ -22,13 +22,28 @@ interface FilterProps {
   tab?: number;
 }
 
-function FilterWithCurtain({ dataList, tab }: FilterProps) {
+function FilterWithCurtain({
+  dataList,
+  tab,
+}: FilterProps) {
   const { t } = useTranslation('filter');
   const checkboxes = useSelector(getCheckboxesFilterState);
   const {
-    isOpenFilter, filter, openFilter, handleApplyFilter, closeFilter, handleClearFilter, onChangeFilter,
+    isOpenFilter,
+    filter,
+    openFilter,
+    handleApplyFilter,
+    closeFilter,
+    handleClearFilter,
+    onChangeFilter,
+    onChangeSearch,
   } = useFilterTanks(dataList);
-  const { clickSort, handleChangeMenu, isSortOpen } = useSorting(filter);
+
+  const {
+    clickSort,
+    handleChangeMenu,
+    isSortOpen,
+  } = useSorting(filter);
 
   return (
     <>
@@ -42,7 +57,7 @@ function FilterWithCurtain({ dataList, tab }: FilterProps) {
         onClick={isSortOpen ? handleChangeMenu : closeFilter}
       />
       <div className={cls.filterPanel}>
-        <TankSearch dataList={dataList} />
+        <Search onChange={onChangeSearch} />
         <div className={cls.sortWrapper}>
           <ul
             className={classNames(cls.sortList, { [cls.openSort]: isSortOpen })}
@@ -71,23 +86,24 @@ function FilterWithCurtain({ dataList, tab }: FilterProps) {
         <form
           className={classNames(cls.filterForm, { [cls.open]: isOpenFilter })}
         >
-          {getFilterItem(tab).map((data) => (
-            <fieldset className={cls.group} key={data.param} id={data.param}>
-              <legend className={cls.legend}>{`${t(`${data.nameParam}`)}`}</legend>
-              <ul className={cls.filterList}>
-                {data.values.map((value) => (
-                  <FilterItem
-                    value={value}
-                    param={data.param}
-                    nameParam={data.nameParam}
-                    key={`${data.param}-${value}`}
-                    onChange={onChangeFilter}
-                    checked={checkboxes[data.param][value]}
-                  />
-                ))}
-              </ul>
-            </fieldset>
-          ))}
+          {getFilterItem(tab)
+            .map((data) => (
+              <fieldset className={cls.group} key={data.param} id={data.param}>
+                <legend className={cls.legend}>{`${t(`${data.nameParam}`)}`}</legend>
+                <ul className={cls.filterList}>
+                  {data.values.map((value) => (
+                    <FilterItem
+                      value={value}
+                      param={data.param}
+                      nameParam={data.nameParam}
+                      key={`${data.param}-${value}`}
+                      onChange={onChangeFilter}
+                      checked={checkboxes[data.param][value]}
+                    />
+                  ))}
+                </ul>
+              </fieldset>
+            ))}
           <ul className={cls.buttonList}>
             <li className={cls.buttonItem}>
               <Button onClick={handleClearFilter} theme="clear">

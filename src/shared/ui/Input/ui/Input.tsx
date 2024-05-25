@@ -34,10 +34,11 @@ export const Input = forwardRef(
       onChange,
       data,
       children,
+      placeholder,
     } = props;
 
     const {
-      name, nameForm, type, maxLength, placeholder,
+      name, nameForm, type, maxLength,
     } = data;
 
     return (
