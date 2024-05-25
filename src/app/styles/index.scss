@@ -8,6 +8,10 @@
   scroll-behavior: smooth !important;
 }
 
+html, body {
+  scrollbar-gutter: stable;
+}
+
 body {
   background-color: var(--app-background);
 }
