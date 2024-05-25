@@ -38,10 +38,12 @@ export function Modal(props: IModalProps) {
   useEffect(() => {
     if (isOpen) {
       window.addEventListener('keydown', onKeyDown);
+      document.body.style.overflowY = 'hidden';
     }
 
     return () => {
       window.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflowY = 'auto';
     };
   }, [isOpen, onKeyDown]);
 
