@@ -27,6 +27,7 @@
   align-items: center;
   gap: 5px;
   padding: 0 50px 50px;
+  transition: opacity 0.2s linear;
 }
 
 .avatar {
@@ -58,6 +59,13 @@
 .error {
   min-height: 16px;
   color: var(--error-color);
+}
+
+@media screen and (hover: hover) {
+  .avatarWrapper:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
 }
 
 @media screen and (width <= 1430px) {

@@ -1,0 +1,106 @@
+.avatars {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  gap: 20px;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.sectionHeading {
+  font-weight: 400;
+  letter-spacing: 2px;
+  max-width: max-content;
+  align-self: flex-start;
+  text-shadow: 0 2px 2px rgb(255 255 255 / 40%);
+
+  @media screen and (width <= 600px) {
+    font-size: 16px;
+  }
+}
+
+.sectionHeading::after {
+  content: '';
+  display: block;
+  width: calc(100% + 15px);
+  margin-top: 10px;
+  margin-left: -5px;
+  height: 3px;
+  background-color: var(--accent-color);
+  border-radius: 5px;
+
+  @media screen and (width <= 600px) {
+    margin-top: 0;
+    height: 2px;
+  }
+}
+
+.avatarList {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(1%, 1fr));
+  gap: 10px;
+
+  @media screen and (width <= 1280px) {
+    grid-template-columns: repeat(3, minmax(1%, 1fr));
+  }
+}
+
+.avatarImage {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  align-self: center;
+  transition: filter 0.2s linear;
+
+  @media screen and (hover: hover) {
+    filter: brightness(80%);
+  }
+
+  @media screen and (width <= 600px) {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+.avatarItem {
+  padding: 10px 10px 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border: 1px solid var(--bg-stat-item);
+  border-radius: 10px;
+  transition: all 0.2s linear;
+
+  @media screen and (hover: hover) {
+    &:hover, &.avatarName {
+      cursor: pointer;
+      border: 1px solid var(--accent-color);
+      color: var(--accent-color);
+
+      & .avatarImage {
+        filter: brightness(100%);
+      }
+    }
+  }
+}
+
+.avatarName {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: var(--font-m);
+  line-height: 18px;
+  text-align: center;
+  width: 100%;
+  max-width: 110px;
+  min-height: 35px;
+  cursor: pointer;
+
+  @media screen and (width <= 600px) {
+    max-width: 75px;
+    font-size: 12px;
+    min-height: 25px;
+    line-height: 12px;
+  }
+}
