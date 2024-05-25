@@ -30,19 +30,6 @@
   margin-top: 35px;
 }
 
-.buttonUp {
-  position: absolute;
-  right: 15px;
-  bottom: 25px;
-  transform: rotate(180deg);
-  color: var(--primary-color);
-
-  & svg {
-    width: 22px;
-    height: 22px;
-  }
-}
-
 @media (1590px >= width > 1280px), (1090px >= width > 768px), (480px > width >= 380px) {
   .list {
     gap: 20px;

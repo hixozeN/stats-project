@@ -8,7 +8,6 @@ import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'shared/ui/Button/Button';
-import { searchActions } from 'features/Search';
 import { getSearchFilter } from '../../model/selectors';
 import { SearchData } from '../../config/searchData';
 import { filterActions } from '../../model/slice/filterSlice';
@@ -45,7 +44,7 @@ export const Search = (props: SearchTanksProps) => {
     <div className={classNames(cls.SearchTanks, {}, [className])}>
       <form id={SearchData.nameForm} onSubmit={submitForm}>
         <Input
-          className={cls.inputSearch}
+          className={classNames(cls.inputSearch, { [cls.input]: search !== '' })}
           data={SearchData}
           ref={inputRef}
           onChange={onChange}

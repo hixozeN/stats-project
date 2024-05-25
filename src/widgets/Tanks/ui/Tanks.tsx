@@ -16,6 +16,7 @@ import {
 } from 'entities/Lesta';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { TankSearch } from 'shared/ui/BackToTopButton/BackToTopButton';
 import { DEVICE_SETTING } from '../config/deviceData';
 import { getWordTanks } from '../lib/getWordTanks';
 import { getRestTanks } from '../lib/getRestTanks';
@@ -98,10 +99,6 @@ export const Tanks = memo(({ tab }: TanksProps) => {
     [filterList.length, isActiveFilter, t],
   );
 
-  const handleClickUp = useCallback(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   if (tab === 1 && !sessionTanks?.length) {
     return (
       <section className={cls.tanks}>
@@ -134,8 +131,7 @@ export const Tanks = memo(({ tab }: TanksProps) => {
           ${t(`${getWordTanks(getRestTanks(filterList, maxShowMovies))}`)}`}
         </Button>
       )}
-      {filterList.length > 24
-        && <Button className={cls.buttonUp} theme="icon" variant="down-arrow" onClick={handleClickUp} />}
+      <TankSearch />
     </section>
   );
 });
