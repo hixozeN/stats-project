@@ -84,7 +84,7 @@
 @media screen and (width <= 810px) {
   .heading {
     text-align: center;
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .wrapper {
@@ -101,6 +101,9 @@
   }
 
   .inputsWrapper {
+    margin: 0 auto;
+    max-width: 477px;
+    width: 100%;
     gap: 7px;
   }
 

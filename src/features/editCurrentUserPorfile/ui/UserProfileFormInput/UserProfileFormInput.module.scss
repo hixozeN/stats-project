@@ -159,6 +159,11 @@
   .label {
     display: flex;
     justify-content: center;
+    font-size: 14px;
+  }
+
+  .row {
+    justify-content: space-between;
   }
 
   .input, .textarea {
@@ -174,12 +179,7 @@
   }
 
   .btnConnectDiscord {
-    margin-top: 10px;
-  }
-}
-
-@media screen and (width <= 425px) {
-  .btnConnectDiscord {
     font-size: 14px;
+    margin-top: 10px;
   }
 }
