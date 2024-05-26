@@ -85,8 +85,10 @@ export const useFilterTanks = (dataList: TUserTanks[]) => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(filterActions.setFilterData(getSearchTanks(search, filter)));
-  }, [dispatch, filter, search]);
+    if (search !== '' || isOpenFilter) {
+      dispatch(filterActions.setFilterData(getSearchTanks(search, filter)));
+    }
+  }, [dispatch, filter, isOpenFilter, search]);
 
   return {
     isOpenFilter,
