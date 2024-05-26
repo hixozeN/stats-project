@@ -8,6 +8,7 @@ const initialState: FilterSchema = {
   data: null,
   checkboxes: clearFiterData,
   isActiveFilter: false,
+  isActiveSearch: false,
 };
 
 interface CheckboxPayload {
@@ -25,6 +26,9 @@ export const filterSlice = createSlice({
     },
     setIsActiveFilter: (state) => {
       state.isActiveFilter = true;
+    },
+    isActiveSearch: (state) => {
+      state.isActiveSearch = true;
     },
     setCheckbox: (state, action: PayloadAction<CheckboxPayload>) => {
       state.checkboxes = {
@@ -44,6 +48,7 @@ export const filterSlice = createSlice({
     },
     clearSearch: (state) => {
       state.search = '';
+      state.isActiveFilter = false;
     },
   },
 });

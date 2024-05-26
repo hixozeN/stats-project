@@ -31,6 +31,7 @@ export const Search = (props: SearchTanksProps) => {
 
   const onClickClear = () => {
     dispatch(filterActions.clearSearch());
+    dispatch(filterActions.clearFilter());
     inputRef.current.focus();
   };
 

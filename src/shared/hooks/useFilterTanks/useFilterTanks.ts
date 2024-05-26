@@ -6,12 +6,13 @@ import { TUserTanks } from 'entities/Lesta';
 import {
   sortActions, filterActions, getCheckboxesFilterState,
 } from 'features/Filter';
-import { getSearchFilter } from 'features/Filter/model/selectors';
+import { getIsActiveSearch, getSearchFilter } from 'features/Filter/model/selectors';
 import { getSearchTanks } from 'features/Filter/lib/getSearchTanks/getSearchTanks';
 import { useAppDispatch } from '../useAppDispatch/useAppDispatch';
 
 export const useFilterTanks = (dataList: TUserTanks[]) => {
   const [isOpenFilter, setFilterOpen] = useState(false);
+  const isActiveSearch = useSelector(getIsActiveSearch);
   const dispatch = useAppDispatch();
   const checkboxes = useSelector(getCheckboxesFilterState);
   const search = useSelector(getSearchFilter);
@@ -81,14 +82,20 @@ export const useFilterTanks = (dataList: TUserTanks[]) => {
     const {
       value,
     } = e.target;
+
+    if (value === '') {
+      dispatch(filterActions.clearSearch());
+    }
     dispatch(filterActions.setSearchValue(value));
+    dispatch(filterActions.isActiveSearch());
+    dispatch(sortActions.clearSort());
   }, [dispatch]);
 
   useEffect(() => {
-    if (search !== '' || isOpenFilter) {
+    if (isActiveSearch || isOpenFilter) {
       dispatch(filterActions.setFilterData(getSearchTanks(search, filter)));
     }
-  }, [dispatch, filter, isOpenFilter, search]);
+  }, [dispatch, filter, isActiveSearch, isOpenFilter, search]);
 
   return {
     isOpenFilter,

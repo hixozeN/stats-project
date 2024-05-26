@@ -5,4 +5,5 @@ export interface FilterSchema {
   data?: TUserTanks[];
   checkboxes?: Record<string, Record<string, boolean>>;
   isActiveFilter: boolean;
+  isActiveSearch: boolean;
 }

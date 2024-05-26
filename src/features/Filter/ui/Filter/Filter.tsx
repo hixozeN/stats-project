@@ -6,15 +6,15 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { useFilterTanks } from 'shared/hooks/useFilterTanks/useFilterTanks';
 import { useSorting } from 'shared/hooks/useSorting/useSorting';
 import { Button } from 'shared/ui/Button/Button';
-import { FilterItem } from './FilterItem';
 import {
   IStatList,
   statList,
 } from '../../config/sortData';
+import { Search } from '../Search/Search';
 import { getCheckboxesFilterState } from '../../model/selectors';
 import { getFilterItem } from '../../lib/getFilterData/getFilterItem';
-import { Search } from '../Search/Search';
 import { Sort } from '../../ui/SortItem/SortItem';
+import { FilterItem } from './FilterItem';
 import cls from './Filter.module.scss';
 
 interface FilterProps {

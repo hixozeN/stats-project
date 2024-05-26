@@ -7,7 +7,7 @@ interface BackToTopButtonProps {
   className?: string,
 }
 
-export const BackToTopButtonProps = (props: BackToTopButtonProps) => {
+export const BackToTopButton = (props: BackToTopButtonProps) => {
   const { className } = props;
   const [isVisible, setIsVisible] = useState(false);
 

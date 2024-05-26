@@ -39,5 +39,10 @@ export const useSorting = (filter: TUserTanks[]) => {
     },
     [isSortOpen],
   );
-  return { clickSort, handleChangeMenu, isSortOpen };
+
+  return {
+    clickSort,
+    handleChangeMenu,
+    isSortOpen,
+  };
 };
