@@ -38,11 +38,11 @@ export const Input = forwardRef(
     } = props;
 
     const {
-      name, nameForm, type, maxLength,
+      name, type, maxLength,
     } = data;
 
     return (
-      <label htmlFor={nameForm} className={cls.inputLabel}>
+      <label htmlFor={name} className={cls.inputLabel}>
         <span>{children}</span>
         <input
           id={name}
@@ -55,6 +55,7 @@ export const Input = forwardRef(
           spellCheck={false}
           placeholder={placeholder}
           maxLength={maxLength}
+          {...props}
         />
       </label>
     );

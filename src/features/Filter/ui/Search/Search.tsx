@@ -15,7 +15,7 @@ import cls from './Search.module.scss';
 
 interface SearchTanksProps {
   className?: string,
-  onChange?: (value: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (value: ChangeEvent<HTMLInputElement>) => void,
 }
 
 export const Search = (props: SearchTanksProps) => {
@@ -27,7 +27,6 @@ export const Search = (props: SearchTanksProps) => {
   const { t } = useTranslation('filter');
   const search = useSelector(getSearchFilter);
   const dispatch = useAppDispatch();
-  const searchValue = useSelector(getSearchFilter);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onClickClear = () => {
@@ -37,28 +36,29 @@ export const Search = (props: SearchTanksProps) => {
 
   const submitForm = useCallback((evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
-    dispatch(filterActions.setSearchValue(searchValue));
-  }, [dispatch, searchValue]);
+    dispatch(filterActions.setSearchValue(search));
+  }, [dispatch, search]);
 
   return (
     <div className={classNames(cls.SearchTanks, {}, [className])}>
-      <form id={SearchData.nameForm} onSubmit={submitForm}>
+      <form id={SearchData.nameForm} autoComplete="off" onSubmit={submitForm}>
         <Input
           className={classNames(cls.inputSearch, { [cls.input]: search !== '' })}
           data={SearchData}
           ref={inputRef}
           onChange={onChange}
-          value={searchValue}
+          value={search}
           placeholder={t(`${SearchData.placeholder}`)}
+          autoComplete="off"
         />
         {search
           && (
-          <Button
-            className={cls.buttonClose}
-            theme="clear"
-            variant="close"
-            onClick={onClickClear}
-          />
+            <Button
+              className={cls.buttonClose}
+              theme="clear"
+              variant="close"
+              onClick={onClickClear}
+            />
           )}
       </form>
     </div>

@@ -16,7 +16,7 @@ import {
 } from 'entities/Lesta';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
-import { TankSearch } from 'shared/ui/BackToTopButton/BackToTopButton';
+import { BackToTopButtonProps } from 'shared/ui/BackToTopButton/BackToTopButton';
 import { DEVICE_SETTING } from '../config/deviceData';
 import { getWordTanks } from '../lib/getWordTanks';
 import { getRestTanks } from '../lib/getRestTanks';
@@ -131,7 +131,7 @@ export const Tanks = memo(({ tab }: TanksProps) => {
           ${t(`${getWordTanks(getRestTanks(filterList, maxShowMovies))}`)}`}
         </Button>
       )}
-      <TankSearch />
+      <BackToTopButtonProps />
     </section>
   );
 });
