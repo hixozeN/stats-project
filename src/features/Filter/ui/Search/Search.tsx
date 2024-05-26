@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'shared/ui/Button/Button';
 import { getSearchFilter } from '../../model/selectors';
-import { SearchData } from '../../config/searchData';
+import { searchData } from '../../config/searchData';
 import { filterActions } from '../../model/slice/filterSlice';
 import cls from './Search.module.scss';
 
@@ -41,14 +41,14 @@ export const Search = (props: SearchTanksProps) => {
 
   return (
     <div className={classNames(cls.SearchTanks, {}, [className])}>
-      <form id={SearchData.nameForm} autoComplete="off" onSubmit={submitForm}>
+      <form id={searchData.nameForm} autoComplete="off" onSubmit={submitForm}>
         <Input
           className={classNames(cls.inputSearch, { [cls.input]: search !== '' })}
-          data={SearchData}
+          data={searchData}
           ref={inputRef}
           onChange={onChange}
           value={search}
-          placeholder={t(`${SearchData.placeholder}`)}
+          placeholder={t(`${searchData.placeholder}`)}
           autoComplete="off"
         />
         {search

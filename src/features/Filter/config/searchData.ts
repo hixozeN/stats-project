@@ -4,7 +4,7 @@ export interface ISearchData {
   nameForm: string;
   placeholder: string;
 }
-export const SearchData: ISearchData = {
+export const searchData: ISearchData = {
   type: 'search',
   name: 'search',
   nameForm: 'searchTanks',
