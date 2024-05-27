@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import { ReactElement, JSX } from 'react';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import StatsIcon from 'shared/assets/icons/stats.svg';
 import HistoryIcon from 'shared/assets/icons/history.svg';
@@ -12,6 +12,7 @@ import TournamentIcon from 'shared/assets/icons/Sidebar/tournaments.svg';
 import TeamsIcon from 'shared/assets/icons/Sidebar/teams.svg';
 import FriendIcon from 'shared/assets/icons/Sidebar/friends.svg';
 import AdminIcon from 'shared/assets/icons/Sidebar/admin.svg';
+import AuthIcon from 'shared/assets/icons/button/add-friend.svg';
 import { User } from 'entities/User';
 
 export interface MenuData {
@@ -24,7 +25,14 @@ export type MenuTheme =
   | 'navbar'
   | 'profileSidebar'
   | 'userSidebar'
-  | 'adminSidebar';
+  | 'adminSidebar'
+  | 'guestSidebar';
+
+interface MenuElement {
+  name: string;
+  path: string;
+  icon: JSX.Element;
+}
 
 interface MenuElementsProps {
   module: MenuTheme;
@@ -38,7 +46,7 @@ export const getMenuElements = (props: MenuElementsProps) => {
     ? `${RoutePath.user_id}/${authData?.lestaData?.account_id}`
     : RoutePath.connectLesta;
 
-  const data = {
+  const data: Record<string, MenuElement> = {
     stat: {
       name: 'Статистика',
       path: RoutePath.profile_stats,
@@ -53,6 +61,11 @@ export const getMenuElements = (props: MenuElementsProps) => {
       name: 'Профиль',
       path: profileLink,
       icon: <ProfileIcon />,
+    },
+    stats: {
+      name: 'Статистика',
+      path: profileLink,
+      icon: <MatchIcon />,
     },
     edit: {
       name: 'Настройки',
@@ -89,6 +102,11 @@ export const getMenuElements = (props: MenuElementsProps) => {
       path: RoutePath.tournaments,
       icon: <TournamentIcon />,
     },
+    ratings: {
+      name: 'Рейтинги',
+      path: RoutePath.rating,
+      icon: <TournamentIcon />,
+    },
     teams: {
       name: 'Команды',
       path: RoutePath.teams,
@@ -104,17 +122,22 @@ export const getMenuElements = (props: MenuElementsProps) => {
       path: RoutePath.main,
       icon: <AdminIcon />,
     },
+    auth: {
+      name: 'Вход',
+      path: RoutePath.auth,
+      icon: <AuthIcon />,
+    },
   };
 
-  const elements = {
+  const elements: Record<MenuTheme, MenuElement[]> = {
     profileSidebar: [data.sessions, data.blacklist, data.edit],
     navbar: [data.user, data.sessions, data.blacklist, data.edit, data.logout],
     userSidebar: [
       data.main,
-      data.matches,
-      data.tournaments,
+      data.stats,
+      data.ratings,
       data.teams,
-      data.friends,
+      data.edit,
     ],
     adminSidebar: [
       data.main,
@@ -123,6 +146,12 @@ export const getMenuElements = (props: MenuElementsProps) => {
       data.teams,
       data.friends,
       data.admin,
+    ],
+    guestSidebar: [
+      data.main,
+      data.ratings,
+      data.teams,
+      data.auth,
     ],
   };
 

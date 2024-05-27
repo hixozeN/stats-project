@@ -81,7 +81,7 @@ export const UserSocialLinks = memo((props: UserSocialLinksProps) => {
         {[...new Array(2)].map((_, index) => (
           // eslint-disable-next-line react/no-array-index-key
           <li key={index} className={cls.socialElement}>
-            <Skeleton width={40} height={40} borderRadius="50%" />
+            <Skeleton width={31} height={31} borderRadius="50%" />
           </li>
         ))}
       </ul>

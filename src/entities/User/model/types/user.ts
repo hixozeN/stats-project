@@ -35,7 +35,7 @@ export interface User {
   lestaData: LestaUserData | null;
   avatar?: string;
   created_at?: Date;
-  roles?: UserRoles[];
+  roles?: string[];
   bio?: string;
   discord?: string;
   vk?: string;
@@ -56,12 +56,32 @@ export interface UserOpenID {
   email: string;
   avatar: string;
   created_at: Date;
-  roles: UserRoles[];
+  roles: string[];
   ra_rating: number;
   balance: number;
   isActivated: boolean;
   lestaData: LestaUserData;
   password: string;
+}
+
+type AvatarAccessType = 'public' | 'roleOnly' | 'userOnly';
+
+export interface AvatarFullData {
+  _id: string;
+  name: string;
+  image: string;
+  isBorder?: boolean;
+  access?: AvatarAccessType;
+  allowedRoles?: string[];
+  allowedUsers?: string[];
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+export interface IAvatars {
+  public: AvatarFullData[];
+  roleOnly: AvatarFullData[];
+  userOnly: AvatarFullData[];
 }
 
 export interface UserSchema {

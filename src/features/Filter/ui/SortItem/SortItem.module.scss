@@ -4,13 +4,13 @@
   border-radius: 5px;
   margin-bottom: auto;
   background-color: var(--bg-card);
-  
+
   & button {
     gap: 0;
     color: var(--primary-color);
 
     & span {
-      display: none;  
+      display: none;
     }
   }
 
@@ -25,7 +25,8 @@
     }
 
     & button {
-      min-width: 162px;
+      min-width: 130px;
+      font-size: inherit;
     }
   }
 

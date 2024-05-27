@@ -10,6 +10,14 @@
     gap: 30px;
     margin-bottom: auto;
     border-right: 4px solid var(--bg-tab-inactive);
+
+    @media screen and (width <= 810px) {
+      padding: 0 0 10px;
+    }
+
+    @media screen and (width <= 410px) {
+      padding: 0;
+    }
   }
 
   &.navbar {

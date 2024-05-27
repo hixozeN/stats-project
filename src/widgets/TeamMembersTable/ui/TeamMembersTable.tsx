@@ -1,62 +1,51 @@
-import { memo, useState } from 'react';
-import { useSelector } from 'react-redux';
-import {
-  getCoreRowModel,
-  getSortedRowModel,
-  useReactTable,
-} from '@tanstack/react-table';
-import { classNames } from 'shared/lib/classNames/classNames';
-import { columns } from 'widgets/TeamMembersTable/dataColumns/columns';
+import React, {
+  memo, useEffect,
+} from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { getClanMembers } from 'entities/Lesta';
 import { usersClan } from 'widgets/TeamMembersTable/lib/usersClan';
-import { getLestaClanMembers, getLestaClanPlayers } from 'entities/Lesta';
-import { LestaClanUser } from 'entities/Lesta/model/types/clans';
-import { HeaderRow } from './HeaderRow/index';
-import { BodyRow } from './BodyRow/index';
+import { SortClanListPlayers } from 'features/SortClanListPlayers';
+import { getSortListData } from 'features/SortClanListPlayers/model/selectors';
+import { sortListPlayersActions } from 'features/SortClanListPlayers/model/slice/SortListPlayerSlice';
+import { TeamMembersItem } from './TeamMembersItem/TeamMembersItem';
 import cls from './TeamMembersTable.module.scss';
 
-interface TableProps {
-  className?: string;
-}
+export const TeamMembersTable = memo(() => {
+  const { t } = useTranslation('teamPage');
+  const members = useSelector(getClanMembers);
+  const dataSort = useSelector(getSortListData);
+  const dispatch = useDispatch();
 
-type ColumnSort = {
-  id: string;
-  desc: boolean;
-};
+  useEffect(() => {
+    dispatch(sortListPlayersActions.setSortListPLayers({
+      data: usersClan(members),
+    }));
+  }, [members, dispatch]);
 
-type SortingState = ColumnSort[];
-
-export const TeamMembersTable = memo(({ className }: TableProps) => {
-  const [sorting, setSorting] = useState<SortingState>([]);
-  const playersSelector = useSelector(getLestaClanPlayers);
-  const membersSelector = useSelector(getLestaClanMembers);
-  const users: LestaClanUser[] = usersClan(playersSelector, membersSelector);
-
-  const table = useReactTable({
-    data: users,
-    columns,
-    state: {
-      sorting,
-    },
-    onSortingChange: setSorting,
-    getCoreRowModel: getCoreRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    debugTable: true,
-  });
-
-  if (!users) return null;
+  if (!members) return null;
 
   return (
-    <table className={classNames(cls.table, {}, [className])}>
-      <thead>
-        {table.getHeaderGroups().map((headerGroup) => (
-          <HeaderRow key={headerGroup.id} headerGroup={headerGroup} />
+    <section className={cls.TeamMembersTable} aria-label={t('ARIA_LABEL_SECTION_PLAYERS')}>
+      <div className={cls.wrapper}>
+        <SortClanListPlayers />
+      </div>
+      <ul className={cls.list}>
+        {dataSort.map((player) => (
+          <TeamMembersItem
+            key={player.account_id}
+            idAccount={player.account_id}
+            joinedAt={player.joined_at}
+            name={player.nickname}
+            role={player.role}
+            damage={player.statistics.avgDamage}
+            battles={player.statistics.battles}
+            lastBattleTime={player.statistics.last_battle_time}
+            winRate={player.statistics.winRate}
+            wn8={player.statistics.wn8}
+          />
         ))}
-      </thead>
-      <tbody>
-        {table.getRowModel().rows.map((row) => (
-          <BodyRow key={row.id} row={row} />
-        ))}
-      </tbody>
-    </table>
+      </ul>
+    </section>
   );
 });

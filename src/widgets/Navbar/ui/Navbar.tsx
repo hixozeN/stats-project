@@ -7,7 +7,6 @@ import { getLoggedInStatus, getUserData } from 'entities/User';
 import React, {
   memo, useCallback, useEffect, useRef, useState,
 } from 'react';
-import LoginIcon from 'shared/assets/icons/button/login.svg';
 import { Button } from 'shared/ui/Button/Button';
 import { useSizeScreen } from 'shared/hooks/useSizeScreen';
 import { Menu } from 'shared/ui/Menu';
@@ -81,6 +80,7 @@ export const Navbar = memo(({ className }: INavbarProps) => {
           </nav>
 
           <Button
+            className={cls.userMenuButton}
             type="button"
             theme="icon-right"
             variant="chevron-down"
@@ -102,17 +102,10 @@ export const Navbar = memo(({ className }: INavbarProps) => {
         <AppLink
           theme={AppLinkTheme.BUTTON}
           to={RoutePath.auth}
-          className={cls.addAccount}
-          state={{ tab: 'reg' }}
-        >
-          {!isMobile && t('Создать аккаунт')}
-        </AppLink>
-        <AppLink
-          theme={AppLinkTheme.PRIMARY}
-          to={RoutePath.auth}
+          className={cls.auth}
           state={{ tab: 'auth' }}
         >
-          <LoginIcon />
+          {!isMobile && t('Авторизоваться')}
         </AppLink>
       </div>
     </nav>

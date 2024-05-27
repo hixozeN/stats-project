@@ -12,11 +12,23 @@ interface SortProps {
   clickSort?: (nameItem: NameSortItem, paramItem: string) => void;
 }
 
-function SortItem({ data, clickSort }: SortProps) {
+const SortItem = ({
+  data,
+  clickSort,
+}: SortProps) => {
   const { t } = useTranslation('tank');
-  const { nameItem: name, text, param } = data;
+  const {
+    nameItem: name,
+    text,
+    param,
+  } = data;
+
   const stateSort = useSelector(getSortList)[name];
-  const { isActive, isUp, isDown } = stateSort;
+  const {
+    isActive,
+    isUp,
+    isDown,
+  } = stateSort;
 
   const sort = useCallback(() => {
     clickSort(name, param);
@@ -39,6 +51,6 @@ function SortItem({ data, clickSort }: SortProps) {
       </Button>
     </li>
   );
-}
+};
 
 export const Sort = memo(SortItem);

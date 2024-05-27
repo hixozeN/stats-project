@@ -14,6 +14,11 @@
   width: 70px;
   height: 70px;
   gap: 6px;
+  margin-left: 5px;
+
+  @media screen and (width <= 1024px) {
+    margin-left: 0;
+  }
 
   .image {
     width: 51px;

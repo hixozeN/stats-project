@@ -9,7 +9,7 @@
 
   // justify-content: space-between;
   z-index: 3;
-  padding: 25px 100px 0;
+  padding: 25px 100px;
   grid-column: 2 / 12;
   margin-top: 100px;
 
@@ -129,21 +129,32 @@
 }
 
 .altLogin {
+  position: absolute;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin-top: auto;
-  padding-bottom: 10px;
+  gap: 5px;
+  left: 20px;
+  top: 20px;
 }
 
-.altLoginSpan {
+/* .altLoginSpan {
   color: var(--secondary-color)
 }
 
 .lestaLogoIcon {
   width: 200px;
-}
+} */
 
+.arrowBack {
+  color: var(--secondary-color);
+
+  & svg {
+    rotate: 90deg;
+    scale: 1.5;
+  }
+}
 
 @keyframes rotation {
   0% {
@@ -193,6 +204,6 @@
   }
 
   .altLoginSpan {
-    font-size: 14px;
+    font-size: 0;
   }
 }

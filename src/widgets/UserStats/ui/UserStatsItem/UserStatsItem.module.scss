@@ -8,6 +8,19 @@
   grid-template-columns: minmax(min(1%), max(1.5fr)) minmax(min(1%), max(2.5fr));
   align-items: center;
   position: relative;
+
+  @media screen and (width <= 768px) {
+    max-width: 150px;
+    height: 80px;
+  }
+
+  @media screen and (width <= 600px) {
+    max-width: 200px;
+  }
+
+  @media screen and (width <= 450px) {
+    max-width: 150px;
+  }
 }
 
 .icon {
@@ -18,7 +31,7 @@
     max-width: 55px;
   }
 
-  @media screen and (width <= 450px) {
+  @media screen and (width <= 768px) {
     max-width: 35px;
   }
 }
@@ -30,7 +43,7 @@
   margin: 0 auto;
   padding-right: 10px;
 
-  @media screen and (width <= 460px) {
+  @media screen and (width <= 768px) {
     padding: 0;
   }
 }
@@ -41,6 +54,11 @@
   right: 10px;
   font-size: 12px;
   font-weight: 500;
+  
+  @media screen and (width <= 768px) {
+    top: 0;
+    right: 7px;
+  }
 }
 
 .positive {
@@ -76,6 +94,10 @@
 
   @media screen and (width <= 1024px) {
     font-size: 12px;
+  }
+
+  @media screen and (width <= 768px) {
+    margin-top: -6px;
   }
 }
 

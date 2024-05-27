@@ -96,6 +96,7 @@ export const SearchForm = memo((props: IAuthFormProps) => {
           onFocus={onFocus}
         />
         <Button
+          aria-label={t('Поиск')}
           type="submit"
           theme="icon"
           variant="magnifier"

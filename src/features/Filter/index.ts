@@ -4,7 +4,7 @@ export { sortReducer, sortActions } from './model/slice/sortSlice';
 export { getFilterItem } from './lib/getFilterData/getFilterItem';
 export { NameSortItem, statList } from './config/sortData';
 export {
-  getSortList, getCheckboxesFilterState, getDataFilterState, getIsActiveFilter,
+  getSortList, getSearchFilter, getCheckboxesFilterState, getDataFilterState, getIsActiveFilter,
 } from './model/selectors';
 export { FilterSchema } from './types/filter';
 export { SortSchema } from './types/sort';

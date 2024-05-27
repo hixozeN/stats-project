@@ -7,16 +7,15 @@ import cls from './SidebarItem.module.scss';
 interface ISidebarItemProps {
   className?: string;
   name: string;
-  link: string;
+  path: string;
   icon: ReactElement;
-  isCollapsed: boolean;
   isOpenMenu?: boolean;
   notificationCount?: number;
 }
 
 export const SidebarItem = memo((props: ISidebarItemProps) => {
   const {
-    name, link, icon, isCollapsed, className, isOpenMenu, notificationCount = 0,
+    name, path, icon, className, isOpenMenu, notificationCount = 0,
   } = props;
   const { t } = useTranslation();
 
@@ -24,30 +23,28 @@ export const SidebarItem = memo((props: ISidebarItemProps) => {
     <li
       className={
         classNames(cls.SidebarItem, {
-          [cls.collapsed]: isCollapsed,
           [cls.openMenu]: isOpenMenu,
         }, [className])
       }
+      data-testid="sidebar-item"
     >
       <NavLink
-        to={link}
+        to={path}
         className={({ isActive }) => (isActive ? classNames(cls.link, {
-          [cls.collapsed]: isCollapsed,
           [cls.active]: isActive,
-        }) : classNames(cls.link, { [cls.collapsed]: isCollapsed }))}
+        }) : classNames(cls.link))}
       >
         {icon}
         <span
           className={classNames(
             cls.notification,
-            { [cls.collapsed]: isCollapsed, [cls.notificationActive]: !!notificationCount },
+            { [cls.notificationActive]: !!notificationCount },
           )}
         >
           {notificationCount}
         </span>
         <span className={classNames(
           cls.linkText,
-          { [cls.collapsed]: isCollapsed },
         )}
         >
           {t(`${name}`)}

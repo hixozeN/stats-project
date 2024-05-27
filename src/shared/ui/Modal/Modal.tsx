@@ -38,16 +38,18 @@ export function Modal(props: IModalProps) {
   useEffect(() => {
     if (isOpen) {
       window.addEventListener('keydown', onKeyDown);
+      document.body.style.overflowY = 'hidden';
     }
 
     return () => {
       window.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflowY = 'auto';
     };
   }, [isOpen, onKeyDown]);
 
   if (isStoryBook) {
     return (
-      <div className={classNames(cls.Modal, mods, [className])}>
+      <div className={classNames(cls.Modal, mods)}>
         <div
           className={cls.overlay}
           role="button"
@@ -55,7 +57,7 @@ export function Modal(props: IModalProps) {
           onClick={handleClose}
         >
           <div
-            className={cls.content}
+            className={classNames(cls.content, {}, [className])}
             onClick={onContentClick}
             onKeyPress={() => null}
             role="button"
@@ -85,7 +87,7 @@ export function Modal(props: IModalProps) {
     <Portal
       element={document.getElementById('app') ?? document.body}
     >
-      <div className={classNames(cls.Modal, mods, [className])}>
+      <div className={classNames(cls.Modal, mods)}>
         <div
           className={cls.overlay}
           role="button"
@@ -93,7 +95,7 @@ export function Modal(props: IModalProps) {
           onClick={handleClose}
         >
           <div
-            className={cls.content}
+            className={classNames(cls.content, {}, [className])}
             onClick={onContentClick}
             onKeyPress={() => null}
             role="button"

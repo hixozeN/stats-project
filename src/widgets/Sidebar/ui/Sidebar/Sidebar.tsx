@@ -3,29 +3,28 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
 import { LangSwitcher } from 'widgets/LangSwitcher';
 import { ThemeSwitcher } from 'widgets/ThemeSwitcher';
-import { useSizeScreen } from 'shared/hooks/useSizeScreen';
-import { dataList } from '../../config/sidebarLinks';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { getUserData } from 'entities/User';
+import { getMenuElements } from 'shared/ui/Menu/config/profileMenuData';
 import { SidebarItem } from '../SidebarItem/SidebarItem';
 import cls from './Sidebar.module.scss';
 
 interface SidebarProps {
   className?: string;
-  isCollapsed?: boolean;
-  // eslint-disable-next-line no-unused-vars
-  setIsCollapsed?: (value: boolean) => void;
 }
 
 export const Sidebar = memo(({
   className,
-  isCollapsed,
-  setIsCollapsed,
 }: SidebarProps) => {
-  const { width } = useSizeScreen();
+  const { t } = useTranslation();
   const [isOpenMenu, setOpenMenu] = useState(false);
+  const authData = useSelector(getUserData);
 
-  const onToggle = () => {
-    setIsCollapsed(!isCollapsed);
-  };
+  const sidebarItems = getMenuElements({
+    module: authData ? 'userSidebar' : 'guestSidebar',
+    authData,
+  });
 
   const handleClickBurger = useCallback(() => {
     setOpenMenu(!isOpenMenu);
@@ -36,51 +35,39 @@ export const Sidebar = memo(({
       data-testid="sidebar"
       className={classNames(
         cls.Sidebar,
-        { [cls.collapsed]: isCollapsed, [cls.active]: isOpenMenu },
+        { [cls.active]: isOpenMenu },
         [className],
       )}
     >
-      {width <= 1024 && (
-        <Button
-          theme="icon-circle"
-          variant="burger"
-          onClick={handleClickBurger}
-          className={classNames(cls.burgerMenu)}
-        />
-      )}
+      <Button
+        aria-label={t('SIDEBAR_BURGER_BTN_LABEL')}
+        theme="icon-circle"
+        variant="burger"
+        onClick={handleClickBurger}
+        className={classNames(cls.burgerMenu)}
+      />
       <nav>
         <ul
           className={classNames(cls.navList, {
             [cls.active]: isOpenMenu,
           })}
         >
-          {dataList.map(({
-            id, name, link, icon,
+          {sidebarItems.map(({
+            name, path, icon,
           }) => (
             <SidebarItem
-              key={id}
+              key={path}
               name={name}
-              link={link}
-              isCollapsed={isCollapsed}
+              path={path}
               icon={icon}
               isOpenMenu={isOpenMenu}
             />
           ))}
         </ul>
       </nav>
-      <Button
-        data-testid="sidebar-toggle"
-        theme="clear"
-        onClick={onToggle}
-        className={cls.collapsedBtn}
-        square
-        fontSize="font_l"
-      >
-        {isCollapsed ? '>' : '<'}
-      </Button>
       <div className={cls.switchers}>
         {IS_DEV && <ThemeSwitcher />}
-        <LangSwitcher isShort={isCollapsed} />
+        <LangSwitcher isShort />
       </div>
     </aside>
   );

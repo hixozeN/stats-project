@@ -4,10 +4,18 @@ import { FilterSchema } from '../../types/filter';
 import { clearFiterData } from '../../lib/getFilterData/getClearFilterData';
 
 const initialState: FilterSchema = {
+  search: '',
   data: null,
   checkboxes: clearFiterData,
   isActiveFilter: false,
+  isActiveSearch: false,
 };
+
+interface CheckboxPayload {
+  name: string;
+  checked: boolean;
+  param: string;
+}
 
 export const filterSlice = createSlice({
   name: 'filter',
@@ -19,7 +27,10 @@ export const filterSlice = createSlice({
     setIsActiveFilter: (state) => {
       state.isActiveFilter = true;
     },
-    setCheckbox: (state, action: PayloadAction<Record<string, boolean>>) => {
+    isActiveSearch: (state) => {
+      state.isActiveSearch = true;
+    },
+    setCheckbox: (state, action: PayloadAction<CheckboxPayload>) => {
       state.checkboxes = {
         ...state.checkboxes,
         [`${action.payload.param}`]: {
@@ -32,7 +43,17 @@ export const filterSlice = createSlice({
       state.checkboxes = clearFiterData;
       state.isActiveFilter = false;
     },
+    setSearchValue: (state, action: PayloadAction<string>) => {
+      state.search = action.payload;
+    },
+    clearSearch: (state) => {
+      state.search = '';
+      state.isActiveFilter = false;
+    },
   },
 });
 
-export const { actions: filterActions, reducer: filterReducer } = filterSlice;
+export const {
+  actions: filterActions,
+  reducer: filterReducer,
+} = filterSlice;

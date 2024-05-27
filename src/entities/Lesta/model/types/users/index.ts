@@ -1,7 +1,6 @@
-import { UserRoles } from 'entities/User';
 import { LestaUserStatistics } from 'shared/api';
 import { LestaTankStats } from 'entities/Lesta';
-import { TUserTanks } from 'entities/Lesta/model/types/tanks/index';
+import { TUserTanks } from 'entities/Lesta/model/types/tanks';
 import { Clan, LestaClan } from '../clans';
 import { ParamData } from '../default';
 
@@ -58,7 +57,7 @@ export type LestaUser = {
   email?: string;
   avatar?: string;
   created_at?: Date;
-  roles?: UserRoles[];
+  roles?: string[];
   ra_rating?: number;
   balance?: number;
   isActivated?: boolean;
@@ -100,5 +99,6 @@ export type TUserData = {
 export type TUserSession = {
   delta: ParamData;
   statistics: ParamData;
+  rating?: ParamData;
   tanks: TUserTanks[];
 }

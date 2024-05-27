@@ -24,6 +24,7 @@ import { TeamsSchema } from 'entities/Team/model/types/team';
 import { FilterSchema, SortSchema } from 'features/Filter';
 import { OpenIdSchema } from 'features/ConnectOpenId';
 import { LeaderboardSchema } from 'features/playersLeaderboard';
+import { SortListPlayersSchema } from 'features/SortClanListPlayers/types/sortListPlayersType';
 
 export interface StateSchema {
   user: UserSchema;
@@ -36,6 +37,7 @@ export interface StateSchema {
   lestaUserSession: LestaUserSessionSchema;
   filter: FilterSchema;
   sort: SortSchema;
+  sortListPlayers: SortListPlayersSchema;
   userTanks: LestaTanksSchema;
   stars: LeaderboardSchema;
   // async reducers

@@ -52,6 +52,7 @@ module.exports = {
       {
         markupOnly: true,
         ignoreAttribute: [
+          'autoComplete',
           'data-testid',
           'to',
           'theme',
@@ -84,6 +85,8 @@ module.exports = {
     LESTA_API_URL: true,
     LESTA_AUTH_API_URL: true,
     LESTA_APP_ID: true,
+    LESTA_DEV_APP_ID: true,
+    BUILD_HASH: true,
     OptionalRecord: true,
   },
 };

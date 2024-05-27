@@ -151,12 +151,35 @@
     display: none;
   }
 
+  .visible {
+    display: block;
+    margin-right: 5px;
+  }
+
   .label {
     display: flex;
     justify-content: center;
+    font-size: 14px;
+  }
+
+  .row {
+    justify-content: space-between;
   }
 
   .input, .textarea {
     width: 100%;
+  }
+
+  .idWrapper {
+    gap: 7px;
+  }
+
+  .iconWrapper {
+    height: 18px;
+  }
+
+  .btnConnectDiscord {
+    font-size: 14px;
+    margin-top: 10px;
   }
 }

@@ -24,6 +24,16 @@
 
   @media screen and (width <= 768px) {
     gap: 10px;
-    grid-template-columns: repeat(2, minmax(min(1%), max(250px)));
+    grid-template-columns: repeat(4, minmax(min(1%), max(150px)));
+    grid-auto-rows: 80px;
+  }
+
+  @media screen and (width <= 600px) {
+    grid-template-columns: repeat(2, minmax(min(1%), max(200px)));
+  }
+
+  @media screen and (width <= 450px) {
+    gap: 10px 5px;
+    grid-template-columns: repeat(2, minmax(min(1%), max(150px)));
   }
 }

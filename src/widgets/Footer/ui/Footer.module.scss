@@ -1,22 +1,23 @@
 .Footer {
-  max-width: 1580px;
-  padding: 20px 20px 20px 120px;
+  max-width: 1420px;
+  width: calc(100% - 120px);
+  padding: 20px 50px 20px 120px;
   background-color: var(--bg-footer);
   overflow: hidden;
   position: relative;
-  flex-shrink: 0;
   border-radius: 15px 15px 0 0;
-  margin: 0 auto;
+  align-self: center;
+  margin-left: 100px;
+  margin-right: 20px;
 
-  @media screen and (width <= 1700px) {
-    max-width: 1280px;
-  }
-
-  @media screen and (width <= 1470px) {
-    margin: 0 20px;
+  @media screen and (width <= 1400px) {
+    max-width: 1240px;
+    margin-left: 120px;
+    padding-left: 90px;
   }
 
   @media screen and (width <= 1024px) {
+    width: 100%;
     border-radius: 0;
     margin: 0;
   }

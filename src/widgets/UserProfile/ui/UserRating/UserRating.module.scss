@@ -29,20 +29,31 @@
 
 @media screen and (width <= 768px) {
   .rating {
-    width: 70px;
-    height: 70px;
-    margin-top: -150px;
-    margin-right: -40px;
+    width: 55px;
+    height: 55px;
+    margin-top: -125px;
+    margin-right: -5px;
     background-color: #121217;
   }
 
+  .ratingGap {
+    gap: 3px;
+  }
+
   .ratingImage {
-    width: 30px;
-    height: 35px;
+    width: 20px;
+    height: 25px;
   }
 
   .ratingValue {
     font-size: 12px;
     line-height: 14px;
+  }
+}
+
+@media screen and (width <= 450px) {
+  .rating {
+    margin-top: -90px;
+    margin-right: -5px;
   }
 }

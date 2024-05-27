@@ -48,6 +48,8 @@ export default ({ config }: {config: webpack.Configuration}) => {
     LESTA_API_URL: JSON.stringify(''),
     LESTA_AUTH_API_URL: JSON.stringify(''),
     LESTA_APP_ID: JSON.stringify(''),
+    LESTA_DEV_APP_ID: JSON.stringify(''),
+    BUILD_HASH: JSON.stringify(''),
   }));
 
   return config;

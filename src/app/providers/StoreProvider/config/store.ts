@@ -13,6 +13,7 @@ import { userDataReducer } from 'entities/Lesta/model/slice/userDataSlice';
 import { userSessionReducer } from 'entities/Lesta/model/slice/userSessionSlice';
 import { starsReducer } from 'features/playersLeaderboard';
 import { filterReducer, sortReducer } from 'features/Filter';
+import { SortListPlayersReducer } from 'features/SortClanListPlayers/model/slice/SortListPlayerSlice';
 import { StateSchema } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
@@ -38,6 +39,7 @@ export function createReduxStore(
     stars: starsReducer,
     filter: filterReducer,
     sort: sortReducer,
+    sortListPlayers: SortListPlayersReducer,
     // async reducers
     // authForm: authReducer,
   };

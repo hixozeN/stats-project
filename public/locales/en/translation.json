@@ -21,6 +21,8 @@
   "Произошла непредвиденная ошибка...": "Unexpected error captured...",
   "ЯзыкСокращенно": "En",
   "Статистика": "Stats",
+  "Вход": "Sign-In",
+  "Рейтинги": "Ratings",
   "История матчей": "Matches history",
   "Личные данные": "Edit profile",
   "Параметры": "Settings",
@@ -37,5 +39,9 @@
   "Обновить данные": "Update data",
   "Закрыть список сессий": "Close sessions list",
   "Профиль": "Profile",
-  "UNDER_CONSTRUCTION": "This section is under development \uD83D\uDEE0"
+  "UNDER_CONSTRUCTION": "This section is under development \uD83D\uDEE0",
+  "Выйти из аккаунта": "Logout",
+  "PAGE_NOT_FOUND_TITLE": "Page not found | BlitzStats.ru",
+  "SIDEBAR_BURGER_BTN_LABEL": "Open navigation menu",
+  "NOTIFICATION_LABEL": "Show personal notifications"
 }

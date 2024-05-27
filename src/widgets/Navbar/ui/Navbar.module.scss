@@ -15,7 +15,7 @@
 }
 
 .userName {
-  max-width: 150px;
+  max-width: 160px;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
@@ -42,7 +42,7 @@
 }
 
 @media (width <= 768px) {
-  .addAccount {
+  .auth {
     width: 40px;
     height: 40px;
     background-image: url('shared/assets/icons/button/add-friend.svg');
@@ -51,16 +51,20 @@
     background-position: center;
   }
 
+  .userMenuButton {
+    gap: 0;
+  }
+
   .Navbar {
     gap: 10px;
   }
 
   .userName {
     font-size: 12px;
-    max-width: 60px;
+    max-width: 70px;
   }
 
   .navWrapper {
-    gap: 0;
+    gap: 5px;
   }
 }

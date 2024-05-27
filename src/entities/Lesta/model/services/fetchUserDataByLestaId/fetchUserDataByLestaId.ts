@@ -1,16 +1,19 @@
+// noinspection ExceptionCaughtLocallyJS
+
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
+import { SERVER_ERROR_MESSAGE } from 'shared/consts/global';
 import { userDataActions } from '../../../model/slice/userDataSlice';
 import { TUserTanks } from '../../types/tanks';
 import { TUserData } from '../../types/users';
 import { userTanksActions } from '../../slice/lestaTanksSlice';
 
-interface ThunkProps {
+export interface ThunkProps {
   id: number | number[],
   lestaAccessToken?: string,
 }
 
-interface ReturnData {
+export interface ReturnData {
   userData: TUserData;
   userTanks: TUserTanks[];
 }
@@ -33,24 +36,7 @@ export const fetchUserDataByLestaId = createAsyncThunk<ReturnData, ThunkProps, T
       const response = await extra.royalApi.get<ReturnData>(endPoint);
 
       // прокидываем ошибку, если данных нет
-      if (!response.data) return rejectWithValue(serverError);
-
-      // записываем в стейт персональные данные
-      dispatch(userDataActions.setPersonalUserData({
-        ...response?.data?.userData?.personal,
-      }));
-
-      // записываем рейтинговые данные
-      dispatch(userDataActions.setRatingData({ ...response?.data?.userData?.rating }));
-      dispatch(userDataActions.setRatingValues({ ...response?.data?.userData?.ratingValues }));
-
-      // записываем статистику игрока
-      dispatch(userDataActions.setUserStats({ ...response?.data?.userData?.statistics }));
-
-      // записываем данные о клане игрока
-      if (response?.data?.userData?.clan) {
-        dispatch(userDataActions.setUserClan({ ...response?.data?.userData?.clan }));
-      }
+      if (!response.data || response instanceof Error) throw response ?? SERVER_ERROR_MESSAGE;
 
       // записываем данные о танках игрока
       if (response?.data?.userTanks) {
@@ -58,12 +44,6 @@ export const fetchUserDataByLestaId = createAsyncThunk<ReturnData, ThunkProps, T
         // dispatch(filterActions.setFilterData([...response.data.userTanks]));
       }
 
-      // если был передан, записываем приватные данные аккаунта
-      if (lestaAccessToken) {
-        dispatch(userDataActions.setPrivateUserData({
-          ...response?.data?.userData?.private,
-        }));
-      }
       // возвращаем полученные данные
       return response.data;
     } catch (e) {
