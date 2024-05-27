@@ -49,7 +49,7 @@ export function Modal(props: IModalProps) {
 
   if (isStoryBook) {
     return (
-      <div className={classNames(cls.Modal, mods, [className])}>
+      <div className={classNames(cls.Modal, mods)}>
         <div
           className={cls.overlay}
           role="button"
@@ -57,7 +57,7 @@ export function Modal(props: IModalProps) {
           onClick={handleClose}
         >
           <div
-            className={cls.content}
+            className={classNames(cls.content, {}, [className])}
             onClick={onContentClick}
             onKeyPress={() => null}
             role="button"
@@ -87,7 +87,7 @@ export function Modal(props: IModalProps) {
     <Portal
       element={document.getElementById('app') ?? document.body}
     >
-      <div className={classNames(cls.Modal, mods, [className])}>
+      <div className={classNames(cls.Modal, mods)}>
         <div
           className={cls.overlay}
           role="button"
@@ -95,7 +95,7 @@ export function Modal(props: IModalProps) {
           onClick={handleClose}
         >
           <div
-            className={cls.content}
+            className={classNames(cls.content, {}, [className])}
             onClick={onContentClick}
             onKeyPress={() => null}
             role="button"
