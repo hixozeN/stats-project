@@ -16,6 +16,7 @@ const initialState: LestaUserSessionSchema = {
   data: {
     delta: null,
     statistics: null,
+    rating: null,
     tanks: [],
   },
 };
@@ -52,6 +53,7 @@ export const userSessionSlice = createSlice({
         state.isLoading = false;
         state.data.delta = { ...payload.delta };
         state.data.statistics = { ...payload.statistics };
+        state.data.rating = { ...payload.rating };
         state.data.tanks = payload.tanks;
       })
       .addCase(createLestaUserSession.pending, (state) => {

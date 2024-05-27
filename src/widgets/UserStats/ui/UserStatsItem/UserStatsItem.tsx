@@ -31,6 +31,11 @@ export const UserStatsItem = memo((props: IUserStatsItemProps) => {
     return `${delta}${label === 'Винрейт' ? '%' : ''}`;
   }, [delta]);
 
+  const renderCounter = useCallback(() => {
+    if (itemName === 'Рейтинг' && counter === 3000) return t('RATING_CALIBRATION');
+    return counter;
+  }, [counter, itemName, t]);
+
   if (isLoading) {
     return (
       <li className={classNames(cls.statItem, {}, [className, cls.skeleton])} />
@@ -45,7 +50,7 @@ export const UserStatsItem = memo((props: IUserStatsItemProps) => {
           {`${calculateDelta(delta, itemName)}`}
         </span>
         <h3 className={classNames(cls.counter, { [cls.counterSession]: itemName === 'Старт сессии' }, [])}>
-          {counter}
+          {renderCounter()}
         </h3>
         <p className={cls.name}>{t(itemName)}</p>
       </div>
