@@ -3,7 +3,7 @@ import { AvatarFullData, getCurrentUserAvatar } from 'entities/User';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { useToasts } from 'shared/hooks/useToasts/useToasts';
 import { useTranslation } from 'react-i18next';
-import { DEFAULT_USER_AVATAR, SERVER_ERROR_MESSAGE } from 'shared/consts/global';
+import { SERVER_ERROR_MESSAGE } from 'shared/consts/global';
 import { useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { patchCurrentUserAvatar } from '../../model/services/patchCurrentUserAvatar';
@@ -32,7 +32,7 @@ export const AvailableUserAvatar = memo((props: AvailableUserAvatarProps) => {
   }, [dispatch, toastSuccess, toastWithError, t, onCloseModal]);
 
   const avatarMod = useMemo(() => ({
-    [cls.active]: currentAvatar === avatar.image || currentAvatar === DEFAULT_USER_AVATAR,
+    [cls.active]: currentAvatar === avatar.image,
   }), [currentAvatar, avatar.image]);
 
   return (
