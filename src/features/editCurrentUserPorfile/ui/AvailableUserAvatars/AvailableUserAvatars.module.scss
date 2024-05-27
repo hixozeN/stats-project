@@ -1,3 +1,36 @@
+.avatarsWrapper {
+  overflow-y: auto;
+  max-height: 100%;
+  margin-top: 45px;
+  padding-right: calc(var(--modal-padding-desktop) - 15px);
+  padding-left: calc(var(--modal-padding-desktop) - 15px);
+  margin-right: 5px;
+
+  @media screen and (width <= 768px) {
+    padding-right: calc(var(--modal-padding-tablet) - 10px);
+    padding-left: calc(var(--modal-padding-tablet) - 10px);
+  }
+
+  @media screen and (width <= 425px) {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
+.avatarsWrapper::-webkit-scrollbar {
+  width: 5px;
+}
+
+.avatarsWrapper::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: var(--accent-color);
+}
+
+.avatarsWrapper::-webkit-scrollbar-track {
+  background-color: #333239;
+  border-radius: 5px;
+}
+
 .avatars {
   display: flex;
   flex-direction: column;
@@ -5,24 +38,32 @@
   gap: 20px;
   width: 100%;
   padding-bottom: 20px;
+
+  @media screen and (width <= 425px) {
+    gap: 10px;
+  }
 }
 
 .sectionHeading {
   font-weight: 400;
+  font-size: 18px;
+  line-height: 12px;
   letter-spacing: 2px;
   max-width: max-content;
+  padding-left: 5px;
   align-self: flex-start;
   text-shadow: 0 2px 2px rgb(255 255 255 / 40%);
 
   @media screen and (width <= 600px) {
     font-size: 16px;
+    line-height: 24px;
   }
 }
 
 .sectionHeading::after {
   content: '';
   display: block;
-  width: calc(100% + 15px);
+  width: calc(100% + 10px);
   margin-top: 10px;
   margin-left: -5px;
   height: 3px;
@@ -44,6 +85,10 @@
   @media screen and (width <= 1280px) {
     grid-template-columns: repeat(3, minmax(1%, 1fr));
   }
+
+  @media screen and (width <= 450px) {
+    gap: 5px;
+  }
 }
 
 .avatarImage {
@@ -60,6 +105,11 @@
   @media screen and (width <= 600px) {
     width: 75px;
     height: 75px;
+  }
+
+  @media screen and (width <= 425px) {
+    width: 60px;
+    height: 60px;
   }
 }
 
@@ -82,6 +132,15 @@
         filter: brightness(100%);
       }
     }
+  }
+}
+
+.active {
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+
+  & .avatarImage {
+    filter: brightness(100%);
   }
 }
 

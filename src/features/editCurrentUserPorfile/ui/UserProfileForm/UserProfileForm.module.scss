@@ -61,6 +61,21 @@
   color: var(--error-color);
 }
 
+.modal {
+  margin-left: 330px;
+  padding-top: 0;
+  padding-right: 0;
+  padding-left: 0;
+
+  @media screen and (width <= 1024px) {
+    margin-left: 185px;
+  }
+
+  @media screen and (width <= 810px) {
+    margin: 0;
+  }
+}
+
 @media screen and (hover: hover) {
   .avatarWrapper:hover {
     cursor: pointer;
