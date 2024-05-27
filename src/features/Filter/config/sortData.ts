@@ -36,7 +36,7 @@ export const statList: IStatList[] = [
   },
 ];
 
-export const sortData = ['Винрейт', 'С/У', 'WN8', 'Фильтр'];
+// export const sortData = ['Винрейт', 'С/У', 'WN8', 'Фильтр'];
 
 export const clearSortData: SortSchema = statList.reduce<SortSchema>((result, item) => {
   if (item.nameItem === 'lastBattle') {

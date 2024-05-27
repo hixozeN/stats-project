@@ -1,0 +1,12 @@
+.BackToTopButton {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  transform: rotate(180deg);
+  color: var(--primary-color);
+  transition: all 0.5s;
+
+  & svg {
+    text-align: center;
+  }
+}

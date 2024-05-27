@@ -52,6 +52,7 @@ module.exports = {
       {
         markupOnly: true,
         ignoreAttribute: [
+          'autoComplete',
           'data-testid',
           'to',
           'theme',
