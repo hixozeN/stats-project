@@ -13,18 +13,14 @@
   width: 30px;
   height: 30px;
   position: absolute;
-  top: 10px;
-  right: 10px;
-
-  @media screen and (width <= 540px) {
-    top: -45px;
-    right: 5px;
-  }
+  top: 7px;
+  right: 7px;
+  opacity: 0.7;
 }
 
 @media (hover:hover) {
   .button:hover {
-    opacity: 0.7;
+    opacity: 1;
   }
 }
 
@@ -38,7 +34,7 @@
   position: relative;
   background: var(--bg-modal);
   border-radius: 12px;
-  padding: 35px;
+  padding: var(--modal-padding-desktop);
   transform: scale(0.5);
   transition: all 0.3s ease-in-out;
 }
@@ -65,14 +61,14 @@
 
 @media screen and (width <=768px) {
   .content {
-    padding: 20px;
+    padding: var(--modal-padding-tablet);
     max-width: 80%;
   }
 }
 
 @media screen and (width <=425px) {
   .content {
-    padding: 20px 10px;
+    padding: var(--modal-padding-mobile);
     max-width: 320px;
   }
 }
