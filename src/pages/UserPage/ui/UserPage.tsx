@@ -18,7 +18,11 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { SeoUpdater } from 'shared/lib/SeoUpdater/SeoUpdater';
-import { getLestaAccessToken, getTokenUpdateStatus } from 'entities/User/index';
+import {
+  getCurrentUserAccountId,
+  getLestaAccessToken,
+  getTokenUpdateStatus,
+} from 'entities/User/index';
 import { useToasts } from 'shared/hooks/useToasts/useToasts';
 import { SessionControlSection } from '../ui/SessionControlSection/SessionControlSection';
 import cls from './UserPage.module.scss';
@@ -33,7 +37,11 @@ const UserPage = ({ className }: IUserPageProps) => {
   // NEW
   const isNotFound = useSelector(getUserNotFoundStatus);
   const isTokenUpdating = useSelector(getTokenUpdateStatus);
-  const lestaAccessToken = useSelector(getLestaAccessToken);
+  const currentUserToken = useSelector(getLestaAccessToken);
+  const currentUserAccountId = useSelector(getCurrentUserAccountId);
+  const lestaAccessToken = currentUserAccountId === Number(id)
+    ? currentUserToken
+    : null;
 
   const { toastWithError } = useToasts();
 
