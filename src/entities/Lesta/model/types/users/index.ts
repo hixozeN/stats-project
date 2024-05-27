@@ -99,5 +99,6 @@ export type TUserData = {
 export type TUserSession = {
   delta: ParamData;
   statistics: ParamData;
+  rating?: ParamData;
   tanks: TUserTanks[];
 }

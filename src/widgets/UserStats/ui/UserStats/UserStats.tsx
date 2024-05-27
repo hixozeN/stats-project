@@ -6,7 +6,7 @@ import { Button } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import {
-  createLestaUserSession, fetchLestaUserSessionById,
+  createLestaUserSession, fetchLestaUserSessionById, getUserRatingDelta,
   getUserRatingStats,
   getUserSessionDelta,
   getUserSessionStats,
@@ -38,12 +38,13 @@ export const UserStats = memo(({
   const userStatistic = useSelector(getUserStats);
   const userSessionStats = useSelector(getUserSessionStats);
   const userSessionDelta = useSelector(getUserSessionDelta);
+  const userRatingDelta = useSelector(getUserRatingDelta);
 
   const generalStatItems = useMemo(
     () => getStatsList(userStatistic, userSessionDelta),
     [userStatistic, userSessionDelta],
   );
-  const ratingStatItems2 = useMemo(() => getStatsList(ratingData), [ratingData]);
+  const ratingStatItems2 = useMemo(() => getStatsList(ratingData, userRatingDelta), [ratingData, userRatingDelta]);
   const sessionStatItems = useMemo(() => getStatsList(userSessionStats), [userSessionStats]);
 
   const handleUpdateSession = useCallback(() => {
