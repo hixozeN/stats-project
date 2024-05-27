@@ -22,5 +22,9 @@
   "DS_PLACEHOLDER": "Your Discord ID",
   "VK_PLACEHOLDER": "https://vk.com/olrcyteam",
   "TG_PLACEHOLDER": "https://t.me/blitzstats",
-  "YT_PLACEHOLDER": "https://youtube.com/@Enjoykin"
+  "YT_PLACEHOLDER": "https://youtube.com/@Enjoykin",
+  "USER_ONLY_AVATARS_SECTION_NAME": "Legendary",
+  "ROLE_ONLY_AVATARS_SECTION_NAME": "Unique",
+  "DEFAULT_AVATARS_SECTION_NAME": "For all users",
+  "AVATAR_SUCCESSFUL_UPDATED": "Avatar successfully updated!"
 }

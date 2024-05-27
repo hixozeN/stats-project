@@ -42,7 +42,7 @@
 
   // цвета
   --error-color: #de3333;
-  --overlay-color: rgba(0 0 0 / 50%);
+  --overlay-color: rgba(0 0 0 / 70%);
   --overlay-color-30: #0000004C;
 
   // анимации
@@ -64,6 +64,11 @@
   --slider-arrow-margin: 18px;
   --slider-arrow-size-small: 32px;
   --slider-arrow-margin-small: 18px;
+
+  // Отступы модалки
+  --modal-padding-desktop: 35px;
+  --modal-padding-tablet: 20px;
+  --modal-padding-mobile: 20px 10px;
 
   // Z-indexes
   --modal-index: 10;

@@ -26,5 +26,9 @@
   "DISCORD_CONNECTED": "Аккаунт уже подключен к профилю ✅",
   "BTN_CONNECT_DISCORD": "Подключить Discord к профилю.",
   "DISCORD_SUCCESS_CONNECT": "Discord успешно подключен к профилю.",
-  "UNEXPECTED_ERROR": "Что-то пошло не так..."
+  "UNEXPECTED_ERROR": "Что-то пошло не так...",
+  "USER_ONLY_AVATARS_SECTION_NAME": "Легендарные",
+  "ROLE_ONLY_AVATARS_SECTION_NAME": "Уникальные",
+  "DEFAULT_AVATARS_SECTION_NAME": "Обычные",
+  "AVATAR_SUCCESSFUL_UPDATED": "Аватар обновлен!"
 }
