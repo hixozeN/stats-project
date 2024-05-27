@@ -49,3 +49,9 @@
     padding: 15px 10px 30px;
   }
 }
+
+@media screen and (width <= 410px) {
+  .profile {
+    padding: 10px 5px;
+  }
+}
