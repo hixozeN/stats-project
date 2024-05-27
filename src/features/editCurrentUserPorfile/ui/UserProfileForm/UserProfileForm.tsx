@@ -241,37 +241,8 @@ export const UserProfileForm = memo(({ className }: IUserProfileFormProps) => {
           </Button>
         </div>
       </form>
-      <Modal isOpen={isModalOpened} onClose={handleModalWithAvatarsClose}>
-        {
-          availableAvatars?.userOnly?.length > 0
-            && (
-              <AvailableUserAvatars
-                avatars={availableAvatars.userOnly}
-                sectionName={t('USER_ONLY_AVATARS_SECTION_NAME')}
-                onCloseModal={handleModalWithAvatarsClose}
-              />
-            )
-        }
-        {
-          availableAvatars?.roleOnly?.length > 0
-            && (
-              <AvailableUserAvatars
-                avatars={availableAvatars.roleOnly}
-                sectionName={t('ROLE_ONLY_AVATARS_SECTION_NAME')}
-                onCloseModal={handleModalWithAvatarsClose}
-              />
-            )
-        }
-        {
-          availableAvatars?.public?.length > 0
-            && (
-              <AvailableUserAvatars
-                avatars={availableAvatars.public}
-                sectionName={t('DEFAULT_AVATARS_SECTION_NAME')}
-                onCloseModal={handleModalWithAvatarsClose}
-              />
-            )
-        }
+      <Modal isOpen={isModalOpened} onClose={handleModalWithAvatarsClose} className={cls.modal}>
+        <AvailableUserAvatars availableAvatars={availableAvatars} onCloseModal={handleModalWithAvatarsClose} />
       </Modal>
     </>
   );
