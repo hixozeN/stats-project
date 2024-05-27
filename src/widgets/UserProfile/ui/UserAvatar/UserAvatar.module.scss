@@ -15,11 +15,18 @@
 
 @media screen and (width <= 768px) {
   .avatarWrapper {
-    padding: 15px 0 0;
+    padding: 10px 0 0;
   }
 
   .avatar {
-    width: 140px;
-    height: 140px;
+    width: 110px;
+    height: 110px;
+  }
+}
+
+@media screen and (width <= 450px) {
+  .avatar {
+    width: 75px;
+    height: 75px;
   }
 }

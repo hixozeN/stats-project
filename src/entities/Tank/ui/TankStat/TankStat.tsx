@@ -115,7 +115,7 @@ export const TankStat = memo(
 
     const statParams: Record<string, string | number> = {
       Бои: battles,
-      Винрейт: `${winRate.toFixed(2)}%`,
+      Винрейт: winRate === 100 ? `${winRate}%` : `${winRate.toFixed(2)}%`,
       'С/У': avgDamage,
       WN8,
       'Последний бой': lasteDate,

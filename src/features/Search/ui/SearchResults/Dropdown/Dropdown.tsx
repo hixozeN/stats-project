@@ -41,7 +41,7 @@ export const Dropdown = memo((props: IDropdown) => {
       id: player.account_id,
       name: player.nickname,
       link: `/user/${player.account_id}`,
-      tag: null,
+      tag: player?.clan?.tag || null,
       icon: <PlayerIcon className={cls.icons} />,
     }
   )), [players]);
