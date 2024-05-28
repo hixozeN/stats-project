@@ -83,6 +83,11 @@
 
   @media screen and (width <= 810px) {
     margin: 0;
+    max-width: 80%;
+  }
+
+  @media screen and (width <= 425px) {
+    max-width: 320px;
   }
 }
 
