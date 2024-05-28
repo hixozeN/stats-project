@@ -62,7 +62,7 @@
 @media screen and (width <=768px) {
   .content {
     padding: var(--modal-padding-tablet);
-    max-width: 80%;
+    max-width: max-content;
   }
 }
 
