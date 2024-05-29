@@ -12,6 +12,7 @@ export interface BuildPaths {
   iconAndroidSmallSize: string;
   iconAppleTouch: string;
   webManifest: string;
+  robots: string;
 }
 
 export interface BuildEnv {
