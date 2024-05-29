@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -10,7 +10,7 @@ import { TeamMembersTable } from 'widgets/TeamMembersTable';
 import {
   fetchLestaClanData,
   getClanLoadingStatus,
-  getClanNotFoundStatus,
+  getClanNotFoundStatus, getLestaClanName, getLestaClanTag,
 } from 'entities/Lesta';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
@@ -28,6 +28,14 @@ export const TeamPage = memo((props: TeamPageProps) => {
   const isLoading = useSelector(getClanLoadingStatus);
   const isNotFound = useSelector(getClanNotFoundStatus);
   const dispatch = useAppDispatch();
+  const clanName = useSelector(getLestaClanName);
+  const clanTag = useSelector(getLestaClanTag);
+
+  const getFullClanName = useCallback((): string => {
+    if (clanName && clanTag) return `${clanName} [${clanTag}] | `;
+
+    return '';
+  }, [clanName, clanTag]);
 
   useEffect(() => {
     dispatch(fetchLestaClanData({ id: clanId }));
@@ -51,7 +59,7 @@ export const TeamPage = memo((props: TeamPageProps) => {
 
   return (
     <ErrorBoundary>
-      <SeoUpdater title={t('PAGE_TITLE')} />
+      <SeoUpdater title={`${getFullClanName()}${t('PAGE_TITLE')}`} />
       <Background />
       <main className={classNames(cls.TeamPage, {}, [className])}>
         <div className={cls.wrapper}>

@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /auth/lesta/*
 
 Clean-param: status
 Clean-param: access_token

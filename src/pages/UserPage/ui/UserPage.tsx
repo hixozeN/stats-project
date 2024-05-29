@@ -12,7 +12,7 @@ import { Tanks } from 'widgets/Tanks';
 import {
   getUserNotFoundStatus,
   fetchLestaUserSessionById,
-  fetchUserDataByLestaId,
+  fetchUserDataByLestaId, getUserNickname,
 } from 'entities/Lesta';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -39,6 +39,7 @@ const UserPage = ({ className }: IUserPageProps) => {
   const isTokenUpdating = useSelector(getTokenUpdateStatus);
   const currentUserToken = useSelector(getLestaAccessToken);
   const currentUserAccountId = useSelector(getCurrentUserAccountId);
+  const lestaUserNickname = useSelector(getUserNickname);
   const lestaAccessToken = currentUserAccountId === Number(id)
     ? currentUserToken
     : null;
@@ -52,6 +53,14 @@ const UserPage = ({ className }: IUserPageProps) => {
   );
 
   const dispatch = useAppDispatch();
+
+  const getPageTitle = useCallback(() => {
+    if (lestaUserNickname.length > 0) {
+      return `${lestaUserNickname} | ${t('PAGE_TITLE')}`;
+    }
+
+    return t('PAGE_TITLE');
+  }, [lestaUserNickname, t]);
 
   const fetchUserData = useCallback(() => {
     dispatch(fetchUserDataByLestaId({
@@ -100,7 +109,7 @@ const UserPage = ({ className }: IUserPageProps) => {
   return (
     <ErrorBoundary>
       <SeoUpdater
-        title={t('PAGE_TITLE')}
+        title={getPageTitle()}
         OGTitle={`${t('Статистика игрока')}`}
       />
       <Background />
