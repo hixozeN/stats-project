@@ -111,6 +111,7 @@ const UserPage = ({ className }: IUserPageProps) => {
       <SeoUpdater
         title={getPageTitle()}
         OGTitle={`${t('Статистика игрока')}`}
+        canonicalLink={window.location.href}
       />
       <Background />
       <div className={classNames(cls.UserPage, {}, [className])}>

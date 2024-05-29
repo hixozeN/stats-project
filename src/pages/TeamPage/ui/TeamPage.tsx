@@ -59,7 +59,10 @@ export const TeamPage = memo((props: TeamPageProps) => {
 
   return (
     <ErrorBoundary>
-      <SeoUpdater title={`${getFullClanName()}${t('PAGE_TITLE')}`} />
+      <SeoUpdater
+        title={`${getFullClanName()}${t('PAGE_TITLE')}`}
+        canonicalLink={window.location.href}
+      />
       <Background />
       <main className={classNames(cls.TeamPage, {}, [className])}>
         <div className={cls.wrapper}>
