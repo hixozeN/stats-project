@@ -24,6 +24,7 @@ import {
   getTokenUpdateStatus,
 } from 'entities/User/index';
 import { useToasts } from 'shared/hooks/useToasts/useToasts';
+import { userDataActions } from 'entities/Lesta/model/slice/userDataSlice';
 import { SessionControlSection } from '../ui/SessionControlSection/SessionControlSection';
 import cls from './UserPage.module.scss';
 
@@ -86,7 +87,11 @@ const UserPage = ({ className }: IUserPageProps) => {
     if (!isTokenUpdating) {
       fetchUserData();
     }
-  }, [fetchUserData, isTokenUpdating]);
+
+    return () => {
+      dispatch(userDataActions.resetUserData());
+    };
+  }, [fetchUserData, isTokenUpdating, dispatch]);
 
   if (isBanned) {
     return (

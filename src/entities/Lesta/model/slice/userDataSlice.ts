@@ -28,6 +28,11 @@ export const userDataSlice = createSlice({
     setPersonalUserData: (state, action: PayloadAction<LestaUser>) => {
       state.personal = action.payload;
     },
+    resetUserData: (state) => {
+      state.personal = null;
+      state.statistics = null;
+      state.isNotFound = null;
+    },
     setPrivateUserData: (state, action: PayloadAction<LestaPrivateUserData>) => {
       state.private = action.payload;
     },
