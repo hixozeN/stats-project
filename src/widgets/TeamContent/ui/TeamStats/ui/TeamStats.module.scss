@@ -5,6 +5,10 @@
   flex-wrap: wrap;
   gap: 15px 24px;
 
+  @media screen and (width <= 1179px) {
+    gap: 15px 12px;
+  }
+
   @media screen and (width <= 1090px) {
     max-width: 660px;
     justify-content: center;
