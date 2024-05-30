@@ -3,7 +3,7 @@ import { authByLestaOpenID } from 'features/AuthUser/index';
 import { patchCurrentUser, patchCurrentUserAvatar } from 'features/editCurrentUserPorfile/index';
 import { logoutUser } from '../services/logoutUser/logoutUser';
 import { checkUserAuth } from '../services/checkUserAuth/checkUserAuth';
-import { User, UserSchema } from '../types/user';
+import { LestaUserData, User, UserSchema } from '../types/user';
 
 const initialState: UserSchema = {
   isLoggedIn: false,
@@ -27,6 +27,14 @@ export const userSlice = createSlice({
     },
     setError: (state, action: PayloadAction<string>) => {
       state.error = action.payload;
+    },
+    setLestaTokenData: (state, action: PayloadAction<LestaUserData>) => {
+      // используется в интерцепторе для перехвата 401 по лестовскому токену
+      // получает актуальные данные по токену и перезаписывает
+      state.authData.lestaData = {
+        ...state.authData.lestaData,
+        ...action.payload,
+      };
     },
   },
   extraReducers: (builder) => {

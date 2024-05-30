@@ -26,7 +26,7 @@ export const checkUserAuth = createAsyncThunk<User, void, ThunkConfig<string>>(
 
       const lestaAccessToken = currentUserData?.data?.lestaData?.access_token || null;
 
-      if (lestaAccessToken && !IS_DEV) {
+      if (lestaAccessToken) {
         const newToken = await extra.royalApi.post<RefreshTokenData>(
           '/auth/refresh/lesta',
           { access_token: lestaAccessToken },

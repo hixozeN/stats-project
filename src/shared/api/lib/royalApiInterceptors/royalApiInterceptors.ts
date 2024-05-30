@@ -2,11 +2,12 @@ import {
   Action, Store, ThunkDispatch,
 } from '@reduxjs/toolkit';
 import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
-import { userActions } from 'entities/User';
+import { User, userActions } from 'entities/User';
 import { NavigateOptions, To } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { StateSchema } from 'app/providers/StoreProvider';
 import { UnknownAsyncThunkAction } from '@reduxjs/toolkit/dist/matchers';
+import { LESTA_TOKEN_INTERCEPTOR_RESPONSE } from 'shared/consts/global';
 import { $royalApi } from '../../royalApi';
 
 const TOKEN_ERROR = 'С токеном что-то не так...';
@@ -52,10 +53,23 @@ export const royalApiInterceptors = (
   }));
 
   $royalApi.interceptors.response.use((config) => config, (async (error) => {
-    if (error.response.status === 401 && error.response.data.message === TOKEN_LESTA_ERROR) {
-      store.dispatch(userActions.logout());
-      await $royalApi.post('/auth/logout', { withCredentials: true });
-      navigate(RoutePath.main);
+    const originalRequest = error.config;
+    if (error.response.status === 401
+      && error.response.data.message === TOKEN_LESTA_ERROR
+      && error.config
+      && !error._isRetry) {
+      originalRequest._isRetry = true;
+      try {
+        const userData = await $royalApi.get<User>('/user/me', { withCredentials: true });
+        store.dispatch(userActions.setLestaTokenData(userData.data.lestaData));
+        return LESTA_TOKEN_INTERCEPTOR_RESPONSE;
+      } catch (e) {
+        store.dispatch(userActions.logout());
+        await $royalApi.post('/auth/logout', { withCredentials: true });
+        navigate(RoutePath.main);
+
+        throw e;
+      }
     }
 
     throw error;

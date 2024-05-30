@@ -44,7 +44,7 @@ export const fetchLestaUserDataById = createAsyncThunk<
     // прокидываем ошибку, если данных нет
     if (!response.data) return rejectWithValue(serverError);
 
-    const sessions: LestaUserSession[] = [];
+    // const sessions: LestaUserSession[] = [];
 
     // if (response.data.sessions) {
     //   const promises = response.data.sessions.map(async (session) => {
@@ -93,8 +93,6 @@ export const fetchLestaUserDataById = createAsyncThunk<
     return response.data;
   } catch (e) {
     // возвращаем ошибку с бэка
-    console.log(serverError);
-
     return rejectWithValue(e?.response?.data?.message || serverError);
   }
 });
