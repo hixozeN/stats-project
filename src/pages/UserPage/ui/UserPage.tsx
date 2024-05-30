@@ -12,7 +12,7 @@ import { Tanks } from 'widgets/Tanks';
 import {
   getUserNotFoundStatus,
   fetchLestaUserSessionById,
-  fetchUserDataByLestaId, getUserNickname,
+  fetchUserDataByLestaId, getUserNickname, getUserBanStatus, getUserBanMessage,
 } from 'entities/Lesta';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -40,6 +40,8 @@ const UserPage = ({ className }: IUserPageProps) => {
   const currentUserToken = useSelector(getLestaAccessToken);
   const currentUserAccountId = useSelector(getCurrentUserAccountId);
   const lestaUserNickname = useSelector(getUserNickname);
+  const isBanned = useSelector(getUserBanStatus);
+  const banMessage = useSelector(getUserBanMessage);
   const lestaAccessToken = currentUserAccountId === Number(id)
     ? currentUserToken
     : null;
@@ -85,6 +87,26 @@ const UserPage = ({ className }: IUserPageProps) => {
       fetchUserData();
     }
   }, [fetchUserData, isTokenUpdating]);
+
+  if (isBanned) {
+    return (
+      <ErrorBoundary>
+        <SeoUpdater
+          title={t('Игрок заблокирован')}
+        />
+        <Background />
+        <div className={classNames(cls.UserPage, {}, [className])}>
+          <section
+            className={classNames(cls.wrapper, {}, [cls.notFoundSection])}
+          >
+            <h2 className={cls.notFoundSectionHeading}>
+              {banMessage}
+            </h2>
+          </section>
+        </div>
+      </ErrorBoundary>
+    );
+  }
 
   if (isNotFound) {
     return (

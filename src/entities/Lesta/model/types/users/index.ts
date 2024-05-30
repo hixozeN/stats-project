@@ -80,6 +80,10 @@ export type LestaUser = {
   vk?: string;
   accessToken?: string;
   wn8: number;
+  block?: {
+    isBanned?: boolean;
+    message?: string;
+  }
 };
 
 export type RatingValues = {

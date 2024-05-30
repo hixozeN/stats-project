@@ -24,6 +24,8 @@ export const getUserSocialLinks = (state: StateSchema) => ({
 });
 export const getUserClanData = (state: StateSchema) => state?.lestaUserData?.clan || null;
 export const getUserPrivateData = (state: StateSchema) => state?.lestaUserData?.private || null;
+export const getUserBanStatus = (state: StateSchema) => state?.lestaUserData?.personal?.block?.isBanned || false;
+export const getUserBanMessage = (state: StateSchema) => state?.lestaUserData?.personal?.block?.message || null;
 
 // лестовские данные
 export const getUserLestaId = (state: StateSchema) => state?.lestaUserData?.personal?.lestaData?.account_id || null;
