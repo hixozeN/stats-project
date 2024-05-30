@@ -57,7 +57,6 @@ export const userDataSlice = createSlice({
         state.error = '';
         state.isLoading = true;
         state.isNotFound = false;
-        state.personal.block = null;
       })
       .addCase(fetchUserDataByLestaId.rejected, (state, { payload }) => {
         state.error = payload;
