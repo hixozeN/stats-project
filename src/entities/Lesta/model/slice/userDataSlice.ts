@@ -53,8 +53,11 @@ export const userDataSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchUserDataByLestaId.pending, (state) => {
-        state = initialState;
+        state.clan = null;
+        state.error = '';
         state.isLoading = true;
+        state.isNotFound = false;
+        state.personal.block = null;
       })
       .addCase(fetchUserDataByLestaId.rejected, (state, { payload }) => {
         state.error = payload;
