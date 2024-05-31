@@ -12,7 +12,7 @@ import { Tanks } from 'widgets/Tanks';
 import {
   getUserNotFoundStatus,
   fetchLestaUserSessionById,
-  fetchUserDataByLestaId,
+  fetchUserDataByLestaId, getUserNickname, getUserBanStatus, getUserBanMessage,
 } from 'entities/Lesta';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -24,6 +24,7 @@ import {
   getTokenUpdateStatus,
 } from 'entities/User/index';
 import { useToasts } from 'shared/hooks/useToasts/useToasts';
+import { userDataActions } from 'entities/Lesta/model/slice/userDataSlice';
 import { SessionControlSection } from '../ui/SessionControlSection/SessionControlSection';
 import cls from './UserPage.module.scss';
 
@@ -39,6 +40,9 @@ const UserPage = ({ className }: IUserPageProps) => {
   const isTokenUpdating = useSelector(getTokenUpdateStatus);
   const currentUserToken = useSelector(getLestaAccessToken);
   const currentUserAccountId = useSelector(getCurrentUserAccountId);
+  const lestaUserNickname = useSelector(getUserNickname);
+  const isBanned = useSelector(getUserBanStatus);
+  const banMessage = useSelector(getUserBanMessage);
   const lestaAccessToken = currentUserAccountId === Number(id)
     ? currentUserToken
     : null;
@@ -52,6 +56,14 @@ const UserPage = ({ className }: IUserPageProps) => {
   );
 
   const dispatch = useAppDispatch();
+
+  const getPageTitle = useCallback(() => {
+    if (lestaUserNickname.length > 0) {
+      return `${lestaUserNickname} | ${t('PAGE_TITLE')}`;
+    }
+
+    return t('PAGE_TITLE');
+  }, [lestaUserNickname, t]);
 
   const fetchUserData = useCallback(() => {
     dispatch(fetchUserDataByLestaId({
@@ -75,7 +87,31 @@ const UserPage = ({ className }: IUserPageProps) => {
     if (!isTokenUpdating) {
       fetchUserData();
     }
-  }, [fetchUserData, isTokenUpdating]);
+
+    return () => {
+      dispatch(userDataActions.resetUserData());
+    };
+  }, [fetchUserData, isTokenUpdating, dispatch]);
+
+  if (isBanned) {
+    return (
+      <ErrorBoundary>
+        <SeoUpdater
+          title={t('Игрок заблокирован')}
+        />
+        <Background />
+        <div className={classNames(cls.UserPage, {}, [className])}>
+          <section
+            className={classNames(cls.wrapper, {}, [cls.notFoundSection])}
+          >
+            <h2 className={cls.notFoundSectionHeading}>
+              {banMessage}
+            </h2>
+          </section>
+        </div>
+      </ErrorBoundary>
+    );
+  }
 
   if (isNotFound) {
     return (
@@ -100,8 +136,9 @@ const UserPage = ({ className }: IUserPageProps) => {
   return (
     <ErrorBoundary>
       <SeoUpdater
-        title={t('PAGE_TITLE')}
+        title={getPageTitle()}
         OGTitle={`${t('Статистика игрока')}`}
+        canonicalLink={window.location.href}
       />
       <Background />
       <div className={classNames(cls.UserPage, {}, [className])}>

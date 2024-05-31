@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /auth/lesta/*
+
+Clean-param: status
+Clean-param: access_token
+Clean-param: token_type
+Clean-param: nickname
+Clean-param: account_id
+Clean-param: expires_at

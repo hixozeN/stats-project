@@ -28,6 +28,7 @@ export default (env: BuildEnv) => {
     iconAndroidBigSize: path.resolve(__dirname, 'public', 'android-chrome-512x512.png'),
     iconAppleTouch: path.resolve(__dirname, 'public', 'apple-touch-icon.png'),
     webManifest: path.resolve(__dirname, 'public', 'manifest.json'),
+    robots: path.resolve(__dirname, 'public', 'robots.txt'),
   };
 
   const mode = env.mode || 'development';

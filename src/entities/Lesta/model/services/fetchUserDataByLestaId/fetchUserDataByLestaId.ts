@@ -2,7 +2,10 @@
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
-import { SERVER_ERROR_MESSAGE } from 'shared/consts/global';
+import {
+  LESTA_TOKEN_INTERCEPTOR_RESPONSE,
+  SERVER_ERROR_MESSAGE,
+} from 'shared/consts/global';
 import { userDataActions } from '../../../model/slice/userDataSlice';
 import { TUserTanks } from '../../types/tanks';
 import { TUserData } from '../../types/users';
@@ -50,6 +53,11 @@ export const fetchUserDataByLestaId = createAsyncThunk<ReturnData, ThunkProps, T
       if (e?.response?.status === 404) {
         dispatch(userDataActions.setNotFoundStatus(true));
       }
+
+      if (e?.response?.status === LESTA_TOKEN_INTERCEPTOR_RESPONSE.response.status) {
+        return rejectWithValue(LESTA_TOKEN_INTERCEPTOR_RESPONSE.response.data.message);
+      }
+
       // возвращаем ошибку с бэка
       return rejectWithValue(e?.response?.data?.message || serverError);
     }

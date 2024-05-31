@@ -17,6 +17,7 @@ import { AuthorizationLestaPage } from 'pages/AuthorizationLestaPage/Authorizati
 import { OpenAuthPage } from 'pages/OpenAuthPage';
 import { UserProfileForm } from 'features/editCurrentUserPorfile';
 import { RatingPage } from 'pages/RatingPage';
+import { AuthLestaResult } from 'pages/AuthorizationLestaPage/AuthLestaResult';
 
 // interface IRouterPath {
 //   [key:string]: string;
@@ -33,6 +34,7 @@ export enum AppRoutes {
   FRIENDS = 'friends',
   AUTH = 'auth',
   AUTH_LESTA = 'authLesta',
+  AUTH_LESTA_RESULT = 'authLestaResult',
   AUTH_CONNECT_LESTA = 'connectLesta',
   USER_ID = 'user_id',
   PROFILE = 'profile',
@@ -58,6 +60,7 @@ export const RoutePath: OptionalRecord<AppRoutes, string> = {
   [AppRoutes.FRIENDS]: '/friends',
   [AppRoutes.AUTH]: '/auth',
   [AppRoutes.AUTH_LESTA]: '/auth/lesta',
+  [AppRoutes.AUTH_LESTA_RESULT]: '/auth/lesta/result',
   [AppRoutes.USER_ID]: '/user',
   [AppRoutes.PROFILE]: '/profile',
   [AppRoutes.USER]: '/user/:id',
@@ -127,6 +130,10 @@ export const routerConfiguration = createBrowserRouter([
               {
                 path: RoutePath.authLesta,
                 element: <AuthorizationLestaPage />,
+              },
+              {
+                path: RoutePath.authLestaResult,
+                element: <AuthLestaResult />,
               },
               {
                 element: <RequireAuth />,

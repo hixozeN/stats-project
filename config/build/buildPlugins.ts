@@ -45,6 +45,7 @@ export default function buildPlugins(
         { from: paths.iconAndroidBigSize, to: paths.build },
         { from: paths.iconAppleTouch, to: paths.build },
         { from: paths.webManifest, to: paths.build },
+        { from: paths.robots, to: paths.build },
       ],
     }));
   }

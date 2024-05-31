@@ -28,6 +28,7 @@ function AppLayout() {
   const isAuthLoading = useSelector(getFullUserState).isLoading;
   const currentUserError = useSelector(getCurrentUserError);
   const isMainPage = useMatch(RoutePath.main);
+  const isLestaAuthPage = useMatch(RoutePath.authLestaResult);
   const dispatch = useAppDispatch();
   const [queryParams] = useSearchParams();
   const { toastWithError } = useToasts();
@@ -70,8 +71,8 @@ function AppLayout() {
   }, [dispatch, isAuthInitiated]);
 
   useEffect(() => {
-    if (isMainPage) handleOpenAuth();
-  }, [isMainPage, handleOpenAuth]);
+    if (isLestaAuthPage) handleOpenAuth();
+  }, [isLestaAuthPage, handleOpenAuth]);
 
   if (isAuthLoading || !isAuthInitiated) {
     return <Loader />;
