@@ -14,7 +14,7 @@ export const TeamStatsItem = (props: TeamStatsItemProps) => {
   const { icon, title, result } = props;
   const { t } = useTranslation('teamPage');
 
-  const isVisible = title === 'WN8' && result === 0;
+  const isVisible = title === t('WN8') && result === 0;
 
   return (
     <li className={cls.item}>
@@ -22,7 +22,7 @@ export const TeamStatsItem = (props: TeamStatsItemProps) => {
       <div className={cls.container}>
         <span className={cls.text}>{t(`${title}`)}</span>
         <span className={classNames(cls.results, { [cls.visible]: isVisible }, [])}>
-          {title === 'WN8' && result === 0 ? 'нет' : result}
+          {title === t('WN8') && result === 0 ? t('NONE') : result}
           <ToolTip text={t('TOOLTIP')} isVisible={isVisible} className={cls.tooltip} />
         </span>
       </div>
