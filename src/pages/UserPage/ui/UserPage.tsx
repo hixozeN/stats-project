@@ -25,6 +25,7 @@ import {
 } from 'entities/User/index';
 import { useToasts } from 'shared/hooks/useToasts/useToasts';
 import { userDataActions } from 'entities/Lesta/model/slice/userDataSlice';
+import { ScrollToTop } from 'shared/lib/ScrollToTop/ScrollToTop';
 import { SessionControlSection } from '../ui/SessionControlSection/SessionControlSection';
 import cls from './UserPage.module.scss';
 
@@ -140,6 +141,7 @@ const UserPage = ({ className }: IUserPageProps) => {
         OGTitle={`${t('Статистика игрока')}`}
         canonicalLink={window.location.href}
       />
+      <ScrollToTop />
       <Background />
       <div className={classNames(cls.UserPage, {}, [className])}>
         <div className={cls.wrapper}>
