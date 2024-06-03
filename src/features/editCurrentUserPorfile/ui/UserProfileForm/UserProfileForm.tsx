@@ -50,7 +50,7 @@ export const UserProfileForm = memo(({ className }: IUserProfileFormProps) => {
       [ProfileFormInputsEnum.DISCORD]: currentUser.discord ?? '',
       [ProfileFormInputsEnum.VK]: currentUser.vk ? `https://vk.com/${currentUser.vk}` : '',
       [ProfileFormInputsEnum.TELEGRAM]: currentUser.telegram ? `https://t.me/${currentUser.telegram}` : '',
-      [ProfileFormInputsEnum.YOUTUBE]: currentUser.youtube ? `https://youtube.com/@${currentUser.youtube}` : '',
+      [ProfileFormInputsEnum.YOUTUBE]: currentUser.youtube ? `https://youtube.com/${currentUser.youtube}` : '',
     },
     mode: 'all',
   });
@@ -169,7 +169,7 @@ export const UserProfileForm = memo(({ className }: IUserProfileFormProps) => {
             rules={{
               maxLength: 47,
               pattern: {
-                value: /^https:\/\/vk\.com\/.+$/,
+                value: /^https:\/\/(?:www\.)?vk\.com\/.+$/,
                 message: VALIDATION_MESSAGES.INCORRECT_VK,
               },
             }}
@@ -190,7 +190,7 @@ export const UserProfileForm = memo(({ className }: IUserProfileFormProps) => {
             rules={{
               maxLength: 45,
               pattern: {
-                value: /^https:\/\/t\.me\/.*/,
+                value: /^https:\/\/(?:www\.)?t\.me\/.*/,
                 message: VALIDATION_MESSAGES.INCORRECT_TG,
               },
             }}
@@ -211,7 +211,7 @@ export const UserProfileForm = memo(({ className }: IUserProfileFormProps) => {
             rules={{
               maxLength: 55,
               pattern: {
-                value: /^https:\/\/youtube\.com\/@.*/,
+                value: /^https:\/\/(?:www\.)?youtube\.com\/@.*/,
                 message: VALIDATION_MESSAGES.INCORRECT_YT,
               },
             }}
