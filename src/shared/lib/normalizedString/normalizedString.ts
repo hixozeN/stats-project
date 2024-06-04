@@ -1,4 +1,4 @@
-import { REGEX_SYMBOLS_FILTER } from 'shared/consts/global';
+import { REGEX_SYMBOLS_FILTER } from '../../consts/global';
 
 export const getNormalizedString = (s: string) => {
   if (typeof s === 'string') {

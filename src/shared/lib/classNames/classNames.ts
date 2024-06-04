@@ -16,7 +16,7 @@
 export type TMods = Record<string, boolean | string | undefined>;
 
 export function classNames(cls: string, mods: TMods = {}, additional: Array<string | undefined> = []): string {
-  return [
+  const allClasses = [
     cls,
     // фильтрация по Boolean, т.к. в дополнительные классы могут прилетать undefined через пропсы
     ...additional.filter(Boolean),
@@ -27,6 +27,7 @@ export function classNames(cls: string, mods: TMods = {}, additional: Array<stri
       .filter(([_, value]) => Boolean(value))
       // раскладываем в новый массив и соединяем в строку
       .map(([className]) => className),
-  ]
-    .join(' ');
+  ];
+  const uniqueClasses = [...new Set(allClasses)];
+  return uniqueClasses.join(' ');
 }
