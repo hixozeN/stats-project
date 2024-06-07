@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { TUserTanks } from 'entities/Lesta/model/types/tanks';
@@ -44,6 +44,24 @@ function FilterWithCurtain({
     handleChangeMenu,
     isSortOpen,
   } = useSorting(filter);
+
+  const onKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      closeFilter();
+    }
+  }, [closeFilter]);
+
+  useEffect(() => {
+    if (isOpenFilter) {
+      window.addEventListener('keydown', onKeyDown);
+      document.body.style.overflowY = 'hidden';
+    }
+
+    return () => {
+      window.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflowY = 'auto';
+    };
+  }, [isOpenFilter, onKeyDown]);
 
   return (
     <>

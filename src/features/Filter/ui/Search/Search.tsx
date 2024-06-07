@@ -1,8 +1,8 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Input } from 'shared/ui/Input/ui/Input';
 import React, {
-  ChangeEvent,
-  FormEvent, useCallback, useRef,
+  ChangeEvent, FocusEvent,
+  FormEvent, useCallback, useRef, useState,
 } from 'react';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { useSelector } from 'react-redux';
@@ -28,11 +28,25 @@ export const Search = (props: SearchTanksProps) => {
   const search = useSelector(getSearchFilter);
   const dispatch = useAppDispatch();
   const inputRef = useRef<HTMLInputElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
   const onClickClear = () => {
     dispatch(filterActions.clearSearch());
     dispatch(filterActions.clearFilter());
     inputRef.current.focus();
+  };
+
+  const onClickFocus = () => {
+    setIsOpen(true);
+  };
+
+  const onClickBlur = (evt: FocusEvent) => {
+    const relatedTarget = evt.relatedTarget as HTMLElement;
+    if (relatedTarget && relatedTarget.tagName && relatedTarget.tagName === 'BUTTON') {
+      onClickClear();
+    } else {
+      setIsOpen(false);
+    }
   };
 
   const submitForm = useCallback((evt: FormEvent<HTMLFormElement>) => {
@@ -44,13 +58,15 @@ export const Search = (props: SearchTanksProps) => {
     <div className={classNames(cls.SearchTanks, {}, [className])}>
       <form id={searchData.nameForm} autoComplete="off" onSubmit={submitForm}>
         <Input
-          className={classNames(cls.inputSearch, { [cls.input]: search !== '' })}
+          className={classNames(cls.inputSearch, { [cls.input]: search !== '' || isOpen })}
           data={searchData}
           ref={inputRef}
           onChange={onChange}
           value={search}
           placeholder={t(`${searchData.placeholder}`)}
           autoComplete="off"
+          onFocus={onClickFocus}
+          onBlur={(evt) => onClickBlur(evt)}
         />
         {search
           && (
@@ -58,7 +74,7 @@ export const Search = (props: SearchTanksProps) => {
               className={cls.buttonClose}
               theme="clear"
               variant="close"
-              onClick={onClickClear}
+              onClick={(evt) => { evt.stopPropagation(); onClickClear(); }}
             />
           )}
       </form>
