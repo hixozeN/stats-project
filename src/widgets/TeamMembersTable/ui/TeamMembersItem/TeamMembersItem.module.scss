@@ -1,4 +1,4 @@
-.item {
+.link {
   display: grid;
   justify-content: space-between;
   align-items: center;
@@ -8,6 +8,8 @@
   border-radius: 5px;
   overflow: hidden;
   padding: 15px 40px;
+  text-decoration: none;
+  color: var(--primary-color);
   transition: transform 0.2s ease-in;
 }
 
@@ -55,15 +57,21 @@
   cursor: help;
 }
 
-@media screen and (width <= 1080px ) {
-  .item {
+@media screen and (width <= 1179px ) {
+  .link {
     gap: 5px;
     padding: 15px 10px;
   }
 }
 
+@media screen and (width <= 1024px) {
+  .item:nth-child(odd) {
+    background-color: #111116;
+  }
+}
+
 @media screen and (width <= 930px ) {
-  .item {
+  .link {
     width: 660px;
     padding: 10px 5px;
     justify-content: center;
@@ -97,7 +105,7 @@
 }
 
 @media screen and (width < 700px ) {
-  .item {
+  .link {
     width: 310px;
   }
 }
@@ -107,7 +115,7 @@
     color: var(--accent-color);
   }
 
-  .item:hover {
+  .link:hover {
     cursor: pointer;
     outline: 1px solid var(--accent-color);
     transform: scale(1.01)
