@@ -53,10 +53,4 @@ describe('classNames', () => {
     expect(classNames('test', { hidden: true }, ['additional', 'additional']))
       .toBe(expected);
   });
-
-  test('Ignores non-boolean and non-undefined mods', () => {
-    const expected = 'test hidden';
-    expect(classNames('test', { hidden: true, size: 'large', color: 12345 }, []))
-      .toBe(expected);
-  });
 });

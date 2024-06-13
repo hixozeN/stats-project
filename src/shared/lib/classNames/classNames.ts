@@ -25,9 +25,15 @@ export function classNames(cls: string, mods: TMods = {}, additional: Array<stri
       // фильтруем значения, отбрасывая модификаторы с false
       // eslint-disable-next-line
       .filter(([_, value]) => Boolean(value))
-      // раскладываем в новый массив и соединяем в строку
+      // раскладываем в новый массив
       .map(([className]) => className),
   ];
-  const uniqueClasses = [...new Set(allClasses)];
+  // убираем повторяющиеся классы
+  const uniqueClasses = allClasses.reduce((result, current) => {
+    if (result.indexOf(current) === -1) {
+      result.push(current);
+    }
+    return result;
+  }, []);
   return uniqueClasses.join(' ');
 }
