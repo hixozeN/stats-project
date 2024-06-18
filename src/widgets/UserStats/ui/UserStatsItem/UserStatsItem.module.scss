@@ -48,46 +48,6 @@
   }
 }
 
-.delta {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 12px;
-  font-weight: 500;
-  
-  @media screen and (width <= 768px) {
-    top: 0;
-    right: 7px;
-  }
-}
-
-.positive {
-  color: var(--green-color);
-}
-
-.negative {
-  color: var(--error-color);
-}
-
-.counter {
-  font-size: 22px;
-  font-weight: 500;
-
-  @media screen and (width <= 1280px) {
-    font-size: 20px;
-  }
-
-  @media screen and (width <= 1024px) {
-    font-size: 16px;
-  }
-}
-
-.counterSession {
-  font-size: 16px;
-  font-weight: 500;
-  text-align: center;
-}
-
 .name {
   font-size: 14px;
   white-space: nowrap;

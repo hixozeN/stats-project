@@ -1,4 +1,4 @@
-import { memo, SVGProps, VFC } from 'react';
+import { FC, memo, SVGProps } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import BattlesIcon from 'shared/assets/icons/userStats/battles.svg';
 import WinrateIcon from 'shared/assets/icons/userStats/winrate.svg';
@@ -10,7 +10,7 @@ import DrawIcon from 'shared/assets/icons/userStats/handshake.svg';
 import ClockIcon from 'shared/assets/icons/userStats/clock.svg';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
-import { getUserDataLoadingStatus, getUserSessionLoadingStatus } from 'entities/Lesta/index';
+import { getUserDataLoadingStatus, getUserSessionLoadingStatus } from 'entities/Lesta';
 import { StatsListItem } from '../../model/types/index';
 import { UserStatsItem } from '../UserStatsItem/UserStatsItem';
 import cls from './UserStatsList.module.scss';
@@ -20,7 +20,7 @@ interface UserStatsListProps {
   className?: string;
 }
 
-const Icons: Record<string, VFC<SVGProps<SVGSVGElement>>> = {
+const Icons: Record<string, FC<SVGProps<SVGSVGElement>>> = {
   battles: BattlesIcon,
   winRate: WinrateIcon,
   avgDamage: DamageIcon,
