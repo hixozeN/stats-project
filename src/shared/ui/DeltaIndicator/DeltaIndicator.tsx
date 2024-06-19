@@ -8,10 +8,15 @@ interface DeltaIndicatorProps {
 }
 
 export const DeltaIndicator: FC<DeltaIndicatorProps> = memo((
-  { delta, itemName }: DeltaIndicatorProps,
+  {
+    delta,
+    itemName,
+  }: DeltaIndicatorProps,
 ) => {
   const calculateDelta = (diff: number | string, label: string): string => {
-    if (diff === 0) return '';
+    const numDiff = Number(diff);
+
+    if (numDiff === 0 || Number.isNaN(numDiff)) return '';
 
     const sign = diff > 0 ? '+' : '';
     const postfix = label === 'Винрейт' ? '%' : '';
@@ -22,8 +27,14 @@ export const DeltaIndicator: FC<DeltaIndicatorProps> = memo((
   const isNegative: boolean = delta < 0 || itemName === 'Поражения';
 
   return (
-    <span className={classNames(cls.delta, { [cls.positive]: isPositive, [cls.negative]: isNegative })}>
-      {`${calculateDelta(delta, itemName)}`}
+    <span
+      className={classNames(cls.delta, {
+        [cls.positive]: isPositive,
+        [cls.negative]: isNegative,
+      })}
+      data-testid="deltaIndicator"
+    >
+      {calculateDelta(delta, itemName)}
     </span>
   );
 });
