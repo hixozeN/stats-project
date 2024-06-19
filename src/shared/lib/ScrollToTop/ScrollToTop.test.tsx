@@ -1,16 +1,28 @@
-import React from 'react';
 import { ScrollToTop } from './ScrollToTop';
 import { componentRender } from '../tests/componentRender/componentRender';
 
-global.scrollTo = jest.fn();
+window.scrollTo = jest.fn();
 
 describe('ScrollToTop', () => {
-  test('Scrolls to the top on route change', () => {
-    componentRender(<ScrollToTop />);
-    expect(global.scrollTo).toHaveBeenCalledWith(0, 0);
+  test('Window scrollTo should be mocked correctly', () => {
+    window.scrollTo(500, 100);
+    expect(window.scrollTo).toHaveBeenCalledWith(500, 100);
+  });
 
-    // Simulating route change and re-rendering the component with a new route
+  test('Should call scrollTo(0, 0) on initial render', () => {
+    componentRender(<ScrollToTop />);
+    expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
+  });
+
+  test('Should call scrollTo(0, 0) on route change', () => {
+    jest.clearAllMocks();
+
+    componentRender(<ScrollToTop />);
+    expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
+
     componentRender(<ScrollToTop />, { route: '/new-path' });
-    expect(global.scrollTo).toHaveBeenCalledTimes(2);
+
+    expect(window.scrollTo).toHaveBeenCalledTimes(2);
+    expect(window.scrollTo).toHaveBeenCalledWith(0, 0);
   });
 });
