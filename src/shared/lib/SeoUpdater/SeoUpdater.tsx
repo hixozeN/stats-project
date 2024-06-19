@@ -4,7 +4,7 @@ import {
   CLIENT_URL, DEFAULT_DESCRIPTION, DEFAULT_IMAGE, DEFAULT_KEYWORDS, DEFAULT_TITLE,
 } from 'shared/consts/SEO';
 
-interface SeoUpdaterProps {
+export interface SeoUpdaterProps {
   title?: string;
   description?: string;
   OGTitle?: string;

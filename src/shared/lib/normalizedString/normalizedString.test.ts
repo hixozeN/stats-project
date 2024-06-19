@@ -1,4 +1,4 @@
-import { getNormalizedString } from 'shared/lib/normalizedString/normalizedString';
+import { getNormalizedString } from './normalizedString';
 
 describe('normalizedString', () => {
   test('Return empty string with undefined value', () => {
