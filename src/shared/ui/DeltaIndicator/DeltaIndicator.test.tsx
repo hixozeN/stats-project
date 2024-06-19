@@ -10,6 +10,7 @@ describe.each([
   ['6', 'Поражения', '+6', 'delta negative'],
   ['-6', 'Винрейт', '-6%', 'delta negative'],
   ['undefined', 'Винрейт', '', 'delta'],
+  ['undefined', 'Поражения', '', 'delta'],
 ])(
   'Data: delta "%p", itemName "%s", expected "%s", className "%s"',
   (delta: number | string, itemName: string, result: string, classNames: string) => {

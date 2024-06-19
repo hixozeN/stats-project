@@ -24,7 +24,7 @@ export const DeltaIndicator: FC<DeltaIndicatorProps> = memo((
   };
 
   const isPositive: boolean = delta > 0 && itemName !== 'Поражения';
-  const isNegative: boolean = delta < 0 || itemName === 'Поражения';
+  const isNegative: boolean = delta < 0 || (itemName === 'Поражения' && !Number.isNaN(Number(delta)));
 
   return (
     <span
