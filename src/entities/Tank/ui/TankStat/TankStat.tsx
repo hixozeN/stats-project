@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { ToolTip } from 'shared/ui/ToolTip/ToolTip';
 import { LestaTankData, ParamData } from 'entities/Lesta';
+import { DeltaIndicator } from 'shared/ui/DeltaIndicator/DeltaIndicator';
 import { formatter } from '../../lib/converterTank';
 import cls from './TankStat.module.scss';
 
@@ -23,7 +24,7 @@ export const TankStat = memo(
     const { tier } = tankData;
     const { t } = useTranslation('tank');
 
-    const lasteDate = useMemo(() => {
+    const lastDate = useMemo(() => {
       if (last_battle_time) {
         return formatter(last_battle_time);
       }
@@ -118,15 +119,17 @@ export const TankStat = memo(
       Винрейт: winRate === 100 ? `${winRate}%` : `${winRate.toFixed(2)}%`,
       'С/У': avgDamage,
       WN8,
-      'Последний бой': lasteDate,
+      'Последний бой': lastDate,
     };
 
     return (
       <div className={cls.wrapper}>
+        {/* <DeltaIndicator delta={100} itemName={t('Бои')} theme="tank" /> */}
         <dt className={cls.term}>{`${t(`${data}`)}:`}</dt>
-        <dd className={classNames('', classNameRate)}>
+        <dd className={classNames(cls.stat, classNameRate)}>
           {statParams[`${data}`]}
           <ToolTip text={textTollTip} isVisible={isVisible} />
+          <DeltaIndicator delta={-100} itemName={t('Бои')} theme="tank" />
         </dd>
       </div>
     );

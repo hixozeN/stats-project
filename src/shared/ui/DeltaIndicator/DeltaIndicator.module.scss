@@ -1,12 +1,10 @@
 .delta {
   position: absolute;
-  top: 10px;
-  right: 10px;
+
   font-size: 12px;
   font-weight: 500;
 
   @media screen and (width <= 768px) {
-    top: 0;
     right: 7px;
   }
 }
@@ -17,4 +15,23 @@
 
 .negative {
   color: var(--error-color);
+}
+
+.stat {
+  top: 10px;
+  right: 10px;
+
+  @media screen and (width <= 768px) {
+    top: 0;
+  }
+}
+
+.tank {
+  top: -15px;
+  right: -20px;
+}
+
+.default {
+  top: 0;
+  right: 0;
 }

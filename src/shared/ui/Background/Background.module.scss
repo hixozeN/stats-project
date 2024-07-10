@@ -13,6 +13,11 @@
   border-radius: 15px 0 0;
   overflow: hidden;
 
+  &.default {
+    background-image: url("../../../shared/assets/images/bg-octo-min.svg");
+    background-repeat: repeat-x;
+  }
+
   &::after {
     content: '';
     background: var(--bg-gradient-overlay);

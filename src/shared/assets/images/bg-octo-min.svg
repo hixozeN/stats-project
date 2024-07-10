@@ -1,0 +1,39 @@
+<svg width="14" height="194" viewBox="0 0 14 194" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <mask id="mask0_666_3509" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="14" height="194">
+        <rect x="14" y="194" width="14" height="194" transform="rotate(-180 14 194)"
+              fill="url(#paint0_linear_666_3509)"/>
+    </mask>
+    <g mask="url(#mask0_666_3509)">
+        <path d="M7 0L1 3V10L7 13L13 10V3L7 0Z" fill="#1A1A1C"/>
+        <path d="M7 144L1 147V154L7 157L13 154V147L7 144Z" fill="#1A1A1C"/>
+        <path d="M7 120L1 123V130L7 133L13 130V123L7 120Z" fill="#1A1A1C"/>
+        <path d="M7 96L1 99V106L7 109L13 106V99L7 96Z" fill="#1A1A1C"/>
+        <path d="M7 72L1 75V82L7 85L13 82V75L7 72Z" fill="#1A1A1C"/>
+        <path d="M7 48L1 51V58L7 61L13 58V51L7 48Z" fill="#1A1A1C"/>
+        <path d="M7 24L1 27V34L7 37L13 34V27L7 24Z" fill="#1A1A1C"/>
+        <path d="M7 168L1 171V178L7 181L13 178V171L7 168Z" fill="#1A1A1C"/>
+        <path d="M6 15L0 12V25L6 22V15Z" fill="#1A1A1C"/>
+        <path d="M8 22L14 25V12L8 15V22Z" fill="#1A1A1C"/>
+        <path d="M6 39L0 36V49L6 46V39Z" fill="#1A1A1C"/>
+        <path d="M8 46L14 49V36L8 39V46Z" fill="#1A1A1C"/>
+        <path d="M6 63L0 60V73L6 70V63Z" fill="#1A1A1C"/>
+        <path d="M8 70L14 73V60L8 63V70Z" fill="#1A1A1C"/>
+        <path d="M6 87L0 84V97L6 94V87Z" fill="#1A1A1C"/>
+        <path d="M8 94L14 97V84L8 87V94Z" fill="#1A1A1C"/>
+        <path d="M6 111L0 108V121L6 118V111Z" fill="#1A1A1C"/>
+        <path d="M8 118L14 121V108L8 111V118Z" fill="#1A1A1C"/>
+        <path d="M6 135L0 132V145L6 142V135Z" fill="#1A1A1C"/>
+        <path d="M8 142L14 145V132L8 135V142Z" fill="#1A1A1C"/>
+        <path d="M6 159L0 156V169L6 166V159Z" fill="#1A1A1C"/>
+        <path d="M8 166L14 169V156L8 159V166Z" fill="#1A1A1C"/>
+        <path d="M6 183L0 180V193L6 190V183Z" fill="#1A1A1C"/>
+        <path d="M8 190L14 193V180L8 183V190Z" fill="#1A1A1C"/>
+    </g>
+    <defs>
+        <linearGradient id="paint0_linear_666_3509" x1="21" y1="194" x2="21" y2="388" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#0C0C0E" stop-opacity="0"/>
+            <stop offset="1" stop-color="#0C0C0E"/>
+        </linearGradient>
+    </defs>
+</svg>
+

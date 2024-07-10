@@ -1,7 +1,6 @@
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './Background.module.scss';
-import DefaultBg from '../../assets/images/bg-octo.svg';
 
 export type BackgroundTheme = 'default' | 'blur' | 'image';
 
@@ -11,19 +10,23 @@ interface BackgroundProps {
 }
 
 export const Background = memo((props: BackgroundProps) => {
-  const { theme = 'default', url } = props;
+  const {
+    theme = 'default',
+    url,
+  } = props;
+
+  const isDefault = theme === 'default';
 
   return (
-    <div className={cls.overlay}>
-      {theme === 'default' ? (
-        <DefaultBg />
-      ) : (
-        <img
-          src={url}
-          className={classNames(cls.Background, {}, [cls[theme]])}
-          alt="123"
-        />
-      )}
+    <div className={classNames(cls.overlay, { [cls.default]: isDefault })}>
+      {!isDefault
+        && (
+          <img
+            src={url}
+            className={classNames(cls.Background, {}, [cls[theme]])}
+            alt="123"
+          />
+        )}
     </div>
   );
 });

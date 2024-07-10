@@ -3,19 +3,19 @@ import { componentRender } from '../../lib/tests/componentRender/componentRender
 import { DeltaIndicator } from './DeltaIndicator';
 
 describe.each([
-  [5, 'Бои', '+5', 'delta positive'],
-  [-5, 'Винрейт', '-5%', 'delta negative'],
-  [0, 'Винрейт', '', 'delta'],
-  [5, 'Поражения', '+5', 'delta negative'],
-  ['6', 'Поражения', '+6', 'delta negative'],
-  ['-6', 'Винрейт', '-6%', 'delta negative'],
-  ['undefined', 'Винрейт', '', 'delta'],
-  ['undefined', 'Поражения', '', 'delta'],
+  [5, 'Бои', 'class', '+5', 'delta class default positive'],
+  [-5, 'Винрейт', '', '-5%', 'delta default negative'],
+  [0, 'Винрейт', '', '', 'delta default'],
+  [5, 'Поражения', '', '+5', 'delta default negative'],
+  ['6', 'Поражения', 'class', '+6', 'delta class default negative'],
+  ['-6', 'Винрейт', '', '-6%', 'delta default negative'],
+  ['undefined', 'Винрейт', '', '', 'delta default'],
+  ['undefined', 'Поражения', '', '', 'delta default'],
 ])(
-  'Data: delta "%p", itemName "%s", expected "%s", className "%s"',
-  (delta: number | string, itemName: string, result: string, classNames: string) => {
+  'Data: delta "%p", itemName "%s", class "%s", expected "%s", className "%s"',
+  (delta: number | string, itemName: string, className: string, result: string, classNames: string) => {
     beforeEach(() => {
-      componentRender(<DeltaIndicator delta={delta} itemName={itemName} />);
+      componentRender(<DeltaIndicator delta={delta} itemName={itemName} className={className} />);
     });
 
     test('checking the component rendering', () => {

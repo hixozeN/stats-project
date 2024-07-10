@@ -36,7 +36,7 @@ export const UserStatsItem = memo((props: IUserStatsItemProps) => {
     <li className={classNames(cls.statItem, {}, [className])}>
       <Icon className={cls.icon} />
       <div className={cls.dataWrapper}>
-        <DeltaIndicator delta={delta} itemName={itemName} />
+        <DeltaIndicator delta={delta} itemName={itemName} theme="stat" />
         <h3 className={classNames(cls.counter, { [cls.counterSession]: itemName === 'Старт сессии' }, [])}>
           {renderCounter()}
         </h3>

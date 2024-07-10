@@ -1,18 +1,24 @@
-import { FC, memo } from 'react';
+import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './DeltaIndicator.module.scss';
+
+export type DeltaTheme = 'default' | 'stat' | 'tank';
 
 interface DeltaIndicatorProps {
   delta: number | string;
   itemName: string;
+  theme?: DeltaTheme;
+  className?: string;
 }
 
-export const DeltaIndicator: FC<DeltaIndicatorProps> = memo((
-  {
+export const DeltaIndicator = memo((props: DeltaIndicatorProps) => {
+  const {
     delta,
     itemName,
-  }: DeltaIndicatorProps,
-) => {
+    theme = 'default',
+    className,
+  } = props;
+
   const calculateDelta = (diff: number | string, label: string): string => {
     const numDiff = Number(diff);
 
@@ -31,7 +37,10 @@ export const DeltaIndicator: FC<DeltaIndicatorProps> = memo((
       className={classNames(cls.delta, {
         [cls.positive]: isPositive,
         [cls.negative]: isNegative,
-      })}
+      }, [
+        className,
+        cls[theme],
+      ])}
       data-testid="deltaIndicator"
     >
       {calculateDelta(delta, itemName)}
