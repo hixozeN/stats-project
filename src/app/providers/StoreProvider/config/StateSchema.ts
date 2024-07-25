@@ -4,7 +4,6 @@ import { AuthSchema } from 'features/AuthUser';
 import { SearchSchema } from 'features/Search/model/slice/searchSlice';
 import {
   AnyAction,
-  Dispatch,
   CombinedState,
   EnhancedStore,
   Reducer,
@@ -23,8 +22,9 @@ import {
 import { TeamsSchema } from 'entities/Team/model/types/team';
 import { FilterSchema, SortSchema } from 'features/Filter';
 import { OpenIdSchema } from 'features/ConnectOpenId';
-import { LeaderboardSchema } from 'features/playersLeaderboard';
+import { LeaderboardSchema, RatingSchema } from 'features/playersLeaderboard';
 import { SortListPlayersSchema } from 'features/SortClanListPlayers/types/sortListPlayersType';
+import { rtkApi } from 'shared/api/rtkApi';
 
 export interface StateSchema {
   user: UserSchema;
@@ -40,10 +40,12 @@ export interface StateSchema {
   sortListPlayers: SortListPlayersSchema;
   userTanks: LestaTanksSchema;
   stars: LeaderboardSchema;
+  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
   // async reducers
   authForm?: AuthSchema;
   openId?: OpenIdSchema;
   leaderboard?: LeaderboardSchema;
+  ratingLeaderboard?: RatingSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;
@@ -72,5 +74,4 @@ export interface ThunkConfig<T> {
   rejectValue: T,
   extra: ThunkExtraArgument,
   state: StateSchema,
-  dispatch: Dispatch,
 }
