@@ -1,4 +1,5 @@
 export const SERVER_ERROR_MESSAGE = 'Проблема соединения. Попробуйте позже.';
+export const LESTA_UNAVAILABLE = 'Сервер Lesta временно недоступен.';
 export const LESTA_TOKEN_INTERCEPTOR_RESPONSE = {
   response: {
     status: 205,
