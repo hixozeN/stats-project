@@ -19,7 +19,8 @@
     "test:ui:ok": "npx loki approve",
     "test:ui:ci": "concurrently --kill-others --raw --success first \"npm run storybook\" \"npx loki update\" \"npm run test:ui\" \"deelay\"",
     "storybook": "storybook dev -p 6006 -c ./config/storybook",
-    "storybook:build": "storybook build -c ./config/storybook"
+    "storybook:build": "storybook build -c ./config/storybook",
+    "generate:slice": "node ./scripts/createSlice/index.js"
   },
   "keywords": [],
   "author": "",
@@ -91,8 +92,12 @@
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
+    "@mui/material": "^5.16.0",
     "@reduxjs/toolkit": "^1.9.0",
     "@tanstack/react-table": "^8.12.0",
+    "antd": "^5.19.1",
     "axios": "^1.6.8",
     "dotenv": "^16.4.5",
     "i18next": "^23.11.3",
@@ -105,6 +110,7 @@
     "react-hook-form": "^7.51.2",
     "react-hot-toast": "^2.4.1",
     "react-i18next": "^14.1.1",
+    "react-intersection-observer": "^9.13.0",
     "react-redux": "^7.2.7",
     "react-router-dom": "^6.19.0"
   },
