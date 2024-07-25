@@ -27,6 +27,7 @@ export { createLestaUserSession } from './model/services/createLestaUserSession/
 export { fetchLestaUserSessionById } from './model/services/fetchLestaUserSession/fetchLestaUserSession';
 export { fetchUserDataByLestaId } from './model/services/fetchUserDataByLestaId/fetchUserDataByLestaId';
 export { fetchLestaClanData } from './model/services/fetchLestaClanData/fetchLestaClanData';
+export { fetchLestaUserClan } from './model/services/fetchLestaUserClan/fetchLestaUserClan';
 export { ParamData } from './model/types/default';
 
 // Selectors

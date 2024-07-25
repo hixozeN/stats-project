@@ -1,7 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { LestaUserDataSchema } from '../../model/types';
+import { LestaUserSession } from '../../model/types/users';
 import {
-  LestaUserDataSchema, LestaUserSession,
-} from 'entities/Lesta/index';
+  fetchLestaUserClan,
+} from '../../model/services/fetchLestaUserClan/fetchLestaUserClan';
 import { ParamData } from '../types/default';
 import {
   fetchUserDataByLestaId,
@@ -79,6 +81,16 @@ export const userDataSlice = createSlice({
         if (payload.userData.private) state.private = payload.userData.private;
 
         if (!payload?.userData?.personal?.lestaData?.account_id) state.isNotFound = true;
+      })
+      .addCase(fetchLestaUserClan.pending, (state) => {
+        state.clan = null;
+      })
+      .addCase(fetchLestaUserClan.rejected, (state) => {
+        state.clan = null;
+        state.isLoading = false;
+      })
+      .addCase(fetchLestaUserClan.fulfilled, (state, { payload }) => {
+        state.clan = payload;
       });
   },
 });

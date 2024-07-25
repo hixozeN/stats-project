@@ -104,7 +104,7 @@ export const getMenuElements = (props: MenuElementsProps) => {
     },
     ratings: {
       name: 'Рейтинги',
-      path: RoutePath.rating,
+      path: `${RoutePath.rating}/?type=players`,
       icon: <TournamentIcon />,
     },
     teams: {

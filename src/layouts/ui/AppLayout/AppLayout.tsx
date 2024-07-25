@@ -2,13 +2,15 @@ import { useSelector } from 'react-redux';
 import {
   Suspense, useCallback, useEffect,
 } from 'react';
-import { Outlet, useMatch, useSearchParams } from 'react-router-dom';
+import {
+  Outlet, useMatch, useNavigate, useSearchParams,
+} from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Sidebar } from 'widgets/Sidebar';
 import { LOCAL_STORAGE_LESTA } from 'shared/consts/localstorage';
 import {
   getUserAuthInitiation,
-  checkUserAuth, getCurrentUserError, getFullUserState,
+  checkUserAuth, getCurrentUserError, getFullUserState, getCurrentUserAccountId,
 } from 'entities/User';
 import Loader from 'shared/ui/Loader/Loader';
 import { Header } from 'widgets/Header';
@@ -20,6 +22,7 @@ import { Toaster } from 'react-hot-toast';
 import { useToasts } from 'shared/hooks/useToasts/useToasts';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Footer } from 'widgets/Footer/index';
+import { ConfigProvider, theme as antdTheme } from 'antd';
 import cls from './AppLayout.module.scss';
 
 function AppLayout() {
@@ -31,7 +34,9 @@ function AppLayout() {
   const isLestaAuthPage = useMatch(RoutePath.authLestaResult);
   const dispatch = useAppDispatch();
   const [queryParams] = useSearchParams();
+  const navigate = useNavigate();
   const { toastWithError } = useToasts();
+  const currentUserLestaId = useSelector(getCurrentUserAccountId);
 
   const handleOpenAuth = useCallback(async () => {
     const lestaAuthStatus = queryParams.get(LOCAL_STORAGE_LESTA.STATUS);
@@ -66,9 +71,14 @@ function AppLayout() {
 
   useEffect(() => {
     if (!isAuthInitiated) {
-      dispatch(checkUserAuth());
+      dispatch(checkUserAuth())
+        .unwrap()
+        .then((res) => {
+          if (isMainPage && res?.lestaData?.account_id) navigate(`${RoutePath.user_id}/${res.lestaData.account_id}`);
+        })
+        .catch(console.error);
     }
-  }, [dispatch, isAuthInitiated]);
+  }, [dispatch, isAuthInitiated, currentUserLestaId, isMainPage, navigate]);
 
   useEffect(() => {
     if (isLestaAuthPage) handleOpenAuth();
@@ -83,22 +93,42 @@ function AppLayout() {
       <Toaster />
       <SeoUpdater />
       <div id="app" className={classNames('app', {}, [theme])}>
-        <Header />
-        <main className="page-content">
-          {/* {!isAuthPage && <Sidebar />} */}
-          <Sidebar />
-          <Suspense fallback={<Loader />}>
-            <div
-              className={classNames(
-                cls.pageWrapper,
-                { [cls.collapsed]: false },
-              )}
-            >
-              <Outlet />
-            </div>
-          </Suspense>
-        </main>
-        {isMainPage && <Footer />}
+        <ConfigProvider
+          theme={{
+            algorithm: antdTheme.darkAlgorithm,
+            components: {
+              Select: {
+                colorPrimaryHover: 'var(--button-hover)',
+                selectorBg: 'transparent',
+
+                optionSelectedColor: '#000',
+                optionSelectedFontWeight: 400,
+
+                controlItemBgActive: '#fac704',
+                controlItemBgHover: '#fac704',
+
+                colorTextQuaternary: 'var(--primary-color)',
+              },
+            },
+          }}
+        >
+          <Header />
+          <main className="page-content">
+            {/* {!isAuthPage && <Sidebar />} */}
+            <Sidebar />
+            <Suspense fallback={<Loader />}>
+              <div
+                className={classNames(
+                  cls.pageWrapper,
+                  { [cls.collapsed]: false },
+                )}
+              >
+                <Outlet />
+              </div>
+            </Suspense>
+          </main>
+          {isMainPage && <Footer />}
+        </ConfigProvider>
       </div>
     </Suspense>
   );

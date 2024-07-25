@@ -1,0 +1,158 @@
+.ratingList {
+  display: flex;
+  flex-direction: column;
+  max-width: 1430px;
+  margin: 0 auto;
+  padding-top: 20px;
+  gap: 16px;
+}
+
+.select {
+  width: 200px;
+  height: 42px;
+
+  &span {
+    font-size: 16px;
+  }
+
+  @media (width <= 768px) {
+    height: 32px;
+    margin-top: 5px;
+  }
+
+  @media (width <= 410px) {
+    width: 170px;
+  }
+
+  :global {
+    .ant-select-focused .ant-select-selector,
+    .ant-select-selector:focus-within,
+    .ant-select-selector:active,
+    .ant-select-open .ant-select-selector {
+      border-color: var(--accent-color) !important;
+      box-shadow: none !important;
+    }
+
+    .ant-select .ant-select-selector, .ant-select-selection-item {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    @media (width <= 410px) {
+      span {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.dropdown {
+  :global {
+    .ant-select-item-option-active {
+      color: #000;
+    }
+
+    .rc-virtual-list .rc-virtual-list-holder .rc-virtual-list-holder-inner .ant-select-item .ant-select-item-option-content {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    @media (width <= 410px) {
+      div {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.ratingLeagues {
+  padding: 0 10px;
+
+  @media (width <= 768px) {
+    flex-direction: column;
+  }
+}
+
+.leaderboardHeading {
+  .title {
+    font-size: 24px;
+  }
+}
+
+.season {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--secondary-color);
+  background: transparent;
+  padding: 0 5px;
+  border: none;
+  transition: color 0.2s ease-in-out;
+
+  .infoIcon {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--accent-color);
+    border-radius: 5px;
+  }
+
+  &:hover {
+    color: var(--accent-color);
+    cursor: pointer;
+  }
+}
+
+.leagueShieldWrapper {
+  position: relative;
+  width: 180px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.2s ease-in-out;
+}
+
+.leagueWrapperAnimated {
+  position: absolute;
+  top: 0;
+  width: 180px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.leagueShield {
+  width: 100px;
+}
+
+.leagueShieldAnimated {
+  position: absolute;
+  top: 0;
+  width: 100px;
+  transform: translate(0, 19px);
+}
+
+.bgEnterAnimation {
+  transform: scale(0);
+}
+
+.bgLeaveAnimation {
+  transform: scale(0);
+}
+
+.error {
+  min-height: auto;
+}
+

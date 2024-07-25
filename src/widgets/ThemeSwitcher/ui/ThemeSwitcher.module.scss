@@ -2,3 +2,7 @@
   border: none;
   background-color: transparent;
 }
+
+.ThemeSwitcher:focus-visible {
+  outline: 1px solid var(--accent-color);
+}

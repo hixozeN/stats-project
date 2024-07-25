@@ -5,9 +5,10 @@ import cls from './PageError.module.scss';
 
 interface IPageErrorProps {
   className?: string;
+  errorMessage?: string;
 }
 
-export function PageError({ className }: IPageErrorProps) {
+export function PageError({ className, errorMessage }: IPageErrorProps) {
   const { t } = useTranslation();
   const handleUpdatePage = () => {
     window.location.reload();
@@ -15,7 +16,13 @@ export function PageError({ className }: IPageErrorProps) {
 
   return (
     <div className={classNames(cls['page-error'], {}, [className])}>
-      <h2 className={cls['page-error__title']}>{t('Произошла непредвиденная ошибка...')}</h2>
+      <h2 className={cls['page-error__title']}>
+        {
+          errorMessage
+            ? t('CAUGHT_ERROR_MESSAGE', { error: errorMessage })
+            : t('Произошла непредвиденная ошибка...')
+        }
+      </h2>
       <Button
         onClick={handleUpdatePage}
       >

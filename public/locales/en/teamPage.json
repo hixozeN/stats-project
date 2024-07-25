@@ -17,5 +17,7 @@
   "RESET": "Reset",
   "TOOLTIP": "Less than 80% of players with a calibrated wn8 are registered",
   "Рейтинг": "Rating",
-  "NONE": "none"
+  "NONE": "none",
+  "ERROR_FETCH_DATA": "Something went wrong while loading clan data...",
+  "REFRESH_DATA": "REFRESH_DATA"
 }

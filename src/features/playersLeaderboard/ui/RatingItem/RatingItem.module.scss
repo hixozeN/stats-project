@@ -1,0 +1,125 @@
+.RatingItem {
+  text-decoration: none;
+  color: var(--primary-color);
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  grid-template-columns: 60px minmax(min(1%), max(1fr)) 75px;
+  overflow: hidden;
+  padding: 0 20px;
+  position: relative;
+  transition: outline-color 0.2s ease-in;
+}
+
+.listItem {
+  list-style: none;
+  outline: 1px solid var(--bg-stat-item);
+  border-radius: 5px;
+
+  &.currentUser {
+    outline-color: #ffffff4c;
+    padding-right: 10px;
+  }
+}
+
+.listItem:nth-child(2n) {
+  background-color: var(--bg-even-list-item);
+}
+
+.withRewardColumn {
+  grid-template-columns: 60px minmax(min(1%), max(1fr)) repeat(2, 75px);
+}
+
+.place {
+  color: var(--secondary-color);
+  text-align: center;
+}
+
+.player {
+  padding: 25px 0;
+  z-index: 2;
+}
+
+.nickname {
+  text-decoration: none;
+  color: var(--primary-color);
+  padding: 25px 5px;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+
+  .tag {
+    padding-left: 5px;
+    color: var(--secondary-color);
+    transition: color 0.2s ease-in-out;
+  }
+}
+
+.rewardWrapper, .cellWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cellWrapper {
+  padding-left: 10px;
+}
+
+.vehicle {
+  .rewardImage {
+    width: 75px;
+  }
+
+  .rewardImageError {
+    width: 55px;
+  }
+}
+
+.stuff {
+  .rewardImage {
+    width: 40px;
+  }
+
+  .rewardImageError {
+    width: 35px;
+  }
+}
+
+.columnName {
+  color: var(--secondary-color);
+}
+
+@media screen and (hover: hover) {
+  .listItem:hover {
+    outline: 1px solid var(--accent-color);
+
+    .nickname {
+      color: var(--accent-color);
+
+      .tag {
+        color: var(--primary-color);
+      }
+    }
+  }
+}
+
+@media (width <= 600px) {
+  .RatingItem {
+    grid-template-columns: 40px minmax(min(1%), max(1fr)) 60px;
+    padding: 0 15px 0 5px;
+  }
+
+  .withRewardColumn {
+    grid-template-columns: 40px minmax(min(1%), max(1fr)) repeat(2, 60px);
+  }
+
+  .place, .nickname, .tag, .columnValue, .columnName {
+    font-size: 12px;
+  }
+
+  .player {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}

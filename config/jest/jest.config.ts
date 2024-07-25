@@ -62,7 +62,7 @@ export default {
   ],
   moduleNameMapper: {
     '\\.s?css$': 'identity-obj-proxy',
-    '.+\\.(png|jpg|svg)$': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
+    '.+\\.(png|jpg|svg|webp)$': path.resolve(__dirname, 'jestEmptyComponent.tsx'),
     '^axios$': 'axios/dist/node/axios.cjs',
   },
 

@@ -1,3 +1,7 @@
 .LangSwitcher {
   opacity: 1;
 }
+
+.LangSwitcher:focus-visible {
+  color: var(--accent-color);
+}

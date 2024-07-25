@@ -7,5 +7,6 @@ export const getLastBattleTime = (timestamp: number) => {
   // const minutes = date.getMinutes();
   const formattedDay = day < 10 ? `0${day}` : day;
   const formattedMonth = month < 10 ? `0${month}` : month;
-  return `${formattedDay}.${formattedMonth}.${year}`;
+  const formattedYer = year < 10 ? `0${year}` : year;
+  return `${formattedDay}.${formattedMonth}.${formattedYer}`;
 };

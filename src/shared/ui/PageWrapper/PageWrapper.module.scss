@@ -1,0 +1,14 @@
+.pageWrapper {
+  flex-grow: 1;
+  flex-shrink: 100;
+  border-radius: 15px 0 0;
+  max-width: calc(100% - 20px - var(--sidebar-width));
+  margin-left: calc(20px + var(--sidebar-width));
+  min-height: calc(100vh - var(--navbar-height));
+  transition: all 0.4s ease-in-out;
+
+  @media screen and (width <= 1024px) {
+    max-width: 100%;
+    margin-left: 0;
+  }
+}

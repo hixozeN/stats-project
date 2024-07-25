@@ -9,9 +9,11 @@ import { formatDate } from 'shared/lib/formatDate/formatDate';
 import {
   getUserSessions,
   fetchLestaUserSessionById, fetchUserDataByLestaId, getUserLestaId, getUserLastSessionId,
+  fetchLestaUserClan,
 } from 'entities/Lesta';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { getLestaAccessToken } from 'entities/User/index';
+import { useParams } from 'react-router-dom';
 import cls from './SessionControlSection.module.scss';
 
 interface SessionControlSectionProps {
@@ -29,7 +31,8 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
 
   const dispatch = useAppDispatch();
   const userSessions = useSelector(getUserSessions);
-  const userId = useSelector(getUserLestaId);
+  const { id } = useParams<{ id: string }>();
+  const userId = useSelector(getUserLestaId) || Number(id);
   const lestaAccessToken = useSelector(getLestaAccessToken);
   const lastSessionId = useSelector(getUserLastSessionId);
   const reversedUserSessions = useMemo(() => (userSessions ? [...userSessions].reverse() : []), [userSessions]);
@@ -45,6 +48,7 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
     }))
       .unwrap()
       .then((res) => {
+        dispatch(fetchLestaUserClan({ id: Number(id) }));
         const sessionId = res.userData.personal.sessions.length > 0
           ? [...res.userData.personal.sessions].pop().id
           : null;
@@ -53,7 +57,7 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
           dispatch(fetchLestaUserSessionById({ sessionId: currentSession }));
         }
       });
-  }, [dispatch, userId, lestaAccessToken, currentSession]);
+  }, [dispatch, userId, lestaAccessToken, currentSession, id]);
 
   const handleChangeSession = useCallback((targetSession: string) => {
     dispatch(fetchLestaUserSessionById({ sessionId: targetSession }));

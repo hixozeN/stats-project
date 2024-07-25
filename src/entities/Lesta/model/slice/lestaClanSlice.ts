@@ -27,6 +27,7 @@ export const lestaClanSlice = createSlice({
         state.error = '';
         state.isLoading = true;
         state.isNotFound = false;
+        state.clan = null;
       })
       .addCase(fetchLestaClanData.rejected, (state, { payload }) => {
         state.error = payload;
@@ -34,6 +35,7 @@ export const lestaClanSlice = createSlice({
       })
       .addCase(fetchLestaClanData.fulfilled, (state, { payload }) => {
         state.isLoading = false;
+        state.clan = payload;
 
         if (!payload?.clan_id) state.isNotFound = true;
       });

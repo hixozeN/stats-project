@@ -47,7 +47,7 @@
 }
 
 .tableRow:nth-child(2n) {
-  background-color: rgb(221 220 220 / 2%);
+  background-color: var(--bg-even-list-item);
 }
 
 .player {

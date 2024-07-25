@@ -10,7 +10,10 @@ i18n
     interpolation: {
       escapeValue: false, // not needed for react!!
     },
-    resources: { ru: { translationsNS: {} } },
+    resources: {
+      ru: { translation: { greeting: 'Привет' } },
+      en: { translation: { greeting: 'Hello' } },
+    },
   });
 
 export default i18n;

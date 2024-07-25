@@ -15,5 +15,8 @@
   "Посл. бой": "Last battle",
   "Статистика игрока": "Player statistics",
   "PAGE_TITLE": "Player statistics | BlitzStats.ru",
-  "RATING_CALIBRATION": "---"
+  "RATING_CALIBRATION": "---",
+  "REFRESH": "Refresh",
+  "RETRY_MESSAGE": "Try to reload page or visit us a little later.",
+  "FETCH_DATA_ERROR_MESSAGE": "An error occurred while loading data:"
 }
