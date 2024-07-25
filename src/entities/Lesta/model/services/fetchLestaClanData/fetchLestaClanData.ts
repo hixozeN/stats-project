@@ -22,13 +22,6 @@ export const fetchLestaClanData = createAsyncThunk<LestaClan, ThunkProps, ThunkC
       // прокидываем ошибку, если данных нет
       if (!clanDataResponse.data) return rejectWithValue(serverError);
 
-      const clanData = {
-        ...clanDataResponse.data,
-      };
-
-      // записываем в стейт полученные данные
-      dispatch(clanActions.setClanData(clanData));
-
       // возвращаем полученные данные
       return clanDataResponse.data;
     } catch (e) {
