@@ -17,11 +17,29 @@
   background: var(--bg-tab-inactive);
 }
 
+.navItem::after {
+  content: '';
+  width: 0;
+  height: 4px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  bottom: 0;
+  background-color: var(--bg-tab-active);
+  z-index: 2;
+  transition: width .3s ease-in-out;
+}
+
+.tabBtn:focus-visible {
+  color: var(--accent-color);
+}
+
 .navItem {
   width: 100%;
   position: relative;
   display: flex;
   justify-content: center;
+  text-wrap: nowrap;
 
   &.active {
     color: var(--accent-color);
@@ -39,6 +57,7 @@
       border-radius: 4px;
       background-color: var(--bg-tab-active);
       z-index: 2;
+      transition: width 0.3s ease-in-out;
     }
   }
 
@@ -52,11 +71,37 @@
     & .tabBtn {
       color: var(--accent-color);
     }
+
+    &::after {
+      width: 101%;
+    }
   }
 }
 
 @media screen and (width <= 410px) {
   .tabBtn {
     font-size: 12px;
+  }
+}
+
+@keyframes active {
+  from {
+    width: 0;
+    background-color: var(--bg-tab-inactive);
+  }
+
+  to {
+    width: 100%;
+    background-color: var(--bg-tab-active);
+  }
+}
+
+@keyframes inactive {
+  from {
+    background-color: var(--bg-tab-active);
+  }
+
+  to {
+    background-color: var(--bg-tab-inactive);
   }
 }
