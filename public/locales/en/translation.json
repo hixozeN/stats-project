@@ -19,6 +19,7 @@
   "Прокинуть ошибку": "Throw error",
   "Обновить страницу": "Reload page",
   "Произошла непредвиденная ошибка...": "Unexpected error captured...",
+  "CAUGHT_ERROR_MESSAGE": "Caught error while fetch data: {{error}}",
   "ЯзыкСокращенно": "En",
   "Статистика": "Stats",
   "Вход": "Sign-In",
