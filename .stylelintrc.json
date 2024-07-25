@@ -5,6 +5,12 @@
     "selector-class-pattern": null,
     "declaration-block-no-redundant-longhand-properties": [true, {
       "ignoreShorthands": ["/grid-template-areas/", "/grid-template/"]
-    }]
+    }],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ]
   }
 }
