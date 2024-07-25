@@ -9,6 +9,12 @@
 }
 
 .page-error__title {
+  max-width: 70%;
   font: var(--font-l);
   color: var(--error-color);
+  text-align: center;
+
+  @media (width <= 768px) {
+    font: var(--font-m);
+  }
 }

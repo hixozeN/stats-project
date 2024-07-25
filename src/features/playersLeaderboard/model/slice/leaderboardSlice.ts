@@ -1,16 +1,36 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getLeaderBoard } from '../services/getLeaderboard';
-import { LeaderboardSchema } from '../types/LeaderboardSchema';
+import { LeaderboardSchema, SortValue } from '../types/LeaderboardSchema';
 
 const initialState: LeaderboardSchema = {
   isLoading: false,
   error: '',
+  generalFilters: {
+    battles: 1000,
+    sortBy: 'wn8',
+  },
 };
 
 export const leaderboardSlice = createSlice({
   name: 'leaderboard',
   initialState,
-  reducers: {},
+  reducers: {
+    setBattles: (state, action: PayloadAction<number>) => {
+      state.generalFilters.battles = action.payload;
+    },
+    setSortBy: (state, action: PayloadAction<SortValue>) => {
+      state.generalFilters.sortBy = action.payload;
+    },
+    setPage: (state, action: PayloadAction<number>) => {
+      state.ratingFilters.page = action.payload;
+    },
+    setCountToDisplay: (state, action: PayloadAction<number>) => {
+      state.ratingFilters.count = action.payload;
+    },
+    setLeague: (state, action: PayloadAction<number>) => {
+      state.ratingFilters.league = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getLeaderBoard.pending, (state) => {

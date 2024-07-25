@@ -14,6 +14,7 @@ import { userSessionReducer } from 'entities/Lesta/model/slice/userSessionSlice'
 import { starsReducer } from 'features/playersLeaderboard';
 import { filterReducer, sortReducer } from 'features/Filter';
 import { SortListPlayersReducer } from 'features/SortClanListPlayers/model/slice/SortListPlayerSlice';
+import { rtkApi } from 'shared/api/rtkApi';
 import { StateSchema } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
@@ -40,6 +41,8 @@ export function createReduxStore(
     filter: filterReducer,
     sort: sortReducer,
     sortListPlayers: SortListPlayersReducer,
+    // rtkApi reducer
+    [rtkApi.reducerPath]: rtkApi.reducer,
     // async reducers
     // authForm: authReducer,
   };
@@ -61,7 +64,7 @@ export function createReduxStore(
           toastWithError,
         },
       },
-    }),
+    }).concat(rtkApi.middleware),
   });
 
   // @ts-ignore

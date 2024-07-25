@@ -4,6 +4,7 @@ import { DeepPartial, ReducersMapObject } from '@reduxjs/toolkit';
 import { royalApiInterceptors } from 'shared/api/lib/royalApiInterceptors/royalApiInterceptors';
 import { useNavigate } from 'layouts';
 import { useToasts } from 'shared/hooks/useToasts/useToasts';
+import { setupListeners } from '@reduxjs/toolkit/query';
 import { StateSchema } from '../config/StateSchema';
 import { createReduxStore } from '../config/store';
 
@@ -24,6 +25,8 @@ export const StoreProvider = memo(({ children, initialState, asyncReducers }: IS
     toastSuccess,
     toastWithError,
   );
+
+  setupListeners(store.dispatch);
 
   royalApiInterceptors(store, navigate);
 

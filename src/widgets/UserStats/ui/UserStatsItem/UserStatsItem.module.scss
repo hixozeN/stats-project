@@ -54,7 +54,7 @@
   right: 10px;
   font-size: 12px;
   font-weight: 500;
-  
+
   @media screen and (width <= 768px) {
     top: 0;
     right: 7px;
@@ -132,17 +132,7 @@
     left: -150px;
     height: 100%;
     width: 80%;
-    background: linear-gradient(to right, transparent 0%, rgb(250 199 64 / 20%) 50%, transparent 100%);
-    animation: load 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-  }
-}
-
-@keyframes load {
-  from {
-    left: -150px;
-  }
-
-  to {
-    left: 100%;
+    background: var(--bg-skeleton);
+    animation: var(--animation-skeleton);
   }
 }

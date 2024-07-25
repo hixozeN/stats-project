@@ -1,5 +1,7 @@
 import { ILeaderboardItem } from '../types/ILeaderboardItem';
 
+export type SortValue = 'battles' | 'damage' | 'winrate' | 'wn8';
+
 export interface LeaderboardSchema {
   isLoading: boolean;
   error?: string;
@@ -9,5 +11,14 @@ export interface LeaderboardSchema {
     wn8?: ILeaderboardItem[];
     battles?: LeaderboardSchema[];
   };
-  general?: ILeaderboardItem[]; // под лидерборд со страницы рейтинга
+  general?: ILeaderboardItem[]; // под лидерборд с нашим топом игроков
+  generalFilters?: {
+    battles: number;
+    sortBy: SortValue;
+  };
+  ratingFilters?: {
+    page: number;
+    count: number;
+    league: number;
+  }
 }

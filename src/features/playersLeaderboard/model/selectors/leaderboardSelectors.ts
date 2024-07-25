@@ -1,4 +1,4 @@
 import { StateSchema } from 'app/providers/StoreProvider';
 
-export const getLeaderboardGeneral = (state: StateSchema) => state?.leaderboard?.general || null;
-export const isGeneralLeaderboardLoading = (state: StateSchema) => state?.leaderboard?.isLoading || false;
+export const getLeaderboardGeneralFilters = (state: StateSchema) => state?.leaderboard?.generalFilters
+  || { battles: 1000, sortBy: 'wn8' };

@@ -12,7 +12,12 @@ import { Tanks } from 'widgets/Tanks';
 import {
   getUserNotFoundStatus,
   fetchLestaUserSessionById,
-  fetchUserDataByLestaId, getUserNickname, getUserBanStatus, getUserBanMessage,
+  fetchUserDataByLestaId,
+  getUserNickname,
+  getUserBanStatus,
+  getUserBanMessage,
+  getUserDataErrorStatus,
+  fetchLestaUserClan,
 } from 'entities/Lesta';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -26,6 +31,7 @@ import {
 import { useToasts } from 'shared/hooks/useToasts/useToasts';
 import { userDataActions } from 'entities/Lesta/model/slice/userDataSlice';
 import { ScrollToTop } from 'shared/lib/ScrollToTop/ScrollToTop';
+import { UserPageError } from 'pages/UserPage/ui/UserPageError';
 import { SessionControlSection } from '../ui/SessionControlSection/SessionControlSection';
 import cls from './UserPage.module.scss';
 
@@ -38,6 +44,7 @@ const UserPage = ({ className }: IUserPageProps) => {
   const { id } = useParams<{ id: string }>();
   // NEW
   const isNotFound = useSelector(getUserNotFoundStatus);
+  const error = useSelector(getUserDataErrorStatus);
   const isTokenUpdating = useSelector(getTokenUpdateStatus);
   const currentUserToken = useSelector(getLestaAccessToken);
   const currentUserAccountId = useSelector(getCurrentUserAccountId);
@@ -73,6 +80,7 @@ const UserPage = ({ className }: IUserPageProps) => {
     }))
       .unwrap()
       .then((res) => {
+        dispatch(fetchLestaUserClan({ id: Number(id) }));
         const sessionId = res.userData.personal.sessions.length > 0
           ? [...res.userData.personal.sessions].pop().id
           : null;
@@ -131,6 +139,12 @@ const UserPage = ({ className }: IUserPageProps) => {
           </section>
         </div>
       </ErrorBoundary>
+    );
+  }
+
+  if (error) {
+    return (
+      <UserPageError error={error} onFetchUserData={fetchUserData} />
     );
   }
 

@@ -1,5 +1,6 @@
 import { StateSchema } from 'app/providers/StoreProvider/index';
 
+export const getLestaClanFullData = (state: StateSchema) => state?.lestaClanData?.clan || null;
 export const getLestaClanMotto = (state: StateSchema) => state?.lestaClanData?.clan?.motto || null;
 export const getLestaClanDescription = (state: StateSchema) => state?.lestaClanData?.clan?.description || null;
 export const getLestaClanLogo = (state: StateSchema) => state?.lestaClanData?.clan?.emblem_set_id || null;
@@ -10,3 +11,4 @@ export const getClanNotFoundStatus = (state: StateSchema) => state?.lestaClanDat
 export const getClanStatistics = (state: StateSchema) => state?.lestaClanData?.clan?.statistics || null;
 export const getClanMembersCount = (state: StateSchema) => state?.lestaClanData?.clan?.members_count || 0;
 export const getClanMembers = (state: StateSchema) => state?.lestaClanData?.clan?.members || [];
+export const getClanError = (state: StateSchema) => state?.lestaClanData?.error || '';

@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { SERVER_ERROR_MESSAGE } from 'shared/consts/global';
+import { AxiosResponse } from 'axios';
 import { User } from '../../types/user';
 
 interface RefreshTokenData {
@@ -22,7 +23,7 @@ export const checkUserAuth = createAsyncThunk<User, void, ThunkConfig<string>>(
     // отправка запроса
     try {
       // если есть ключ в LS, значит пользователь был авторизован, проверим токен
-      const currentUserData = await extra.royalApi.get<User>('/user/me');
+      const currentUserData: AxiosResponse<User> = await extra.royalApi.get<User>('/user/me');
 
       const lestaAccessToken = currentUserData?.data?.lestaData?.access_token || null;
 
