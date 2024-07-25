@@ -1,17 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { SERVER_ERROR_MESSAGE } from 'shared/consts/global';
-import { ILeaderboardItem } from 'features/playersLeaderboard/model/types/ILeaderboardItem';
+import { ILeaderboardItem } from '../types/ILeaderboardItem';
+import {
+  PlayersLeaderboardParams,
+} from '../types/playerLeaderboard';
 
-type SortValue = 'battles' | 'damage' | 'winrate' | 'wn8';
-
-interface Props {
-  battles: number;
-  limit: number;
-  sortBy: SortValue;
-}
-
-export const getLeaderBoard = createAsyncThunk<ILeaderboardItem[], Props, ThunkConfig<string>>(
+export const getLeaderBoard = createAsyncThunk<ILeaderboardItem[], PlayersLeaderboardParams, ThunkConfig<string>>(
   'GET_LEADER_BOARD',
   async (props, thunkAPI) => {
     // деструктурируем нужные данные из thunkAPI
@@ -20,7 +15,6 @@ export const getLeaderBoard = createAsyncThunk<ILeaderboardItem[], Props, ThunkC
 
     // отправка запроса
     try {
-      // если есть ключ в LS, значит пользователь был авторизован, проверим токен
       const leaderboard = await extra.royalApi.get<ILeaderboardItem[]>(
         `/rating/users/?battles=${battles}&limit=${limit}&sortBy=${sortBy}`,
       );
