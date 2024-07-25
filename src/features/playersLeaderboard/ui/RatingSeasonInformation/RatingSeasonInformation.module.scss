@@ -1,0 +1,126 @@
+.RatingSeasonInformation {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+
+  @media (width <= 600px) {
+    padding: 0;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.title {
+  font-size: 20px;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.seasonNumber {
+  color: var(--secondary-color-accent);
+}
+
+.sectionHeading {
+  font-size: 16px;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.item {
+  width: calc(25% - 8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: 10px;
+  outline: 1px solid var(--bg-stat-item);
+
+  @media (width <= 600px) {
+    width: calc(50% - 8px);
+  }
+}
+
+.itemMain {
+  width: 100%;
+}
+
+.key {
+  color: var(--secondary-color);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.value {
+  text-align: center;
+  margin: auto;
+
+  @media (width <= 600px) {
+    font-size: 14px;
+  }
+}
+
+.rewardItem {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  outline: 1px solid var(--bg-stat-item);
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.league {
+  display: flex;
+  justify-content: space-between;
+  outline: 1px solid var(--bg-stat-item);
+  padding: 5px 30px;
+  border-radius: 10px;
+
+  @media (width <= 450px) {
+    padding: 5px 10px;
+  }
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.rewardImage {
+  width: 60px;
+  margin: auto;
+}
+
+.certImage {
+  width: 45px;
+  margin: auto;
+}
+
+.leagueShield {
+  width: 24px;
+  height: 25.9px;
+  margin: auto;
+}
+
+.leagueTitle {
+  display: flex;
+  max-width: fit-content;
+  gap: 5px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
