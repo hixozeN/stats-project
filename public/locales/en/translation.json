@@ -44,5 +44,6 @@
   "Выйти из аккаунта": "Logout",
   "PAGE_NOT_FOUND_TITLE": "Page not found | BlitzStats.ru",
   "SIDEBAR_BURGER_BTN_LABEL": "Open navigation menu",
-  "NOTIFICATION_LABEL": "Show personal notifications"
+  "NOTIFICATION_LABEL": "Show personal notifications",
+  "NO_NEW_NOTIFICATIONS": "You have no new notifications."
 }
