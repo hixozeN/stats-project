@@ -1,0 +1,25 @@
+.notificationWrapper {
+  position: relative;
+}
+
+.notification {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 25px;
+  height: 25px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.notification::before {
+  position: absolute;
+  top: 0;
+  left: 8px;
+  content: attr(data-badge);
+  width: 25px;
+  height: 25px;
+  z-index: 99;
+  color: #000;
+}
