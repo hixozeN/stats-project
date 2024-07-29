@@ -41,6 +41,8 @@ export const searchSlice = createSlice({
         state.isLoading = true;
         state.isNotFoundClans = false;
         state.isNotFoundPlayers = false;
+        state.clans = [];
+        state.players = [];
         state.requestId = action.meta.requestId;
       })
       .addCase(searchUsersAndClans.rejected, (state, { payload }) => {
