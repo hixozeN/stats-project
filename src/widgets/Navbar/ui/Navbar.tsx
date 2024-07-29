@@ -11,7 +11,7 @@ import { Button } from 'shared/ui/Button/Button';
 import { useSizeScreen } from 'shared/hooks/useSizeScreen';
 import { Menu } from 'shared/ui/Menu';
 import { useClickOutside } from 'shared/hooks/useClickOutside';
-import { Notification } from 'entities/Notification';
+import { NotificationButton } from 'entities/Notification';
 import cls from './Navbar.module.scss';
 
 interface INavbarProps {
@@ -21,19 +21,11 @@ interface INavbarProps {
 export const Navbar = memo(({ className }: INavbarProps) => {
   const [isOpenMenu, setOpenMenu] = useState(false);
   const [isMobile, setMobile] = useState(false);
-  const [isOpenPopup, setIsOpenPopup] = useState(false);
   const isLoggedIn = useSelector(getLoggedInStatus);
   const userData = useSelector(getUserData);
   const { t } = useTranslation('nav');
   const { width } = useSizeScreen();
-  const notificationRef = useRef(null);
   const profileDropdownRef = useRef(null);
-
-  useClickOutside(notificationRef, () => {
-    if (!isOpenPopup) return null;
-    if (isOpenPopup) setTimeout(() => setIsOpenPopup(false), 150);
-    return null;
-  });
 
   useClickOutside(profileDropdownRef, () => {
     if (!isOpenMenu) return null;
@@ -59,40 +51,29 @@ export const Navbar = memo(({ className }: INavbarProps) => {
 
   if (isLoggedIn) {
     return (
-      <>
-        <div className={cls.navWrapper}>
-          <Button
-            type="button"
-            theme="icon"
-            variant="notification"
-            onClick={() => setIsOpenPopup(!isOpenPopup)}
-          />
+      <div className={cls.navWrapper}>
+        <NotificationButton />
+        <nav
+          className={classNames(
+            cls.menuProfile,
+            { [cls.open]: isOpenMenu },
+            [],
+          )}
+          ref={profileDropdownRef}
+        >
+          <Menu theme="navbar" cb={handleClickMenu} />
+        </nav>
 
-          <nav
-            className={classNames(
-              cls.menuProfile,
-              { [cls.open]: isOpenMenu },
-              [],
-            )}
-            ref={profileDropdownRef}
-          >
-            <Menu theme="navbar" cb={handleClickMenu} />
-          </nav>
-
-          <Button
-            className={cls.userMenuButton}
-            type="button"
-            theme="icon-right"
-            variant="chevron-down"
-            onClick={handleClickUserName}
-          >
-            <span className={cls.userName}>{userData?.username ?? ''}</span>
-          </Button>
-        </div>
-        <Notification isOpen={isOpenPopup} dropdownRef={notificationRef}>
-          <span>{t('Нет уведомлений')}</span>
-        </Notification>
-      </>
+        <Button
+          className={cls.userMenuButton}
+          type="button"
+          theme="icon-right"
+          variant="chevron-down"
+          onClick={handleClickUserName}
+        >
+          <span className={cls.userName}>{userData?.username ?? ''}</span>
+        </Button>
+      </div>
     );
   }
 
