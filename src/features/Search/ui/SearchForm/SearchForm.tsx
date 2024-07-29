@@ -58,7 +58,7 @@ export const SearchForm = memo((props: IAuthFormProps) => {
       inputRef.current.focus();
     }
     if (debouncedSearch.length >= 2) {
-      dispatch(searchUsersAndClans({ string: value, limit: 10 }));
+      dispatch(searchUsersAndClans({ string: value, limit: 100 }));
     }
   }, [dispatch, debouncedSearch, isMobile, inputRef]);
 
