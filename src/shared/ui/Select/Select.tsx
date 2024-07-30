@@ -10,7 +10,7 @@ interface AntSelectProps extends SelectProps{
 
 export const AntSelect = memo((props: AntSelectProps) => {
   const {
-    options, defaultValue, onChange, selectStyle, popupStyle,
+    options, defaultValue, onChange, selectStyle, popupStyle, ...otherProps
   } = props;
 
   const selectStyles = classNames(cls.select, {}, [selectStyle]);
@@ -23,7 +23,7 @@ export const AntSelect = memo((props: AntSelectProps) => {
       className={selectStyles}
       popupClassName={dropdownStyles}
       onChange={onChange}
-      {...props}
+      {...otherProps}
     />
   );
 });
