@@ -1,12 +1,13 @@
 import { memo, useCallback, useState } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Flex, Select } from 'antd';
+import { Flex } from 'antd';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import InfoIcon from 'shared/assets/icons/info.svg';
 import { Modal } from 'shared/ui/Modal/Modal';
+import { AntSelect } from 'shared/ui/Select/Select';
 import {
   getRatingLeaderboardInitiated,
   getRatingLeague,
@@ -142,11 +143,9 @@ export const RatingLeagues = memo((props: RatingLeaguesProps) => {
           </Flex>
         </Flex>
         <Flex vertical>
-          <Select
+          <AntSelect
             defaultValue={0}
             options={getRatingLeagues()}
-            className={cls.select}
-            popupClassName={cls.dropdown}
             onChange={handleChangeLeague}
           />
         </Flex>
