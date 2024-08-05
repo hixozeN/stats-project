@@ -2,12 +2,12 @@ import React, { useCallback, useEffect } from 'react';
 
 export const useClickOutside = (
   ref: React.MutableRefObject<HTMLInputElement>,
-  callback: () => void,
+  callback: (args: MouseEvent) => void,
   isMobile?: boolean,
 ) => {
   const handleClick = useCallback((evt: MouseEvent) => {
     if (ref.current && !ref.current.contains(evt.target as Node)) {
-      callback();
+      callback(evt);
     }
   }, [ref, callback]);
 
