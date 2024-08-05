@@ -1,6 +1,7 @@
 export { TeamItemProps } from './model/types/team';
 export { TeamsList } from './ui/TeamsList/TeamsList';
 export { teamReducer, teamActions } from './model/slice/teamSlice';
+export { TeamsSchema } from './model/types/team';
 export { getTeamsLoadingStatus } from './model/selectors/getTeamsLoadingStatus';
 export { getMyTeams } from './model/selectors/getMyTeams';
 export { getOpenedTeams } from './model/selectors/getOpenedTeams';

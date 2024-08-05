@@ -4,17 +4,17 @@ import { searchReducer } from 'features/Search';
 import { $api } from 'shared/api/api';
 import { NavigateOptions, To } from 'react-router-dom';
 import { tournamentReducer } from 'entities/Tournament';
-import { lestaReducer, clanReducers } from 'entities/Lesta';
+import {
+  lestaReducer, clanReducers, userTanksReducer, userDataReducer, userSessionReducer,
+} from 'entities/Lesta';
 import { teamReducer } from 'entities/Team';
 import { $lestaApi } from 'shared/api/lestaApi';
 import { $royalApi } from 'shared/api/royalApi';
-import { userTanksReducer } from 'entities/Lesta/model/slice/lestaTanksSlice';
-import { userDataReducer } from 'entities/Lesta/model/slice/userDataSlice';
-import { userSessionReducer } from 'entities/Lesta/model/slice/userSessionSlice';
 import { starsReducer } from 'features/playersLeaderboard';
 import { filterReducer, sortReducer } from 'features/Filter';
-import { SortListPlayersReducer } from 'features/SortClanListPlayers/model/slice/SortListPlayerSlice';
+import { SortListPlayersReducer } from 'features/SortClanListPlayers';
 import { rtkApi } from 'shared/api/rtkApi';
+import { SessionWidgetReducer } from 'features/createSessionWidget';
 import { StateSchema } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
@@ -41,6 +41,7 @@ export function createReduxStore(
     filter: filterReducer,
     sort: sortReducer,
     sortListPlayers: SortListPlayersReducer,
+    sessionWidget: SessionWidgetReducer,
     // rtkApi reducer
     [rtkApi.reducerPath]: rtkApi.reducer,
     // async reducers
