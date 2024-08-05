@@ -28,6 +28,8 @@
   --bg-modal: #19191d;
   --bg-section-with-overlay: #101015;
   --bg-even-list-item: rgba(221 220 220 / 2%);
+  --bg-notification-list: #1d1d21;
+  --bg-notification-item: #2e2e34;
 
   /* font colors */
   --primary-color: #f8f8f8;
@@ -92,4 +94,7 @@
   --shadow-active-button-burger-menu: 0 0 10px 4px #18181b;
   --shadow-icon-burger-menu: inset 0 0 1px 0 #3f3d46;
   --shadow-dropdown: inset 0 0px 1px 0px #3f3d46;
+
+  /* borders */
+  --notification-border: #3b3b3b;
 }

@@ -1,0 +1,45 @@
+.popup {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  width: 320px;
+  top: 55px;
+  right: -10px;
+  transform: translateY(-5%);
+  box-shadow: var(--shadow-dropdown);
+  overflow: hidden;
+  background-color: var(--bg-notification-list);
+  border-radius: 5px;
+  padding-right: 1px;
+  transition: all 0.2s ease;
+}
+
+.popupOpened {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notificationList {
+  margin: 10px 0;
+  padding: 5px 10px;
+  text-align: center;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-height: 320px;
+  overflow-y: auto;
+  transition: all 0.2s ease;
+}
+
+@media screen and (width <= 768px){
+  .popup {
+    width: 280px;
+    right: calc(100% - 150px);
+  }
+
+  .popup::before {
+    right: calc(100% - 180px);
+  }
+}
