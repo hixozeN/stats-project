@@ -3,5 +3,8 @@
   "COPYRIGHT": "Разработано командой BlitzStats",
   "DISCORD_LABEL": "Ссылка на дискорд сервер",
   "TG_LABEL": "Ссылка на канал в телеграм",
-  "VK_LABEL": "Ссылка на группу вконтакте"
+  "VK_LABEL": "Ссылка на группу вконтакте",
+  "GAME_NAME": "Tanks Blitz",
+  "LESTA_SUPPORT": "Центр поддержки Lesta",
+  "LESTA_COPYRIGHT": "Источник данных © Lesta Games. Все права защищены"
 }
