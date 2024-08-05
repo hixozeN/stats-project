@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import Crown from 'shared/assets/icons/crown.svg';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { Link } from 'react-router-dom';
 import { FooterSocials } from './FooterSocials/FooterSocials';
 import { TermsOfUse } from './TermsOfUse/TermsOfUse';
 import cls from './Footer.module.scss';
@@ -36,12 +37,34 @@ export const Footer = (props : FooterProps) => {
               {t('USER_AGREEMENT')}
             </button>
           </div>
-          <span className={classNames(cls.copyright, {}, [cls.darkText])}>
-            {`${t('COPYRIGHT')} © ${currentYear}` }
-          </span>
+          <div className={cls.copyrightsWrapper}>
+            <span className={classNames(cls.copyright, {}, [cls.darkText])}>
+              {`${t('COPYRIGHT')} © ${currentYear}` }
+            </span>
+            <span className={classNames(cls.copyright, {}, [cls.darkText])}>
+              {t('LESTA_COPYRIGHT')}
+            </span>
+            <div className={cls.links}>
+              <Link
+                className={cls.link}
+                to="https://tanksblitz.ru"
+                target="_blank"
+              >
+                {t('GAME_NAME')}
+              </Link>
+              {' | '}
+              <Link
+                className={cls.link}
+                to="https://lesta.ru/support"
+                target="_blank"
+              >
+                {t('LESTA_SUPPORT')}
+              </Link>
+            </div>
+          </div>
         </div>
       </footer>
-      <TermsOfUse isOpen={isOpen} handleClose={handleClose} />
+      {isOpen && <TermsOfUse isOpen={isOpen} handleClose={handleClose} />}
     </>
   );
 };

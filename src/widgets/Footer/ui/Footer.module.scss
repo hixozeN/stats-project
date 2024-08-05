@@ -58,6 +58,25 @@
   z-index: var(--footer-index);
 }
 
+.copyrightsWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.links {
+  display: flex;
+  gap: 5px;
+  color: var(--secondary-color);
+}
+
+.link {
+  text-align: center;
+  color: var(--secondary-color);
+  text-decoration: underline;
+  z-index: var(--footer-index);
+}
+
 .button {
   font: var(--font-m);
   border: none;
@@ -73,6 +92,7 @@
 .copyright {
   font: var(--font-m);
   z-index: var(--footer-index);
+  text-align: center;
 }
 
 @media screen and (width <= 768px) {
