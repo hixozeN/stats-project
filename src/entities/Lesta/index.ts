@@ -1,4 +1,6 @@
 export { lestaActions, lestaReducer } from './model/slice/lestaSlice';
+export { userDataActions, userDataReducer } from './model/slice/userDataSlice';
+export { userSessionActions, userSessionReducer } from './model/slice/userSessionSlice';
 export {
   userTanksActions,
   userTanksReducer,

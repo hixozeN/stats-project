@@ -9,10 +9,11 @@ import LogoutIcon from 'shared/assets/icons/logout2.svg';
 import HomeIcon from 'shared/assets/icons/Sidebar/home.svg';
 import MatchIcon from 'shared/assets/icons/Sidebar/matches.svg';
 import TournamentIcon from 'shared/assets/icons/Sidebar/tournaments.svg';
-import TeamsIcon from 'shared/assets/icons/Sidebar/teams.svg';
+// import TeamsIcon from 'shared/assets/icons/Sidebar/teams.svg';
 import FriendIcon from 'shared/assets/icons/Sidebar/friends.svg';
 import AdminIcon from 'shared/assets/icons/Sidebar/admin.svg';
 import AuthIcon from 'shared/assets/icons/button/add-friend.svg';
+import WidgetIcon from 'shared/assets/icons/Sidebar/widget.svg';
 import { User } from 'entities/User';
 
 export interface MenuData {
@@ -107,10 +108,10 @@ export const getMenuElements = (props: MenuElementsProps) => {
       path: `${RoutePath.rating}/?type=players`,
       icon: <TournamentIcon />,
     },
-    teams: {
-      name: 'Команды',
-      path: RoutePath.teams,
-      icon: <TeamsIcon />,
+    widgets: {
+      name: 'Виджеты',
+      path: RoutePath.session_widget_settings,
+      icon: <WidgetIcon />,
     },
     friends: {
       name: 'Друзья',
@@ -136,21 +137,21 @@ export const getMenuElements = (props: MenuElementsProps) => {
       data.main,
       data.stats,
       data.ratings,
-      data.teams,
+      data.widgets,
       data.edit,
     ],
     adminSidebar: [
       data.main,
       data.matches,
       data.tournaments,
-      data.teams,
+      data.widgets,
       data.friends,
       data.admin,
     ],
     guestSidebar: [
       data.main,
       data.ratings,
-      data.teams,
+      data.widgets,
       data.auth,
     ],
   };

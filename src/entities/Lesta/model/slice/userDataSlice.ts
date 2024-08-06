@@ -54,7 +54,10 @@ export const userDataSlice = createSlice({
       state.isNotFound = action.payload;
     },
     setUserSessions: (state, action: PayloadAction<LestaUserSession[]>) => {
-      state.personal.sessions = action.payload;
+      state.personal = {
+        ...state.personal,
+        sessions: action.payload,
+      };
     },
   },
   extraReducers: (builder) => {

@@ -34,8 +34,8 @@ export const SearchForm = memo((props: IAuthFormProps) => {
   const { isMobile } = useContext(DeviceContext);
   const { isOpen, setIsOpen } = useContext(DesktopContext);
 
-  useClickOutside(resultsRef, () => {
-    if (isOpen) setTimeout(() => setIsOpen(false), 50);
+  useClickOutside(resultsRef, (evt) => {
+    if (isOpen && evt.target !== inputRef.current) setTimeout(() => setIsOpen(false), 50);
   }, isMobile);
 
   const onFocus = (evt: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,7 +58,7 @@ export const SearchForm = memo((props: IAuthFormProps) => {
       inputRef.current.focus();
     }
     if (debouncedSearch.length >= 2) {
-      dispatch(searchUsersAndClans({ string: value, limit: 10 }));
+      dispatch(searchUsersAndClans({ string: value, limit: 100 }));
     }
   }, [dispatch, debouncedSearch, isMobile, inputRef]);
 

@@ -1,6 +1,7 @@
 export { TournamentData } from './model/types/tournament';
 export { TournamentList } from './ui/TournamentList/TournamentList';
 export { tournamentReducer, tournamentActions } from './model/slice/tournamentSlice';
+export { TournamentSchema } from './model/types/tournament';
 export { getTournamentsLoadingStatus } from './model/selectors/getTournamentsLoadingStatus';
 export { getLadders } from './model/selectors/getLadders';
 export { getTournaments } from './model/selectors/getTournaments';

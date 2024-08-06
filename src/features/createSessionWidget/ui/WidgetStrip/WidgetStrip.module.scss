@@ -1,0 +1,36 @@
+.WidgetStrip {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.textElem {
+  font-size: 20px;
+}
+
+.value {
+  font-size: 20px
+}
+
+.column {
+  flex-direction: column;
+
+  .textElem {
+    display: grid;
+    grid-template-columns: minmax(min(1px), max(80px)) 1fr;
+    gap: 10px;
+  }
+}
+
+@media (width <= 440px) {
+  .previewRow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

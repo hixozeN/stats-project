@@ -21,7 +21,7 @@
   max-width: 1440px;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, 460px);
+  grid-template-columns: repeat(auto-fit, 457px);
   gap: 30px;
   justify-content: center;
   margin: 0 auto;
@@ -31,7 +31,7 @@
   margin-top: 35px;
 }
 
-@media (1590px >= width > 1280px), (1090px >= width > 768px), (480px > width >= 380px) {
+@media (1590px >= width > 1286px), (1090px >= width > 768px), (480px > width >= 380px) {
   .list {
     gap: 20px;
     padding: 0;
@@ -45,10 +45,10 @@
   }
 }
 
-@media (1280px >= width > 1090px), (768px >= width >= 480px) {
+@media (1286px >= width > 1090px), (768px >= width >= 480px) {
   .list {
-    gap: 20px;
-    grid-template-columns: repeat(auto-fit, 460px);
+    gap: 20px 15px;
+    grid-template-columns: repeat(auto-fit, 455px);
   }
 }
 

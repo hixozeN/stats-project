@@ -101,7 +101,7 @@
   height: 32px;
 }
 
-@media (1590px >= width > 1280px),
+@media (1590px >= width > 1286px),
   (1090px >= width > 768px),
   (480px > width >= 380px) {
   .card {
@@ -151,7 +151,7 @@
   }
 }
 
-@media (1280px >= width > 1090px), (768px >= width >= 480px) {
+@media (1286px >= width > 1090px), (768px >= width >= 480px) {
   .card {
     max-width: 460px;
     min-height: 175px;
