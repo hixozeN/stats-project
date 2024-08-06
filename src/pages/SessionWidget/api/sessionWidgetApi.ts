@@ -8,7 +8,12 @@ const sessionWidgetApi = rtkApi.injectEndpoints({
         url: `/sessions/v2/${sessionId}`,
       }),
     }),
+    getSessionId: build.query<{ lastSessionId: string }, { accountId: number }>({
+      query: ({ accountId }) => ({
+        url: `/sessions/last/${accountId}`,
+      }),
+    }),
   }),
 });
 
-export const { useGetSessionDataQuery } = sessionWidgetApi;
+export const { useGetSessionDataQuery, useGetSessionIdQuery } = sessionWidgetApi;

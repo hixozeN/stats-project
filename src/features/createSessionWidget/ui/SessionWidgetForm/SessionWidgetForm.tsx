@@ -60,6 +60,8 @@ export const SessionWidgetForm = memo((props: SessionWidgetFormProps) => {
     handleChangeElementBgColor,
     handleChangeOutlineColor,
     getWidgetParams,
+    setFormClean,
+    isFormDirty,
   } = useSessionWidget({ currentPlayerId });
 
   const handleCopy = () => {
@@ -78,6 +80,7 @@ export const SessionWidgetForm = memo((props: SessionWidgetFormProps) => {
 
         const params = getWidgetParams(newSessionId);
         setWidgetUrl(`https://blitzstats.ru/widgets/session/${params}`);
+        setFormClean();
 
         navigator.clipboard.writeText(`https://blitzstats.ru/widgets/session/${params}`);
 
@@ -87,7 +90,7 @@ export const SessionWidgetForm = memo((props: SessionWidgetFormProps) => {
         toastWithError(t('CREATE_WIDGET_ERROR'));
       })
       .finally(() => setIsCreatingWidget(false));
-  }, [dispatch, getWidgetParams, toastSuccess, toastWithError, t]);
+  }, [dispatch, getWidgetParams, toastSuccess, toastWithError, t, setFormClean]);
 
   return (
     <form
@@ -215,7 +218,7 @@ export const SessionWidgetForm = memo((props: SessionWidgetFormProps) => {
       }
       <SessionWidgetPreview theme={widgetTheme} />
       <div className={cls.finalWidgetUrlWrapper}>
-        {widgetUrl && <span className={cls.finalWidgetUrl} onClick={handleCopy}>{widgetUrl}</span>}
+        {!isFormDirty && <span className={cls.finalWidgetUrl} onClick={handleCopy}>{widgetUrl}</span>}
       </div>
       <Button type="submit" className={cls.button} isLoading={isCreatingWidget}>
         {t('CREATE_WIDGET')}

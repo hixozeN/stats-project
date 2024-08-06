@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { getQueryParams } from 'shared/lib/url/addQueryParams/addQueryParams';
@@ -33,6 +33,15 @@ export const useSessionWidget = (props?: HookProps) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation('widgets');
   const [searchParams] = useSearchParams();
+  const [isFormDirty, setIsFormDirty] = useState(true);
+
+  const setFormDirty = useCallback(() => {
+    setIsFormDirty(true);
+  }, []);
+
+  const setFormClean = useCallback(() => {
+    setIsFormDirty(false);
+  }, []);
 
   const sessionId = useSelector(getWidgetSessionId);
   const battleType = useSelector(getWidgetBattleType);
@@ -77,37 +86,45 @@ export const useSessionWidget = (props?: HookProps) => {
   };
 
   const handleChangeElements = useCallback((arr: WidgetElements[]) => {
+    setFormDirty();
     dispatch(SessionWidgetActions.setElements(arr));
-  }, [dispatch]);
+  }, [dispatch, setFormDirty]);
 
   const handleChangeBattleType = useCallback((type: BattleType) => {
+    setFormDirty();
     dispatch(SessionWidgetActions.setBattleType(type));
     dispatch(SessionWidgetActions.setElements(defaultBattleTypeElements[type]));
-  }, [dispatch]);
+  }, [dispatch, setFormDirty]);
 
   const handleChangeWidgetTheme = useCallback((theme: WidgetTheme) => {
+    setFormDirty();
     dispatch(SessionWidgetActions.setWidgetTheme(theme));
-  }, [dispatch]);
+  }, [dispatch, setFormDirty]);
 
   const handleChangeFontColor = useCallback((c: Color) => {
+    setFormDirty();
     dispatch(SessionWidgetActions.setFontColor(c.toHexString()));
-  }, [dispatch]);
+  }, [dispatch, setFormDirty]);
 
   const handleChangeTitleColor = useCallback((c: Color) => {
+    setFormDirty();
     dispatch(SessionWidgetActions.setTitleColor(c.toHexString()));
-  }, [dispatch]);
+  }, [dispatch, setFormDirty]);
 
   const handleChangeBgColor = useCallback((c: Color) => {
+    setFormDirty();
     dispatch(SessionWidgetActions.setBgColor(c.toHexString()));
-  }, [dispatch]);
+  }, [dispatch, setFormDirty]);
 
   const handleChangeElementBgColor = useCallback((c: Color) => {
+    setFormDirty();
     dispatch(SessionWidgetActions.setElementBgColor(c.toHexString()));
-  }, [dispatch]);
+  }, [dispatch, setFormDirty]);
 
   const handleChangeOutlineColor = useCallback((c: Color) => {
+    setFormDirty();
     dispatch(SessionWidgetActions.setOutlineColor(c.toHexString()));
-  }, [dispatch]);
+  }, [dispatch, setFormDirty]);
 
   const getWidgetParams = useCallback((newSessionId: string): string => {
     const paramObj: OptionalRecord<WidgetParams, string> = {
@@ -150,5 +167,7 @@ export const useSessionWidget = (props?: HookProps) => {
     handleChangeElementBgColor,
     handleChangeOutlineColor,
     getWidgetParams,
+    isFormDirty,
+    setFormClean,
   };
 };
