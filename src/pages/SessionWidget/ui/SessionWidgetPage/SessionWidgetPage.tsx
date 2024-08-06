@@ -2,7 +2,6 @@ import { memo } from 'react';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary';
 import { useSearchParams } from 'react-router-dom';
 import { WidgetParams } from 'features/createSessionWidget';
-import Loader from 'shared/ui/Loader/Loader';
 import { SessionWidgetError } from '../SessionWidgetError/SessionWidgetError';
 import { SessionWidgetContent } from '../SessionWidgetContent/SessionWidgetContent';
 import { useGetSessionIdQuery } from '../../api/sessionWidgetApi';
@@ -13,8 +12,8 @@ const SessionWidgetPage = () => {
   const bg = searchParams.get(WidgetParams.BG);
 
   const {
-    data, isLoading, isError,
-  } = useGetSessionIdQuery({ accountId });
+    data, isError,
+  } = useGetSessionIdQuery({ accountId }, { pollingInterval: 30000 });
 
   if (isError) {
     return (
@@ -22,19 +21,9 @@ const SessionWidgetPage = () => {
     );
   }
 
-  if (isLoading) {
-    return <Loader />;
-  }
-
-  if (!data?.lastSessionId) {
-    return (
-      <SessionWidgetError bgColor={bg} />
-    );
-  }
-
   return (
     <ErrorBoundary>
-      <SessionWidgetContent sessionId={data.lastSessionId} />
+      <SessionWidgetContent sessionId={data?.lastSessionId} />
     </ErrorBoundary>
   );
 };

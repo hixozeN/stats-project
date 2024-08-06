@@ -36,7 +36,7 @@ export const SessionWidgetContent = memo((props: SessionWidgetContentProps) => {
     [WidgetTheme.COLUMN]: <WidgetStrip data={data} />,
   };
 
-  if (isError) {
+  if (!sessionId || isError) {
     return (
       <SessionWidgetError bgColor={bg} />
     );
