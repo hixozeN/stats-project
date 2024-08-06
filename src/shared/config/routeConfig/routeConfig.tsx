@@ -18,6 +18,7 @@ import { OpenAuthPage } from 'pages/OpenAuthPage';
 import { UserProfileForm } from 'features/editCurrentUserPorfile';
 import { RatingPage } from 'pages/RatingPage';
 import { AuthLestaResult } from 'pages/AuthorizationLestaPage/AuthLestaResult';
+import { SessionWidgetPage, WidgetSettingsPage } from 'pages/SessionWidget';
 
 // interface IRouterPath {
 //   [key:string]: string;
@@ -45,6 +46,8 @@ export enum AppRoutes {
   PROFILE_EDIT = 'profile_edit',
   PROFILE_SETTINGS = 'profile_settings',
   PROFILE_BLACKLIST = 'profile_blacklist',
+  SESSION_WIDGET = 'session_widget',
+  SESSION_WIDGET_SETTINGS = 'session_widget_settings',
   NOT_FOUND = 'not_found',
 }
 
@@ -71,6 +74,8 @@ export const RoutePath: OptionalRecord<AppRoutes, string> = {
   [AppRoutes.PROFILE_SETTINGS]: '/profile/settings',
   [AppRoutes.PROFILE_BLACKLIST]: '/profile/blacklist',
   [AppRoutes.AUTH_CONNECT_LESTA]: '/auth/connect',
+  [AppRoutes.SESSION_WIDGET]: '/widgets/session',
+  [AppRoutes.SESSION_WIDGET_SETTINGS]: '/widgets',
 };
 
 export const routerConfiguration = createBrowserRouter([
@@ -114,6 +119,10 @@ export const routerConfiguration = createBrowserRouter([
               {
                 path: RoutePath.teams,
                 element: <TeamsPage />,
+              },
+              {
+                path: RoutePath.session_widget_settings,
+                element: <WidgetSettingsPage />,
               },
               {
                 path: RoutePath.team,
@@ -179,6 +188,10 @@ export const routerConfiguration = createBrowserRouter([
                 element: <NotFoundPage />,
               },
             ],
+          },
+          {
+            path: RoutePath.session_widget,
+            element: <SessionWidgetPage />,
           },
         ],
       },

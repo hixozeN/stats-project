@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { UserSchema } from 'entities/User';
 import { AuthSchema } from 'features/AuthUser';
-import { SearchSchema } from 'features/Search/model/slice/searchSlice';
+import { SearchSchema } from 'features/Search';
 import {
   AnyAction,
   CombinedState,
@@ -11,7 +11,7 @@ import {
 } from '@reduxjs/toolkit';
 import { AxiosInstance } from 'axios';
 import { NavigateOptions, To } from 'react-router-dom';
-import { TournamentSchema } from 'entities/Tournament/model/types/tournament';
+import { TournamentSchema } from 'entities/Tournament';
 import {
   LestaSchema,
   LestaUserDataSchema,
@@ -19,12 +19,13 @@ import {
   LestaUserSessionSchema,
   LestaClanSchema,
 } from 'entities/Lesta';
-import { TeamsSchema } from 'entities/Team/model/types/team';
+import { TeamsSchema } from 'entities/Team';
 import { FilterSchema, SortSchema } from 'features/Filter';
 import { OpenIdSchema } from 'features/ConnectOpenId';
 import { LeaderboardSchema, RatingSchema } from 'features/playersLeaderboard';
-import { SortListPlayersSchema } from 'features/SortClanListPlayers/types/sortListPlayersType';
+import { SortListPlayersSchema } from 'features/SortClanListPlayers';
 import { rtkApi } from 'shared/api/rtkApi';
+import { SessionWidgetSchema } from 'features/createSessionWidget';
 
 export interface StateSchema {
   user: UserSchema;
@@ -40,6 +41,7 @@ export interface StateSchema {
   sortListPlayers: SortListPlayersSchema;
   userTanks: LestaTanksSchema;
   stars: LeaderboardSchema;
+  sessionWidget: SessionWidgetSchema;
   [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
   // async reducers
   authForm?: AuthSchema;

@@ -153,7 +153,7 @@ const UserPage = ({ className }: IUserPageProps) => {
       <SeoUpdater
         title={getPageTitle()}
         OGTitle={`${t('Статистика игрока')}`}
-        canonicalLink={window.location.href}
+        canonicalLink={window.location.pathname}
       />
       <ScrollToTop />
       <Background />

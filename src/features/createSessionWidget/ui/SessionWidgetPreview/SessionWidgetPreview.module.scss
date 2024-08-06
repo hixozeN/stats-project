@@ -1,0 +1,15 @@
+@media (hover: hover) {
+  .collapse:hover {
+    :global {
+      .ant-collapse-header-text {
+        color: var(--accent-color);
+        transition: color 0.2s ease-in-out;
+      }
+
+      svg path {
+        transition: fill 0.2s ease-in-out;
+        fill: var(--accent-color);
+      }
+    }
+  }
+}

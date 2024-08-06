@@ -1,4 +1,5 @@
 export { searchReducer, searchActions } from './model/slice/searchSlice';
+export { SearchSchema } from './model/slice/searchSlice';
 export { getSearchState } from './model/selectors/getSearchState/getSearchState';
 export { getSearchClans } from './model/selectors/getSearchClans/getSearchClans';
 export { getSearchPlayers } from './model/selectors/getSearchPlayers/getSearchPlayers';

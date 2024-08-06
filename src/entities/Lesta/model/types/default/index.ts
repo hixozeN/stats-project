@@ -3,6 +3,9 @@ export type ParamData = {
   winRate: number;
   avgDamage: number;
   ratingValue?: number;
+  currentRating?: number;
+  currentRatingAvgDmg?: number;
+  currentRatingWinrate?: number;
   wn8: number | null;
   wins: number;
   losses: number;
