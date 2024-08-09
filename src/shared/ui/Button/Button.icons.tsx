@@ -20,6 +20,7 @@ import Close from '../../assets/icons/button/close.svg';
 import DownArrow from '../../assets/icons/button/down-arrow.svg';
 import SortIcon from '../../assets/icons/button/sort.svg';
 import FilterIcon from '../../assets/icons/button/filter.svg';
+import StarIcon from '../../assets/icons/button/star-fill.svg';
 
 export const BUTTON_ICONS: Record<string, ReactElement> = {
   create: <CreateIcon />,
@@ -43,4 +44,5 @@ export const BUTTON_ICONS: Record<string, ReactElement> = {
   'down-arrow': <DownArrow />,
   sort: <SortIcon />,
   filter: <FilterIcon />,
+  star: <StarIcon />,
 };

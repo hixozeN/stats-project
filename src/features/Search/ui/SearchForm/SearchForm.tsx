@@ -1,5 +1,5 @@
 import React, {
-  memo, useCallback, useContext, useEffect, useState,
+  memo, MouseEvent, useCallback, useContext, useEffect, useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -33,6 +33,13 @@ export const SearchForm = memo((props: IAuthFormProps) => {
   const debouncedSearch = useDebounce(searchValue, 500);
   const { isMobile } = useContext(DeviceContext);
   const { isOpen, setIsOpen } = useContext(DesktopContext);
+  const [isActive, setIsActive] = useState<{[index: string]: boolean}>({ star: true, magnifier: false });
+  const getPlaceholder = ():string => {
+    if (isActive.star) {
+      return t('Избранное');
+    }
+    return t('Поиск');
+  };
 
   useClickOutside(resultsRef, (evt) => {
     if (isOpen && evt.target !== inputRef.current) setTimeout(() => setIsOpen(false), 50);
@@ -79,6 +86,28 @@ export const SearchForm = memo((props: IAuthFormProps) => {
     setSearchValue(value);
   }, [dispatch, setIsOpen, isMobile]);
 
+  const onClickFavorite = useCallback((evt: MouseEvent<HTMLButtonElement>) => {
+    evt.preventDefault();
+    setIsOpen(true);
+    setIsActive(() => (
+      {
+        star: true,
+        magnifier: false,
+      }
+    ));
+  }, [setIsOpen]);
+
+  const onClickSearch = useCallback((evt: MouseEvent<HTMLButtonElement>) => {
+    evt.preventDefault();
+    setIsActive(() => (
+      {
+        star: false,
+        magnifier: true,
+      }
+    ));
+    handleSubmit(search);
+  }, [handleSubmit, search]);
+
   return (
     <div className={classNames(cls.container, { [cls.opened]: isMobile })}>
       <form
@@ -90,18 +119,25 @@ export const SearchForm = memo((props: IAuthFormProps) => {
           ref={inputRef}
           id="search"
           type="search"
-          placeholder={t('Поиск')}
+          placeholder={getPlaceholder()}
           onChange={onChangeSearch}
           value={search}
           onFocus={onFocus}
+        />
+        <Button
+          aria-label={t('Избранное')}
+          className={classNames(cls.button, { [cls.active]: isActive.star && isMobile })}
+          theme="icon"
+          variant="star"
+          onClick={onClickFavorite}
         />
         <Button
           aria-label={t('Поиск')}
           type="submit"
           theme="icon"
           variant="magnifier"
-          className={cls.buttonSubmit}
-          onClick={(evt) => { evt.preventDefault(); handleSubmit(search); }}
+          className={classNames(cls.button, { [cls.active]: isActive.magnifier && isMobile })}
+          onClick={onClickSearch}
         />
       </form>
       {search && !isMobile

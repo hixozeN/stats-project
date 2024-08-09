@@ -239,6 +239,7 @@
   .icon:hover,
   .profile-icon:hover {
     box-shadow: 0 0 15px 1px var(--button-team-hover);
+    z-index: var(--footer-index);
   }
 
   .clear:hover,

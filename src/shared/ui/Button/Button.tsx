@@ -24,7 +24,8 @@ export type ButtonVariant =
   | 'close'
   | 'down-arrow'
   | 'sort'
-  | 'filter';
+  | 'filter'
+  | 'star';
 
 export type ButtonTheme =
   | 'default'
