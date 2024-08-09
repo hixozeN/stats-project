@@ -1,20 +1,14 @@
 .Footer {
-  //max-width: 1420px;
   width: calc(100% - 100px);
   padding: 20px 80px 20px 120px;
-  //background-color: var(--accent-color);
   background-color: var(--bg-secondary-color);
   overflow: hidden;
   position: relative;
-  //border-radius: 15px 15px 0 0;
   align-self: center;
   margin-left: 100px;
-  //margin-right: 20px;
 
   @media screen and (width <= 1400px) {
-    //max-width: 1240px;
     margin-left: 100px;
-    //padding-left: 90px;
   }
 
   @media screen and (width <= 1024px) {
