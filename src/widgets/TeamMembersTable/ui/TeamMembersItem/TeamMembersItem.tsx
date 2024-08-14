@@ -1,10 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { FavoritesButton } from 'shared/ui/FavoritesButton/FavoritesButton';
 import { convertTimestamp } from '../../lib/convertTimestamp';
 import cls from './TeamMembersItem.module.scss';
 
-interface ITeamMembersItem {
+export interface ITeamMembersItem {
   idAccount: number,
   joinedAt: number,
   name: string,
@@ -67,6 +68,7 @@ export const TeamMembersItem = (props: ITeamMembersItem) => {
           <span className={cls.value}>{convertTimestamp(joinedAt)}</span>
         </div>
       </Link>
+      <FavoritesButton theme="table" id={idAccount} tag={t('players')} />
     </li>
   );
 };

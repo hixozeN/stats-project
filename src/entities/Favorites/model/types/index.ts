@@ -1,11 +1,11 @@
 export interface IFavoritesData {
   id: number,
-  name: string,
+  name?: string,
   link?: string,
   tag?: string | null,
 }
 
 export interface IFavoritesPlayers {
-  players: IFavoritesData[],
+  players: number[],
   message: string,
 }

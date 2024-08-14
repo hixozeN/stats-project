@@ -1,15 +1,40 @@
 .favoritesButton {
   color: var(--input-placeholder-color);
   position: absolute;
-  top: 50%;
-  right: 15px;
-  z-index: 10;
-  transform: translateY(-50%);
 
-  @media screen and (width <= 768px) {
-    top: 5px;
-    right: 5px;
-    transform: translateY(0);
+  &.leaderboard {
+    top: 50%;
+    right: 15px;
+    z-index: 10;
+    transform: translateY(-50%);
+
+    @media screen and (width <= 768px) {
+      top: 5px;
+      right: 5px;
+      transform: translateY(0);
+    }
+  }
+
+  &.table {
+    top: 50%;
+    left: 275px;
+    transform: translateY(-50%);
+
+    @media screen and (width < 1179px) {
+      left: 250px;
+    }
+
+    @media screen and (width < 930px) {
+      left: auto;
+      right: 5px;
+      top: 5px;
+      transform: translateY(0);
+    }
+
+    @media screen and (width < 700px) {
+      right: 0;
+      top: 0;
+    }
   }
 }
 
@@ -17,6 +42,6 @@
   color: var(--accent-color);
 
   &:hover {
-    color: var(--input-placeholder-color);
+    color: var(--button-focus);
   }
 }
