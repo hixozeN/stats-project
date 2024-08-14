@@ -1,14 +1,20 @@
 .tableRow {
-  display: grid;
-  justify-content: space-between;
-  align-items: center;
-  grid-template-columns: 40px 250px repeat(4, 1fr);
+  display: flex;
   outline: 1px solid var(--bg-stat-item);
   border-radius: 5px;
   overflow: hidden;
   padding: 0 40px;
   position: relative;
   transition: transform 0.2s ease-in;
+}
+
+.tableRowLink {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 250px repeat(4, 1fr);
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 5px;
 
   @media screen and (width <= 768px) {
     max-width: 550px;
@@ -70,11 +76,13 @@
   align-items: center;
   border-radius: 50%;
   content: attr(data-position);
+  translate: 0 75%;
 
   @media screen and (width <= 768px) {
     position: absolute;
     top: 10px;
     left: 10px;
+    translate: 0;
   }
 
   @media screen and (width <= 450px) {

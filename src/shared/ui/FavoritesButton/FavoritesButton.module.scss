@@ -1,0 +1,22 @@
+.favoritesButton {
+  color: var(--input-placeholder-color);
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  z-index: 10;
+  transform: translateY(-50%);
+
+  @media screen and (width <= 768px) {
+    top: 5px;
+    right: 5px;
+    transform: translateY(0);
+  }
+}
+
+.active {
+  color: var(--accent-color);
+
+  &:hover {
+    color: var(--input-placeholder-color);
+  }
+}

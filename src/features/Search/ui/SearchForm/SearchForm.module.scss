@@ -41,14 +41,14 @@
   .buttonSubmit {
     display: none;
   }
+
+  .active {
+    color: var(--accent-color);
+  }
 }
 
 @media screen and (width <= 425px) {
   .SearchForm {
     max-width: 300px;
   }
-}
-
-.active {
-  color: var(--accent-color);
 }

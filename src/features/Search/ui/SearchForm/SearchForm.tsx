@@ -33,13 +33,7 @@ export const SearchForm = memo((props: IAuthFormProps) => {
   const debouncedSearch = useDebounce(searchValue, 500);
   const { isMobile } = useContext(DeviceContext);
   const { isOpen, setIsOpen } = useContext(DesktopContext);
-  const [isActive, setIsActive] = useState<{[index: string]: boolean}>({ star: true, magnifier: false });
-  const getPlaceholder = ():string => {
-    if (isActive.star) {
-      return t('Избранное');
-    }
-    return t('Поиск');
-  };
+  const [isActive, setIsActive] = useState<{[index: string]: boolean}>({ star: false, magnifier: true });
 
   useClickOutside(resultsRef, (evt) => {
     if (isOpen && evt.target !== inputRef.current) setTimeout(() => setIsOpen(false), 50);
@@ -115,18 +109,21 @@ export const SearchForm = memo((props: IAuthFormProps) => {
         autoComplete="off"
         onSubmit={(evt) => { evt.preventDefault(); handleSubmit(search); }}
       >
-        <SearchInput
-          ref={inputRef}
-          id="search"
-          type="search"
-          placeholder={getPlaceholder()}
-          onChange={onChangeSearch}
-          value={search}
-          onFocus={onFocus}
-        />
+        {!isMobile
+          && (
+          <SearchInput
+            ref={inputRef}
+            id="search"
+            type="search"
+            placeholder={t('Поиск')}
+            onChange={onChangeSearch}
+            value={search}
+            onFocus={onFocus}
+          />
+          )}
         <Button
           aria-label={t('Избранное')}
-          className={classNames(cls.button, { [cls.active]: isActive.star && isMobile })}
+          className={classNames(cls.button, { [cls.active]: isActive.star })}
           theme="icon"
           variant="star"
           onClick={onClickFavorite}
@@ -136,7 +133,7 @@ export const SearchForm = memo((props: IAuthFormProps) => {
           type="submit"
           theme="icon"
           variant="magnifier"
-          className={classNames(cls.button, { [cls.active]: isActive.magnifier && isMobile })}
+          className={classNames(cls.button, { [cls.active]: isActive.magnifier })}
           onClick={onClickSearch}
         />
       </form>
