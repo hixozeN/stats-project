@@ -68,7 +68,7 @@ export const LeaderboardItem = ({ player, index }: LeaderboardItemProps) => {
           <p className={cls.columnValue}>{wn8}</p>
         </div>
       </div>
-      <FavoritesButton theme="leaderboard" id={account_id} tag={t('players')} />
+       <FavoritesButton theme="leaderboard" id={account_id} tag={t('players')} />
     </li>
   );
 };

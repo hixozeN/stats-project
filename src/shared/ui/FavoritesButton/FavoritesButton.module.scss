@@ -36,12 +36,22 @@
       top: 0;
     }
   }
+
+  &:hover+.favoritesTooltip {
+    display: block;
+  }
 }
 
 .active {
   color: var(--accent-color);
 
-  &:hover {
-    color: var(--button-focus);
+  &:hover svg path {
+    box-shadow: 5px 0 0 var(--accent-color);
   }
+}
+
+.favoritesTooltip {
+  top: 40%;
+  right: -15px;
+  display: none;
 }

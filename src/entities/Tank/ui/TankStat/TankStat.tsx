@@ -1,7 +1,7 @@
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { ToolTip } from 'shared/ui/ToolTip/ToolTip';
+import { Tooltip } from 'shared/ui/Tooltip/Tooltip';
 import { LestaTankData, ParamData } from 'entities/Lesta';
 import { formatter } from '../../lib/converterTank';
 import cls from './TankStat.module.scss';
@@ -126,7 +126,7 @@ export const TankStat = memo(
         <dt className={cls.term}>{`${t(`${data}`)}:`}</dt>
         <dd className={classNames('', classNameRate)}>
           {statParams[`${data}`]}
-          <ToolTip text={textTollTip} isVisible={isVisible} />
+          <Tooltip text={textTollTip} isVisible={isVisible} />
         </dd>
       </div>
     );

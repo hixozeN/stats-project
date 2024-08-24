@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ToolTip } from 'shared/ui/ToolTip/ToolTip';
+import { Tooltip } from 'shared/ui/Tooltip/Tooltip';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './TeamStatsItem.module.scss';
 
@@ -23,7 +23,7 @@ export const TeamStatsItem = (props: TeamStatsItemProps) => {
         <span className={cls.text}>{t(`${title}`)}</span>
         <span className={classNames(cls.results, { [cls.visible]: isVisible }, [])}>
           {title === t('WN8') && result === 0 ? t('NONE') : result}
-          <ToolTip text={t('TOOLTIP')} isVisible={isVisible} className={cls.tooltip} />
+          <Tooltip text={t('TOOLTIP')} isVisible={isVisible} className={cls.tooltip} />
         </span>
       </div>
     </li>
