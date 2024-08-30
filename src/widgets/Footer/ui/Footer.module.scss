@@ -1,5 +1,5 @@
 .Footer {
-  width: calc(100% - 100px);
+  width: calc(100% - var(--sidebar-full-width));
   padding: 20px 80px 20px 120px;
   background-color: var(--bg-secondary-color);
   overflow: hidden;
