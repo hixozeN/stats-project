@@ -12,7 +12,7 @@ interface FooterProps {
   isCollapsed?: boolean;
 }
 
-export const Footer = (props : FooterProps) => {
+export const Footer = (props: FooterProps) => {
   const { className, isCollapsed } = props;
   const { t } = useTranslation('footer');
   const currentYear = new Date().getFullYear();
@@ -26,11 +26,11 @@ export const Footer = (props : FooterProps) => {
     <>
       <footer className={classNames(cls.Footer, { [cls.collapsed]: !isCollapsed }, [className])}>
         <Crown className={cls.crownBackground} />
-        <div className={classNames(cls.container, { }, [])}>
+        <div className={classNames(cls.container, {}, [])}>
           <div className={cls.wrapper}>
             <FooterSocials />
             <button
-              className={classNames(cls.button, {}, [cls.darkText])}
+              className={classNames(cls.button, {}, [cls.darkText, cls.link])}
               type="button"
               onClick={() => setIsOpen(true)}
             >
@@ -39,11 +39,16 @@ export const Footer = (props : FooterProps) => {
           </div>
           <div className={cls.copyrightsWrapper}>
             <span className={classNames(cls.copyright, {}, [cls.darkText])}>
-              {`${t('COPYRIGHT')} © ${currentYear}` }
+              {`${t('COPYRIGHT')} © ${currentYear}`}
             </span>
-            <span className={classNames(cls.copyright, {}, [cls.darkText])}>
-              {t('LESTA_COPYRIGHT')}
-            </span>
+            <div className={cls.copyrightInner}>
+              <span className={classNames(cls.copyright, {}, [cls.darkText])}>
+                {t('LESTA_COPYRIGHT')}
+              </span>
+              <span className={classNames(cls.copyright, {}, [cls.darkText])}>
+                {t('RESERVED')}
+              </span>
+            </div>
             <div className={cls.links}>
               <Link
                 className={cls.link}

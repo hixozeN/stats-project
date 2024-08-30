@@ -127,7 +127,7 @@ function AppLayout() {
               </div>
             </Suspense>
           </main>
-          {isMainPage && <Footer />}
+          <Footer />
         </ConfigProvider>
       </div>
     </Suspense>

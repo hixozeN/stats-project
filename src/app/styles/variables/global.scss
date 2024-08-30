@@ -52,9 +52,15 @@
   // Размер навбара
   --navbar-height: 90px;
 
+  // Размер footera
+  --footer-height: 136px;
+  --footer-mob-height: 218px;
+
   // Размер сайдбара
   --sidebar-width: 80px;
   --sidebar-collapsed-width: 70px;
+  --sidebar-padding: 20px;
+  --sidebar-full-width: calc(var(--sidebar-width) + var(--sidebar-padding));
 
   // Размер сайдбара профиля
   --profile-sidebar-height: 279px;
