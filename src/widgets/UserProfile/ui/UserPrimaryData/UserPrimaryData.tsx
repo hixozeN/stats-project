@@ -1,12 +1,15 @@
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 // import InfoIcon from 'shared/assets/icons/info.svg';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
   getUserBio, getUserClanData, getUserDataLoadingStatus, getUserNickname,
-} from 'entities/Lesta/index';
+} from 'entities/Lesta';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { FavoritesButton } from 'shared/ui/FavoritesButton/FavoritesButton';
+import { useTranslation } from 'react-i18next';
+import { getUserData } from 'entities/User';
 import cls from './UserPrimaryData.module.scss';
 
 interface UserPrimaryDataProps {
@@ -18,8 +21,19 @@ export const UserPrimaryData = memo((props: UserPrimaryDataProps) => {
 
   const userNickname = useSelector(getUserNickname);
   const userBio = useSelector(getUserBio);
-  const clanData = useSelector(getUserClanData);
+  const clanData = useSelector(getUserClanData) || {
+    name: 'string',
+    tag: 'string',
+    clan_id: 2345135,
+    role: 'string',
+  };
   const isUserDataLoading = useSelector(getUserDataLoadingStatus);
+
+  const { id } = useParams();
+  const currentUser = useSelector(getUserData);
+  const isProfileOwner = currentUser?.lestaData?.account_id === Number(id);
+
+  const { t } = useTranslation('main');
 
   if (isUserDataLoading) {
     return (
@@ -36,6 +50,8 @@ export const UserPrimaryData = memo((props: UserPrimaryDataProps) => {
       <h3 className={cls.username}>
         {userNickname}
         {/* <InfoIcon className={cls.info}/> */}
+        {/* {!isProfileOwner */}
+        {/*   && <FavoritesButton theme="profile" id={Number(id)} tag={t('players')} />} */}
       </h3>
       {
         clanData && (
@@ -44,6 +60,8 @@ export const UserPrimaryData = memo((props: UserPrimaryDataProps) => {
           </Link>
         )
       }
+      {!isProfileOwner
+        && <FavoritesButton theme="profile" id={Number(id)} tag={t('players')} />}
       <p className={cls.userBio}>
         {userBio}
       </p>

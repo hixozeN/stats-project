@@ -6,12 +6,12 @@ import {
 } from 'entities/Favorites/model/selectors';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { favoritesPlayersActions } from 'entities/Favorites/model/slice/favoritesPlayersSlice';
-import { useEffect } from 'react';
 import { Tooltip } from 'shared/ui/Tooltip/Tooltip';
 import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 import cls from './FavoritesButton.module.scss';
 
-export type FavoritesButtonTheme = 'leaderboard' | 'table'
+export type FavoritesButtonTheme = 'leaderboard' | 'table' | 'profile';
 
 interface IFavoritesButtonProps {
   className?: string;
@@ -34,7 +34,6 @@ export const FavoritesButton = (props: IFavoritesButtonProps) => {
 
   useEffect(() => {
     if ('favoritesPlayers' in localStorage) {
-      // ToDo: нужен ли локалсторедж?
       dispatch(favoritesPlayersActions.setFavoritesPlayers(JSON.parse(localStorage.getItem('favoritesPlayers'))));
     }
   }, []);
@@ -50,24 +49,28 @@ export const FavoritesButton = (props: IFavoritesButtonProps) => {
     }
   };
 
+  const buttonTheme = theme === 'profile' ? 'team' : 'clear';
+
   return (
-    <>
-      <Button
-        className={classNames(
-          cls.favoritesButton,
-          { [cls.active]: isFavorite },
-          [className, cls[theme]],
-        )}
-        theme="clear"
-        variant="star"
-        onClick={onClick}
-      />
+    <Button
+      className={classNames(
+        cls.favoritesButton,
+        { [cls.active]: isFavorite },
+        [className, cls[theme]],
+      )}
+      theme={buttonTheme}
+      variant="star"
+      onClick={onClick}
+    >
+      {theme === 'profile' && (isFavorite ? t('В избранном') : t('В избранное'))}
+      {theme !== 'profile' && (
       <Tooltip
         className={cls.favoritesTooltip}
         text={isFavorite ? t('Убрать из избранного') : t('Добавить в избранное')}
         theme="favorites"
         isVisible
       />
-    </>
+      )}
+    </Button>
   );
 };

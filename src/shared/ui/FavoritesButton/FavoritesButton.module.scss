@@ -1,6 +1,7 @@
 .favoritesButton {
   color: var(--input-placeholder-color);
   position: absolute;
+  font-weight: normal;
 
   &.leaderboard {
     top: 50%;
@@ -37,21 +38,85 @@
     }
   }
 
-  &:hover+.favoritesTooltip {
+  &:hover {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+
+    & svg {
+      overflow: visible;
+    }
+
+    & svg path {
+      //filter: drop-shadow(0 0 10px var(--accent-color));
+    }
+  }
+
+  &:hover .favoritesTooltip {
     display: block;
   }
 }
 
 .active {
   color: var(--accent-color);
-
-  &:hover svg path {
-    box-shadow: 5px 0 0 var(--accent-color);
-  }
 }
 
 .favoritesTooltip {
-  top: 40%;
-  right: -15px;
   display: none;
 }
+
+.profile {
+  //right: -42px;
+
+
+  @media screen and (width <= 768px) {
+  //  position: relative;
+  //  font-size: small;
+  //  right: 0;
+  //  margin-right: 0;
+    position: relative;
+    background: none;
+    border: 1px solid var(--bg-stat-item);
+    padding: 0 15px 0 10px;
+    font-size: 14px;
+    line-height: 16px;
+    height: 32px;
+    margin: 10px 0 0;
+    min-width: 150px;
+  }
+
+  &.active {
+    border-color: var(--accent-color);
+  }
+}
+
+//.profile {
+//  //right: -42px;
+//
+//
+//  //@media screen and (width <= 768px) {
+//    //  position: relative;
+//    //  font-size: small;
+//    //  right: 0;
+//    //  margin-right: 0;
+//    position: relative;
+//    background: none;
+//    border: 1px solid var(--bg-stat-item);
+//    //padding: 0 0 0 15px;
+//    font-size: 10px;
+//    line-height: 14px;
+//    //height: 12px;
+//  //}
+//  //& svg {
+//    scale: .7;
+//  //}
+//
+//  &.active {
+//    border: none;
+//    padding: 0;
+//
+//    & svg:first-child {
+//      fill-opacity: 1;
+//
+//    }
+//  }
+//}

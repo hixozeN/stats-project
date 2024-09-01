@@ -2,8 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
 import React, { useCallback, useRef } from 'react';
-import { FavoritesButton } from 'shared/ui/FavoritesButton/FavoritesButton';
-import { ILeaderboardItem } from '../../model/types/ILeaderboardItem';
+// import { FavoritesButton } from 'shared/ui/FavoritesButton/FavoritesButton';
+import { ILeaderboardItem } from 'features/playersLeaderboard';
 import cls from './LeaderboardItem.module.scss';
 
 interface LeaderboardItemProps {
@@ -68,7 +68,7 @@ export const LeaderboardItem = ({ player, index }: LeaderboardItemProps) => {
           <p className={cls.columnValue}>{wn8}</p>
         </div>
       </div>
-       <FavoritesButton theme="leaderboard" id={account_id} tag={t('players')} />
+      {/* <FavoritesButton theme="leaderboard" id={account_id} tag={t('players')} /> */}
     </li>
   );
 };
