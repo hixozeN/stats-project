@@ -23,6 +23,7 @@ import { useToasts } from 'shared/hooks/useToasts/useToasts';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Footer } from 'widgets/Footer/index';
 import { ConfigProvider, theme as antdTheme } from 'antd';
+import { Maintenance } from 'widgets/Maintenance';
 import cls from './AppLayout.module.scss';
 
 function AppLayout() {
