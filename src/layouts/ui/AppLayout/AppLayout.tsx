@@ -24,6 +24,7 @@ import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Footer } from 'widgets/Footer/index';
 import { ConfigProvider, theme as antdTheme } from 'antd';
 import { Maintenance } from 'widgets/Maintenance';
+import { useGetMaintenanceDataQuery } from 'widgets/Maintenance/api/maintenanceApi';
 import cls from './AppLayout.module.scss';
 
 function AppLayout() {
@@ -38,6 +39,7 @@ function AppLayout() {
   const navigate = useNavigate();
   const { toastWithError } = useToasts();
   const currentUserLestaId = useSelector(getCurrentUserAccountId);
+  const { data, isLoading } = useGetMaintenanceDataQuery(null);
 
   const handleOpenAuth = useCallback(async () => {
     const lestaAuthStatus = queryParams.get(LOCAL_STORAGE_LESTA.STATUS);
@@ -88,6 +90,8 @@ function AppLayout() {
   if (isAuthLoading || !isAuthInitiated) {
     return <Loader />;
   }
+
+  const { isMaintenance } = data;
 
   return (
     <Suspense fallback={<Loader />}>
