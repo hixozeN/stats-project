@@ -87,7 +87,7 @@ function AppLayout() {
     if (isLestaAuthPage) handleOpenAuth();
   }, [isLestaAuthPage, handleOpenAuth]);
 
-  if (isAuthLoading || !isAuthInitiated) {
+  if (isAuthLoading || !isAuthInitiated || isLoading) {
     return <Loader />;
   }
 
@@ -128,11 +128,11 @@ function AppLayout() {
                   { [cls.collapsed]: false },
                 )}
               >
-                <Outlet />
+                {isMaintenance ? <Maintenance /> : <Outlet />}
               </div>
             </Suspense>
           </main>
-          <Footer />
+          {!isMaintenance && <Footer />}
         </ConfigProvider>
       </div>
     </Suspense>
