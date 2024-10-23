@@ -1,0 +1,51 @@
+.Maintenance {
+  min-height: calc(100dvh - var(--navbar-height) - 90px);
+  padding: 0 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  text-align: center;
+}
+
+.title{
+  font: var(--font-xl);
+
+  @media (width <= 425px) {
+    font: var(--font-l);
+  }
+}
+
+.message{
+  max-width: 700px;
+  font: var(--font-m);
+}
+
+.socials {
+  padding: 0 10px;
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 10px 15px;
+  font: var(--font-m);
+}
+
+.link {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.text {
+  margin-left: 10px;
+}
+
+.icon {
+  padding: 4px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #C2C2BE;
+}

@@ -23,6 +23,7 @@ import { useToasts } from 'shared/hooks/useToasts/useToasts';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Footer } from 'widgets/Footer/index';
 import { ConfigProvider, theme as antdTheme } from 'antd';
+import { Maintenance, useGetMaintenanceDataQuery } from 'widgets/Maintenance';
 import cls from './AppLayout.module.scss';
 
 function AppLayout() {
@@ -37,6 +38,7 @@ function AppLayout() {
   const navigate = useNavigate();
   const { toastWithError } = useToasts();
   const currentUserLestaId = useSelector(getCurrentUserAccountId);
+  const { data, isLoading } = useGetMaintenanceDataQuery(null);
 
   const handleOpenAuth = useCallback(async () => {
     const lestaAuthStatus = queryParams.get(LOCAL_STORAGE_LESTA.STATUS);
@@ -84,9 +86,11 @@ function AppLayout() {
     if (isLestaAuthPage) handleOpenAuth();
   }, [isLestaAuthPage, handleOpenAuth]);
 
-  if (isAuthLoading || !isAuthInitiated) {
+  if (isAuthLoading || !isAuthInitiated || isLoading) {
     return <Loader />;
   }
+
+  const { isMaintenance } = data;
 
   return (
     <Suspense fallback={<Loader />}>
@@ -123,11 +127,11 @@ function AppLayout() {
                   { [cls.collapsed]: false },
                 )}
               >
-                <Outlet />
+                {isMaintenance ? <Maintenance /> : <Outlet />}
               </div>
             </Suspense>
           </main>
-          {isMainPage && <Footer />}
+          {!isMaintenance && <Footer />}
         </ConfigProvider>
       </div>
     </Suspense>
