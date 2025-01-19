@@ -74,7 +74,7 @@
   max-width: fit-content;
   padding: 10px;
 
-  @media screen and (width <= 440px) {
+  @media (width <= 440px) {
     font-size: 12px;
   }
 

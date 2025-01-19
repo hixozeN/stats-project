@@ -63,13 +63,13 @@
   z-index: 2;
 }
 
-@media screen and (width <= 1640px) {
+@media (width <= 1640px) {
   .image {
     max-height: 390px;
   }
 }
 
-@media screen and (width <= 1525px) {
+@media (width <= 1525px) {
   .slideItem {
     flex-direction: column;
   }
@@ -87,7 +87,7 @@
   }
 }
 
-@media screen and (width <= 768px) {
+@media (width <= 768px) {
   .image {
     max-height: 380px;
   }

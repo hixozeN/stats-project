@@ -33,7 +33,7 @@
   transition: all 0.2s ease;
 }
 
-@media screen and (width <= 768px){
+@media (width <= 768px){
   .popup {
     width: 280px;
     right: calc(100% - 150px);

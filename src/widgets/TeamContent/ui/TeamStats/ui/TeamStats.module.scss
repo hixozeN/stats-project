@@ -5,22 +5,22 @@
   flex-wrap: wrap;
   gap: 15px 24px;
 
-  @media screen and (width <= 1179px) {
+  @media (width <= 1179px) {
     gap: 15px 12px;
   }
 
-  @media screen and (width <= 1090px) {
+  @media (width <= 1090px) {
     max-width: 660px;
     justify-content: center;
   }
 
-  @media screen and  (width <= 699px) {
+  @media (width <= 699px) {
     max-width: 320px;
     justify-content: center;
     gap: 15px 10px;
   }
 
-  @media screen and (width <= 330px) {
+  @media (width <= 330px) {
     gap: 10px 6px;
   }
 }

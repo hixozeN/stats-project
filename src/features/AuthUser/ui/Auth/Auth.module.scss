@@ -22,7 +22,7 @@
   z-index: -1;
 }
 
-@media screen and (width <= 768px) {
+@media (width <= 768px) {
   .auth {
     padding: 25px 0;
     margin: 0 auto;

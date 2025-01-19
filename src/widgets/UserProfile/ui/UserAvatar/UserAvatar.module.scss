@@ -13,7 +13,7 @@
   border-radius: 50%;
 }
 
-@media screen and (width <= 768px) {
+@media (width <= 768px) {
   .avatarWrapper {
     padding: 10px 0 0;
   }
@@ -24,7 +24,7 @@
   }
 }
 
-@media screen and (width <= 450px) {
+@media (width <= 450px) {
   .avatar {
     width: 75px;
     height: 75px;

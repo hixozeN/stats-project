@@ -24,6 +24,7 @@ import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import { Footer } from 'widgets/Footer/index';
 import { ConfigProvider, theme as antdTheme } from 'antd';
 import { Maintenance, useGetMaintenanceDataQuery } from 'widgets/Maintenance';
+import { ErrorBoundary } from 'app/providers/ErrorBoundary/index';
 import cls from './AppLayout.module.scss';
 
 function AppLayout() {
@@ -95,42 +96,44 @@ function AppLayout() {
       <Toaster />
       <SeoUpdater />
       <div id="app" className={classNames('app', {}, [theme])}>
-        <ConfigProvider
-          theme={{
-            algorithm: antdTheme.darkAlgorithm,
-            components: {
-              Select: {
-                colorPrimaryHover: 'var(--button-hover)',
-                selectorBg: 'transparent',
+        <ErrorBoundary>
+          <ConfigProvider
+            theme={{
+              algorithm: antdTheme.darkAlgorithm,
+              components: {
+                Select: {
+                  colorPrimaryHover: 'var(--button-hover)',
+                  selectorBg: 'transparent',
 
-                optionSelectedColor: '#000',
-                optionSelectedFontWeight: 400,
+                  optionSelectedColor: '#000',
+                  optionSelectedFontWeight: 400,
 
-                controlItemBgActive: '#fac704',
-                controlItemBgHover: '#fac704',
+                  controlItemBgActive: '#fac704',
+                  controlItemBgHover: '#fac704',
 
-                colorTextQuaternary: 'var(--primary-color)',
+                  colorTextQuaternary: 'var(--primary-color)',
+                },
               },
-            },
-          }}
-        >
-          <Header />
-          <main className="page-content">
-            {/* {!isAuthPage && <Sidebar />} */}
-            <Sidebar />
-            <Suspense fallback={<Loader />}>
-              <div
-                className={classNames(
-                  cls.pageWrapper,
-                  { [cls.collapsed]: false },
-                )}
-              >
-                {data?.isMaintenance ? <Maintenance /> : <Outlet />}
-              </div>
-            </Suspense>
-          </main>
-          {!data?.isMaintenance && <Footer />}
-        </ConfigProvider>
+            }}
+          >
+            <Header />
+            <main className="page-content">
+              {/* {!isAuthPage && <Sidebar />} */}
+              <Sidebar />
+              <Suspense fallback={<Loader />}>
+                <div
+                  className={classNames(
+                    cls.pageWrapper,
+                    { [cls.collapsed]: false },
+                  )}
+                >
+                  {data?.isMaintenance ? <Maintenance /> : <Outlet />}
+                </div>
+              </Suspense>
+            </main>
+            {!data?.isMaintenance && <Footer />}
+          </ConfigProvider>
+        </ErrorBoundary>
       </div>
     </Suspense>
   );
