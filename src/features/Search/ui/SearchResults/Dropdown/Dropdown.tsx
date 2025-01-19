@@ -90,6 +90,7 @@ export const Dropdown = memo((props: IDropdown) => {
               icon={item?.icon}
               name={item?.name}
               tag={item?.tag}
+              id={item?.id}
             />
           ))}
         </ul>

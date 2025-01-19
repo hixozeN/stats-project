@@ -1,8 +1,9 @@
 import React, { memo, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { searchActions } from 'features/Search/index';
+import { searchActions } from 'features/Search';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
+import { FavoritesButton } from 'shared/ui/FavoritesButton/FavoritesButton';
 import { DeviceContext } from '../../Search/Search';
 import { MobileContext } from '../../SearchMobile/SearchMobile';
 import { DesktopContext } from '../../SearchDesktop/SearchDesktop';
@@ -14,6 +15,7 @@ interface IDropdownItem {
   icon: React.ReactElement,
   name: string,
   tag: string,
+  id: number,
 }
 export const DropdownItem = memo((props: IDropdownItem) => {
   const {
@@ -22,6 +24,7 @@ export const DropdownItem = memo((props: IDropdownItem) => {
     icon,
     name,
     tag,
+    id,
   } = props;
 
   const { isMobile } = useContext(DeviceContext);
@@ -41,9 +44,9 @@ export const DropdownItem = memo((props: IDropdownItem) => {
   return (
     <li
       className={classNames(cls.item, {}, [className])}
-      onClick={handleClose}
     >
-      <Link className={cls.link} to={link}>
+      <FavoritesButton theme="search" id={id} tag={tag} />
+      <Link className={cls.link} to={link} onClick={handleClose}>
         {icon}
         {tag && <span>{`[${tag}]`}</span>}
         <span className={cls.name}>{name}</span>

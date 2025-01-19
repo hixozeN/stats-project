@@ -1,11 +1,15 @@
 export interface IFavoritesData {
-  id: number,
+  // lestaData: { account_id: number },
+  // username: string,
+  // _id: string,
+  account_id: number,
   name?: string,
   link?: string,
   tag?: string | null,
 }
 
 export interface IFavoritesPlayers {
-  players: number[],
+  players: IFavoritesData[],
   message: string,
+  isLoading: boolean,
 }

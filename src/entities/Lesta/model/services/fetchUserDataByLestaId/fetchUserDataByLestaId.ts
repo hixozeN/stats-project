@@ -36,7 +36,7 @@ export const fetchUserDataByLestaId = createAsyncThunk<ReturnData, ThunkProps, T
       const endPoint = lestaAccessToken
         ? `/user/v2/?id=${id}&accessToken=${lestaAccessToken}`
         : `/user/v2/?id=${id}`;
-      const response = await extra.royalApi.get<ReturnData>(endPoint);
+      const response:{data: any} = await extra.royalApi.get<ReturnData>(endPoint);
 
       // прокидываем ошибку, если данных нет
       if (!response.data || response instanceof Error) throw response ?? SERVER_ERROR_MESSAGE;
@@ -44,7 +44,6 @@ export const fetchUserDataByLestaId = createAsyncThunk<ReturnData, ThunkProps, T
       // записываем данные о танках игрока
       if (response?.data?.userTanks) {
         dispatch(userTanksActions.setUserTanks([...response.data.userTanks]));
-        // dispatch(filterActions.setFilterData([...response.data.userTanks]));
       }
 
       // возвращаем полученные данные

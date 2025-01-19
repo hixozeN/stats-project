@@ -2,6 +2,9 @@
   padding: 5px;
   color: var(--primary-color);
   transition: color 0.2s;
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
 }
 
 .link {
@@ -9,6 +12,7 @@
   gap: 5px;
   text-decoration: none;
   color: inherit;
+  width: calc(100% - 50px);
 }
 
 .name {
@@ -18,7 +22,7 @@
 }
 
 @media (hover: hover) {
-  .item:hover {
+  .link:hover {
     color: var(--accent-color);
 
     .icons:hover {

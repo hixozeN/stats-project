@@ -9,7 +9,7 @@
     z-index: 10;
     transform: translateY(-50%);
 
-    @media screen and (width <= 768px) {
+    @media (width <= 768px) {
       top: 5px;
       right: 5px;
       transform: translateY(0);
@@ -21,18 +21,18 @@
     left: 275px;
     transform: translateY(-50%);
 
-    @media screen and (width < 1179px) {
+    @media (width < 1179px) {
       left: 250px;
     }
 
-    @media screen and (width < 930px) {
+    @media (width < 930px) {
       left: auto;
       right: 5px;
       top: 5px;
       transform: translateY(0);
     }
 
-    @media screen and (width < 700px) {
+    @media (width < 700px) {
       right: 0;
       top: 0;
     }
@@ -47,7 +47,7 @@
     }
 
     & svg path {
-      //filter: drop-shadow(0 0 10px var(--accent-color));
+      filter: drop-shadow(0 0 6px var(--accent-color));
     }
   }
 
@@ -58,6 +58,9 @@
 
 .active {
   color: var(--accent-color);
+  & svg path {
+    fill: var(--accent-color);
+  }
 }
 
 .favoritesTooltip {
@@ -65,14 +68,16 @@
 }
 
 .profile {
-  //right: -42px;
+  top: -10px;
+  right: -26px;
+  background: none;
+  backdrop-filter: none;
+  width: 26px;
+  height: 26px;
 
-
-  @media screen and (width <= 768px) {
-  //  position: relative;
-  //  font-size: small;
-  //  right: 0;
-  //  margin-right: 0;
+  @media (width <= 768px) {
+    top: 0;
+    right: 0;
     position: relative;
     background: none;
     border: 1px solid var(--bg-stat-item);
@@ -84,39 +89,26 @@
     min-width: 150px;
   }
 
-  &.active {
-    border-color: var(--accent-color);
-  }
+  //&.active {
+  //  border-color: var(--accent-color);
+  //
+  //  & svg path {
+  //    fill: var(--accent-color);
+  //  }
+  //
+  //  &:hover {
+  //    box-shadow: none;
+  //  }
+  //}
 }
 
-//.profile {
-//  //right: -42px;
-//
-//
-//  //@media screen and (width <= 768px) {
-//    //  position: relative;
-//    //  font-size: small;
-//    //  right: 0;
-//    //  margin-right: 0;
-//    position: relative;
-//    background: none;
-//    border: 1px solid var(--bg-stat-item);
-//    //padding: 0 0 0 15px;
-//    font-size: 10px;
-//    line-height: 14px;
-//    //height: 12px;
-//  //}
-//  //& svg {
-//    scale: .7;
-//  //}
-//
-//  &.active {
-//    border: none;
-//    padding: 0;
-//
-//    & svg:first-child {
-//      fill-opacity: 1;
-//
-//    }
-//  }
-//}
+.search {
+  position: relative;
+  padding: 0;
+  height: 100%;
+
+  & svg {
+    height: 24px;
+    width: 24px;
+  }
+}

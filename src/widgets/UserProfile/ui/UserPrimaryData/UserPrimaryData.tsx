@@ -11,6 +11,7 @@ import { FavoritesButton } from 'shared/ui/FavoritesButton/FavoritesButton';
 import { useTranslation } from 'react-i18next';
 import { getUserData } from 'entities/User';
 import cls from './UserPrimaryData.module.scss';
+import { useSizeScreen } from 'shared/hooks/useSizeScreen';
 
 interface UserPrimaryDataProps {
   className?: string;
@@ -33,6 +34,9 @@ export const UserPrimaryData = memo((props: UserPrimaryDataProps) => {
   const currentUser = useSelector(getUserData);
   const isProfileOwner = currentUser?.lestaData?.account_id === Number(id);
 
+  const {device} = useSizeScreen();
+  const isMobile = device === 'mobile';
+
   const { t } = useTranslation('main');
 
   if (isUserDataLoading) {
@@ -50,8 +54,8 @@ export const UserPrimaryData = memo((props: UserPrimaryDataProps) => {
       <h3 className={cls.username}>
         {userNickname}
         {/* <InfoIcon className={cls.info}/> */}
-        {/* {!isProfileOwner */}
-        {/*   && <FavoritesButton theme="profile" id={Number(id)} tag={t('players')} />} */}
+        {!isProfileOwner && !isMobile
+          && <FavoritesButton theme="profile" id={Number(id)} tag={t('players')} />}
       </h3>
       {
         clanData && (
@@ -60,7 +64,7 @@ export const UserPrimaryData = memo((props: UserPrimaryDataProps) => {
           </Link>
         )
       }
-      {!isProfileOwner
+      {!isProfileOwner && isMobile
         && <FavoritesButton theme="profile" id={Number(id)} tag={t('players')} />}
       <p className={cls.userBio}>
         {userBio}
