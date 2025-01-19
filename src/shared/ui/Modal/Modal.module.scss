@@ -59,14 +59,14 @@
   align-items: center;
 }
 
-@media screen and (width <=768px) {
+@media (width <=768px) {
   .content {
     padding: var(--modal-padding-tablet);
     max-width: max-content;
   }
 }
 
-@media screen and (width <=425px) {
+@media (width <=425px) {
   .content {
     padding: var(--modal-padding-mobile);
     max-width: 320px;

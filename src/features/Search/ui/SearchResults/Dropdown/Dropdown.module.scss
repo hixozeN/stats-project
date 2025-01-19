@@ -46,7 +46,7 @@
   height: 24px;
 }
 
-@media screen and (width <= 768px) {
+@media (width <= 768px) {
   .Dropdown {
     height: 300px;
     overflow-y: auto;

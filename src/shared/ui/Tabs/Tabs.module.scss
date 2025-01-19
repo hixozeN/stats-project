@@ -61,7 +61,7 @@
     }
   }
 
-  @media screen and (width <= 600) {
+  @media (width <= 600px) {
     font-size: 12px;
   }
 
@@ -78,7 +78,7 @@
   }
 }
 
-@media screen and (width <= 410px) {
+@media (width <= 410px) {
   .tabBtn {
     font-size: 12px;
   }

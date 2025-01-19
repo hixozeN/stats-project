@@ -6,7 +6,7 @@
   width: 100%;
 }
 
-@media screen and (width <= 810px) {
+@media (width <= 810px) {
   .ProfileSidebar {
     justify-content: center;
     max-width: none;

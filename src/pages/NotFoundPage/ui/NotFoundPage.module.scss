@@ -39,7 +39,7 @@
   max-width: 410px;
 }
 
-@media screen and (width <=768px) {
+@media (width <=768px) {
   .wrapper {
     gap: 15px;
     padding: 30px 20px;
@@ -56,7 +56,7 @@
   }
 }
 
-@media screen and (width <=425px) {
+@media (width <=425px) {
   .wrapper {
     gap: 15px;
     padding: 30px 10px;

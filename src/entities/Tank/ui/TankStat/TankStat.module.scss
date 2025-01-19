@@ -71,19 +71,22 @@
   color: var(--wn8-super-unicim-color);
 }
 
-@media (1590px >= width > 1286px), (1090px >= width > 768px), (480px > width >= 380px) {
+@media (width <= 1590px) and (width >= 1287px),
+  (width <= 1090px) and (width >= 769px),
+  (width <= 480px) and (width >= 380px) {
   .wrapper {
     font-size: 14px;
   }
 }
 
-@media (1286px >= width > 1090px), (768px >= width >= 480px) {
+@media (width <= 1286px) and (width >= 1091px),
+  (width <= 768px) and (width >= 480px) {
   .wrapper {
     font-size: 16px;
   }
 }
 
-@media (width < 380px) {
+@media (width <= 379px) {
   .wrapper {
     font-size: 12px;
   }

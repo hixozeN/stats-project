@@ -23,7 +23,7 @@
   transform: scale(0.75);
 }
 
-@media screen and (width <= 768px) {
+@media (width <= 768px) {
   .container {
     display: none;
   }
@@ -41,7 +41,7 @@
   }
 }
 
-@media screen and (width <= 425px) {
+@media (width <= 425px) {
   .SearchForm {
     max-width: 300px;
   }

@@ -5,11 +5,11 @@
   position: relative;
   padding: 0 130px;
 
-  @media screen and (width <= 1700px) {
+  @media (width <= 1700px) {
     padding: 0 30px;
   }
 
-  @media screen and (width <= 1024px) {
+  @media (width <= 1024px) {
     border-radius: 0;
     padding: 0 10px;
   }
@@ -34,7 +34,7 @@
   align-items: center;
   gap: 15px;
 
-  @media screen and (width <= 1024px) {
+  @media (width <= 1024px) {
     margin: 20px auto 0;
   }
 }
@@ -44,7 +44,7 @@
   display: grid;
   grid-template-columns: 1fr 70px;
 
-  @media screen and (width <= 568px) {
+  @media (width <= 568px) {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
@@ -57,11 +57,11 @@
   margin-top: 10px;
   padding-left: 70px;
 
-  @media screen and (width <= 1024px) {
+  @media (width <= 1024px) {
     font-size: 20px;
   }
 
-  @media screen and (width <= 568px) {
+  @media (width <= 568px) {
     padding-left: 0;
   }
 }

@@ -40,7 +40,7 @@
   }
 }
 
-@media screen and (width <= 1024px){
+@media (width <= 1024px){
   .list {
     height: 500px;
     overflow: auto;
@@ -61,7 +61,7 @@
   }
 }
 
-@media screen and (width <= 768px){
+@media (width <= 768px){
   .title {
     font: var(--font-m);
     font-weight: 700;
@@ -74,7 +74,7 @@
   }
 }
 
-@media screen and (width <= 425px){
+@media (width <= 425px){
   .list {
     height: 350px;
     overflow: auto;

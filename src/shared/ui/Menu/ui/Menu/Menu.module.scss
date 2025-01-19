@@ -11,11 +11,11 @@
     margin-bottom: auto;
     border-right: 4px solid var(--bg-tab-inactive);
 
-    @media screen and (width <= 810px) {
+    @media (width <= 810px) {
       padding: 0 0 10px;
     }
 
-    @media screen and (width <= 410px) {
+    @media (width <= 410px) {
       padding: 0;
     }
   }
@@ -29,7 +29,7 @@
   visibility: hidden;
 }
 
-@media screen and (width <= 810px) {
+@media (width <= 810px) {
   .list.profileSidebar {
     flex-direction: row;
     height: auto;

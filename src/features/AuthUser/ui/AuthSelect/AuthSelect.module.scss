@@ -73,7 +73,7 @@
   }
 }
 
-@media screen and (width <= 768px) {
+@media (width <= 768px) {
   .inner {
     grid-template-columns: repeat(1, 242px);
   }

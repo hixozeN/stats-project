@@ -19,7 +19,7 @@
   display: flex;
 }
 
-@media screen and (width <= 768px) {
+@media (width <= 768px) {
   .SearchResults {
     display: none;
     position: static;
@@ -34,7 +34,7 @@
   }
 }
 
-@media screen and (width <= 425px) {
+@media (width <= 425px) {
   .SearchResults {
     width: 300px;
   }

@@ -37,7 +37,7 @@
   }
 }
 
-@media screen and (width < 1555px) {
+@media (width <= 1555px) {
   .dots {
     bottom: 10px;
   }

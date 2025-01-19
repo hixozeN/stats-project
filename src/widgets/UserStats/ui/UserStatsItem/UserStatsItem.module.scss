@@ -9,16 +9,16 @@
   align-items: center;
   position: relative;
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     max-width: 150px;
     height: 80px;
   }
 
-  @media screen and (width <= 600px) {
+  @media (width <= 600px) {
     max-width: 200px;
   }
 
-  @media screen and (width <= 450px) {
+  @media (width <= 450px) {
     max-width: 150px;
   }
 }
@@ -27,11 +27,11 @@
   max-width: 75px;
   margin-left: auto;
 
-  @media screen and (width <= 1280px) {
+  @media (width <= 1280px) {
     max-width: 55px;
   }
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     max-width: 35px;
   }
 }
@@ -43,7 +43,7 @@
   margin: 0 auto;
   padding-right: 10px;
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     padding: 0;
   }
 }
@@ -55,7 +55,7 @@
   font-size: 12px;
   font-weight: 500;
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     top: 0;
     right: 7px;
   }
@@ -73,11 +73,11 @@
   font-size: 22px;
   font-weight: 500;
 
-  @media screen and (width <= 1280px) {
+  @media (width <= 1280px) {
     font-size: 20px;
   }
 
-  @media screen and (width <= 1024px) {
+  @media (width <= 1024px) {
     font-size: 16px;
   }
 }
@@ -92,11 +92,11 @@
   font-size: 14px;
   white-space: nowrap;
 
-  @media screen and (width <= 1024px) {
+  @media (width <= 1024px) {
     font-size: 12px;
   }
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     margin-top: -6px;
   }
 }

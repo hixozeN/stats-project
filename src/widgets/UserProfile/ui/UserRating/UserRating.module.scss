@@ -27,7 +27,7 @@
   font-weight: 500;
 }
 
-@media screen and (width <= 768px) {
+@media (width <= 768px) {
   .rating {
     width: 55px;
     height: 55px;
@@ -51,7 +51,7 @@
   }
 }
 
-@media screen and (width <= 450px) {
+@media (width <= 450px) {
   .rating {
     margin-top: -90px;
     margin-right: -5px;

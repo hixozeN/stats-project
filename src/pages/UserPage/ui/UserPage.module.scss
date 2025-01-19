@@ -7,11 +7,11 @@
 
   // padding: 0 130px;
 
-  @media screen and (width <= 1700px) {
+  @media (width <= 1700px) {
     padding: 0 30px;
   }
 
-  @media screen and (width <= 1024px) {
+  @media (width <= 1024px) {
     border-radius: 0;
     padding: 0 10px;
   }
@@ -43,7 +43,7 @@
   font-size: 20px;
   text-align: center;
 
-  @media screen and (width <= 400px) {
+  @media (width <= 400px) {
     font-size: 18px;
   }
 }

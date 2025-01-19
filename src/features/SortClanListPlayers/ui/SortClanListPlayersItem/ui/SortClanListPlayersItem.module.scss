@@ -13,7 +13,7 @@
     }
   }
 
-  @media screen and (width <= 1080px) {
+  @media (width <= 1080px) {
     outline: none;
     border-radius: 0;
     background-color: transparent;
@@ -27,15 +27,15 @@
     }
   }
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     font-size: 12px;
   }
-  
-  @media screen and (width <= 700px) {
+
+  @media (width <= 700px) {
     justify-content: center;
   }
 
-  @media screen and (width <= 440px) {
+  @media (width <= 440px) {
     font-size: 12px;
   }
 
