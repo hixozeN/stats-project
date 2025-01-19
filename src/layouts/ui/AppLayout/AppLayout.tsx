@@ -91,8 +91,6 @@ function AppLayout() {
     return <Loader />;
   }
 
-  const { isMaintenance } = data;
-
   return (
     <Suspense fallback={<Loader />}>
       <Toaster />
@@ -129,11 +127,11 @@ function AppLayout() {
                     { [cls.collapsed]: false },
                   )}
                 >
-                  {isMaintenance ? <Maintenance /> : <Outlet />}
+                  {data?.isMaintenance ? <Maintenance /> : <Outlet />}
                 </div>
               </Suspense>
             </main>
-            {!isMaintenance && <Footer />}
+            {!data?.isMaintenance && <Footer />}
           </ConfigProvider>
         </ErrorBoundary>
       </div>
