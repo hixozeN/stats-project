@@ -28,6 +28,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'i18next', 'react-hooks'],
   rules: {
+    'linebreak-style': ['error', (process.platform === 'win32' ? 'windows' : 'unix')],
     'react/jsx-indent': [2, 2],
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': [
