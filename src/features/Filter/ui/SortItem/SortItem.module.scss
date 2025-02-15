@@ -14,7 +14,7 @@
     }
   }
 
-  @media screen and (width <= 1280px) {
+  @media (width <= 1280px) {
     outline: none;
     border-radius: 0;
     background-color: transparent;
@@ -30,11 +30,11 @@
     }
   }
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     font-size: 12px;
   }
 
-  @media screen and (width <= 440px) {
+  @media (width <= 440px) {
     font-size: 12px;
   }
 
@@ -52,7 +52,7 @@
         fill: var(--accent-color);
       }
 
-      @media screen and (width <= 1280px) {
+      @media (width <= 1280px) {
         outline: none;
       }
     }

@@ -11,7 +11,7 @@
   text-align: center;
 }
 
-@media screen and (width <= 530px) {
+@media (width <= 530px) {
   .text {
     font: var(--font-m);
   }

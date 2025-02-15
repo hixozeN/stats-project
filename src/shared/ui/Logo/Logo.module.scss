@@ -8,15 +8,18 @@
   height: 110px;
   color: var(--accent-color);
   transition: .4s;
+
+  > svg:first-child {
+    margin-bottom: 8px;
+  }
 }
 
 .header {
   width: 70px;
   height: 70px;
-  gap: 6px;
   margin-left: 5px;
 
-  @media screen and (width <= 1024px) {
+  @media (width <= 1024px) {
     margin-left: 0;
   }
 
@@ -61,7 +64,7 @@
     height: 17px;
   }
 
-  @media screen and (width <= 850px) {
+  @media (width <= 850px) {
     display: none;
   }
 }

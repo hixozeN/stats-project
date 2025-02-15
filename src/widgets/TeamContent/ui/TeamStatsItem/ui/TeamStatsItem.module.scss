@@ -8,11 +8,11 @@
   outline: 1px solid var(--bg-stat-item);
   border-radius: 5px;
 
-  @media screen and (width <= 1179px) {
+  @media (width <= 1179px) {
     width: 140px;
   }
 
-  @media screen and (width <= 330px) {
+  @media (width <= 330px) {
     width: 149px;
   }
 }

@@ -137,7 +137,7 @@
         color: var(--inverted-primary-color);
       }
     }
-    
+
     &:focus {
       &.userSidebar,
       &.adminSidebar {
@@ -160,7 +160,7 @@
   }
 }
 
-@media screen and (width <= 1024px) {
+@media (width <= 1024px) {
   .userSidebar.collapsed,
   .adminSidebar.collapsed {
     &.item {
@@ -218,7 +218,7 @@
   }
 }
 
-@media screen and (width <= 810px) {
+@media (width <= 810px) {
   .profileSidebar {
     .line {
       display: none;
@@ -241,7 +241,7 @@
   }
 }
 
-@media screen and (width <= 410px) {
+@media (width <= 410px) {
   .profileSidebar .linkActive {
     .linkName {
       display: none;

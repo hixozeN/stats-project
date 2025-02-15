@@ -27,20 +27,20 @@
   }
 }
 
-@media screen and (width <= 1430px) {
+@media (width <= 1430px) {
   .wrapper {
     max-height: none;
   }
 }
 
-@media screen and (width <= 1024px) {
+@media (width <= 1024px) {
   .profile {
     padding: 20px;
     gap: 10px;
   }
 }
 
-@media screen and (width <= 810px) {
+@media (width <= 810px) {
   .profile {
     flex-direction: column;
   }
@@ -50,7 +50,7 @@
   }
 }
 
-@media screen and (width <= 410px) {
+@media (width <= 410px) {
   .profile {
     padding: 10px 5px;
   }

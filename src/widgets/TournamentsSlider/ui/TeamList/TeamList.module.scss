@@ -55,7 +55,7 @@
   margin-bottom: 14px;
 }
 
-@media screen and (width <= 1555px) {
+@media (width <= 1555px) {
   .joinBtn {
     position: absolute;
     top: 25px;
@@ -68,7 +68,7 @@
 }
 
 
-@media screen and (width <= 400px) {
+@media (width <= 400px) {
   .joinBtn {
     right: 10px;
   }

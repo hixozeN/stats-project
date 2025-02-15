@@ -14,13 +14,13 @@
   word-wrap: break-word;
 }
 
-@media screen and (width <=768px) {
+@media (width <=768px) {
   .slogan {
     width: 460px;
   }
 }
 
-@media screen and (width <=480px) {
+@media (width <=480px) {
   .slogan {
     width: 310px;
   }

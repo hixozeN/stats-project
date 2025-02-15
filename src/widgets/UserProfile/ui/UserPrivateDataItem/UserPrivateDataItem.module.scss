@@ -25,7 +25,7 @@
   background-size: 20px 20px;
 }
 
-@media screen and (width <= 768px) {
+@media (width <= 768px) {
   .privateElement {
     padding: 30px 0 9.5px;
     font-size: 14px;

@@ -16,7 +16,7 @@
   align-items: center;
   margin-left: 5px;
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     max-width: 550px;
     width: 100%;
     margin: 0 auto;
@@ -60,7 +60,7 @@
   padding: 25px 0;
   z-index: 2;
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     padding: 0;
     grid-area: nickname;
     text-align: center;
@@ -78,14 +78,14 @@
   content: attr(data-position);
   translate: 0 75%;
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     position: absolute;
     top: 10px;
     left: 10px;
     translate: 0;
   }
 
-  @media screen and (width <= 450px) {
+  @media (width <= 450px) {
     display: none;
   }
 }
@@ -116,7 +116,7 @@
     color: var(--secondary-color);
   }
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     padding: 0 5px;
   }
 }
@@ -126,14 +126,14 @@
   flex-direction: column;
   align-items: center;
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(2, 60px);
     gap: 5px;
   }
 
-  @media screen and (width <= 450px) {
+  @media (width <= 450px) {
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -143,7 +143,7 @@
   font-weight: 500;
   color: var(--inverted-primary-color);
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     font-size: 14px;
   }
 }
@@ -151,7 +151,7 @@
 .columnValue {
   font-size: var(--font-size-m);
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     font-size: 14px;
   }
 }
@@ -176,7 +176,7 @@
   }
 }
 
-@media screen and (width <= 450px) {
+@media (width <= 450px) {
   .tableRow:nth-child(1) {
     outline: 1px solid var(--accent-color);
   }

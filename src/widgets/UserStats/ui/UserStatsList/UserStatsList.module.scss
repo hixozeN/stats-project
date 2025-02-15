@@ -18,21 +18,21 @@
   gap: 45px;
   border-radius: 15px;
 
-  @media screen and (width <= 1435px) {
+  @media (width <= 1435px) {
     gap: 20px;
   }
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     gap: 10px;
     grid-template-columns: repeat(4, minmax(min(1%), max(150px)));
     grid-auto-rows: 80px;
   }
 
-  @media screen and (width <= 600px) {
+  @media (width <= 600px) {
     grid-template-columns: repeat(2, minmax(min(1%), max(200px)));
   }
 
-  @media screen and (width <= 450px) {
+  @media (width <= 450px) {
     gap: 10px 5px;
     grid-template-columns: repeat(2, minmax(min(1%), max(150px)));
   }

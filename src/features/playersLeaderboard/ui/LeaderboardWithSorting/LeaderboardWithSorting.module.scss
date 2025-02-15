@@ -9,7 +9,7 @@
   gap: 15px;
   flex-wrap: wrap;
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     justify-content: center;
   }
 }

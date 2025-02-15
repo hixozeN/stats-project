@@ -61,20 +61,20 @@
   cursor: help;
 }
 
-@media screen and (width <= 1179px ) {
+@media (width <= 1179px ) {
   .link {
     gap: 5px;
     padding: 15px 10px;
   }
 }
 
-@media screen and (width <= 1024px) {
+@media (width <= 1024px) {
   .item:nth-child(odd) {
     background-color: #111116;
   }
 }
 
-@media screen and (width <= 930px ) {
+@media (width <= 930px ) {
   .link {
     width: 660px;
     padding: 10px 5px;
@@ -108,7 +108,7 @@
   }
 }
 
-@media screen and (width < 700px ) {
+@media (width <= 700px ) {
   .link {
     width: 310px;
   }

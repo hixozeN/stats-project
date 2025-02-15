@@ -7,11 +7,11 @@
   align-self: center;
   margin-left: 100px;
 
-  @media screen and (width <= 1400px) {
+  @media (width <= 1400px) {
     margin-left: 100px;
   }
 
-  @media screen and (width <= 1024px) {
+  @media (width <= 1024px) {
     width: 100%;
     border-radius: 0;
     margin: 0;
@@ -19,7 +19,7 @@
 }
 
 .collapsed {
-  @media screen and (width <= 1024px) {
+  @media (width <= 1024px) {
     max-width: 100%;
     margin-left: 0;
   }
@@ -94,13 +94,13 @@
   display: flex;
   gap: 5px;
 
-  @media screen and (width <= 1024px) {
+  @media (width <= 1024px) {
     flex-direction: column;
     gap: 0;
   }
 }
 
-@media screen and (width <= 768px) {
+@media (width <= 768px) {
   .Footer {
     padding: 20px 10px;
   }

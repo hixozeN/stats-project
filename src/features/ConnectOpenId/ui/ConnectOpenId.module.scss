@@ -6,7 +6,7 @@
   align-items: center;
   gap: 40px;
 
-  @media screen and (width <= 568px) {
+  @media (width <= 568px) {
     gap: 20px;
   }
 }
