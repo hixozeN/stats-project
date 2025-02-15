@@ -103,7 +103,7 @@
   }
 }
 
-@media screen and (width <= 768px) {
+@media (width <= 768px) {
   .UserStatsProfile {
     padding: 15px 10px 0;
     grid-template-columns: 1fr 140px 1fr;

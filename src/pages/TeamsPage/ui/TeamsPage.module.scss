@@ -7,16 +7,16 @@
   display: flex;
   flex-direction: column;
 
-  @media screen and (width <= 1700px) {
+  @media (width <= 1700px) {
     padding: 28px 80px;
   }
 
-  @media screen and (width <= 1024px) {
+  @media (width <= 1024px) {
     border-radius: 0;
     padding: 28px 30px;
   }
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     border-radius: 0;
     padding: 28px 10px;
   }
@@ -31,7 +31,7 @@
   justify-content: center;
   align-items: center;
 
-  @media screen and (width <= 1024px) {
+  @media (width <= 1024px) {
     max-width: 100%;
   }
 }
@@ -45,12 +45,12 @@
   font: var(--font-xl);
   text-align: center;
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     font: var(--font-l);
     padding: 50px 20px;
   }
 
-  @media screen and (width <= 450px) {
+  @media (width <= 450px) {
     font: var(--font-m);
     font-weight: 500;
     padding: 50px 10px;
@@ -70,7 +70,7 @@
   gap: 25px;
 }
 
-@media screen and (width <= 1280px) {
+@media (width <= 1280px) {
   .tournaments {
     padding: 30px 10px;
   }

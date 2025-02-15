@@ -10,7 +10,7 @@
   grid-area: privateData;
 }
 
-@media screen and (width <= 768px) {
+@media (width <= 768px) {
   .privateData {
     justify-content: center;
     width: 100%;

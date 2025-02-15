@@ -17,11 +17,11 @@
     transform: rotate(180deg);
   }
 
-  @media screen and (width <= 1280px) {
+  @media (width <= 1280px) {
     display: none;
   }
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     width: 20px;
     height: 82px;
     min-width: 12px;
@@ -37,7 +37,7 @@
       left: -5%;
       z-index: var(--overlay-index);
 
-      @media screen and (width <= 768px) {
+      @media (width <= 768px) {
         position: absolute;
         top: 30%;
         left: 10px;
@@ -49,7 +49,7 @@
       top: 40%;
       right: -5%;
 
-      @media screen and (width <= 768px) {
+      @media (width <= 768px) {
         position: absolute;
         top: 30%;
         right: 10px;

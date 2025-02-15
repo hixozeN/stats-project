@@ -105,9 +105,10 @@
   }
 }
 
-@media (width<= 1000px) {
+@media (width <= 1024px) {
   .title {
-    font-size: var(--font-size-xl);
+    margin: 40px 0;
+    font-size: var(--font-size-l);
   }
 
   .subtitle {
@@ -131,12 +132,15 @@
     width: 320px;
     flex-direction: row;
     justify-content: flex-start;
-    gap: 5px;
+    gap: 10px;
     font-size: var(--font-size-m);
   }
 
   .item::before {
+    width: 35px;
+    height: 35px;
     margin: 0;
+    font-size: var(--font-size-m);
   }
 }
 
@@ -152,10 +156,5 @@
 
   .item {
     max-width: 300px;
-  }
-
-  .item::before {
-    width: 35px;
-    height: 35px;
   }
 }

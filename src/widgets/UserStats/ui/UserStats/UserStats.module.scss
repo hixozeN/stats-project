@@ -2,7 +2,7 @@
   padding: 20px 0 40px;
   border-radius: 15px;
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     padding: 20px 0;
   }
 }
@@ -15,11 +15,11 @@
   justify-content: center;
   gap: 45px;
 
-  @media screen and (width <= 1435px) {
+  @media (width <= 1435px) {
     gap: 20px;
   }
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     gap: 10px;
     grid-template-columns: repeat(2, minmax(min(1%), max(250px)));
   }
@@ -29,7 +29,7 @@
   margin: 42px auto 0;
 }
 
-@media screen and (width <= 768px) {
+@media (width <= 768px) {
   .userStatsSection {
     margin-top: 0;
   }

@@ -6,12 +6,12 @@
   padding-left: calc(var(--modal-padding-desktop) - 15px);
   margin-right: 5px;
 
-  @media screen and (width <= 768px) {
+  @media (width <= 768px) {
     padding-right: calc(var(--modal-padding-tablet) - 10px);
     padding-left: calc(var(--modal-padding-tablet) - 10px);
   }
 
-  @media screen and (width <= 425px) {
+  @media (width <= 425px) {
     padding-right: 10px;
     padding-left: 10px;
   }
@@ -39,7 +39,7 @@
   width: 100%;
   padding-bottom: 20px;
 
-  @media screen and (width <= 425px) {
+  @media (width <= 425px) {
     gap: 10px;
   }
 }
@@ -54,7 +54,7 @@
   align-self: flex-start;
   text-shadow: 0 2px 2px rgb(255 255 255 / 40%);
 
-  @media screen and (width <= 600px) {
+  @media (width <= 600px) {
     font-size: 16px;
     line-height: 24px;
   }
@@ -70,7 +70,7 @@
   background-color: var(--accent-color);
   border-radius: 5px;
 
-  @media screen and (width <= 600px) {
+  @media (width <= 600px) {
     margin-top: 0;
     height: 2px;
   }
@@ -82,11 +82,11 @@
   grid-template-columns: repeat(4, minmax(1%, 1fr));
   gap: 10px;
 
-  @media screen and (width <= 1280px) {
+  @media (width <= 1280px) {
     grid-template-columns: repeat(3, minmax(1%, 1fr));
   }
 
-  @media screen and (width <= 450px) {
+  @media (width <= 450px) {
     gap: 5px;
   }
 }
@@ -102,12 +102,12 @@
     filter: brightness(80%);
   }
 
-  @media screen and (width <= 600px) {
+  @media (width <= 600px) {
     width: 75px;
     height: 75px;
   }
 
-  @media screen and (width <= 425px) {
+  @media (width <= 425px) {
     width: 60px;
     height: 60px;
   }
@@ -156,7 +156,7 @@
   min-height: 35px;
   cursor: pointer;
 
-  @media screen and (width <= 600px) {
+  @media (width <= 600px) {
     max-width: 75px;
     font-size: 12px;
     min-height: 25px;
