@@ -1,12 +1,15 @@
 import { memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 // import InfoIcon from 'shared/assets/icons/info.svg';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
   getUserBio, getUserClanData, getUserDataLoadingStatus, getUserNickname,
-} from 'entities/Lesta/index';
+} from 'entities/Lesta';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { FavoritesButton } from 'shared/ui/FavoritesButton/FavoritesButton';
+import { getUserData } from 'entities/User';
+import { useSizeScreen } from 'shared/hooks/useSizeScreen';
 import cls from './UserPrimaryData.module.scss';
 
 interface UserPrimaryDataProps {
@@ -20,6 +23,13 @@ export const UserPrimaryData = memo((props: UserPrimaryDataProps) => {
   const userBio = useSelector(getUserBio);
   const clanData = useSelector(getUserClanData);
   const isUserDataLoading = useSelector(getUserDataLoadingStatus);
+
+  const { id } = useParams();
+  const currentUser = useSelector(getUserData);
+  const isProfileOwner = currentUser?.lestaData?.account_id === Number(id);
+
+  const { device } = useSizeScreen();
+  const isMobile = device === 'mobile';
 
   if (isUserDataLoading) {
     return (
@@ -36,6 +46,8 @@ export const UserPrimaryData = memo((props: UserPrimaryDataProps) => {
       <h3 className={cls.username}>
         {userNickname}
         {/* <InfoIcon className={cls.info}/> */}
+        {!isProfileOwner && !isMobile
+          && <FavoritesButton theme="profile" id={Number(id)} type="player" />}
       </h3>
       {
         clanData && (
@@ -44,6 +56,8 @@ export const UserPrimaryData = memo((props: UserPrimaryDataProps) => {
           </Link>
         )
       }
+      {!isProfileOwner && isMobile
+        && <FavoritesButton theme="profile" id={Number(id)} type="player" />}
       <p className={cls.userBio}>
         {userBio}
       </p>

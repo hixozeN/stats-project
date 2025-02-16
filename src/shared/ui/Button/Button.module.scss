@@ -71,6 +71,7 @@
   height: 22px;
   background-repeat: no-repeat;
   background-size: 22px 22px;
+  pointer-events: none;
 }
 
 .icon-right {
@@ -239,6 +240,7 @@
   .icon:hover,
   .profile-icon:hover {
     box-shadow: 0 0 15px 1px var(--button-team-hover);
+    z-index: var(--footer-index);
   }
 
   .clear:hover,

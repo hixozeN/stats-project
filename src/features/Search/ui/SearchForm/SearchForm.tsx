@@ -1,61 +1,63 @@
 import React, {
-  memo, useCallback, useContext, useEffect, useState,
+  memo, MouseEvent, useCallback, useContext, useEffect, useState,
 } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
-import { useClickOutside } from 'shared/hooks/useClickOutside';
 import useDebounce from 'shared/hooks/useDebounce';
 import { searchActions } from '../../model/slice/searchSlice';
 import { getSearchState } from '../../model/selectors/getSearchState/getSearchState';
 import { searchUsersAndClans } from '../../model/services/searchUsersAndClans/searchUsersAndClans';
-import { DeviceContext } from '../Search/Search';
-import { DesktopContext } from '../SearchDesktop/SearchDesktop';
+import { DeviceContext, SearchModalsContext } from '../Search/Search';
 import { SearchInput } from '../SearchInput/SearchInput';
 import cls from './SearchForm.module.scss';
 
 interface IAuthFormProps {
   className?: string;
-  resultsRef?: React.MutableRefObject<HTMLInputElement>;
+  inputRef?: React.MutableRefObject<HTMLInputElement>;
 }
 
 export const SearchForm = memo((props: IAuthFormProps) => {
   const {
     className,
-    resultsRef,
+    inputRef,
   } = props;
   const { t } = useTranslation('search');
   const dispatch = useDispatch();
   const { search } = useSelector(getSearchState);
-  const inputRef = React.useRef<HTMLInputElement>(null);
   const [searchValue, setSearchValue] = useState<string>('');
   const debouncedSearch = useDebounce(searchValue, 500);
   const { isMobile } = useContext(DeviceContext);
-  const { isOpen, setIsOpen } = useContext(DesktopContext);
-
-  useClickOutside(resultsRef, (evt) => {
-    if (isOpen && evt.target !== inputRef.current) setTimeout(() => setIsOpen(false), 50);
-  }, isMobile);
+  const {
+    setIsPopoverOpen, setSearchType,
+  } = useContext(SearchModalsContext);
 
   const onFocus = (evt: React.ChangeEvent<HTMLInputElement>) => {
     if (evt.target.value.length >= 1 && !isMobile) {
-      setIsOpen(true);
+      setIsPopoverOpen(true);
+    }
+  };
+
+  const onInputClick = () => {
+    setSearchType('all');
+    if (searchValue?.length >= 1 && !isMobile) {
+      setIsPopoverOpen(true);
     }
   };
 
   const onClickClear = () => {
     setSearchValue('');
     dispatch(searchActions.setSearch(''));
-    inputRef.current.focus();
+    inputRef?.current.focus();
     if (!isMobile) {
-      setIsOpen(false);
+      setIsPopoverOpen(false);
     }
   };
 
   const handleSubmit = useCallback(async (value: string) => {
     if (!isMobile) {
-      inputRef.current.focus();
+      inputRef?.current.focus();
     }
     if (debouncedSearch.length >= 2) {
       dispatch(searchUsersAndClans({ string: value, limit: 100 }));
@@ -73,11 +75,16 @@ export const SearchForm = memo((props: IAuthFormProps) => {
     dispatch(searchActions.setSearch(value));
 
     if (!isMobile) {
-      setIsOpen(value !== '');
+      setIsPopoverOpen(value !== '');
     }
 
     setSearchValue(value);
-  }, [dispatch, setIsOpen, isMobile]);
+  }, [dispatch, setIsPopoverOpen, isMobile]);
+
+  const onClickSearch = useCallback((evt: MouseEvent<HTMLButtonElement>) => {
+    evt.preventDefault();
+    handleSubmit(search);
+  }, [handleSubmit, search]);
 
   return (
     <div className={classNames(cls.container, { [cls.opened]: isMobile })}>
@@ -94,15 +101,18 @@ export const SearchForm = memo((props: IAuthFormProps) => {
           onChange={onChangeSearch}
           value={search}
           onFocus={onFocus}
+          onClick={onInputClick}
         />
+        {!isMobile && (
         <Button
           aria-label={t('Поиск')}
           type="submit"
           theme="icon"
           variant="magnifier"
-          className={cls.buttonSubmit}
-          onClick={(evt) => { evt.preventDefault(); handleSubmit(search); }}
+          className={classNames(cls.button)}
+          onClick={onClickSearch}
         />
+        )}
       </form>
       {search && !isMobile
         && (

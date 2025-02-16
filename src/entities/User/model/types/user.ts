@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { LestaUserStatistics } from 'shared/api';
+import { FavoriteClan, FavoritePlayer } from 'entities/Favorites';
 
 export enum UserRoles {
   ADMIN = 'Admin',
@@ -45,6 +46,8 @@ export interface User {
   awards?: UserAwards[];
   isActivated?: boolean;
   accessToken?: string;
+  subscribes?: FavoritePlayer[];
+  clanSubscribes?: FavoriteClan[];
 }
 
 export interface UserOpenID {
@@ -62,6 +65,8 @@ export interface UserOpenID {
   isActivated: boolean;
   lestaData: LestaUserData;
   password: string;
+  subscribes: FavoritePlayer[];
+  clanSubscribes: FavoriteClan[];
 }
 
 type AvatarAccessType = 'public' | 'roleOnly' | 'userOnly';

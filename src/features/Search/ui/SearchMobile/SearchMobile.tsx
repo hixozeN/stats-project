@@ -1,10 +1,9 @@
-import React, {
-  createContext, useMemo, useState,
-} from 'react';
+import React, { useContext } from 'react';
 import { Modal } from 'shared/ui/Modal/Modal';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
+import { SearchModalsContext } from '../Search/Search';
 import { SearchForm } from '../SearchForm/SearchForm';
 import { SearchResults } from '../SearchResults/SearchResults';
 import cls from './SearchMobile.module.scss';
@@ -13,18 +12,6 @@ interface ISearchMobile {
   className?: string,
 }
 
-type MobileContextType = {
-  isOpenPopup: boolean,
-  setIsOpenPopup: React.Dispatch<React.SetStateAction<boolean>>
-};
-
-const initialMobileContextValue: MobileContextType = {
-  isOpenPopup: false,
-  setIsOpenPopup: () => {},
-};
-
-export const MobileContext = createContext<MobileContextType>(initialMobileContextValue);
-
 export const SearchMobile = (props: ISearchMobile) => {
   const {
     className,
@@ -32,13 +19,10 @@ export const SearchMobile = (props: ISearchMobile) => {
 
   const { t } = useTranslation('search');
 
-  const [isOpenPopup, setIsOpenPopup] = useState(false);
-
-  const mobileContextValue = useMemo(() => ({
-    isOpenPopup, setIsOpenPopup,
-  }), [isOpenPopup, setIsOpenPopup]);
+  const { isOpenPopup, setIsOpenPopup, setSearchType } = useContext(SearchModalsContext);
 
   const handleClick = () => {
+    setSearchType('all');
     setIsOpenPopup(true);
   };
 
@@ -58,10 +42,8 @@ export const SearchMobile = (props: ISearchMobile) => {
       />
       <Modal isOpen={isOpenPopup} onClose={handleClose}>
         <div className={classNames(cls.container, {}, [className])}>
-          <MobileContext.Provider value={mobileContextValue}>
-            <SearchForm />
-            <SearchResults />
-          </MobileContext.Provider>
+          <SearchForm />
+          <SearchResults />
         </div>
       </Modal>
     </>

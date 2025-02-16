@@ -26,6 +26,7 @@ import { LeaderboardSchema, RatingSchema } from 'features/playersLeaderboard';
 import { SortListPlayersSchema } from 'features/SortClanListPlayers';
 import { rtkApi } from 'shared/api/rtkApi';
 import { SessionWidgetSchema } from 'features/createSessionWidget';
+import { Favorites } from 'entities/Favorites';
 
 export interface StateSchema {
   user: UserSchema;
@@ -42,6 +43,7 @@ export interface StateSchema {
   userTanks: LestaTanksSchema;
   stars: LeaderboardSchema;
   sessionWidget: SessionWidgetSchema;
+  favorites: Favorites;
   [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>
   // async reducers
   authForm?: AuthSchema;

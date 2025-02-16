@@ -3,6 +3,7 @@ import { ThunkConfig } from 'app/providers/StoreProvider';
 import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { SERVER_ERROR_MESSAGE } from 'shared/consts/global';
 import { AxiosResponse } from 'axios';
+import { favoriteActions } from 'entities/Favorites';
 import { User } from '../../types/user';
 
 interface RefreshTokenData {
@@ -15,7 +16,7 @@ export const checkUserAuth = createAsyncThunk<User, void, ThunkConfig<string>>(
   'CHECK_USER_AUTH',
   async (ThunkProps, thunkAPI) => {
     // деструктурируем нужные данные из thunkAPI
-    const { rejectWithValue, extra } = thunkAPI;
+    const { rejectWithValue, extra, dispatch } = thunkAPI;
     const user = !!localStorage.getItem(LOCAL_STORAGE_USER_KEY);
 
     if (!user) return rejectWithValue('');
@@ -36,6 +37,9 @@ export const checkUserAuth = createAsyncThunk<User, void, ThunkConfig<string>>(
         currentUserData.data.lestaData.access_token = newToken.data.access_token;
         currentUserData.data.lestaData.expires_at = newToken.data.expires_at;
       }
+
+      dispatch(favoriteActions.setFavoritesPlayers(currentUserData.data.subscribes ?? []));
+      dispatch(favoriteActions.setFavoritesClans(currentUserData.data.clanSubscribes ?? []));
 
       // возвращаем полученные данные
       return currentUserData.data;

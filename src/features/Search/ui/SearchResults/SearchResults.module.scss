@@ -1,7 +1,7 @@
 .SearchResults {
   position: absolute;
   top: 45px;
-  right: -93px;
+  right: -80px;
   width: 350px;
   padding: 10px;
   display: none;
@@ -31,6 +31,10 @@
   .visible {
     display: flex;
     padding-top: 40px;
+  }
+
+  .favoriteList {
+    padding-top: 5px;
   }
 }
 
