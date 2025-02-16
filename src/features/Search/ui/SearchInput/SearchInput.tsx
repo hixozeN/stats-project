@@ -4,8 +4,8 @@ import React, {
   InputHTMLAttributes, LegacyRef, useContext,
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { MobileContext } from '../SearchMobile/SearchMobile';
 import cls from './SearchInput.module.scss';
+import { DeviceContext, SearchModalsContext } from '../Search/Search';
 
 type HTMLInputProps = Omit<
   InputHTMLAttributes<HTMLInputElement>,
@@ -28,7 +28,10 @@ export const SearchInput = forwardRef(
       ...otherProps
     } = props;
 
-    const { isOpenPopup } = useContext(MobileContext);
+    const { isOpenPopup, searchType } = useContext(SearchModalsContext);
+    const { isMobile } = useContext(DeviceContext);
+
+    if (searchType === 'favorites' && isMobile) return null;
 
     return (
       <div className={cls.searchWrapper}>

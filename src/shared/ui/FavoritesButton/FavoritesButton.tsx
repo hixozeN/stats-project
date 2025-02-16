@@ -1,64 +1,85 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
-import { useSelector } from 'react-redux';
-import {
-  getFavoritesPlayersState,
-} from 'entities/Favorites/model/selectors';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
-import { favoritesPlayersActions } from 'entities/Favorites/model/slice/favoritesPlayersSlice';
-import { Tooltip } from 'shared/ui/Tooltip/Tooltip';
 import { useTranslation } from 'react-i18next';
-import { useEffect } from 'react';
 import { useSizeScreen } from 'shared/hooks/useSizeScreen';
-import { IFavoritesData } from 'entities/Favorites/model/types';
-import { fetchFavoritesData } from 'entities/Favorites/model/services/fetchFavoritesData/fetchFavoritesData';
+import {
+  FavoriteClan,
+  getFavoriteClansState, getFavoritePlayersState, isFavoritesToggleLoading,
+  addClanToFavorites, removeClanFromFavorites,
+  addPlayerToFavorites, removePlayerFromFavorites,
+} from 'entities/Favorites';
+import { useSelector } from 'react-redux';
 import cls from './FavoritesButton.module.scss';
 
 export type FavoritesButtonTheme = 'leaderboard' | 'table' | 'profile' | 'search';
 
-// export type TagButton = 'players' | 'clans';
+type ActionType = 'player' | 'clan';
 
-interface IFavoritesButtonProps {
-  className?: string;
-  id: number,
-  tag: string;
+interface BaseFavoriteButtonProps {
   theme: FavoritesButtonTheme;
+  type: ActionType;
+  className?: string;
 }
+
+// interface IFavoritesButtonProps {
+//   theme: FavoritesButtonTheme;
+//   type: ActionType;
+//   className?: string;
+//   id: number,
+//   clan: any;
+// }
+
+type IFavoritesButtonProps = BaseFavoriteButtonProps & (
+  | { type: 'player'; id: number; clan?: FavoriteClan; }
+  | { type: 'clan'; id?: number; clan: FavoriteClan; }
+  );
 
 export const FavoritesButton = (props: IFavoritesButtonProps) => {
   const {
     className,
     id,
-    tag,
     theme,
+    type,
+    clan,
   } = props;
   const dispatch = useAppDispatch();
 
-  // const clans = useSelector(getFavoritesClansState);
-  const players = useSelector(getFavoritesPlayersState);
+  const players = useSelector(getFavoritePlayersState);
+  const clans = useSelector(getFavoriteClansState);
+  const isToggling = useSelector(isFavoritesToggleLoading);
   const { t } = useTranslation('main');
 
   const { device } = useSizeScreen();
   const isMobile = device === 'mobile';
 
-  useEffect(() => {
-    if ('favoritesPlayers' in localStorage) {
-      dispatch(favoritesPlayersActions.setFavoritesPlayers(JSON.parse(localStorage.getItem('favoritesPlayers'))));
-    }
-  }, [dispatch]);
+  const isFavorite = type === 'player'
+    ? players?.some((p) => p.lestaData.account_id === id)
+    : clans?.some((c) => c.clan_id === clan.clan_id);
 
-  const getData = {
-    players,
-    clans: players,
-  };
-  console.log(players);
-  const isFavorite = getData && getData.players.some((item: IFavoritesData) => item.account_id === id);
-  const onClick = () => {
-    if (isFavorite) {
-      dispatch(favoritesPlayersActions.deleteFavoritesPlayer({ account_id: id }));
+  const handleControlPlayer = () => {
+    if (!isFavorite) {
+      dispatch(addPlayerToFavorites({ account_id: id, type: theme }));
     } else {
-      dispatch(favoritesPlayersActions.addFavoritesPlayer({ account_id: id }));
-      dispatch(fetchFavoritesData({ account_id: id }));
+      dispatch(removePlayerFromFavorites({ account_id: id }));
+    }
+  };
+
+  const handleControlClan = () => {
+    if (!isFavorite) {
+      dispatch(addClanToFavorites({ clanData: clan }));
+    } else {
+      dispatch(removeClanFromFavorites({ clan_id: clan.clan_id }));
+    }
+  };
+
+  const onClick = () => {
+    if (isToggling) return;
+
+    if (type === 'player') {
+      handleControlPlayer();
+    } else {
+      handleControlClan();
     }
   };
 
@@ -91,16 +112,6 @@ export const FavoritesButton = (props: IFavoritesButtonProps) => {
       theme={buttonTheme}
       variant="star"
       onClick={onClick}
-    >
-      {theme !== 'search'
-        && (
-          <Tooltip
-            className={cls.favoritesTooltip}
-            text={isFavorite ? t('Убрать из избранного') : t('Добавить в избранное')}
-            theme="favorites"
-            isVisible
-          />
-        )}
-    </Button>
+    />
   );
 };

@@ -11,7 +11,7 @@
 
 .formWrapper {
   display: flex;
-  gap: 35px;
+  gap: 10px;
   align-items: center;
 }
 
@@ -23,7 +23,6 @@
   }
 
   .formWrapper {
-    gap: 10px;
     position: relative;
   }
 }

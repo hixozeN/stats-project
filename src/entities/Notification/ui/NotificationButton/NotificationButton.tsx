@@ -35,6 +35,7 @@ export const NotificationButton = memo(() => {
         theme="icon"
         variant="notification"
         onClick={() => setIsOpen(!isOpen)}
+        className={cls.notificationBtn}
       />
       <NotificationList
         isOpen={isOpen}

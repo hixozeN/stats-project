@@ -15,7 +15,7 @@ import { filterReducer, sortReducer } from 'features/Filter';
 import { SortListPlayersReducer } from 'features/SortClanListPlayers';
 import { rtkApi } from 'shared/api/rtkApi';
 import { SessionWidgetReducer } from 'features/createSessionWidget';
-import { favoritesPlayersReducer } from 'entities/Favorites';
+import { favoriteReducer } from 'entities/Favorites';
 import { StateSchema } from './StateSchema';
 import { createReducerManager } from './reducerManager';
 
@@ -43,7 +43,7 @@ export function createReduxStore(
     sort: sortReducer,
     sortListPlayers: SortListPlayersReducer,
     sessionWidget: SessionWidgetReducer,
-    favoritesPlayers: favoritesPlayersReducer,
+    favorites: favoriteReducer,
     // rtkApi reducer
     [rtkApi.reducerPath]: rtkApi.reducer,
     // async reducers

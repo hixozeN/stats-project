@@ -1,4 +1,6 @@
-import { ButtonHTMLAttributes, memo, ReactNode } from 'react';
+import {
+  ButtonHTMLAttributes, ForwardedRef, forwardRef, LegacyRef, ReactNode,
+} from 'react';
 import { classNames, TMods } from 'shared/lib/classNames/classNames';
 import { BUTTON_ICONS } from 'shared/ui/Button/Button.icons';
 import cls from './Button.module.scss';
@@ -61,39 +63,60 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isUppercase?: boolean;
   children?: ReactNode;
   isActive?: boolean;
+  ref?: LegacyRef<HTMLButtonElement>;
   // isActiveArrow?: boolean;
 }
 
-export const Button = memo((props: ButtonProps) => {
-  const {
-    className,
-    isLoading,
-    children,
-    theme = 'default',
-    variant,
-    size,
-    fontSize,
-    square,
-    isUppercase,
-    isActive,
-    // isActiveArrow,
-    ...otherProps
-  } = props;
+export const Button = forwardRef(
+  (props: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) => {
+    const {
+      className,
+      isLoading,
+      children,
+      theme = 'default',
+      variant,
+      size,
+      fontSize,
+      square,
+      isUppercase,
+      isActive,
+      // isActiveArrow,
+      ...otherProps
+    } = props;
 
-  const isIcon = Boolean(variant);
+    const isIcon = Boolean(variant);
 
-  const mods: TMods = {
-    [cls.square]: square,
-    [cls.uppercase]: isUppercase,
-    [cls.active]: isActive,
-    // [cls.activeArrow]: isActiveArrow,
-  };
+    const mods: TMods = {
+      [cls.square]: square,
+      [cls.uppercase]: isUppercase,
+      [cls.active]: isActive,
+      // [cls.activeArrow]: isActiveArrow,
+    };
 
-  if (isLoading) {
+    if (isLoading) {
+      return (
+        <button
+          type="button"
+          data-testid="btnWithLoader"
+          ref={ref}
+          className={classNames(cls.Button, mods, [
+            className,
+            cls[theme],
+            cls[size],
+            cls[fontSize],
+          ])}
+          {...otherProps}
+        >
+          <span data-testid="spanWithLoader" className={cls.loader} />
+        </button>
+      );
+    }
+
     return (
       <button
         type="button"
-        data-testid="btnWithLoader"
+        data-testid="btnUiKit"
+        ref={ref}
         className={classNames(cls.Button, mods, [
           className,
           cls[theme],
@@ -102,29 +125,13 @@ export const Button = memo((props: ButtonProps) => {
         ])}
         {...otherProps}
       >
-        <span data-testid="spanWithLoader" className={cls.loader} />
+        {isIcon && (
+          <span data-testid="btnIcon" className={classNames(cls.iconSpan)}>
+            {BUTTON_ICONS[variant]}
+          </span>
+        )}
+        {children}
       </button>
     );
-  }
-
-  return (
-    <button
-      type="button"
-      data-testid="btnUiKit"
-      className={classNames(cls.Button, mods, [
-        className,
-        cls[theme],
-        cls[size],
-        cls[fontSize],
-      ])}
-      {...otherProps}
-    >
-      {isIcon && (
-        <span data-testid="btnIcon" className={classNames(cls.iconSpan)}>
-          {BUTTON_ICONS[variant]}
-        </span>
-      )}
-      {children}
-    </button>
-  );
-});
+  },
+);

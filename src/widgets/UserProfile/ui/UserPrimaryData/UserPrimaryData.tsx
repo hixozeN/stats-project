@@ -8,10 +8,9 @@ import {
 } from 'entities/Lesta';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { FavoritesButton } from 'shared/ui/FavoritesButton/FavoritesButton';
-import { useTranslation } from 'react-i18next';
 import { getUserData } from 'entities/User';
-import cls from './UserPrimaryData.module.scss';
 import { useSizeScreen } from 'shared/hooks/useSizeScreen';
+import cls from './UserPrimaryData.module.scss';
 
 interface UserPrimaryDataProps {
   className?: string;
@@ -22,22 +21,15 @@ export const UserPrimaryData = memo((props: UserPrimaryDataProps) => {
 
   const userNickname = useSelector(getUserNickname);
   const userBio = useSelector(getUserBio);
-  const clanData = useSelector(getUserClanData) || {
-    name: 'string',
-    tag: 'string',
-    clan_id: 2345135,
-    role: 'string',
-  };
+  const clanData = useSelector(getUserClanData);
   const isUserDataLoading = useSelector(getUserDataLoadingStatus);
 
   const { id } = useParams();
   const currentUser = useSelector(getUserData);
   const isProfileOwner = currentUser?.lestaData?.account_id === Number(id);
 
-  const {device} = useSizeScreen();
+  const { device } = useSizeScreen();
   const isMobile = device === 'mobile';
-
-  const { t } = useTranslation('main');
 
   if (isUserDataLoading) {
     return (
@@ -55,7 +47,7 @@ export const UserPrimaryData = memo((props: UserPrimaryDataProps) => {
         {userNickname}
         {/* <InfoIcon className={cls.info}/> */}
         {!isProfileOwner && !isMobile
-          && <FavoritesButton theme="profile" id={Number(id)} tag={t('players')} />}
+          && <FavoritesButton theme="profile" id={Number(id)} type="player" />}
       </h3>
       {
         clanData && (
@@ -65,7 +57,7 @@ export const UserPrimaryData = memo((props: UserPrimaryDataProps) => {
         )
       }
       {!isProfileOwner && isMobile
-        && <FavoritesButton theme="profile" id={Number(id)} tag={t('players')} />}
+        && <FavoritesButton theme="profile" id={Number(id)} type="player" />}
       <p className={cls.userBio}>
         {userBio}
       </p>

@@ -31,6 +31,7 @@ export { fetchUserDataByLestaId } from './model/services/fetchUserDataByLestaId/
 export { fetchLestaClanData } from './model/services/fetchLestaClanData/fetchLestaClanData';
 export { fetchLestaUserClan } from './model/services/fetchLestaUserClan/fetchLestaUserClan';
 export { ParamData } from './model/types/default';
+export type { GetUserDataResponse } from './model/services/fetchUserDataByLestaId/fetchUserDataByLestaId';
 
 // Selectors
 export { getLestaUserTanks } from './model/selectors/getLestaUserTanks/getLestaUserTanks';

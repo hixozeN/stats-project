@@ -6,7 +6,6 @@ interface TabsProps {
   tab: number;
   tabList: string[];
   isUppercase?: boolean;
-  // eslint-disable-next-line no-unused-vars
   handleChangeTab: (i: number) => void;
 }
 

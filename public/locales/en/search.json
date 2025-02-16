@@ -4,5 +4,6 @@
   "Для поиска игроков введите не менее 3-х символов.": "To search for players, enter at least 3 characters.",
   "Не найдены.": "Not found.",
   "Игроки": "Players",
-  "Кланы": "Clans"
+  "Кланы": "Clans",
+  "EMPTY_FAVORITE_LIST": "Your favorite list is empty...\nAdd someone!"
 }

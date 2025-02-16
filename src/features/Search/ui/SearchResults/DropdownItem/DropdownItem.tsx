@@ -4,18 +4,18 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { searchActions } from 'features/Search';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { FavoritesButton } from 'shared/ui/FavoritesButton/FavoritesButton';
-import { DeviceContext } from '../../Search/Search';
-import { MobileContext } from '../../SearchMobile/SearchMobile';
-import { DesktopContext } from '../../SearchDesktop/SearchDesktop';
+import { FavoriteClan } from 'entities/Favorites';
+import { DeviceContext, SearchModalsContext } from '../../Search/Search';
 import cls from './DropdownItem.module.scss';
 
 interface IDropdownItem {
-  className?: string,
-  link: string,
-  icon: React.ReactElement,
-  name: string,
-  tag: string,
-  id: number,
+  className?: string;
+  link: string;
+  icon: React.ReactElement;
+  name: string;
+  tag: string;
+  id: number;
+  type: 'player' | 'clan';
 }
 export const DropdownItem = memo((props: IDropdownItem) => {
   const {
@@ -25,19 +25,25 @@ export const DropdownItem = memo((props: IDropdownItem) => {
     name,
     tag,
     id,
+    type,
   } = props;
 
   const { isMobile } = useContext(DeviceContext);
-  const { setIsOpenPopup } = useContext(MobileContext);
-  const { setIsOpen } = useContext(DesktopContext);
+  const { setIsPopoverOpen, setIsOpenPopup } = useContext(SearchModalsContext);
   const dispatch = useAppDispatch();
+
+  const clanData: FavoriteClan = {
+    clan_id: id,
+    tag,
+    name,
+  };
 
   const handleClose = () => {
     dispatch(searchActions.setSearch(''));
     if (isMobile) {
       setIsOpenPopup(false);
     } else {
-      setIsOpen(false);
+      setIsPopoverOpen(false);
     }
   };
 
@@ -45,7 +51,7 @@ export const DropdownItem = memo((props: IDropdownItem) => {
     <li
       className={classNames(cls.item, {}, [className])}
     >
-      <FavoritesButton theme="search" id={id} tag={tag} />
+      <FavoritesButton theme="search" id={id} type={type} clan={clanData} />
       <Link className={cls.link} to={link} onClick={handleClose}>
         {icon}
         {tag && <span>{`[${tag}]`}</span>}
