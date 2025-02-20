@@ -1,8 +1,8 @@
 import { memo, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { Tooltip } from 'shared/ui/Tooltip/Tooltip';
 import { LestaTankData, ParamData } from 'entities/Lesta';
+import { BTooltip } from 'shared/ui/BTooltip/BTooltip';
 import { formatter } from '../../lib/converterTank';
 import cls from './TankStat.module.scss';
 
@@ -84,7 +84,6 @@ export const TankStat = memo(
           [cls.greatWN8]: isGreatWN8,
           [cls.unicumWN8]: isUnicum,
           [cls.superUnicumWN8]: isSuperUnicum,
-          [cls.visible]: isVisible,
         };
       }
       return {};
@@ -125,8 +124,16 @@ export const TankStat = memo(
       <div className={cls.wrapper}>
         <dt className={cls.term}>{`${t(`${data}`)}:`}</dt>
         <dd className={classNames('', classNameRate)}>
-          {statParams[`${data}`]}
-          <Tooltip text={textTollTip} isVisible={isVisible} />
+          {isVisible ? (
+            <BTooltip
+              title={textTollTip}
+              underlineStyle="dashed"
+            >
+              {statParams[`${data}`]}
+            </BTooltip>
+          ) : (
+            statParams[`${data}`]
+          )}
         </dd>
       </div>
     );
