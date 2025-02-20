@@ -90,7 +90,7 @@ export const TankStat = memo(
     }, [
       data, isAboveAverageWN8, isAverageWN8, isBadWN8,
       isBelowAverageWN8, isGood, isGreat, isGreatWN8, isGoodWN8, isNice,
-      isSuperUnicum, isUnicum, isVeryBadWN8, isVeryGoodWN8, isVisible,
+      isSuperUnicum, isUnicum, isVeryBadWN8, isVeryGoodWN8,
     ]);
 
     const textTollTip = useMemo(() => {
