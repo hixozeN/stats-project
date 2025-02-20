@@ -1,0 +1,87 @@
+.wrapper {
+  text-underline-offset: 4px;
+
+  > span {
+    cursor: help;
+  }
+}
+
+.none {
+  text-decoration-line: none;
+}
+
+.underline {
+  text-decoration-line: underline;
+}
+
+.overline {
+  text-decoration-line: overline;
+}
+
+.lineThrough  {
+  text-decoration-line: line-through;
+}
+
+.primary {
+  text-decoration-color: var(--primary-color);
+}
+
+.accent {
+  text-decoration-color: var(--accent-color);
+}
+
+.green {
+  text-decoration-color: var(--green-color);
+}
+
+.red {
+  text-decoration-color: var(--red-color);
+}
+
+.solid {
+  text-decoration-style: solid;
+}
+
+.double {
+  text-decoration-style: double;
+}
+
+.dotted {
+  text-decoration-style: dotted;
+}
+
+.dashed {
+  text-decoration-style: dashed;
+}
+
+.wavy  {
+  text-decoration-style: wavy;
+}
+
+.primaryColor {
+  color: var(--primary-color);
+}
+
+.accentColor {
+  color: var(--accent-color);
+}
+
+.greenColor {
+  color: var(--green-color);
+}
+
+.redColor {
+  color: var(--red-color);
+}
+
+div > .tooltip {
+  max-width: 150px;
+
+  :global {
+    .ant-tooltip-content > .ant-tooltip-inner {
+      font-family: "Play", "Roboto", arial, sans-serif;
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+}
