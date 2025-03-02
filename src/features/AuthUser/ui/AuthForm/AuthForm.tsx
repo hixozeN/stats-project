@@ -16,6 +16,7 @@ import { ReducerList, useDynamicReducerLoader } from 'shared/hooks/useDynamicRed
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { VALIDATION_MESSAGES } from 'shared/consts/validationMessages';
 import { Button } from 'shared/ui/Button/Button';
+import { syncFavorites } from 'entities/Favorites/model/services/syncFavorites/syncFavorites';
 import { getAuthError, getAuthLoading } from '../../model/selectors';
 import { authUserService } from '../../model/services/authUserService/authUserService';
 import { authReducer } from '../../model/slice/authSlice';
@@ -122,14 +123,20 @@ export const AuthForm = memo((props: IAuthFormProps) => {
         email,
         password,
         variant: 'login',
-      }));
+      }))
+        .unwrap()
+        .then(() => dispatch(syncFavorites()))
+        .catch(console.error);
     } else {
       await dispatch(authUserService({
         email,
         username: nickname,
         password,
         variant: 'registration',
-      }));
+      }))
+        .unwrap()
+        .then(() => dispatch(syncFavorites()))
+        .catch(console.error);
     }
   }, [type, dispatch]);
 

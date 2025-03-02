@@ -66,7 +66,7 @@ export const Dropdown = memo((props: IDropdown) => {
 
   const favoriteDataPlayers = useMemo(() => favoritePlayers.map((p) => ({
     id: p.lestaData.account_id,
-    name: p.username,
+    name: p.lestaData.nickname,
     link: `/user/${p.lestaData.account_id}`,
     tag: p?.tag || null,
     icon: <PlayerIcon className={cls.icons} />,
@@ -133,34 +133,42 @@ export const Dropdown = memo((props: IDropdown) => {
     );
   }
 
+  if (searchType === 'all') {
+    return (
+      <div className={classNames(cls.Dropdown, {}, [className])}>
+        <ul className={cls.list}>
+          {data[tab].map((item) => (
+            <DropdownItem
+              type={tab === 0 ? 'player' : 'clan'}
+              key={item?.id}
+              link={item?.link}
+              icon={item?.icon}
+              name={item?.name}
+              tag={item?.tag}
+              id={item?.id}
+            />
+          ))}
+        </ul>
+      </div>
+    );
+  }
+
   return (
     <div className={classNames(cls.Dropdown, {}, [className])}>
       <ul className={cls.list}>
         {
-            searchType === 'all'
-              ? data[tab].map((item) => (
-                <DropdownItem
-                  type={tab === 0 ? 'player' : 'clan'}
-                  key={item?.id}
-                  link={item?.link}
-                  icon={item?.icon}
-                  name={item?.name}
-                  tag={item?.tag}
-                  id={item?.id}
-                />
-              ))
-              : favoriteData[tab]?.map((item) => (
-                <DropdownItem
-                  type={tab === 0 ? 'player' : 'clan'}
-                  key={item?.id}
-                  link={item?.link}
-                  icon={item?.icon}
-                  name={item?.name}
-                  tag={item?.tag}
-                  id={item?.id}
-                />
-              ))
-          }
+          favoriteData[tab]?.map((item) => (
+            <DropdownItem
+              type={tab === 0 ? 'player' : 'clan'}
+              key={item?.id}
+              link={item?.link}
+              icon={item?.icon}
+              name={item?.name}
+              tag={item?.tag}
+              id={item?.id}
+            />
+          ))
+        }
       </ul>
     </div>
   );

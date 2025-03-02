@@ -19,5 +19,12 @@
   "DAMAGE": "Damage",
   "DAMAGE_SHORT": "AvgDmg",
   "WINRATE": "Winrate",
-  "ITEM_ARIA_LABEL": "Player stats at leaderboard"
+  "ITEM_ARIA_LABEL": "Player stats at leaderboard",
+  "errors": {
+    "favorites": {
+      "addPlayer": "Error adding player to favorites.",
+      "playersLimitReached": "The 50 player limit has been reached.",
+      "clansLimitReached": "The 50 clan limit has been reached."
+    }
+  }
 }

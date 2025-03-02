@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { authByLestaOpenID } from 'features/AuthUser/index';
 import { patchCurrentUser, patchCurrentUserAvatar } from 'features/editCurrentUserPorfile/index';
+import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { logoutUser } from '../services/logoutUser/logoutUser';
 import { checkUserAuth } from '../services/checkUserAuth/checkUserAuth';
 import { LestaUserData, User, UserSchema } from '../types/user';
@@ -21,7 +22,7 @@ export const userSlice = createSlice({
       state.isLoggedIn = action.payload;
     },
     logout: (state) => {
-      localStorage.clear();
+      localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
       state.authData = null;
       state.isLoggedIn = false;
     },
@@ -50,7 +51,7 @@ export const userSlice = createSlice({
         state.isLoading = false;
         state.isLoggedIn = false;
         state.isTokenRefreshing = false;
-        localStorage.clear();
+        localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
       })
       .addCase(checkUserAuth.fulfilled, (state, { payload }) => {
         state.isLoading = false;
@@ -62,10 +63,15 @@ export const userSlice = createSlice({
         state.isLoggedIn = true;
         state.authData = payload;
       })
+      .addCase(authByLestaOpenID.rejected, (state, _) => {
+        state.isLoggedIn = false;
+        state.authData = null;
+        localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
+      })
       .addCase(logoutUser.fulfilled, (state) => {
         state.isLoggedIn = false;
         state.authData = null;
-        localStorage.clear();
+        localStorage.removeItem(LOCAL_STORAGE_USER_KEY);
       })
       .addCase(patchCurrentUser.fulfilled, (state, { payload }) => {
         state.authData = { ...state.authData, ...payload };

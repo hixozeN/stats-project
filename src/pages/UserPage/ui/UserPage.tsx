@@ -24,8 +24,8 @@ import { useTranslation } from 'react-i18next';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { SeoUpdater } from 'shared/lib/SeoUpdater/SeoUpdater';
 import {
-  getCurrentUserAccountId,
-  getLestaAccessToken,
+  // getCurrentUserAccountId,
+  // getLestaAccessToken,
   getTokenUpdateStatus,
 } from 'entities/User/index';
 import { useToasts } from 'shared/hooks/useToasts/useToasts';
@@ -46,14 +46,14 @@ const UserPage = ({ className }: IUserPageProps) => {
   const isNotFound = useSelector(getUserNotFoundStatus);
   const error = useSelector(getUserDataErrorStatus);
   const isTokenUpdating = useSelector(getTokenUpdateStatus);
-  const currentUserToken = useSelector(getLestaAccessToken);
-  const currentUserAccountId = useSelector(getCurrentUserAccountId);
+  // const currentUserToken = useSelector(getLestaAccessToken);
+  // const currentUserAccountId = useSelector(getCurrentUserAccountId);
   const lestaUserNickname = useSelector(getUserNickname);
   const isBanned = useSelector(getUserBanStatus);
   const banMessage = useSelector(getUserBanMessage);
-  const lestaAccessToken = currentUserAccountId === Number(id)
-    ? currentUserToken
-    : null;
+  // const lestaAccessToken = currentUserAccountId === Number(id)
+  //   ? currentUserToken
+  //   : null;
 
   const { toastWithError } = useToasts();
 
@@ -76,7 +76,7 @@ const UserPage = ({ className }: IUserPageProps) => {
   const fetchUserData = useCallback(() => {
     dispatch(fetchUserDataByLestaId({
       id: Number(id),
-      lestaAccessToken,
+      // lestaAccessToken,
     }))
       .unwrap()
       .then((res) => {
@@ -90,7 +90,7 @@ const UserPage = ({ className }: IUserPageProps) => {
         }
       })
       .catch(toastWithError);
-  }, [dispatch, id, lestaAccessToken, toastWithError]);
+  }, [dispatch, id, toastWithError]);
 
   useEffect(() => {
     if (!isTokenUpdating) {

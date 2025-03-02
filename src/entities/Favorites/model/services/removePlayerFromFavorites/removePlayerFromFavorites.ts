@@ -24,7 +24,7 @@ export const removePlayerFromFavorites = createAsyncThunk<FavoritesData['players
 
       if (isLoggedIn) {
         const favData = await extra.royalApi
-          .delete<DeletePlayerFromFavoritesResponse>(`/user/unsubscribe/${account_id}`)
+          .delete<DeletePlayerFromFavoritesResponse>(`/user/subscribe/player/${account_id}`)
           .then((res) => res.data?.items);
 
         return favData;

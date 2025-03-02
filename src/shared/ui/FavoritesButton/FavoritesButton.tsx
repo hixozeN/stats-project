@@ -22,14 +22,6 @@ interface BaseFavoriteButtonProps {
   className?: string;
 }
 
-// interface IFavoritesButtonProps {
-//   theme: FavoritesButtonTheme;
-//   type: ActionType;
-//   className?: string;
-//   id: number,
-//   clan: any;
-// }
-
 type IFavoritesButtonProps = BaseFavoriteButtonProps & (
   | { type: 'player'; id: number; clan?: FavoriteClan; }
   | { type: 'clan'; id?: number; clan: FavoriteClan; }
@@ -59,7 +51,7 @@ export const FavoritesButton = (props: IFavoritesButtonProps) => {
 
   const handleControlPlayer = () => {
     if (!isFavorite) {
-      dispatch(addPlayerToFavorites({ account_id: id, type: theme }));
+      dispatch(addPlayerToFavorites({ account_id: id, type: theme, t }));
     } else {
       dispatch(removePlayerFromFavorites({ account_id: id }));
     }
@@ -67,7 +59,7 @@ export const FavoritesButton = (props: IFavoritesButtonProps) => {
 
   const handleControlClan = () => {
     if (!isFavorite) {
-      dispatch(addClanToFavorites({ clanData: clan }));
+      dispatch(addClanToFavorites({ clanData: clan, t }));
     } else {
       dispatch(removeClanFromFavorites({ clan_id: clan.clan_id }));
     }
