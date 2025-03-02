@@ -45,15 +45,3 @@
 .results {
   font-size: 18px;
 }
-
-.tooltip {
-  min-height: 24px;
-}
-
-.visible {
-  position: relative;
-  margin-top: -4px;
-  min-height: 24px;
-  border-bottom: 1px dashed var(--primary-color);
-  cursor: help;
-}

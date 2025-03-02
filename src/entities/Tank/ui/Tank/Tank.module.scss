@@ -57,7 +57,7 @@
   grid-template-columns: repeat(2, 120px);
   gap: 20px;
 
-  div:last-child {
+  div:nth-child(5) {
     color: var(--input-font-color);
     grid-column: span 2;
     font-size: 14px;
@@ -150,7 +150,7 @@
     grid-template-columns: repeat(2, 110px);
     gap: 7px 10px;
 
-    div:last-child {
+    div:nth-child(5) {
       font-size: 12px;
     }
   }
@@ -198,7 +198,7 @@
     grid-template-columns: repeat(2, 120px);
     gap: 20px;
 
-    div:last-child {
+    div:nth-child(5) {
       font-size: 14px;
     }
   }
@@ -250,7 +250,7 @@
     grid-template-columns: repeat(2, 95px);
     gap: 5px 10px;
 
-    div:last-child {
+    div:nth-child(5) {
       color: var(--input-font-color);
       grid-column: span 2;
       font-size: 10px;
