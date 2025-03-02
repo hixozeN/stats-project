@@ -62,7 +62,7 @@ function AppLayout() {
         .then(() => dispatch(syncFavorites()))
         .catch(() => navigate(RoutePath.main));
     }
-  }, [dispatch, queryParams]);
+  }, [dispatch, queryParams, navigate]);
 
   useEffect(() => {
     if (currentUserError) {

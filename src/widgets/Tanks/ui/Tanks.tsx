@@ -96,7 +96,7 @@ export const Tanks = memo(({ tab }: TanksProps) => {
     if (inView && isShowMoreButton) {
       handleClickMore();
     }
-  }, [inView, isShowMoreButton]);
+  }, [inView, isShowMoreButton, handleClickMore]);
 
   const titleFilter = useCallback(
     () => (isActiveFilter
