@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ToolTip } from 'shared/ui/ToolTip/ToolTip';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { BTooltip } from 'shared/ui/BTooltip/BTooltip';
 import cls from './TeamStatsItem.module.scss';
 
 interface TeamStatsItemProps {
@@ -16,14 +16,27 @@ export const TeamStatsItem = (props: TeamStatsItemProps) => {
 
   const isVisible = title === t('WN8') && result === 0;
 
+  const handleTooltip = () => {
+    if (isVisible) {
+      return (
+        <BTooltip
+          title={t('TOOLTIP')}
+          underlineStyle="dashed"
+        >
+          {t('NONE')}
+        </BTooltip>
+      );
+    }
+    return result;
+  };
+
   return (
     <li className={cls.item}>
       <div className={cls.icon}>{icon}</div>
       <div className={cls.container}>
         <span className={cls.text}>{t(`${title}`)}</span>
-        <span className={classNames(cls.results, { [cls.visible]: isVisible }, [])}>
-          {title === t('WN8') && result === 0 ? t('NONE') : result}
-          <ToolTip text={t('TOOLTIP')} isVisible={isVisible} className={cls.tooltip} />
+        <span className={classNames(cls.results, {}, [])}>
+          {handleTooltip()}
         </span>
       </div>
     </li>

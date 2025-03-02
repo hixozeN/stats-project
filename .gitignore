@@ -1,6 +1,7 @@
 /build
 
 node_modules
+dist
 
 .vscode
 
@@ -10,3 +11,5 @@ node_modules
 /extractedTranslations/
 /storybook-static
 coverage
+
+tsconfig.tsbuildinfo

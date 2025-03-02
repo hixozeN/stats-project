@@ -3,6 +3,7 @@ import { User, userActions } from 'entities/User';
 import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { ThunkConfig } from 'app/providers/StoreProvider';
 import { SERVER_ERROR_MESSAGE } from 'shared/consts/global';
+import { favoriteActions } from 'entities/Favorites/index';
 import { openIdDTOConverter } from '../../dto/openIdDTOConverter';
 
 interface AuthUserProps {
@@ -42,6 +43,10 @@ export const authUserService = createAsyncThunk<User, AuthUserProps, ThunkConfig
 
       // записываем данные в локалсторейдж
       localStorage.setItem(LOCAL_STORAGE_USER_KEY, JSON.stringify(convertedUserData));
+
+      // записываем избранное
+      dispatch(favoriteActions.setFavoritesPlayers(response.data?.userData?.subscribes ?? []));
+      dispatch(favoriteActions.setFavoritesClans(response.data?.userData?.clanSubscribes ?? []));
 
       // возвращаем полученные данные
       return response.data.userData;

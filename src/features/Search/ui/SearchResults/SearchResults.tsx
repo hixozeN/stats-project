@@ -2,8 +2,7 @@ import React, { memo, useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Tabs } from 'shared/ui/Tabs/Tabs';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { DeviceContext } from '../Search/Search';
-import { DesktopContext } from '../SearchDesktop/SearchDesktop';
+import { DeviceContext, SearchModalsContext } from '../Search/Search';
 import { Dropdown } from './Dropdown/Dropdown';
 import cls from './SearchResults.module.scss';
 
@@ -18,7 +17,7 @@ export const SearchResults = memo(({
   const tabList = [t('Игроки'), t('Кланы')];
   const [tab, setTab] = useState(0);
   const { isMobile } = useContext(DeviceContext);
-  const { isOpen } = useContext(DesktopContext);
+  const { isPopoverOpen, searchType } = useContext(SearchModalsContext);
 
   return (
     <div
@@ -26,8 +25,9 @@ export const SearchResults = memo(({
         classNames(
           cls.SearchResults,
           {
-            [cls.opened]: isOpen,
+            [cls.opened]: isPopoverOpen,
             [cls.visible]: isMobile,
+            [cls.favoriteList]: searchType === 'favorites',
           },
           [className],
         )

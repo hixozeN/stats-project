@@ -1,0 +1,19 @@
+.favBtn {
+  color: var(--primary-color);
+  background-color: var(--input-bg-color);
+  transition: all 0.2s ease-in-out;
+
+  & svg {
+    pointer-events: none;
+  }
+
+  &.active {
+    color: var(--accent-color);
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
+}

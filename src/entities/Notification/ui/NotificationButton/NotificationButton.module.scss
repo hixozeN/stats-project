@@ -1,5 +1,15 @@
 .notificationWrapper {
   position: relative;
+
+  .notificationBtn {
+    @media (hover: hover) {
+      &:hover {
+        & svg path {
+          fill: var(--accent-color);
+        }
+      }
+    }
+  }
 }
 
 .notification {
@@ -10,7 +20,7 @@
   height: 25px;
   background-color: var(--accent-color);
   border-radius: 50%;
-  z-index: 1;
+  z-index: var(--overlayed-content-index);
 }
 
 .notification::before {
@@ -20,6 +30,6 @@
   content: attr(data-badge);
   width: 25px;
   height: 25px;
-  z-index: 99;
+  z-index: var(--overlayed-content-index);
   color: #000;
 }

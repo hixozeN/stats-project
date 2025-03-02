@@ -2,7 +2,7 @@ import { toast as originalToast } from 'react-hot-toast';
 import { useCallback } from 'react';
 
 const toastOptions = {
-  duration: 5000,
+  duration: 3000,
   style: {
     background: '#1d1d21',
     color: '#f8f8f8',

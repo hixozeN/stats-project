@@ -11,6 +11,7 @@
       {
         "ignorePseudoClasses": ["global"]
       }
-    ]
+    ],
+    "no-descending-specificity": null
   }
 }

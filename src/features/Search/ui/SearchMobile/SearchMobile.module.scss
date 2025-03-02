@@ -1,10 +1,11 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
   padding-top: 15px;
 }
 
 .button {
   background-color: var(--input-bg-color);
+  color: var(--input-placeholder-color);
 }

@@ -1,3 +1,7 @@
+.item {
+  position: relative;
+}
+
 .link {
   display: grid;
   justify-content: space-between;
@@ -27,6 +31,10 @@
   color: var(--primary-color);
   transition: var(--transition-default);
   font-weight: 500;
+
+  &.profileOwner {
+    color: var(--accent-color);
+  }
 }
 
 .container {
@@ -80,6 +88,10 @@
     gap: 5px;
   }
 
+  .player {
+    padding: 0 40px;
+  }
+
   .player:nth-child(1) {
     justify-content: center;
     grid-column: 1 / 3;
@@ -107,6 +119,10 @@
 @media (width <= 700px ) {
   .link {
     width: 310px;
+  }
+
+  .player {
+    padding: 0 26px;
   }
 }
 

@@ -1,10 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { FavoritesButton } from 'shared/ui/FavoritesButton/FavoritesButton';
+import { useSelector } from 'react-redux';
+import { getUserData } from 'entities/User/index';
+import { classNames } from 'shared/lib/classNames/classNames';
 import { convertTimestamp } from '../../lib/convertTimestamp';
 import cls from './TeamMembersItem.module.scss';
 
-interface ITeamMembersItem {
+export interface ITeamMembersItem {
   idAccount: number,
   joinedAt: number,
   name: string,
@@ -30,6 +34,9 @@ export const TeamMembersItem = (props: ITeamMembersItem) => {
   } = props;
   const { t } = useTranslation('teamPage');
 
+  const currentUser = useSelector(getUserData);
+  const isProfileOwner = currentUser?.lestaData?.account_id === Number(idAccount);
+
   return (
     <li
       className={cls.item}
@@ -38,7 +45,7 @@ export const TeamMembersItem = (props: ITeamMembersItem) => {
         <div className={cls.player}>
           {role === 'commander' ? '👑' : ''}
           {role === 'executive_officer' ? '👮' : ''}
-          <span className={cls.playerName}>{name}</span>
+          <span className={classNames(cls.playerName, { [cls.profileOwner]: isProfileOwner })}>{name}</span>
         </div>
         <div className={cls.container}>
           <span className={cls.columnName}>{t('Боёв')}</span>
@@ -67,6 +74,7 @@ export const TeamMembersItem = (props: ITeamMembersItem) => {
           <span className={cls.value}>{convertTimestamp(joinedAt)}</span>
         </div>
       </Link>
+      {!isProfileOwner && <FavoritesButton theme="table" id={idAccount} type="player" />}
     </li>
   );
 };

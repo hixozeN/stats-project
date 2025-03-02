@@ -1,5 +1,5 @@
 import React, {
-  memo,
+  memo, useContext,
   useEffect,
   useMemo,
   useState,
@@ -11,6 +11,8 @@ import ClanIcon from 'shared/assets/icons/button/teams.svg';
 import useDebounce from 'shared/hooks/useDebounce';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
+import { getFavoriteClansState, getFavoritePlayersState } from 'entities/Favorites';
+import { SearchModalsContext } from '../../Search/Search';
 import { getSearchState } from '../../../model/selectors/getSearchState/getSearchState';
 import { getSearchClans } from '../../../model/selectors/getSearchClans/getSearchClans';
 import { getSearchPlayers } from '../../../model/selectors/getSearchPlayers/getSearchPlayers';
@@ -25,16 +27,22 @@ interface IDropdown {
 
 export const Dropdown = memo((props: IDropdown) => {
   const {
-    className, tab,
+    className,
+    tab,
   } = props;
   const { t } = useTranslation('search');
   const players = useSelector(getSearchPlayers);
   const clans = useSelector(getSearchClans);
+  const favoritePlayers = useSelector(getFavoritePlayersState);
+  const favoriteClans = useSelector(getFavoriteClansState);
   const isLoading = useSelector(getSearchIsLoading);
   const [loadingSearch, setLoadingSearch] = useState<boolean>(false);
   const { search } = useSelector(getSearchState);
   const [message, setMessage] = useState('');
+  const [favoriteMessage, setFavoriteMessage] = useState('');
   const debouncedSearch = useDebounce(search, 500);
+
+  const { searchType } = useContext(SearchModalsContext);
 
   const dataPlayers = useMemo(() => players.map((player) => (
     {
@@ -56,7 +64,28 @@ export const Dropdown = memo((props: IDropdown) => {
     }
   )), [clans]);
 
+  const favoriteDataPlayers = useMemo(() => favoritePlayers.map((p) => ({
+    id: p.lestaData.account_id,
+    name: p.lestaData.nickname,
+    link: `/user/${p.lestaData.account_id}`,
+    tag: p?.tag || null,
+    icon: <PlayerIcon className={cls.icons} />,
+  })), [favoritePlayers]);
+
+  const favoriteDataClans = useMemo(() => favoriteClans.map((clan) => (
+    {
+      id: clan.clan_id,
+      name: clan.name,
+      link: `/team/${clan.clan_id}`,
+      tag: clan.tag,
+      icon: <ClanIcon className={cls.icons} />,
+    }
+  )), [favoriteClans]);
+
   const data = useMemo(() => [dataPlayers, dataClans], [dataPlayers, dataClans]);
+  const favoriteData = useMemo(() => (
+    [favoriteDataPlayers, favoriteDataClans]
+  ), [favoriteDataPlayers, favoriteDataClans]);
 
   const assignTextAndDownload = (text: string, status: boolean) => {
     setMessage(text);
@@ -77,23 +106,70 @@ export const Dropdown = memo((props: IDropdown) => {
     }
   }, [dataClans, dataPlayers, search, tab, debouncedSearch, isLoading, loadingSearch, t]);
 
+  useEffect(() => {
+    setFavoriteMessage('');
+    if (!favoritePlayers?.length && tab === 0) {
+      setFavoriteMessage(`${t('EMPTY_FAVORITE_LIST')}`);
+    } else if (!favoriteClans?.length && tab === 1) {
+      setFavoriteMessage(`${t('EMPTY_FAVORITE_LIST')}`);
+    }
+  }, [favoritePlayers, favoriteClans, tab, t]);
+
   if (isLoading || loadingSearch) return <Loader className={cls.loader} />;
 
-  return (
-    <div className={classNames(cls.Dropdown, {}, [className])}>
-      {message ? <span className={cls.notFound}>{message}</span> : (
+  if (message && searchType === 'all') {
+    return (
+      <div className={classNames(cls.Dropdown, {}, [className])}>
+        <span className={cls.notFound}>{message}</span>
+      </div>
+    );
+  }
+
+  if (favoriteMessage && searchType === 'favorites') {
+    return (
+      <div className={classNames(cls.Dropdown, {}, [className])}>
+        <span className={cls.notFound}>{favoriteMessage}</span>
+      </div>
+    );
+  }
+
+  if (searchType === 'all') {
+    return (
+      <div className={classNames(cls.Dropdown, {}, [className])}>
         <ul className={cls.list}>
           {data[tab].map((item) => (
             <DropdownItem
+              type={tab === 0 ? 'player' : 'clan'}
               key={item?.id}
               link={item?.link}
               icon={item?.icon}
               name={item?.name}
               tag={item?.tag}
+              id={item?.id}
             />
           ))}
         </ul>
-      )}
+      </div>
+    );
+  }
+
+  return (
+    <div className={classNames(cls.Dropdown, {}, [className])}>
+      <ul className={cls.list}>
+        {
+          favoriteData[tab]?.map((item) => (
+            <DropdownItem
+              type={tab === 0 ? 'player' : 'clan'}
+              key={item?.id}
+              link={item?.link}
+              icon={item?.icon}
+              name={item?.name}
+              tag={item?.tag}
+              id={item?.id}
+            />
+          ))
+        }
+      </ul>
     </div>
   );
 });

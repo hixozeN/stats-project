@@ -15,6 +15,8 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  margin-right: auto;
+  position: relative;
 }
 
 .clan {
@@ -52,7 +54,7 @@
   margin-right: auto;
 }
 
-@media screen and (hover: hover) {
+@media (hover: hover) {
   .info:hover {
     cursor: pointer;
     opacity: 1;
@@ -67,6 +69,10 @@
   .primaryUserData {
     padding-top: 10px;
     align-items: center;
+  }
+
+  .username {
+    margin: 0;
   }
 
   .userBio {
