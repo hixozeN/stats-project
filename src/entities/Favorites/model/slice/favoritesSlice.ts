@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LOCAL_STORAGE_FAVORITES, LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { FavoritesData } from 'shared/api/model/types/user/favorites';
+import { syncFavorites } from '../services/syncFavorites/syncFavorites';
 import { Favorites, FavoritePlayer, FavoriteClan } from '../types';
 import { getFavorites } from '../services/getFavorites/getFavorites';
 import { addPlayerToFavorites } from '../services/addPlayerToFavorites/addPlayerToFavorites';
@@ -22,22 +23,30 @@ const initialState: Favorites = {
 const isAuthenticated = !!localStorage.getItem(LOCAL_STORAGE_USER_KEY);
 
 const updateLocalStoragePlayers = (players: FavoritePlayer[]) => {
-  if (LOCAL_STORAGE_FAVORITES in localStorage) {
-    const localStorageData: FavoritesData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_FAVORITES));
-    localStorageData.players = players;
-    localStorage.setItem(LOCAL_STORAGE_FAVORITES, JSON.stringify(localStorageData));
-  } else {
-    localStorage.setItem(LOCAL_STORAGE_FAVORITES, JSON.stringify({ players, clans: [] }));
+  try {
+    if (LOCAL_STORAGE_FAVORITES in localStorage) {
+      const localStorageData: FavoritesData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_FAVORITES));
+      localStorageData.players = players;
+      localStorage.setItem(LOCAL_STORAGE_FAVORITES, JSON.stringify(localStorageData));
+    } else {
+      localStorage.setItem(LOCAL_STORAGE_FAVORITES, JSON.stringify({ players, clans: [] }));
+    }
+  } catch (e) {
+    console.error(e);
   }
 };
 
 const updateLocalStorageClans = (clans: FavoriteClan[]) => {
-  if (LOCAL_STORAGE_FAVORITES in localStorage) {
-    const localStorageData: FavoritesData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_FAVORITES));
-    localStorageData.clans = clans;
-    localStorage.setItem(LOCAL_STORAGE_FAVORITES, JSON.stringify(localStorageData));
-  } else {
-    localStorage.setItem(LOCAL_STORAGE_FAVORITES, JSON.stringify({ players: [], clans }));
+  try {
+    if (LOCAL_STORAGE_FAVORITES in localStorage) {
+      const localStorageData: FavoritesData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_FAVORITES));
+      localStorageData.clans = clans;
+      localStorage.setItem(LOCAL_STORAGE_FAVORITES, JSON.stringify(localStorageData));
+    } else {
+      localStorage.setItem(LOCAL_STORAGE_FAVORITES, JSON.stringify({ players: [], clans }));
+    }
+  } catch (e) {
+    console.error(e);
   }
 };
 
@@ -48,7 +57,7 @@ export const favoritesSlice = createSlice({
     setFavoritesPlayers: (state, action: PayloadAction<FavoritePlayer[]>) => {
       state.players = action.payload;
 
-      if (!isAuthenticated) updateLocalStoragePlayers(state.players);
+      if (!isAuthenticated && !state.isLoading) updateLocalStoragePlayers(state.players);
     },
     addFavoritesPlayer: (state, action: PayloadAction<FavoritePlayer>) => {
       state.players = [...state.players, action.payload];
@@ -65,7 +74,7 @@ export const favoritesSlice = createSlice({
     setFavoritesClans: (state, action: PayloadAction<FavoriteClan[]>) => {
       state.clans = action.payload;
 
-      if (!isAuthenticated) updateLocalStorageClans(state.clans);
+      if (!isAuthenticated && !state.isLoading) updateLocalStorageClans(state.clans);
     },
     addFavoritesClan: (state, action: PayloadAction<FavoriteClan>) => {
       state.clans = [...state.clans, action.payload];
@@ -148,6 +157,26 @@ export const favoritesSlice = createSlice({
         state.clans = payload;
 
         state.isToggleLoading = false;
+      })
+      // massive synchronization
+      .addCase(syncFavorites.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(syncFavorites.rejected, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(syncFavorites.fulfilled, (state, { payload }) => {
+        if (payload?.subscribes) {
+          state.players = payload.subscribes;
+        }
+
+        if (payload?.clans) {
+          state.clans = payload.clans;
+        }
+
+        state.isLoading = false;
+
+        localStorage.removeItem(LOCAL_STORAGE_FAVORITES);
       });
   },
 });

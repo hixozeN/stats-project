@@ -25,7 +25,7 @@ export const removeClanFromFavorites = createAsyncThunk<FavoritesData['clans'], 
 
       if (isLoggedIn) {
         const favData = await extra.royalApi
-          .delete<DeleteClanFromFavoritesResponse>(`/user/clan/unsubscribe/${clan_id}`)
+          .delete<DeleteClanFromFavoritesResponse>(`/user/subscribe/clan/${clan_id}`)
           .then((res) => res.data?.items);
 
         return favData;

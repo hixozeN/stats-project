@@ -17,6 +17,7 @@ import {
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { BackToTopButton } from 'shared/ui/BackToTopButton/BackToTopButton';
+import { useInView } from 'react-intersection-observer';
 import { DEVICE_SETTING } from '../config/deviceData';
 import { getWordTanks } from '../lib/getWordTanks';
 import { getRestTanks } from '../lib/getRestTanks';
@@ -27,6 +28,10 @@ interface TanksProps {
 }
 
 export const Tanks = memo(({ tab }: TanksProps) => {
+  const { ref, inView } = useInView({
+    threshold: 0,
+  });
+
   const isUserDataLoading = useSelector(getUserDataLoadingStatus);
   const tanks = useSelector(getLestaUserTanks);
   const sessionTanks = useSelector(getUserSessionTanks);
@@ -87,6 +92,12 @@ export const Tanks = memo(({ tab }: TanksProps) => {
     }
   }, [filterList, maxShowMovies]);
 
+  useEffect(() => {
+    if (inView && isShowMoreButton) {
+      handleClickMore();
+    }
+  }, [inView, isShowMoreButton, handleClickMore]);
+
   const titleFilter = useCallback(
     () => (isActiveFilter
       ? `${t('PLAYER_HAS')} ${filterList.length} ${t(
@@ -122,14 +133,16 @@ export const Tanks = memo(({ tab }: TanksProps) => {
           ))}
       </ul>
       {isShowMoreButton && (
-        <Button
-          className={cls.buttonMore}
-          size="size_xl"
-          onClick={handleClickMore}
-        >
-          {`${t('Ещё')} ${getRestTanks(filterList, maxShowMovies)} 
+        <div ref={ref}>
+          <Button
+            className={cls.buttonMore}
+            size="size_xl"
+            onClick={handleClickMore}
+          >
+            {`${t('Ещё')} ${getRestTanks(filterList, maxShowMovies)} 
           ${t(`${getWordTanks(getRestTanks(filterList, maxShowMovies))}`)}`}
-        </Button>
+          </Button>
+        </div>
       )}
       <BackToTopButton />
     </section>

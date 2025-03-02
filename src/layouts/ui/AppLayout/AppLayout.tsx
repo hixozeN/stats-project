@@ -25,10 +25,13 @@ import { Footer } from 'widgets/Footer/index';
 import { ConfigProvider, theme as antdTheme } from 'antd';
 import { Maintenance, useGetMaintenanceDataQuery } from 'widgets/Maintenance';
 import { ErrorBoundary } from 'app/providers/ErrorBoundary/index';
+import { syncFavorites } from 'entities/Favorites/model/services/syncFavorites/syncFavorites';
+import { useTranslation } from 'react-i18next';
 import cls from './AppLayout.module.scss';
 
 function AppLayout() {
   const { theme } = useTheme();
+  useTranslation('main');
   const isAuthInitiated = useSelector(getUserAuthInitiation);
   const isAuthLoading = useSelector(getFullUserState).isLoading;
   const currentUserError = useSelector(getCurrentUserError);
@@ -54,9 +57,12 @@ function AppLayout() {
         expires_at: +queryParams.get(LOCAL_STORAGE_LESTA.EXPIRES_AT),
       };
 
-      await dispatch(authByLestaOpenID(lestaData));
+      await dispatch(authByLestaOpenID(lestaData))
+        .unwrap()
+        .then(() => dispatch(syncFavorites()))
+        .catch(() => navigate(RoutePath.main));
     }
-  }, [dispatch, queryParams]);
+  }, [dispatch, queryParams, navigate]);
 
   useEffect(() => {
     if (currentUserError) {
@@ -77,6 +83,7 @@ function AppLayout() {
       dispatch(checkUserAuth())
         .unwrap()
         .then((res) => {
+          dispatch(syncFavorites());
           if (isMainPage && res?.lestaData?.account_id) navigate(`${RoutePath.user_id}/${res.lestaData.account_id}`);
         })
         .catch(console.error);

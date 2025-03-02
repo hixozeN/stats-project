@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ThunkConfig } from 'app/providers/StoreProvider/index';
-import { SERVER_ERROR_MESSAGE } from 'shared/consts/global';
+import { LESTA_UNAVAILABLE, SERVER_ERROR_MESSAGE } from 'shared/consts/global';
 import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { User, UserOpenID } from 'entities/User';
 import { favoriteActions } from 'entities/Favorites';
@@ -43,6 +43,8 @@ export const authByLestaOpenID = createAsyncThunk<User, ThunkProps, ThunkConfig<
       // возвращаем полученные данные
       return currentUserData.data.userData;
     } catch (e) {
+      extra.toastWithError(e?.response?.data?.message ?? LESTA_UNAVAILABLE);
+      extra.navigate('/');
       // возвращаем ошибку с бэка
       return rejectWithValue(e?.response?.data?.message || SERVER_ERROR_MESSAGE);
     }

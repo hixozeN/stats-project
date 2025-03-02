@@ -1,11 +1,11 @@
 interface LestaData {
   account_id: number;
+  nickname: string;
 }
 
 export interface FavoritePlayer {
   lestaData: LestaData;
   _id: string;
-  username: string;
   tag?: string;
   clan_id?: number;
 }
