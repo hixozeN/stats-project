@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import {
   createLestaUserSession, fetchLestaUserSessionById, getUserRatingDelta,
   getUserRatingStats,
-  getUserSessionDelta,
+  getUserSessionDelta, getUserSessionsDates,
   getUserSessionStats,
   getUserStats,
 } from 'entities/Lesta';
@@ -17,6 +17,7 @@ import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { useToasts } from 'shared/hooks/useToasts/useToasts';
 import { getStatsList } from '../../lib/getStatsList';
 import { UserStatsList } from '../UserStatsList/UserStatsList';
+import { UserStatsSessionDates } from '../UserStatsSessionDates/UserStatsSessionDates';
 import cls from './UserStats.module.scss';
 
 interface IUserStatsProps {
@@ -39,6 +40,7 @@ export const UserStats = memo(({
   const userSessionStats = useSelector(getUserSessionStats);
   const userSessionDelta = useSelector(getUserSessionDelta);
   const userRatingDelta = useSelector(getUserRatingDelta);
+  const userSessionDates = useSelector(getUserSessionsDates);
 
   const generalStatItems = useMemo(
     () => getStatsList(userStatistic, userSessionDelta),
@@ -70,6 +72,7 @@ export const UserStats = memo(({
       {
         tab === 2 && <UserStatsList data={ratingStatItems2} />
       }
+      <UserStatsSessionDates userSessionDates={userSessionDates} />
       {
         currentUser?.lestaData?.account_id === id
         && (
