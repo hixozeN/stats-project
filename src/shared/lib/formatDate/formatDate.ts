@@ -1,4 +1,4 @@
-export function formatDate(dateString: Date, withoutMinutes?: boolean): string {
+export function formatDate(dateString: Date | string, withoutMinutes?: boolean): string {
   if (!dateString) return null;
   const date = new Date(dateString);
 

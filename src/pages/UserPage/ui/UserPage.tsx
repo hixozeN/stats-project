@@ -18,6 +18,7 @@ import {
   getUserBanMessage,
   getUserDataErrorStatus,
   fetchLestaUserClan,
+  userSessionActions,
 } from 'entities/Lesta';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -99,6 +100,7 @@ const UserPage = ({ className }: IUserPageProps) => {
 
     return () => {
       dispatch(userDataActions.resetUserData());
+      dispatch(userSessionActions.resetState());
     };
   }, [fetchUserData, isTokenUpdating, dispatch]);
 

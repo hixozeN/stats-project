@@ -100,9 +100,17 @@ export type TUserData = {
   clan: Clan;
 };
 
+export type TUserSessionMeta = {
+  session?: {
+    dateTo?: string;
+    dateFrom?: string;
+  }
+}
+
 export type TUserSession = {
   delta: ParamData;
   statistics: ParamData;
   rating?: ParamData;
   tanks: TUserTanks[];
+  meta?: TUserSessionMeta;
 }

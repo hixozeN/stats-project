@@ -1,10 +1,6 @@
 .userStatsSection {
-  padding: 20px 0 40px;
+  padding: 20px 0;
   border-radius: 15px;
-
-  @media (width <= 768px) {
-    padding: 20px 0;
-  }
 }
 
 .statList {
@@ -26,7 +22,7 @@
 }
 
 .btnUpdateSession {
-  margin: 42px auto 0;
+  margin: 20px auto 0;
 }
 
 @media (width <= 768px) {

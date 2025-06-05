@@ -1,0 +1,10 @@
+.SessionDates {
+  font-size: 14px;
+  margin-top: 20px;
+  text-align: center;
+  color: var(--inverted-primary-color);
+
+  @media (width <= 768px) {
+    font-size: 12px;
+  }
+}

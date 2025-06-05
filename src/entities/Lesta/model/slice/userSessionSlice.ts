@@ -18,6 +18,7 @@ const initialState: LestaUserSessionSchema = {
     statistics: null,
     rating: null,
     tanks: [],
+    meta: null,
   },
 };
 
@@ -37,6 +38,7 @@ export const userSessionSlice = createSlice({
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
+    resetState: () => initialState,
   },
   extraReducers: (builder) => {
     builder
@@ -55,6 +57,7 @@ export const userSessionSlice = createSlice({
         state.data.statistics = { ...payload.statistics };
         state.data.rating = { ...payload.rating };
         state.data.tanks = payload.tanks;
+        state.data.meta = payload.meta;
       })
       .addCase(createLestaUserSession.pending, (state) => {
         state.error = '';
