@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 import {
   createLestaUserSession, fetchLestaUserSessionById, getUserRatingDelta,
   getUserRatingStats,
-  getUserSessionDelta, getUserSessionsDates,
+  getUserSessionDelta, getUserSessionsMetaData,
   getUserSessionStats,
   getUserStats,
 } from 'entities/Lesta';
@@ -40,7 +40,7 @@ export const UserStats = memo(({
   const userSessionStats = useSelector(getUserSessionStats);
   const userSessionDelta = useSelector(getUserSessionDelta);
   const userRatingDelta = useSelector(getUserRatingDelta);
-  const userSessionDates = useSelector(getUserSessionsDates);
+  const userSessionsMetaDate = useSelector(getUserSessionsMetaData);
 
   const generalStatItems = useMemo(
     () => getStatsList(userStatistic, userSessionDelta),
@@ -72,7 +72,7 @@ export const UserStats = memo(({
       {
         tab === 2 && <UserStatsList data={ratingStatItems2} />
       }
-      <UserStatsSessionDates userSessionDates={userSessionDates} />
+      <UserStatsSessionDates userSessionsMetaDate={userSessionsMetaDate} />
       {
         currentUser?.lestaData?.account_id === id
         && (

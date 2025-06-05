@@ -5,17 +5,17 @@ import cls from './UserStatsSessionDates.module.scss';
 
 interface UserStatsSessionDatesProps {
   className?: string;
-  userSessionDates?: TSessionDates;
+  userSessionsMetaDate?: TSessionDates;
 }
 
 export const UserStatsSessionDates = (props: UserStatsSessionDatesProps) => {
-  const { className, userSessionDates } = props;
+  const { className, userSessionsMetaDate } = props;
 
-  const dateTo = formatDate(userSessionDates?.session?.dateTo);
-  const dateFrom = formatDate(userSessionDates?.session?.dateFrom);
+  const dateTo = formatDate(userSessionsMetaDate?.session?.dateTo);
+  const dateFrom = formatDate(userSessionsMetaDate?.session?.dateFrom);
   const sessionInfo = `Данные сессии с ${dateFrom} по ${dateTo}`;
 
-  if (!userSessionDates?.session?.dateTo || !userSessionDates?.session?.dateFrom) {
+  if (!userSessionsMetaDate?.session?.dateTo || !userSessionsMetaDate?.session?.dateFrom) {
     return null;
   }
 
