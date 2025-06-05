@@ -99,7 +99,7 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
           onClick={handleChangeMenu}
           className={cls.sessionsHistoryBtn}
         >
-          {!activeSession ? t('История сессий') : activeSession}
+          {activeSession || t('История сессий')}
         </Button>
         <ul
           className={classNames(cls.sessionList, { [cls.sessionListOpened]: isMenuOpen })}

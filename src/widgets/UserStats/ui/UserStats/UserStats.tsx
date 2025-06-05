@@ -40,7 +40,7 @@ export const UserStats = memo(({
   const userSessionStats = useSelector(getUserSessionStats);
   const userSessionDelta = useSelector(getUserSessionDelta);
   const userRatingDelta = useSelector(getUserRatingDelta);
-  const userSessionsMetaDate = useSelector(getUserSessionsMetaData);
+  const userSessionMeta = useSelector(getUserSessionsMetaData);
 
   const generalStatItems = useMemo(
     () => getStatsList(userStatistic, userSessionDelta),
@@ -72,7 +72,7 @@ export const UserStats = memo(({
       {
         tab === 2 && <UserStatsList data={ratingStatItems2} />
       }
-      <UserStatsSessionDates userSessionsMetaDate={userSessionsMetaDate} />
+      <UserStatsSessionDates userSessionMeta={userSessionMeta} />
       {
         currentUser?.lestaData?.account_id === id
         && (

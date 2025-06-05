@@ -100,7 +100,7 @@ export type TUserData = {
   clan: Clan;
 };
 
-export type TSessionDates = {
+export type TUserSessionMeta = {
   session?: {
     dateTo?: string;
     dateFrom?: string;
@@ -112,5 +112,5 @@ export type TUserSession = {
   statistics: ParamData;
   rating?: ParamData;
   tanks: TUserTanks[];
-  meta?: TSessionDates;
+  meta?: TUserSessionMeta;
 }
