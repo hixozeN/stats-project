@@ -38,9 +38,7 @@ export const userSessionSlice = createSlice({
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
-    resetState: (state) => {
-      state.data = initialState.data;
-    },
+    resetState: () => initialState,
   },
   extraReducers: (builder) => {
     builder
