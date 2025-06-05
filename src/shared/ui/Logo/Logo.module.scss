@@ -3,16 +3,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 5px;
   width: 110px;
   height: 110px;
   color: var(--accent-color);
   transition: .4s;
+}
 
-  > svg:first-child {
-    margin-bottom: 8px;
+.Logo.header {
+  @media (width <= 768px) {
+    gap: 2px;
   }
 }
+
 
 .header {
   width: 70px;
@@ -23,15 +26,30 @@
     margin-left: 0;
   }
 
+  @media (width <= 768px) {
+    width: 55px;
+    height: 55px;
+  }
+
   .image {
-    width: 51px;
-    height: 51px;
+    width: 55px;
+    height: 55px;
     min-height: fill-available;
+
+    @media (width <= 768px) {
+      width: 45px;
+      height: 45px;
+    }
   }
 
   .text {
-    width: 62px;
-    height: 7px;
+    width: 70px;
+    height: 10px;
+
+    @media (width <= 768px) {
+      width: 55px;
+      height: 8px;
+    }
   }
 }
 
@@ -74,7 +92,7 @@
     cursor: pointer;
 
     svg {
-      overflow:visible
+      overflow:visible;
     }
 
     .image path {
