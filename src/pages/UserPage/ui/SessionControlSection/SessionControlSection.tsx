@@ -28,6 +28,7 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentSession, setCurrentSession] = useState(null);
+  const [activeSession, setActiveSession] = useState('');
 
   const dispatch = useAppDispatch();
   const userSessions = useSelector(getUserSessions);
@@ -59,7 +60,9 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
       });
   }, [dispatch, userId, currentSession, id]);
 
-  const handleChangeSession = useCallback((targetSession: string) => {
+  const handleChangeSession = useCallback((targetSession: string, dateActive: Date) => {
+    const dateFormatted = formatDate(dateActive);
+    setActiveSession(dateFormatted);
     dispatch(fetchLestaUserSessionById({ sessionId: targetSession }));
     setCurrentSession(targetSession);
     setIsMenuOpen(false);
@@ -96,15 +99,17 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
           onClick={handleChangeMenu}
           className={cls.sessionsHistoryBtn}
         >
-          {t('История сессий')}
+          {activeSession || t('История сессий')}
         </Button>
         <ul
           className={classNames(cls.sessionList, { [cls.sessionListOpened]: isMenuOpen })}
         >
           {reversedUserSessions.map((item) => (
             <li
-              className={cls.sessionItem}
-              onClick={() => handleChangeSession(item.id)}
+              className={classNames(cls.sessionItem, {
+                [cls.activeSessionItem]: activeSession === formatDate(item.session_date),
+              })}
+              onClick={() => handleChangeSession(item.id, item.session_date)}
               key={item.id}
             >
               {formatDate(item.session_date)}
