@@ -106,7 +106,9 @@ export const SessionControlSection = memo((props: SessionControlSectionProps) =>
         >
           {reversedUserSessions.map((item) => (
             <li
-              className={cls.sessionItem}
+              className={classNames(cls.sessionItem, {
+                [cls.activeSessionItem]: activeSession === formatDate(item.session_date),
+              })}
               onClick={() => handleChangeSession(item.id, item.session_date)}
               key={item.id}
             >

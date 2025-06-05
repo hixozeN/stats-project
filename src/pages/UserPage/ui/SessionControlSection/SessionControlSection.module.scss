@@ -69,6 +69,10 @@
   }
 }
 
+.activeSessionItem {
+  font-weight: 700;
+}
+
 .sessionsHistoryBtn {
   outline: 1px solid var(--bg-stat-item);
   max-width: fit-content;
