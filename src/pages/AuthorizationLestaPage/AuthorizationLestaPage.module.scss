@@ -1,0 +1,18 @@
+.wrapper {
+  padding: 0 10px;
+  width: 100%;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.label {
+  text-align: center;
+}
+
+.loader {
+  height: 50px;
+}
