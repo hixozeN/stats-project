@@ -25,3 +25,31 @@
 .online {
   background-color: var(--green-color);
 }
+
+@media (width <= 768px){
+  .statusBadge {
+    width: 26px;
+    height: 26px;
+    right: 0;
+    bottom: 0;
+  }
+
+  .statusDot {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (width <= 450px){
+  .statusBadge {
+    width: 22px;
+    height: 22px;
+    right: -1px;
+    bottom: -1px;
+  }
+
+  .statusDot {
+    width: 10px;
+    height: 10px;
+  }
+}
