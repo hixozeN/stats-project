@@ -1,0 +1,27 @@
+.statusBadge {
+  border-radius: 50%;
+  background-color: var(--bg-color);
+  width: 30px;
+  height: 30px;
+
+  position: absolute;
+  bottom: 8px;
+  right: 58px;
+
+}
+
+.statusDot {
+  content: "";
+  border-radius: 50%;
+  background-color: var(--secondary-color-accent);
+  width: 18px;
+  height: 18px;
+
+  position: absolute;
+  bottom: 6px;
+  right: 6px;
+}
+
+.online {
+  background-color: var(--green-color);
+}

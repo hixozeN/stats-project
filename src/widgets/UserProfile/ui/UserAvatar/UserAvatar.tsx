@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { DEFAULT_USER_AVATAR } from 'shared/consts/global';
 import cls from './UserAvatar.module.scss';
+import { StatusBadge } from 'shared/ui/StatusBadge/StatusBadge';
 
 interface UserAvatarProps {
   className?: string;
@@ -41,6 +42,7 @@ export const UserAvatar = memo((props: UserAvatarProps) => {
         src={getAvatarLink()}
         alt={t('Аватар пользователя')}
       />
+      <StatusBadge/>
     </div>
   );
 });
