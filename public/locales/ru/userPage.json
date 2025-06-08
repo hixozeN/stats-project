@@ -18,5 +18,7 @@
   "RATING_CALIBRATION": "---",
   "REFRESH": "Перезагрузить",
   "RETRY_MESSAGE": "Попробуйте перезагрузить страницу или обратиться к сервису позднее.",
-  "FETCH_DATA_ERROR_MESSAGE": "При загрузке данных произошла ошибка:"
+  "FETCH_DATA_ERROR_MESSAGE": "При загрузке данных произошла ошибка:",
+  "PLAYER_IS_ON_WEBSITE": "Игрок сейчас на сайте",
+  "PLAYER_IS_OFFLINE": "Игрок оффлайн"
 }

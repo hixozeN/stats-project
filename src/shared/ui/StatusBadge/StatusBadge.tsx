@@ -1,8 +1,10 @@
 import { FC } from 'react';
 
-import { classNames } from 'shared/lib/classNames/classNames';
 import { useSelector } from 'react-redux';
-import { getUserOnlineStatus } from 'entities/Lesta';
+import { useTranslation } from 'react-i18next';
+import { getUserStatus } from 'entities/Lesta';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { BTooltip } from 'shared/ui/BTooltip/BTooltip';
 import cls from './StatusBadge.module.scss';
 
 interface IStatusBadgeProps {
@@ -14,11 +16,14 @@ export const StatusBadge: FC<IStatusBadgeProps> = (props) => {
     className,
   } = props;
 
-  const isOnline = useSelector(getUserOnlineStatus);
+  const { t } = useTranslation('userPage');
+  const isOnline = useSelector(getUserStatus);
 
   return (
-    <span className={classNames(cls.statusBadge, {}, [className])}>
-      <span className={classNames(cls.statusDot, { [cls.online]: isOnline }, [])} />
-    </span>
+    <BTooltip title={isOnline ? t('PLAYER_IS_ON_WEBSITE') : t('PLAYER_IS_OFFLINE')}>
+      <span className={classNames(cls.statusBadge, {}, [className])}>
+        <span className={classNames(cls.statusDot, { [cls.online]: isOnline }, [])} />
+      </span>
+    </BTooltip>
   );
 };
