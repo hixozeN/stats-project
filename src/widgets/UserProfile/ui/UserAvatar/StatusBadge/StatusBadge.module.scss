@@ -1,52 +1,51 @@
 .statusBadge {
-  border-radius: 50%;
-  background-color: var(--bg-color);
-  width: 30px;
-  height: 30px;
-  position: absolute;
-  bottom: 8px;
-  right: 58px;
+	border-radius: 50%;
+	background-color: var(--bg-color);
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	bottom: 8px;
+	right: 58px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .statusDot {
-  content: "";
-  border-radius: 50%;
-  background-color: var(--secondary-color-accent);
-  width: 18px;
-  height: 18px;
-  position: absolute;
-  bottom: 6px;
-  right: 6px;
+	border-radius: 50%;
+	background-color: var(--secondary-color-accent);
+	width: 18px;
+	height: 18px;
 }
 
 .online {
-  background-color: var(--green-color);
+	background-color: var(--green-color);
 }
 
-@media (width <= 768px){
-  .statusBadge {
-    width: 26px;
-    height: 26px;
-    right: 0;
-    bottom: 0;
-  }
-
-  .statusDot {
-    width: 14px;
-    height: 14px;
-  }
+@media (width <= 768px) {
+	.statusBadge {
+		width: 26px;
+		height: 26px;
+		right: 0;
+		bottom: 0;
+	}
+	
+	.statusDot {
+		width: 14px;
+		height: 14px;
+	}
 }
 
-@media (width <= 450px){
-  .statusBadge {
-    width: 22px;
-    height: 22px;
-    right: -1px;
-    bottom: -1px;
-  }
-
-  .statusDot {
-    width: 10px;
-    height: 10px;
-  }
+@media (width <= 450px) {
+	.statusBadge {
+		width: 22px;
+		height: 22px;
+		right: -1px;
+		bottom: -1px;
+	}
+	
+	.statusDot {
+		width: 10px;
+		height: 10px;
+	}
 }
