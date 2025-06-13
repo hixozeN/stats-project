@@ -1,4 +1,4 @@
-import { StateSchema } from 'app/providers/StoreProvider/index';
+import { StateSchema } from 'app/providers/StoreProvider';
 
 // статусные селекторы
 export const getUserDataLoadingStatus = (state: StateSchema) => state?.lestaUserData?.isLoading || false;
@@ -26,6 +26,7 @@ export const getUserClanData = (state: StateSchema) => state?.lestaUserData?.cla
 export const getUserPrivateData = (state: StateSchema) => state?.lestaUserData?.private || null;
 export const getUserBanStatus = (state: StateSchema) => state?.lestaUserData?.personal?.block?.isBanned || false;
 export const getUserBanMessage = (state: StateSchema) => state?.lestaUserData?.personal?.block?.message || null;
+export const getUserStatus = (state: StateSchema) => state?.lestaUserData?.personal?.isOnline || false;
 
 // лестовские данные
 export const getUserLestaId = (state: StateSchema) => state?.lestaUserData?.personal?.lestaData?.account_id || null;

@@ -61,6 +61,7 @@ export type LestaUser = {
   ra_rating?: number;
   balance?: number;
   isActivated?: boolean;
+  isOnline?: boolean;
   sessions?: LestaUserSession[];
   lestaData?: TLestaUserData;
   nickname: string;
