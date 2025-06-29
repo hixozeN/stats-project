@@ -29,6 +29,10 @@ export type LestaOpenAuthData = {
 
 export type UserAwards = Record<string, string>;
 
+export interface UserSettings {
+  shouldAutoUpdateSession?: boolean;
+}
+
 export interface User {
   _id?: string;
   username: string;
@@ -48,6 +52,7 @@ export interface User {
   accessToken?: string;
   subscribes?: FavoritePlayer[];
   clanSubscribes?: FavoriteClan[];
+  settings?: UserSettings;
 }
 
 export interface UserOpenID {

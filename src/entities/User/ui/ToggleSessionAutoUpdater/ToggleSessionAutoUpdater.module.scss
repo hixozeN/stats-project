@@ -1,0 +1,19 @@
+.checkboxWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tooltip {
+  display: flex;
+  align-items: center;
+
+  :hover {
+    cursor: help;
+  }
+}
+
+.tooltipIcon {
+  width: 20px;
+  height: 20px;
+}

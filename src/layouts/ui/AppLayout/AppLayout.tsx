@@ -106,6 +106,9 @@ function AppLayout() {
         <ErrorBoundary>
           <ConfigProvider
             theme={{
+              token: {
+                colorPrimary: '#fac704',
+              },
               algorithm: antdTheme.darkAlgorithm,
               components: {
                 Select: {

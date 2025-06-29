@@ -46,5 +46,10 @@
   "PAGE_NOT_FOUND_TITLE": "Page not found | BlitzStats.ru",
   "SIDEBAR_BURGER_BTN_LABEL": "Open navigation menu",
   "NOTIFICATION_LABEL": "Show personal notifications",
-  "NO_NEW_NOTIFICATIONS": "You have no new notifications."
+  "NO_NEW_NOTIFICATIONS": "You have no new notifications.",
+  "AUTO_UPDATE_CHECKBOX_LABEL": "Autoupdate my sessions",
+  "TOOLTIP_SESSIONS_AUTO_UPDATER": "When enabled, your sessions will be automatically updated at midnight Moscow time (GMT +3).\nWe do not recommend enabling this setting for streamers if you use our widget and stream at night time, because the session may be reset during the stream.",
+  "TOAST_AUTO_UPDATE_SUCCESS_TRUE": "Sessions auto update enabled",
+  "TOAST_AUTO_UPDATE_SUCCESS_FALSE": "Sessions auto update disabled",
+  "TOAST_AUTO_UPDATE_ERROR": "Error while changing sessions auto update setting"
 }
