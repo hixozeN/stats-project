@@ -21,8 +21,22 @@
   }
 }
 
+.updateSessionWrapper {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
+}
+
 .btnUpdateSession {
-  margin: 20px auto 0;
+  margin: 0 auto;
+}
+
+.buttonsWrapper {
+  position: relative;
+  display: flex;
+  gap: 10px;
 }
 
 @media (width <= 768px) {

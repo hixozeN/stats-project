@@ -10,3 +10,4 @@ export const getLestaAccessToken = (state: StateSchema) => state?.user?.authData
 export const getCurrentUserAccountId = (state: StateSchema) => state?.user?.authData?.lestaData?.account_id || null;
 export const getUpdateProfileError = (state: StateSchema) => state?.user?.updateProfileError || '';
 export const getCurrentUserAvatar = (state: StateSchema) => state?.user?.authData?.avatar || null;
+export const getCurrentUserSettings = (state: StateSchema) => state?.user?.authData?.settings || {};
