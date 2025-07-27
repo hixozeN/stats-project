@@ -45,6 +45,7 @@ export default ({ config }: {config: webpack.Configuration}) => {
     IS_DEV: true,
     API_URL: JSON.stringify(''),
     ROYAL_ARENA_API_URL: JSON.stringify(''),
+    CLIENT_URL: JSON.stringify(''),
     LESTA_API_URL: JSON.stringify(''),
     LESTA_AUTH_API_URL: JSON.stringify(''),
     LESTA_APP_ID: JSON.stringify(''),
