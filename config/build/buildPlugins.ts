@@ -7,7 +7,7 @@ import { BuildOptions } from './types/config';
 
 export default function buildPlugins(
   {
-    paths, isDev, apiUrl, lestaApiUrl, lestaAuthApiUrl, lestaAppId, lestaDevAppId, royalArenaApiUrl, analyze, buildHash,
+    paths, isDev, apiUrl, lestaApiUrl, lestaAuthApiUrl, lestaAppId, lestaDevAppId, royalArenaApiUrl, clientUrl, analyze, buildHash,
   }: BuildOptions,
 ): webpack.WebpackPluginInstance[] {
   const plugins = [
@@ -23,6 +23,7 @@ export default function buildPlugins(
       IS_DEV: JSON.stringify(isDev),
       API_URL: JSON.stringify(apiUrl),
       ROYAL_ARENA_API_URL: JSON.stringify(royalArenaApiUrl),
+      CLIENT_URL: JSON.stringify(clientUrl),
       LESTA_API_URL: JSON.stringify(lestaApiUrl),
       LESTA_AUTH_API_URL: JSON.stringify(lestaAuthApiUrl),
       LESTA_APP_ID: JSON.stringify(lestaAppId),

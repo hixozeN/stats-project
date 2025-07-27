@@ -103,6 +103,7 @@ module.exports = {
     API_URL: true,
     ROYAL_ARENA_API_URL: true,
     LESTA_API_URL: true,
+    CLIENT_URL: true,
     LESTA_AUTH_API_URL: true,
     LESTA_APP_ID: true,
     LESTA_DEV_APP_ID: true,
