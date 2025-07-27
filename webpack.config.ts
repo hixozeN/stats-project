@@ -39,6 +39,7 @@ export default (env: BuildEnv) => {
   const isDev = mode === 'development';
 
   const royalArenaApiUrl = process.env.ROYAL_API_URL;
+  const clientUrl = process.env.CLIENT_URL;
 
   const lestaApiUrl = 'https://papi.tanksblitz.ru/wotb';
   const lestaAuthApiUrl = 'https://api.tanki.su/wot/auth';
@@ -55,6 +56,7 @@ export default (env: BuildEnv) => {
     port: PORT,
     apiUrl,
     royalArenaApiUrl,
+    clientUrl,
     lestaApiUrl,
     lestaAuthApiUrl,
     lestaAppId,

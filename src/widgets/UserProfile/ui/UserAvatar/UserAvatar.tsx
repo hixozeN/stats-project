@@ -1,11 +1,12 @@
+import { getUserAvatar, getUserDataLoadingStatus } from 'entities/Lesta';
 import { memo } from 'react';
-import { useSelector } from 'react-redux';
-import { getUserAvatar, getUserDataLoadingStatus } from 'entities/Lesta/index';
-import defaultAvatar from 'shared/assets/images/default_avatar_resized.webp';
-import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { useSelector } from 'react-redux';
+import defaultAvatar from 'shared/assets/images/default_avatar_resized.webp';
 import { DEFAULT_USER_AVATAR } from 'shared/consts/global';
+import { classNames } from 'shared/lib/classNames/classNames';
+import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
+import { StatusBadge } from './StatusBadge/StatusBadge';
 import cls from './UserAvatar.module.scss';
 
 interface UserAvatarProps {
@@ -41,6 +42,7 @@ export const UserAvatar = memo((props: UserAvatarProps) => {
         src={getAvatarLink()}
         alt={t('Аватар пользователя')}
       />
+      <StatusBadge />
     </div>
   );
 });

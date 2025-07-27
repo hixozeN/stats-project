@@ -33,6 +33,7 @@ export interface BuildOptions {
   port: number;
   apiUrl: string;
   royalArenaApiUrl: string;
+  clientUrl: string;
   lestaApiUrl: string;
   lestaAuthApiUrl: string;
   lestaAppId: string;

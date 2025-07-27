@@ -39,7 +39,14 @@ module.exports = {
     'import/extensions': 'off',
     'import/prefer-default-export': 'off',
     'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/no-unused-vars': [
+      'warn',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      },
+    ],
     'react/require-default-props': 'off',
     'no-shadow': 'off',
     '@typescript-eslint/no-shadow': 'error',
@@ -81,7 +88,7 @@ module.exports = {
         ],
       },
     ],
-    'max-len': ['error', { ignoreComments: true, code: 120 }],
+    'max-len': ['error', { ignoreComments: true, code: 170 }],
     'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
     'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
     'jsx-a11y/click-events-have-key-events': 'off',
@@ -96,6 +103,7 @@ module.exports = {
     API_URL: true,
     ROYAL_ARENA_API_URL: true,
     LESTA_API_URL: true,
+    CLIENT_URL: true,
     LESTA_AUTH_API_URL: true,
     LESTA_APP_ID: true,
     LESTA_DEV_APP_ID: true,

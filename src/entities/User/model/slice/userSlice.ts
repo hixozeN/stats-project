@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { authByLestaOpenID } from 'features/AuthUser/index';
-import { patchCurrentUser, patchCurrentUserAvatar } from 'features/editCurrentUserPorfile/index';
+import { patchCurrentUser, patchCurrentUserAvatar } from 'features/editCurrentUserPorfile';
 import { LOCAL_STORAGE_USER_KEY } from 'shared/consts/localstorage';
 import { logoutUser } from '../services/logoutUser/logoutUser';
 import { checkUserAuth } from '../services/checkUserAuth/checkUserAuth';
@@ -36,6 +36,9 @@ export const userSlice = createSlice({
         ...state.authData.lestaData,
         ...action.payload,
       };
+    },
+    toggleAutoUpdateSessionSetting: (state, action: PayloadAction<boolean>) => {
+      state.authData.settings.shouldAutoUpdateSession = action.payload;
     },
   },
   extraReducers: (builder) => {

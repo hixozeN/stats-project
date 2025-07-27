@@ -1,18 +1,19 @@
-import React, {
-  memo, useCallback, useMemo,
-} from 'react';
+import React, { memo, useCallback, useMemo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Button } from 'shared/ui/Button/Button';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import {
-  createLestaUserSession, fetchLestaUserSessionById, getUserRatingDelta,
+  createLestaUserSession,
+  fetchLestaUserSessionById,
+  getUserRatingDelta,
   getUserRatingStats,
-  getUserSessionDelta, getUserSessionsMetaData,
+  getUserSessionDelta,
+  getUserSessionsMetaData,
   getUserSessionStats,
   getUserStats,
 } from 'entities/Lesta';
-import { getUserData } from 'entities/User';
+import { getUserData, ToggleSessionAutoUpdater } from 'entities/User';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { useToasts } from 'shared/hooks/useToasts/useToasts';
 import { getStatsList } from '../../lib/getStatsList';
@@ -76,13 +77,16 @@ export const UserStats = memo(({
       {
         currentUser?.lestaData?.account_id === id
         && (
-        <Button
-          className={cls.btnUpdateSession}
-          size="size_m"
-          onClick={handleUpdateSession}
-        >
-          {t('Новая сессия')}
-        </Button>
+          <div className={cls.updateSessionWrapper}>
+            <Button
+              className={cls.btnUpdateSession}
+              size="size_m"
+              onClick={handleUpdateSession}
+            >
+              {t('Новая сессия')}
+            </Button>
+            <ToggleSessionAutoUpdater />
+          </div>
         )
       }
     </section>

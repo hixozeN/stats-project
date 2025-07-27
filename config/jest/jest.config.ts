@@ -20,6 +20,7 @@ export default {
     IS_DEV: true,
     API_URL: '',
     ROYAL_ARENA_API_URL: '',
+    CLIENT_URL: '',
     LESTA_API_URL: '',
     LESTA_AUTH_API_URL: '',
     LESTA_APP_ID: '',

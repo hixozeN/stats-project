@@ -75,7 +75,8 @@
 }
 
 div > .tooltip {
-  max-width: 150px;
+  max-width: 200px;
+  white-space: pre-line;
 
   :global {
     .ant-tooltip-content > .ant-tooltip-inner {
