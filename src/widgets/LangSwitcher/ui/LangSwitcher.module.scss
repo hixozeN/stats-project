@@ -1,11 +1,10 @@
 .LangSwitcher {
   opacity: 1;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (width <= 1024px) {
     position: absolute;
     top: -142px;
     right: -200px;
-
     opacity: 0;
     visibility: hidden;
 
