@@ -1,0 +1,1 @@
+export { UserPrimaryData } from './UserPrimaryData';

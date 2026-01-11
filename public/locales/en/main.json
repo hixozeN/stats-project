@@ -17,6 +17,7 @@
   "BATTLES": "Battles",
   "WN8": "WN8",
   "DAMAGE": "Damage",
+  "TOURNAMENT_WEIGHT": "TW",
   "DAMAGE_SHORT": "AvgDmg",
   "WINRATE": "Winrate",
   "ITEM_ARIA_LABEL": "Player stats at leaderboard",
@@ -26,5 +27,6 @@
       "playersLimitReached": "The 50 player limit has been reached.",
       "clansLimitReached": "The 50 clan limit has been reached."
     }
-  }
+  },
+  "TWR_UNKNOWN": "Unknown"
 }

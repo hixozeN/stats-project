@@ -1,9 +1,11 @@
 {
-  "USER_AGREEMENT": "User agreement",
-  "COPYRIGHT": "Developed by the BlitzStats team",
-  "DISCORD_LABEL": "Link to discord server",
-  "TG_LABEL": "Link to telegram channel",
-  "VK_LABEL": "Link to vkontakte group",
-  "LESTA_COPYRIGHT": "Lesta content © Lesta Games.",
-  "RESERVED": "All rights reserved"
+  "USER_AGREEMENT": "使用者協議",
+  "COPYRIGHT": "由 BlitzStats 團隊開發",
+  "DISCORD_LABEL": "Discord 伺服器連結",
+  "TG_LABEL": "Telegram 頻道連結",
+  "VK_LABEL": "VKontakte 社群連結",
+  "LESTA_COPYRIGHT": "Lesta 內容 © Lesta Games。",
+  "RESERVED": "版權所有",
+  "LESTA_SUPPORT": "Lesta 支援",
+  "GAME_NAME": "Tanks Blitz"
 }

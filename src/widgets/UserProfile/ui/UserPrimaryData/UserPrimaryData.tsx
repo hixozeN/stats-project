@@ -1,15 +1,15 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-// import InfoIcon from 'shared/assets/icons/info.svg';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
-  getUserBio, getUserClanData, getUserDataLoadingStatus, getUserNickname,
+  getUserBio, getUserClanData, getUserClanLoadingStatus, getUserDataLoadingStatus, getUserNickname,
 } from 'entities/Lesta';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import { FavoritesButton } from 'shared/ui/FavoritesButton/FavoritesButton';
 import { getUserData } from 'entities/User';
 import { useSizeScreen } from 'shared/hooks/useSizeScreen';
+import { getRandomEmptyProfileMessage } from 'widgets/UserProfile/utils/getRandomBioText';
 import cls from './UserPrimaryData.module.scss';
 
 interface UserPrimaryDataProps {
@@ -23,10 +23,17 @@ export const UserPrimaryData = memo((props: UserPrimaryDataProps) => {
   const userBio = useSelector(getUserBio);
   const clanData = useSelector(getUserClanData);
   const isUserDataLoading = useSelector(getUserDataLoadingStatus);
+  const isClanLoading = useSelector(getUserClanLoadingStatus);
 
   const { id } = useParams();
   const currentUser = useSelector(getUserData);
-  const isProfileOwner = currentUser?.lestaData?.account_id === Number(id);
+  const isProfileOwner = useMemo(() => currentUser?.lestaData?.account_id === Number(id), [currentUser, id]);
+
+  const profileDescription = useMemo(() => {
+    if (userBio) return userBio;
+
+    return getRandomEmptyProfileMessage({ isAuthor: isProfileOwner });
+  }, [userBio, isProfileOwner]);
 
   const { device } = useSizeScreen();
   const isMobile = device === 'mobile';
@@ -50,7 +57,7 @@ export const UserPrimaryData = memo((props: UserPrimaryDataProps) => {
           && <FavoritesButton theme="profile" id={Number(id)} type="player" />}
       </h3>
       {
-        clanData && (
+        isClanLoading ? <Skeleton width={120} height={24} borderRadius="5px" /> : clanData && (
           <Link className={cls.clan} to={`/team/${clanData.clan_id}`}>
             {`[${clanData.tag}] ${clanData.name}`}
           </Link>
@@ -59,7 +66,7 @@ export const UserPrimaryData = memo((props: UserPrimaryDataProps) => {
       {!isProfileOwner && isMobile
         && <FavoritesButton theme="profile" id={Number(id)} type="player" />}
       <p className={cls.userBio}>
-        {userBio}
+        {profileDescription}
       </p>
     </div>
   );

@@ -1,0 +1,114 @@
+.card {
+  position: relative;
+  list-style: none;
+  padding: 20px 10px;
+  border-radius: 10px;
+  outline: 1px solid var(--bg-stat-item);
+  box-shadow: 0 0 5px var(--bg-stat-item);
+}
+
+.card:nth-child(2n) {
+  background-color: var(--bg-even-list-item);
+}
+
+.playerWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.position {
+  width: 30px;
+  height: 30px;
+
+  &::after {
+    position: absolute;
+    outline: 1px solid var(--secondary-color);
+    background-color: var(--bg-color);
+    top: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    content: attr(data-position);
+  }
+
+  &[data-position="1"]::after {
+    outline: 1px solid var(--accent-color);
+  }
+
+  &[data-position="2"]::after {
+    outline: 1px solid var(--stats-aqua-color);
+  }
+
+  &[data-position="3"]::after {
+    outline: 1px solid var(--stats-green-color);
+  }
+}
+
+.nicknameWrapper {
+  display: flex;
+  gap: 5px;
+
+  .link {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 500;
+  }
+
+  .player, .clan {
+    transition: color 0.2s ease-in;
+  }
+
+  .clan {
+    color: var(--secondary-color);
+  }
+
+  .player:hover, .clan:hover {
+    color: var(--accent-color);
+  }
+}
+
+.wn8Wrapper {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 14px;
+}
+
+.counters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.counter {
+  min-width: 130px;
+  font-size: 14px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  outline: 1px solid var(--bg-stat-item);
+  padding: 5px;
+  border-radius: 5px;
+  background-color: var(--bg-stat-item);
+  box-shadow: 0 0 15px var(--bg-stat-item);
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  color: var(--secondary-color);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.counterValue {
+  font-weight: 500;
+}

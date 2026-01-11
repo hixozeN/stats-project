@@ -50,7 +50,7 @@ export const Tank = memo(({ data, tab }: TankProps) => {
 
   if (isUserDataLoading) {
     return (
-      <Skeleton className={cls.card} />
+      <Skeleton className={cls.cardSkeleton} />
     );
   }
 

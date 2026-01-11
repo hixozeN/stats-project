@@ -91,6 +91,9 @@
 .name {
   font-size: 14px;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 
   @media (width <= 1024px) {
     font-size: 12px;

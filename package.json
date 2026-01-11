@@ -4,6 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
+    "typecheck": "tsc",
     "start": "concurrently \"webpack serve --env port=3000 mode=development\" \"node ./json-server/index.js\"",
     "start:dev:jsonserver": "node ./json-server/index.js",
     "build:prod": "webpack --env mode=production",

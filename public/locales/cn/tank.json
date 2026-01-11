@@ -1,14 +1,14 @@
 {
-  "Бои": "Battles",
-  "Винрейт": "Winrate",
-  "С/У": "AVG DMG",
+  "Бои": "戰鬥場次",
+  "Винрейт": "勝率",
+  "С/У": "平均傷害",
   "WN8": "WN8",
-  "Последний бой":"Last battle",
-  "Ещё": "More",
-  "танка": "tanks",
-  "танков": "tanks",
-  "танк": "tanks",
-  "PLAYER_HAS": "Player has",
-  "WITH_PARAMETERS": "with the selected parameters",
-  "NO_SESSION_TANKS": "Viewing detailed statistics on tanks is not available, because the player has not yet played for the current session."
+  "Последний бой": "最後一場戰鬥",
+  "Ещё": "更多",
+  "танка": "輛戰車",
+  "танков": "輛戰車",
+  "танк": "輛戰車",
+  "PLAYER_HAS": "玩家擁有",
+  "WITH_PARAMETERS": "符合所選條件",
+  "NO_SESSION_TANKS": "無法查看戰車的詳細統計資料，因為該玩家尚未在目前階段進行任何戰鬥。"
 }

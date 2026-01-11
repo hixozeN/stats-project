@@ -1,10 +1,10 @@
 {
-  "DISCORD_LABEL": "Link to discord server",
-  "TG_LABEL": "Link to telegram channel",
-  "VK_LABEL": "Link to vkontakte group",
-  "TG_CHAT_LABEL": "Link to telegram chat",
+  "DISCORD_LABEL": "Discord 伺服器連結",
+  "TG_LABEL": "Telegram 頻道連結",
+  "VK_LABEL": "VKontakte 社群連結",
+  "TG_CHAT_LABEL": "Telegram 聊天群組連結",
   "TELEGRAM": "Telegram",
   "VK": "VK",
   "DISCORD": "Discord",
-  "TELEGRAM_CHAT": "Telegram chat"
+  "TELEGRAM_CHAT": "Telegram 聊天群組"
 }

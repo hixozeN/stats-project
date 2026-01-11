@@ -11,24 +11,25 @@
 .tableRowLink {
   width: 100%;
   display: grid;
-  grid-template-columns: 250px repeat(4, 1fr);
+  grid-template-columns: 250px repeat(5, 1fr);
   justify-content: space-between;
   align-items: center;
   margin-left: 5px;
 
-  @media (width <= 768px) {
+  @media (width <= 1024px) {
     max-width: 550px;
     width: 100%;
     margin: 0 auto;
     padding: 10px 5px;
     justify-content: center;
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     grid-template-columns: repeat(2, 1fr);
     gap: 5px;
     grid-template-areas:
       "nickname nickname"
       "battles winrate"
-      "damage wn8";
+      "damage wn8"
+      "tournamentWeight tournamentWeight";
 
     .battles {
       grid-area: battles;
@@ -49,6 +50,12 @@
       grid-area: wn8;
       margin-right: auto;
     }
+
+    .tournamentWeight {
+      grid-template-columns: repeat(2, 1fr);
+      grid-area: tournamentWeight;
+      justify-self: center;
+    }
   }
 }
 
@@ -60,7 +67,7 @@
   padding: 25px 0;
   z-index: 2;
 
-  @media (width <= 768px) {
+  @media (width <= 1024px) {
     padding: 0;
     grid-area: nickname;
     text-align: center;
@@ -78,7 +85,7 @@
   content: attr(data-position);
   translate: 0 75%;
 
-  @media (width <= 768px) {
+  @media (width <= 1024px) {
     position: absolute;
     top: 10px;
     left: 10px;
@@ -116,7 +123,7 @@
     color: var(--secondary-color);
   }
 
-  @media (width <= 768px) {
+  @media (width <= 1024px) {
     padding: 0 5px;
   }
 }
@@ -126,7 +133,7 @@
   flex-direction: column;
   align-items: center;
 
-  @media (width <= 768px) {
+  @media (width <= 1024px) {
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(2, 60px);
@@ -139,11 +146,14 @@
 }
 
 .columnName {
+  display: flex;
+  align-items: center;
+  gap: 5px;
   font-size: var(--font-size-m);
   font-weight: 500;
   color: var(--inverted-primary-color);
 
-  @media (width <= 768px) {
+  @media (width <= 1024px) {
     font-size: 14px;
   }
 }
@@ -151,7 +161,7 @@
 .columnValue {
   font-size: var(--font-size-m);
 
-  @media (width <= 768px) {
+  @media (width <= 1024px) {
     font-size: 14px;
   }
 }

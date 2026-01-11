@@ -5,6 +5,8 @@ import { FavoritesButton } from 'shared/ui/FavoritesButton/FavoritesButton';
 import { useSelector } from 'react-redux';
 import { getUserData } from 'entities/User/index';
 import { classNames } from 'shared/lib/classNames/classNames';
+import { WN8InfoTooltip } from 'shared/ui/WN8InfoTooltip';
+import { ColoredStat } from 'shared/ui/ColoredStat/ColoredStat';
 import { convertTimestamp } from '../../lib/convertTimestamp';
 import cls from './TeamMembersItem.module.scss';
 
@@ -53,7 +55,13 @@ export const TeamMembersItem = (props: ITeamMembersItem) => {
         </div>
         <div className={cls.container}>
           <span className={cls.columnName}>{t('Винрейт')}</span>
-          <span className={cls.value}>{`${winRate}%`}</span>
+          {/* <span className={cls.value}>{`${winRate}%`}</span> */}
+          <ColoredStat
+            value={winRate}
+            type="winrate"
+            className={cls.value}
+            text={`${winRate.toString()}%`}
+          />
         </div>
         <div className={cls.container}>
           <span className={cls.columnName}>{t('Урон')}</span>
@@ -61,9 +69,17 @@ export const TeamMembersItem = (props: ITeamMembersItem) => {
         </div>
         <div className={cls.container}>
           <div className={cls.wrapper}>
-            <span className={cls.columnName}>{t('WN8')}</span>
+            <span className={cls.columnName}>
+              {t('WN8')}
+              <WN8InfoTooltip />
+            </span>
           </div>
-          <span className={cls.value}>{wn8 === 0 ? '-' : wn8}</span>
+          <ColoredStat
+            value={wn8}
+            type="wn8"
+            className={cls.value}
+            text={wn8 === 0 ? '-' : wn8.toString()}
+          />
         </div>
         <div className={cls.container}>
           <span className={cls.columnName}>{t('В бою')}</span>

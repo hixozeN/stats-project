@@ -4,7 +4,7 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import { AppLink, AppLinkTheme } from 'shared/ui/AppLink/AppLink';
 import { useSelector } from 'react-redux';
 import { getLoggedInStatus, getUserData } from 'entities/User';
-import React, {
+import {
   memo, useCallback, useEffect, useRef, useState,
 } from 'react';
 import { Button } from 'shared/ui/Button/Button';
@@ -12,6 +12,7 @@ import { useSizeScreen } from 'shared/hooks/useSizeScreen';
 import { Menu } from 'shared/ui/Menu';
 import { useClickOutside } from 'shared/hooks/useClickOutside';
 import { NotificationButton } from 'entities/Notification';
+import { useNavigate } from 'react-router-dom';
 import cls from './Navbar.module.scss';
 
 interface INavbarProps {
@@ -26,6 +27,7 @@ export const Navbar = memo(({ className }: INavbarProps) => {
   const { t } = useTranslation('nav');
   const { width } = useSizeScreen();
   const profileDropdownRef = useRef(null);
+  const navigate = useNavigate();
 
   useClickOutside(profileDropdownRef, () => {
     if (!isOpenMenu) return null;
@@ -54,14 +56,13 @@ export const Navbar = memo(({ className }: INavbarProps) => {
       <div className={cls.navWrapper}>
         <NotificationButton />
         <nav
-          className={classNames(
-            cls.menuProfile,
-            { [cls.open]: isOpenMenu },
-            [],
-          )}
+          className={classNames(cls.menuProfile, { [cls.open]: isOpenMenu }, [])}
           ref={profileDropdownRef}
         >
-          <Menu theme="navbar" cb={handleClickMenu} />
+          <Menu
+            theme="navbar"
+            cb={handleClickMenu}
+          />
         </nav>
 
         <Button
@@ -82,7 +83,11 @@ export const Navbar = memo(({ className }: INavbarProps) => {
       <div className={cls.navWrapper}>
         <AppLink
           theme={AppLinkTheme.BUTTON}
-          to={RoutePath.auth}
+          to="#"
+          onClick={(e) => {
+            e.preventDefault();
+            navigate(RoutePath.authLesta);
+          }}
           className={cls.auth}
           state={{ tab: 'auth' }}
         >

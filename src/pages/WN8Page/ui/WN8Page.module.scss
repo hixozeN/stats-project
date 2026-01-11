@@ -1,0 +1,123 @@
+.wn8Page {
+  padding: 50px;
+  height: 100%;
+  position: relative;
+  max-width: 768px;
+
+
+  @media (width <= 1024px) {
+    padding: 20px;
+  }
+
+  @media (width <= 768px) {
+    padding: 20px 10px;
+  }
+}
+
+.breadcrumbs {
+  display: flex;
+  gap: 4px;
+  font-size: 14px;
+  color: var(--secondary-color);
+  margin-bottom: 12px;
+}
+
+.breadcrumbsLink {
+  font-size: 14px;
+  color: var(--primary-color);
+}
+
+.breadcrumbsSeparator {
+  color: var(--secondary-color);
+}
+
+.title {
+  margin-bottom: 20px;
+}
+
+.paragraph {
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 10px 0;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 20px 0 10px;
+}
+
+.wn8GradeList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 350px;
+  list-style: none;
+}
+
+.wn8GradeItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.spanSecondary {
+  color: #d1d1d1;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.spanSecondaryDark {
+  color: #6a6a6a;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.veryBadWN8 {
+  color: #252525;
+  background-color: var(--wn8-very-bad-color);
+}
+
+.badWN8 {
+  background-color: var(--wn8-bad-color);
+}
+
+.belowAverageWN8 {
+  color: #252525;
+  background-color: var(--wn8-below-average-color);
+}
+
+.averageWN8 {
+  color: #252525;
+  background-color: var(--wn8-average-color);
+}
+
+.aboveAverageWN8 {
+  background-color: var(--wn8-above-average-color);
+}
+
+.goodWN8 {
+  background-color: var(--wn8-good-color);
+}
+
+.veryGoodWN8 {
+  background-color: var(--wn8-very-good-color);
+}
+
+.greatWN8 {
+  background-color: var(--wn8-great-color);
+}
+
+.unicumWN8 {
+  background-color: var(--wn8-unicum-color);
+}
+
+.superUnicumWN8 {
+  background-color: var(--wn8-super-unicim-color);
+}

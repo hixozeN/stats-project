@@ -15,5 +15,6 @@ export interface ILeaderboardItem {
   wins: number;
   losses: number;
   draws: number;
+  tournamentWeight: number;
   clan: Clan;
 }

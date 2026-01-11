@@ -31,7 +31,7 @@ export const CurrentUserRating = memo((props: CurrentUserRatingProps) => {
     skip: currentUserRatingData?.skip ?? null,
     updated_at: currentUserRatingData?.updated_at ?? null,
     score: currentUserRatingData?.score ?? null,
-    nickname: user.lestaData.nickname,
+    nickname: user?.lestaData?.nickname ?? '',
     clan_tag: clanTag,
     clan_name: clanName,
   };

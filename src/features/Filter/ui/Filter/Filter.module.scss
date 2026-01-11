@@ -1,12 +1,12 @@
 .filterPanel {
   display: grid;
-  margin: 25px 10px;
+  margin: 16px 10px;
   position: relative;
   width: 100%;
   grid-template-columns: 280px 1fr 280px;
 
   @media (width <= 768px) {
-    margin: 15px 0;
+    margin: 8px 0;
   }
 }
 
@@ -278,7 +278,7 @@
   }
 
   .buttonFilter {
-    margin-left: 25px;
+    margin-left: 10px;
   }
 }
 

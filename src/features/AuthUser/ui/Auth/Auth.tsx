@@ -8,7 +8,7 @@ export const Auth = () => {
 
   return (
     <div className={cls.auth}>
-      {!isBlitzAuth && <AuthSelect setIsBlitzAuth={setIsBlitzAuth} />}
+      {!isBlitzAuth && <AuthSelect />}
       {isBlitzAuth && <AuthForm setIsBlitzAuth={setIsBlitzAuth} />}
     </div>
   );

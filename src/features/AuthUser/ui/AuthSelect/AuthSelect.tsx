@@ -5,11 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { RoutePath } from 'shared/config/routeConfig/routeConfig';
 import cls from './AuthSelect.module.scss';
 
-interface AuthSelectProps {
-  setIsBlitzAuth: (state: boolean) => void;
-}
-
-export const AuthSelect = ({ setIsBlitzAuth }: AuthSelectProps) => {
+export const AuthSelect = () => {
   const { t } = useTranslation('auth');
   const navigate = useNavigate();
 
@@ -21,14 +17,6 @@ export const AuthSelect = ({ setIsBlitzAuth }: AuthSelectProps) => {
         <LestaLogo
           className={cls.logoLesta}
           onClick={() => navigate(RoutePath.authLesta)}
-        />
-        <Logo
-          className={cls.logoBlitz}
-          withoutCrown
-          theme="auth"
-          onClick={() => {
-            setIsBlitzAuth(true);
-          }}
         />
       </div>
     </div>

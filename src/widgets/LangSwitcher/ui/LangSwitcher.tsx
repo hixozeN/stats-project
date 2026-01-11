@@ -13,8 +13,8 @@ interface LangSwitcherProps {
 export const LangSwitcher = memo(({ className, visible }: LangSwitcherProps) => {
   const { t, i18n } = useTranslation();
 
-  const languages: MenuProps['items'] = useMemo(() => (
-    [
+  const languages: MenuProps['items'] = useMemo(() => {
+    const languageList = [
       {
         label: 'Ру',
         key: 'ru',
@@ -27,8 +27,10 @@ export const LangSwitcher = memo(({ className, visible }: LangSwitcherProps) => 
         label: '中国人',
         key: 'cn',
       },
-    ]
-  ), []);
+    ];
+
+    return languageList;
+  }, []);
 
   const changeTranslation = async (lang: string) => {
     await i18n.changeLanguage(lang.toLowerCase());
