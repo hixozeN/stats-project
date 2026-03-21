@@ -4,6 +4,9 @@ import { classNames } from 'shared/lib/classNames/classNames';
 import React, { useCallback, useRef } from 'react';
 // import { FavoritesButton } from 'shared/ui/FavoritesButton/FavoritesButton';
 import { ILeaderboardItem } from 'features/playersLeaderboard';
+import { ColoredStat } from 'shared/ui/ColoredStat/ColoredStat';
+import { WN8InfoTooltip } from 'shared/ui/WN8InfoTooltip';
+import { TWRInfoTooltip } from 'shared/ui/TWRInfoTooltip';
 import cls from './LeaderboardItem.module.scss';
 
 interface LeaderboardItemProps {
@@ -11,10 +14,10 @@ interface LeaderboardItemProps {
   index?: number;
 }
 
-export const LeaderboardItem = ({ player, index }: LeaderboardItemProps) => {
+export const LeaderboardItem = ({ player, index = 0 }: LeaderboardItemProps) => {
   const { t } = useTranslation('main');
   const {
-    nickname, account_id, battles, winRate, avgDamage, wn8, clan,
+    nickname, account_id, battles, winRate, avgDamage, wn8, clan, tournamentWeight,
   } = player;
   const navigate = useNavigate();
   const playerClanRef = useRef(null);
@@ -57,15 +60,32 @@ export const LeaderboardItem = ({ player, index }: LeaderboardItemProps) => {
         </div>
         <div className={classNames(cls.item, {}, [cls.winrate])}>
           <span className={cls.columnName}>{t('WINRATE')}</span>
-          <p className={cls.columnValue}>{`${winRate}%`}</p>
+          <ColoredStat className={cls.columnValue} value={winRate} type="winrate" />
         </div>
         <div className={classNames(cls.item, {}, [cls.damage])}>
           <span className={cls.columnName}>{t('DAMAGE_SHORT')}</span>
           <p className={cls.columnValue}>{avgDamage}</p>
         </div>
         <div className={classNames(cls.item, {}, [cls.wn8])}>
-          <span className={cls.columnName}>{t('WN8')}</span>
-          <p className={cls.columnValue}>{wn8}</p>
+          <span className={cls.columnName}>
+            {t('WN8')}
+            {' '}
+            <WN8InfoTooltip />
+          </span>
+          <ColoredStat className={cls.columnValue} value={wn8} type="wn8" />
+        </div>
+        <div className={classNames(cls.item, {}, [cls.tournamentWeight])}>
+          <span className={cls.columnName}>
+            {t('TOURNAMENT_WEIGHT')}
+            {' '}
+            <TWRInfoTooltip />
+          </span>
+          <ColoredStat
+            className={cls.columnValue}
+            value={tournamentWeight}
+            text={tournamentWeight ? `${tournamentWeight}%` : t('TWR_UNKNOWN')}
+            type="winrate"
+          />
         </div>
       </div>
       {/* <FavoritesButton theme="leaderboard" id={account_id} tag={t('players')} /> */}

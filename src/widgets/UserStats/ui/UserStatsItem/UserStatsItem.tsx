@@ -3,6 +3,8 @@ import {
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
+import { ColoredStat } from 'shared/ui/ColoredStat/ColoredStat';
+import { WN8InfoTooltip } from 'shared/ui/WN8InfoTooltip';
 import cls from './UserStatsItem.module.scss';
 
 interface IUserStatsItemProps {
@@ -33,6 +35,15 @@ export const UserStatsItem = memo((props: IUserStatsItemProps) => {
 
   const renderCounter = useCallback(() => {
     if (itemName === 'Рейтинг' && counter === 3000) return t('RATING_CALIBRATION');
+
+    if (itemName === 'WN8') {
+      return <ColoredStat value={+counter} type="wn8" />;
+    }
+
+    if (itemName === 'Винрейт') {
+      return <ColoredStat value={+counter} type="winrate" />;
+    }
+
     return counter;
   }, [counter, itemName, t]);
 
@@ -52,7 +63,11 @@ export const UserStatsItem = memo((props: IUserStatsItemProps) => {
         <h3 className={classNames(cls.counter, { [cls.counterSession]: itemName === 'Старт сессии' }, [])}>
           {renderCounter()}
         </h3>
-        <p className={cls.name}>{t(itemName)}</p>
+
+        <span className={cls.name}>
+          {t(itemName)}
+          {itemName === 'WN8' && <WN8InfoTooltip />}
+        </span>
       </div>
     </li>
   );

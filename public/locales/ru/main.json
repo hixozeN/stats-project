@@ -16,6 +16,7 @@
   "LEADERBOARD_DESCRIPTION": "Формируется по игрокам, у которых более 10.000 боев",
   "BATTLES": "Боёв",
   "WN8": "WN8",
+  "TOURNAMENT_WEIGHT": "TW",
   "DAMAGE": "Средний урон",
   "DAMAGE_SHORT": "С/У",
   "WINRATE": "Винрейт",
@@ -26,5 +27,6 @@
       "playersLimitReached": "Хранить в избранном можно не более 50 игроков.",
       "clansLimitReached": "Хранить в избранном можно не более 50 кланов."
     }
-  }
+  },
+  "TWR_UNKNOWN": "Неизвестно"
 }

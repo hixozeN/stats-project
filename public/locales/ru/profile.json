@@ -23,7 +23,7 @@
   "VK_PLACEHOLDER": "https://vk.com/olrcyteam",
   "TG_PLACEHOLDER": "https://t.me/blitzstats",
   "YT_PLACEHOLDER": "https://youtube.com/@Enjoykin",
-  "DISCORD_CONNECTED": "Аккаунт уже подключен к профилю ✅",
+  "DISCORD_CONNECTED": "Discord-аккаунт уже подключен к профилю ✅",
   "BTN_CONNECT_DISCORD": "Подключить Discord к профилю.",
   "DISCORD_SUCCESS_CONNECT": "Discord успешно подключен к профилю.",
   "UNEXPECTED_ERROR": "Что-то пошло не так...",

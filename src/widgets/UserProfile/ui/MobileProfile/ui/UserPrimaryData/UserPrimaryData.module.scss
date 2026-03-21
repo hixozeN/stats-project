@@ -1,0 +1,69 @@
+.UserPrimaryData {
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+}
+
+.heading {
+  display: flex;
+  gap: 10px;
+}
+
+.avatarWrapper {
+  position: relative;
+}
+
+.playerData {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.nickname {
+  display: flex;
+  gap: 5px;
+}
+
+.bio {
+  padding-top: 10px;
+  display: block;
+}
+
+.bioSkeleton {
+  margin-top: 10px;
+}
+
+.ratingSection {
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  gap: 5px;
+}
+
+.ratingImage {
+  width: 24px;
+}
+
+.ratingInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  color: var(--secondary-color);
+  font-size: 14px;
+  text-align: center;
+}
+
+.value {
+  color: var(--primary-color);
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
+}
+
+.calibrationInfo {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+}

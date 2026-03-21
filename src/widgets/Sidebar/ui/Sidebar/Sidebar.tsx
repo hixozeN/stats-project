@@ -67,7 +67,7 @@ export const Sidebar = memo(({
       </nav>
       <div className={cls.switchers}>
         {IS_DEV && <ThemeSwitcher />}
-        <LangSwitcher isShort />
+        <LangSwitcher visible={isOpenMenu} />
       </div>
     </aside>
   );

@@ -27,6 +27,7 @@ export type LestaTanksSchema = {
 
 export type LestaUserDataSchema = {
   isLoading: boolean;
+  isClanLoading: boolean;
   isNotFound?: boolean;
   error?: string;
   personal?: LestaUser;

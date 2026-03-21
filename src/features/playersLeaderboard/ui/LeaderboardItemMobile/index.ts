@@ -1,0 +1,1 @@
+export { LeaderboardItemMobile } from './LeaderboardItemMobile';

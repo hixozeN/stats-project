@@ -121,9 +121,9 @@ export const TankStat = memo(
     };
 
     return (
-      <div className={cls.wrapper}>
+      <>
         <dt className={cls.term}>{`${t(`${data}`)}:`}</dt>
-        <dd className={classNames('', classNameRate)}>
+        <dd className={classNames(cls.value, classNameRate)}>
           {isVisible ? (
             <BTooltip
               title={textTollTip}
@@ -135,7 +135,7 @@ export const TankStat = memo(
             statParams[`${data}`]
           )}
         </dd>
-      </div>
+      </>
     );
   },
 );

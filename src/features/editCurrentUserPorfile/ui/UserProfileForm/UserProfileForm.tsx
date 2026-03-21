@@ -1,18 +1,21 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
-import React, {
+import {
   memo, useCallback, useEffect, useState,
 } from 'react';
 import { Button } from 'shared/ui/Button/Button';
 import { useSelector } from 'react-redux';
-import { getUpdateProfileError, getUserData, IAvatars } from 'entities/User';
+import {
+  getCurrentUserAvatar, getUpdateProfileError, getUserData, IAvatars,
+} from 'entities/User';
 import { useForm, Controller, FieldErrors } from 'react-hook-form';
 import { useToasts } from 'shared/hooks/useToasts/useToasts';
 import { VALIDATION_MESSAGES } from 'shared/consts/validationMessages';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch/useAppDispatch';
 import { Modal } from 'shared/ui/Modal/Modal';
 import { $royalApi } from 'shared/api/royalApi';
-import { SERVER_ERROR_MESSAGE } from 'shared/consts/global';
+import { SERVER_ERROR_MESSAGE, DEFAULT_USER_AVATAR } from 'shared/consts/global';
+import defaultAvatar from 'shared/assets/images/default_avatar_resized.webp';
 import { ConnectDiscord } from '../ConnectDiscord/ConnectDiscord';
 import { patchCurrentUser } from '../../model/services/patchCurrentUser';
 import { removeUrl } from '../../lib/removeUrl';
@@ -36,6 +39,7 @@ interface IUserProfileFormProps {
 export const UserProfileForm = memo(({ className }: IUserProfileFormProps) => {
   const { t } = useTranslation('profile');
   const currentUser = useSelector(getUserData);
+  const currentUserAvatar = useSelector(getCurrentUserAvatar);
   const error = useSelector(getUpdateProfileError);
   const [isModalOpened, setModalOpened] = useState(false);
   const [availableAvatars, setAvailableAvatars] = useState<IAvatars>(
@@ -124,7 +128,7 @@ export const UserProfileForm = memo(({ className }: IUserProfileFormProps) => {
           <div className={cls.avatarWrapper} onClick={() => setModalOpened(true)} tabIndex={0} role="button">
             <img
               className={cls.avatar}
-              src={currentUser.avatar}
+              src={currentUserAvatar === DEFAULT_USER_AVATAR ? defaultAvatar : currentUserAvatar}
               alt={t('Аватар пользователя')}
             />
             <Button

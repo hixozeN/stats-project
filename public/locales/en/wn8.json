@@ -1,0 +1,33 @@
+{
+  "seo": {
+    "title": "What is WN8? | BlitzStats",
+    "description": "WN8 is a Tanks Blitz-specific metric that measures a player's personal combat effectiveness. It takes into account all your actions (and inactions): from win rate and damage dealt versus damage received, to assistance damage, base captures, defense points held, kills, and spotting. Thus, WN8 evaluates your individual performance, actions, and impact on battles, then compares it against the 'average' player. Every action you take in battle carries its own weight, influencing both the outcome of the match and your WN8 score. Achieving a high WN8 isn't just about dealing massive damage or inflating your win rate with platoons—it’s about your comprehensive contribution to the battle’s result. WN8 accounts for, evaluates, and clearly visualizes all of this."
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "back": "Back"
+  },
+  "title": "What is WN8?",
+  "spanBold": "WN8",
+  "p1": "is a Tanks Blitz-specific metric that measures a player's personal combat effectiveness.",
+  "p2": "It takes into account all your actions (and inactions): from win rate and damage dealt versus damage received, to assistance damage, base captures, defense points held, kills, and spotting.",
+  "p3": "Thus, WN8 evaluates your individual performance, actions, and impact on battles, then compares it against the 'average' player.",
+  "p4": "Every action you take in battle carries its own weight, influencing both the outcome of the match and your WN8 score. Achieving a high WN8 isn't just about dealing massive damage or inflating your win rate with platoons—it’s about your comprehensive contribution to the battle’s result. WN8 accounts for, evaluates, and clearly visualizes all of this.",
+  "p5": "Experienced players might recall MGR and try to compare it with WN8. They’d be partially right—but only partially. MGR was measured in percentages, whereas WN8 uses absolute values. Roughly speaking, 3000 WN8 corresponds to 100% MGR. Since MGR had a hard cap, interest in it quickly faded among skilled players.",
+  "subtitle1": "WN8 Rating Tiers",
+  "veryBadWN8": "very poor rating",
+  "badWN8": "poor rating",
+  "belowAverageWN8": "below average",
+  "averageWN8": "average server player",
+  "aboveAverageWN8": "above average",
+  "goodWN8": "good level",
+  "veryGoodWN8": "excellent rating",
+  "unicumWN8": "unique rating (~5% of players)",
+  "otherGrades": "Additional tiers without color highlighting:",
+  "superUnicumWN8": "\"super-unicum\" tier (less than 1% of players)",
+  "cyberWN8": "pro-level",
+  "legendWN8": "Tanks Blitz Legends—an almost unattainable level with 20K+ battles",
+  "subtitle2": "Why isn’t WN8 calculated for all tanks?",
+  "p6": "WN8 is only calculated for Tier 6 vehicles and higher.",
+  "p7": "For newly introduced vehicles, WN8 calculation begins only after sufficient statistical data has been gathered to ensure accurate results."
+}

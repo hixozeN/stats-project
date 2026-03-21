@@ -1,0 +1,12 @@
+{
+  "title": "綁定 Lesta 帳號",
+  "restrictedStats": "僅限已綁定 ",
+  "connectLesta": "綁定 Lesta ID",
+  "Lesta Games Open ID": "Lesta\u00A0Games\u00A0/Open\u00A0ID",
+  "successConnect": "Lesta Games Open ID 已成功綁定。",
+  "failedConnect": "發生錯誤……請稍後再試。",
+  "unexpectedError": "發生未預期的錯誤，請稍後再試。",
+  "canceledByUser": "使用者已取消授權。",
+  "authTimedOut": "使用者授權逾時。",
+  "authError": "授權資料錯誤。"
+}

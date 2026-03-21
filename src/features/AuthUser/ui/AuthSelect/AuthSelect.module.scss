@@ -40,9 +40,9 @@
 }
 
 .inner {
-  display: grid;
-  grid-template-columns: repeat(2, 242px);
-  grid-template-rows: 80px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
   margin: 0 0 5px;
 }
 
@@ -65,6 +65,7 @@
 .logoLesta {
   cursor: pointer;
   color: var(--primary-color);
+  max-width: 242px;
 
   @media (hover: hover) {
     &:hover {

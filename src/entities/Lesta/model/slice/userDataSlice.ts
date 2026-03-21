@@ -13,6 +13,7 @@ import { Clan } from '../../model/types/clans';
 
 const initialState: LestaUserDataSchema = {
   isLoading: false,
+  isClanLoading: false,
   isNotFound: false,
   error: null,
   statistics: null,
@@ -87,13 +88,15 @@ export const userDataSlice = createSlice({
       })
       .addCase(fetchLestaUserClan.pending, (state) => {
         state.clan = null;
+        state.isClanLoading = true;
       })
       .addCase(fetchLestaUserClan.rejected, (state) => {
         state.clan = null;
-        state.isLoading = false;
+        state.isClanLoading = false;
       })
       .addCase(fetchLestaUserClan.fulfilled, (state, { payload }) => {
         state.clan = payload;
+        state.isClanLoading = false;
       });
   },
 });

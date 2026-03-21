@@ -19,6 +19,7 @@ import { UserProfileForm } from 'features/editCurrentUserPorfile';
 import { RatingPage } from 'pages/RatingPage';
 import { AuthLestaResult } from 'pages/AuthorizationLestaPage/AuthLestaResult';
 import { SessionWidgetPage, WidgetSettingsPage } from 'pages/SessionWidget';
+import { WN8Page } from 'pages/WN8Page';
 
 // interface IRouterPath {
 //   [key:string]: string;
@@ -40,6 +41,7 @@ export enum AppRoutes {
   USER_ID = 'user_id',
   PROFILE = 'profile',
   USER = 'user',
+  WN8 = 'wn8',
   PROFILE_STATS = 'profile_stats',
   PROFILE_SESSIONS = 'profile_sessions',
   PROFILE_HISTORY = 'profile_history',
@@ -76,6 +78,7 @@ export const RoutePath: OptionalRecord<AppRoutes, string> = {
   [AppRoutes.AUTH_CONNECT_LESTA]: '/auth/connect',
   [AppRoutes.SESSION_WIDGET]: '/widgets/session',
   [AppRoutes.SESSION_WIDGET_SETTINGS]: '/widgets',
+  [AppRoutes.WN8]: '/wn8',
 };
 
 export const routerConfiguration = createBrowserRouter([
@@ -143,6 +146,10 @@ export const routerConfiguration = createBrowserRouter([
               {
                 path: RoutePath.authLestaResult,
                 element: <AuthLestaResult />,
+              },
+              {
+                path: RoutePath.wn8,
+                element: <WN8Page />,
               },
               {
                 element: <RequireAuth />,

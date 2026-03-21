@@ -11,7 +11,7 @@ export const getUserNickname = (state: StateSchema) => state?.lestaUserData?.per
 export const getUserAvatar = (state: StateSchema) => state?.lestaUserData?.personal?.avatar
   || 'https://i.ibb.co/6mFMhKT/default-avatar2.jpg';
 export const getUserBio = (state: StateSchema) => state?.lestaUserData?.personal?.bio
-  || 'Игрок еще не рассказал ничего о себе, но поделился своими показателями 🚀';
+  || null;
 export const getUserTelegram = (state: StateSchema) => state?.lestaUserData?.personal?.telegram || null;
 export const getUserDiscord = (state: StateSchema) => state?.lestaUserData?.personal?.discord || null;
 export const getUserVK = (state: StateSchema) => state?.lestaUserData?.personal?.vk || null;
@@ -23,6 +23,7 @@ export const getUserSocialLinks = (state: StateSchema) => ({
   youtube: state?.lestaUserData?.personal?.youtube || null,
 });
 export const getUserClanData = (state: StateSchema) => state?.lestaUserData?.clan || null;
+export const getUserClanLoadingStatus = (state: StateSchema) => state?.lestaUserData?.isClanLoading || false;
 export const getUserPrivateData = (state: StateSchema) => state?.lestaUserData?.private || null;
 export const getUserBanStatus = (state: StateSchema) => state?.lestaUserData?.personal?.block?.isBanned || false;
 export const getUserBanMessage = (state: StateSchema) => state?.lestaUserData?.personal?.block?.message || null;

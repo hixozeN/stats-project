@@ -20,5 +20,6 @@
   "RETRY_MESSAGE": "Try to reload page or visit us a little later.",
   "FETCH_DATA_ERROR_MESSAGE": "An error occurred while loading data:",
   "PLAYER_IS_ON_WEBSITE": "Player is on website",
-  "PLAYER_IS_OFFLINE": "Player is offline"
+  "PLAYER_IS_OFFLINE": "Player is offline",
+  "SESSION_DURATION": "Session from {{start}} to {{end}}"
 }
