@@ -31,6 +31,7 @@ export const AppLink = memo((props: AppLinkProps) => {
         cls[theme],
         theme === AppLinkTheme.BUTTON ? '' : 'link-hovered',
       ])}
+      onClick={(event) => event.stopPropagation()}
       {...otherProps}
     >
       {children}
